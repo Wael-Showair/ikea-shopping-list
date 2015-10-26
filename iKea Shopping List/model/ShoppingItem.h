@@ -1,37 +1,80 @@
-//
-//  ShoppingItem.h
-//  iKea Shopping List
-//
-//  Created by Wael Showair on 2015-10-25.
-//  Copyright © 2015 showair.wael@gmail.com. All rights reserved.
-//
+/*!
+ *  @header ShoppingItem.h
+ *  interface file that provides all the needed operations for an iKea shopping item.
+ *
+ *  @author Wael Showair (showair.wael\@gmail.com)
+ *  @version 0.0.1
+ *  @copyright 2015. Wael Showair. All rights reserved.
+ */
 
 #import <Foundation/Foundation.h>
 
-/* Declare public fields of shopping item class. */
+/*!
+ *  @class ShoppingItem
+ *  @abstract A class that represents an iKea Shopping Item
+ *  @discussion All the properties of this class can be modified through setters methods.
+ *  @seealso //apple_ref/occ/cl/ShoppingList ShoppingList
+ */
+
+
 @interface ShoppingItem : NSObject
 
-/* Name of the shopping item. */
+/*!
+ *  @property name
+ *  @abstract Name of the shopping item.
+ */
 @property NSString* name;
 
-/* Name of the shopping item image. */
+/*!
+ *  @property imageName
+ *  @abstract Image name of the shopping item.
+ */
 @property NSString* imageName;
 
-/* Price of the item. */
+/*!
+ *  @property price
+ *  @abstract Price of the item.
+ *  @discussion It can be decimal numbers. It does not take into consideration the exact currency.
+ */
 @property NSDecimalNumber* price;
 
-/* Article number of the shopping item. It takes the format xxx.yyy.zz */
+/*!
+ *  @property articleNumber
+ *  @abstract Article number of the shopping item. It takes the format xxx.yyy.zz
+ *  @discussion Although this is a numeric field by nature but it needn't to be used in any sorting or calculations. It is better from performance point of view to save it in NSString*
+ */
 @property NSString* articleNumber;
 
-/* Aisle number form which the item is picked up. */
-@property NSUInteger asileNumber;
+/*!
+ *  @property aisleNumber
+ *  @abstract Aisle number form which the item is picked up.
+ *  @discussion It can't be a negative or a decimal number.
+ */
+@property NSUInteger aisleNumber;
 
-/* Bin number from which the item is picked up. */
+/*!
+ *  @property binNumber
+ *  @abstract Bin number from which the item is picked up.
+ *  @discussion It can't be a negative or a decimal number.
+ */
 @property NSUInteger binNumber;
 
-/* How many times does the user would buy this item? */
+/*!
+ *  @property quantity
+ *  @abstract How many times does the user would buy the item?
+ *  @discussion It can't be a negative or a decimal number.
+ */
 @property NSUInteger quantity;
 
+/*!
+ *  initialize a new shopping item with name & price
+ *
+ *  @param itemName  The name of the item to be instantiated.
+ *  @param itemPrice The price of the item to be instantiated.
+ *
+ *  @return a new object from ShoppingItem class.
+ *  @discussion The currency of the item price is ignored till now.
+ */
 -(instancetype) initWithName:(NSString*) itemName
                        price:(NSDecimalNumber*) itemPrice;
 

@@ -30,7 +30,7 @@
     NSDecimalNumber* expectedPrice = [NSDecimalNumber decimalNumberWithString:@"0"];
     XCTAssertNotNil( self.shoppingItem.name);
     XCTAssertNotNil( self.shoppingItem.imageName);
-    XCTAssertEqual(0, self.shoppingItem.asileNumber);
+    XCTAssertEqual(0, self.shoppingItem.aisleNumber);
     XCTAssertEqual(0, self.shoppingItem.binNumber);
     XCTAssertEqualObjects(expectedPrice, self.shoppingItem.price);
     XCTAssertEqual(0,self.shoppingItem.quantity);
@@ -44,7 +44,7 @@
     XCTAssertEqual(@"Bed Frame", self.shoppingItem.name);
     XCTAssertEqualObjects(expectedPrice, self.shoppingItem.price);
     XCTAssertNotNil( self.shoppingItem.imageName);
-    XCTAssertEqual(0, self.shoppingItem.asileNumber);
+    XCTAssertEqual(0, self.shoppingItem.aisleNumber);
     XCTAssertEqual(0, self.shoppingItem.binNumber);
     XCTAssertEqual(0,self.shoppingItem.quantity);
 }

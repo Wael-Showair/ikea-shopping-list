@@ -1,15 +1,21 @@
-//
-//  ShoppingList.m
-//  iKea Shopping List
-//
-//  Created by Wael Showair on 2015-10-25.
-//  Copyright © 2015 showair.wael@gmail.com. All rights reserved.
-//
+/*
+ *
+ *  @file ShoppingList.m
+ *  implementation file that provides all the needed operations for an iKea shopping list.
+ *
+ *  @author Wael Showair (showair.wael\@gmail.com)
+ *  @version 0.0.1
+ *  @copyright 2015. Wael Showair. All rights reserved.
+ */
 
 #import "ShoppingItem.h"
 #import "ShoppingList.h"
 
 @interface ShoppingList()
+/*
+ *  @property allItems
+ *  @abstract private property that represents a collection of items that forms the shopping list.
+ */
 @property  NSMutableArray* allItems;
 @end
 

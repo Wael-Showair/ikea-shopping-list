@@ -1,10 +1,12 @@
-//
-//  ShoppingItem.m
-//  iKea Shopping List
-//
-//  Created by Wael Showair on 2015-10-25.
-//  Copyright © 2015 showair.wael@gmail.com. All rights reserved.
-//
+/*
+ *  @file ShoppingItem.m
+ *  implementation file that provides all the needed operations for an iKea shopping item.
+ *
+ *  @author Wael Showair (showair.wael\@gmail.com)
+ *  @version 0.0.1
+ *  @copyright 2015. Wael Showair. All rights reserved.
+ */
+
 
 #import "ShoppingItem.h"
 
