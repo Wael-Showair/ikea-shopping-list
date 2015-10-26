@@ -12,8 +12,15 @@
 		DADD0A681BDD50CE00806DB6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DADD0A661BDD50CE00806DB6 /* Main.storyboard */; };
 		DADD0A6A1BDD50CE00806DB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DADD0A691BDD50CE00806DB6 /* Assets.xcassets */; };
 		DADD0A6D1BDD50CE00806DB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DADD0A6B1BDD50CE00806DB6 /* LaunchScreen.storyboard */; };
-		DADD0A781BDD50CE00806DB6 /* iKea_Shopping_ListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0A771BDD50CE00806DB6 /* iKea_Shopping_ListTests.m */; };
+		DADD0A781BDD50CE00806DB6 /* ShoppingItemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0A771BDD50CE00806DB6 /* ShoppingItemTests.m */; };
 		DADD0A831BDD50CE00806DB6 /* iKea_Shopping_ListUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0A821BDD50CE00806DB6 /* iKea_Shopping_ListUITests.m */; };
+		DADD0A9A1BDD8A3800806DB6 /* ShoppingListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0A991BDD8A3800806DB6 /* ShoppingListTests.m */; };
+		DADD0ABA1BDDB2FC00806DB6 /* ShoppingItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0AB71BDDB2FC00806DB6 /* ShoppingItem.m */; };
+		DADD0ABB1BDDB2FC00806DB6 /* ShoppingItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0AB71BDDB2FC00806DB6 /* ShoppingItem.m */; };
+		DADD0ABC1BDDB2FC00806DB6 /* ShoppingItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0AB71BDDB2FC00806DB6 /* ShoppingItem.m */; };
+		DADD0ABD1BDDB2FC00806DB6 /* ShoppingList.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0AB91BDDB2FC00806DB6 /* ShoppingList.m */; };
+		DADD0ABE1BDDB2FC00806DB6 /* ShoppingList.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0AB91BDDB2FC00806DB6 /* ShoppingList.m */; };
+		DADD0ABF1BDDB2FC00806DB6 /* ShoppingList.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0AB91BDDB2FC00806DB6 /* ShoppingList.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,11 +50,16 @@
 		DADD0A6C1BDD50CE00806DB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DADD0A6E1BDD50CE00806DB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DADD0A731BDD50CE00806DB6 /* iKea Shopping ListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iKea Shopping ListTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DADD0A771BDD50CE00806DB6 /* iKea_Shopping_ListTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iKea_Shopping_ListTests.m; sourceTree = "<group>"; };
+		DADD0A771BDD50CE00806DB6 /* ShoppingItemTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShoppingItemTests.m; sourceTree = "<group>"; };
 		DADD0A791BDD50CE00806DB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DADD0A7E1BDD50CE00806DB6 /* iKea Shopping ListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iKea Shopping ListUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DADD0A821BDD50CE00806DB6 /* iKea_Shopping_ListUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iKea_Shopping_ListUITests.m; sourceTree = "<group>"; };
 		DADD0A841BDD50CE00806DB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DADD0A991BDD8A3800806DB6 /* ShoppingListTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListTests.m; sourceTree = "<group>"; };
+		DADD0AB61BDDB2FC00806DB6 /* ShoppingItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingItem.h; sourceTree = "<group>"; };
+		DADD0AB71BDDB2FC00806DB6 /* ShoppingItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingItem.m; sourceTree = "<group>"; };
+		DADD0AB81BDDB2FC00806DB6 /* ShoppingList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingList.h; sourceTree = "<group>"; };
+		DADD0AB91BDDB2FC00806DB6 /* ShoppingList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingList.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,8 +91,8 @@
 			isa = PBXGroup;
 			children = (
 				DADD0A5C1BDD50CE00806DB6 /* iKea Shopping List */,
-				DADD0A761BDD50CE00806DB6 /* iKea Shopping ListTests */,
-				DADD0A811BDD50CE00806DB6 /* iKea Shopping ListUITests */,
+				DADD0A761BDD50CE00806DB6 /* iKea Shopping Model Tests */,
+				DADD0A811BDD50CE00806DB6 /* iKea Shopping UI Tests */,
 				DADD0A5B1BDD50CE00806DB6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -98,6 +110,7 @@
 		DADD0A5C1BDD50CE00806DB6 /* iKea Shopping List */ = {
 			isa = PBXGroup;
 			children = (
+				DADD0AB51BDDB2FC00806DB6 /* model */,
 				DADD0A601BDD50CE00806DB6 /* AppDelegate.h */,
 				DADD0A611BDD50CE00806DB6 /* AppDelegate.m */,
 				DADD0A661BDD50CE00806DB6 /* Main.storyboard */,
@@ -117,22 +130,36 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		DADD0A761BDD50CE00806DB6 /* iKea Shopping ListTests */ = {
+		DADD0A761BDD50CE00806DB6 /* iKea Shopping Model Tests */ = {
 			isa = PBXGroup;
 			children = (
-				DADD0A771BDD50CE00806DB6 /* iKea_Shopping_ListTests.m */,
+				DADD0A771BDD50CE00806DB6 /* ShoppingItemTests.m */,
+				DADD0A991BDD8A3800806DB6 /* ShoppingListTests.m */,
 				DADD0A791BDD50CE00806DB6 /* Info.plist */,
 			);
+			name = "iKea Shopping Model Tests";
 			path = "iKea Shopping ListTests";
 			sourceTree = "<group>";
 		};
-		DADD0A811BDD50CE00806DB6 /* iKea Shopping ListUITests */ = {
+		DADD0A811BDD50CE00806DB6 /* iKea Shopping UI Tests */ = {
 			isa = PBXGroup;
 			children = (
 				DADD0A821BDD50CE00806DB6 /* iKea_Shopping_ListUITests.m */,
 				DADD0A841BDD50CE00806DB6 /* Info.plist */,
 			);
+			name = "iKea Shopping UI Tests";
 			path = "iKea Shopping ListUITests";
+			sourceTree = "<group>";
+		};
+		DADD0AB51BDDB2FC00806DB6 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				DADD0AB61BDDB2FC00806DB6 /* ShoppingItem.h */,
+				DADD0AB71BDDB2FC00806DB6 /* ShoppingItem.m */,
+				DADD0AB81BDDB2FC00806DB6 /* ShoppingList.h */,
+				DADD0AB91BDDB2FC00806DB6 /* ShoppingList.m */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +293,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DADD0A621BDD50CE00806DB6 /* AppDelegate.m in Sources */,
+				DADD0ABD1BDDB2FC00806DB6 /* ShoppingList.m in Sources */,
+				DADD0ABA1BDDB2FC00806DB6 /* ShoppingItem.m in Sources */,
 				DADD0A5F1BDD50CE00806DB6 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,7 +303,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DADD0A781BDD50CE00806DB6 /* iKea_Shopping_ListTests.m in Sources */,
+				DADD0A781BDD50CE00806DB6 /* ShoppingItemTests.m in Sources */,
+				DADD0ABE1BDDB2FC00806DB6 /* ShoppingList.m in Sources */,
+				DADD0ABB1BDDB2FC00806DB6 /* ShoppingItem.m in Sources */,
+				DADD0A9A1BDD8A3800806DB6 /* ShoppingListTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +314,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DADD0ABC1BDDB2FC00806DB6 /* ShoppingItem.m in Sources */,
+				DADD0ABF1BDDB2FC00806DB6 /* ShoppingList.m in Sources */,
 				DADD0A831BDD50CE00806DB6 /* iKea_Shopping_ListUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -357,6 +391,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -406,10 +441,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "iKea Shopping List/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.showair.wael.ikea-shopping-list";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -418,10 +456,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "iKea Shopping List/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.showair.wael.ikea-shopping-list";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
