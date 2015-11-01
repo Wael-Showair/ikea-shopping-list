@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DAA232FF1BE664CA00833C4F /* FlipAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA232FE1BE664CA00833C4F /* FlipAnimationController.m */; };
+		DAA233001BE664CA00833C4F /* FlipAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA232FE1BE664CA00833C4F /* FlipAnimationController.m */; };
+		DAA233011BE664CA00833C4F /* FlipAnimationController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA232FE1BE664CA00833C4F /* FlipAnimationController.m */; };
+		DAA233481BE6D26D00833C4F /* ListOfListsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA233471BE6D26D00833C4F /* ListOfListsTableViewController.m */; };
+		DAA233491BE6D26D00833C4F /* ListOfListsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA233471BE6D26D00833C4F /* ListOfListsTableViewController.m */; };
+		DAA2334A1BE6D26D00833C4F /* ListOfListsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA233471BE6D26D00833C4F /* ListOfListsTableViewController.m */; };
 		DADD0A5F1BDD50CE00806DB6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0A5E1BDD50CE00806DB6 /* main.m */; };
 		DADD0A621BDD50CE00806DB6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0A611BDD50CE00806DB6 /* AppDelegate.m */; };
 		DADD0A681BDD50CE00806DB6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DADD0A661BDD50CE00806DB6 /* Main.storyboard */; };
@@ -41,6 +47,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DAA232FD1BE664CA00833C4F /* FlipAnimationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlipAnimationController.h; path = animations/FlipAnimationController.h; sourceTree = "<group>"; };
+		DAA232FE1BE664CA00833C4F /* FlipAnimationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlipAnimationController.m; path = animations/FlipAnimationController.m; sourceTree = "<group>"; };
+		DAA233461BE6D26D00833C4F /* ListOfListsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListOfListsTableViewController.h; sourceTree = "<group>"; };
+		DAA233471BE6D26D00833C4F /* ListOfListsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOfListsTableViewController.m; sourceTree = "<group>"; };
 		DADD0A5A1BDD50CE00806DB6 /* iKea Shopping List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iKea Shopping List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DADD0A5E1BDD50CE00806DB6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DADD0A601BDD50CE00806DB6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -87,6 +97,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DAA232FC1BE6648900833C4F /* animations */ = {
+			isa = PBXGroup;
+			children = (
+				DAA232FD1BE664CA00833C4F /* FlipAnimationController.h */,
+				DAA232FE1BE664CA00833C4F /* FlipAnimationController.m */,
+			);
+			name = animations;
+			sourceTree = "<group>";
+		};
 		DADD0A511BDD50CE00806DB6 = {
 			isa = PBXGroup;
 			children = (
@@ -110,11 +129,14 @@
 		DADD0A5C1BDD50CE00806DB6 /* iKea Shopping List */ = {
 			isa = PBXGroup;
 			children = (
+				DAA232FC1BE6648900833C4F /* animations */,
 				DADD0AB51BDDB2FC00806DB6 /* model */,
 				DADD0A601BDD50CE00806DB6 /* AppDelegate.h */,
 				DADD0A611BDD50CE00806DB6 /* AppDelegate.m */,
 				DADD0A661BDD50CE00806DB6 /* Main.storyboard */,
 				DADD0A691BDD50CE00806DB6 /* Assets.xcassets */,
+				DAA233461BE6D26D00833C4F /* ListOfListsTableViewController.h */,
+				DAA233471BE6D26D00833C4F /* ListOfListsTableViewController.m */,
 				DADD0A6B1BDD50CE00806DB6 /* LaunchScreen.storyboard */,
 				DADD0A6E1BDD50CE00806DB6 /* Info.plist */,
 				DADD0A5D1BDD50CE00806DB6 /* Supporting Files */,
@@ -294,7 +316,9 @@
 			files = (
 				DADD0A621BDD50CE00806DB6 /* AppDelegate.m in Sources */,
 				DADD0ABD1BDDB2FC00806DB6 /* ShoppingList.m in Sources */,
+				DAA233481BE6D26D00833C4F /* ListOfListsTableViewController.m in Sources */,
 				DADD0ABA1BDDB2FC00806DB6 /* ShoppingItem.m in Sources */,
+				DAA232FF1BE664CA00833C4F /* FlipAnimationController.m in Sources */,
 				DADD0A5F1BDD50CE00806DB6 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,7 +329,9 @@
 			files = (
 				DADD0A781BDD50CE00806DB6 /* ShoppingItemTests.m in Sources */,
 				DADD0ABE1BDDB2FC00806DB6 /* ShoppingList.m in Sources */,
+				DAA233491BE6D26D00833C4F /* ListOfListsTableViewController.m in Sources */,
 				DADD0ABB1BDDB2FC00806DB6 /* ShoppingItem.m in Sources */,
+				DAA233001BE664CA00833C4F /* FlipAnimationController.m in Sources */,
 				DADD0A9A1BDD8A3800806DB6 /* ShoppingListTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -317,6 +343,8 @@
 				DADD0ABC1BDDB2FC00806DB6 /* ShoppingItem.m in Sources */,
 				DADD0ABF1BDDB2FC00806DB6 /* ShoppingList.m in Sources */,
 				DADD0A831BDD50CE00806DB6 /* iKea_Shopping_ListUITests.m in Sources */,
+				DAA2334A1BE6D26D00833C4F /* ListOfListsTableViewController.m in Sources */,
+				DAA233011BE664CA00833C4F /* FlipAnimationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
