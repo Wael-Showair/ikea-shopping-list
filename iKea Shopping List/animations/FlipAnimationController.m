@@ -8,9 +8,14 @@
 
 #import "FlipAnimationController.h"
 
-@implementation FlipAnimationController
+@interface FlipAnimationController()
+    #define TRANSITION_DURATION 2.5
+    @property CGFloat statusBarHeight ;
+    @property CGFloat navigationBarHeight;
+@end
 
-#define TRANSITION_DURATION 2.5
+
+@implementation FlipAnimationController
 -(NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext{
     return TRANSITION_DURATION;
 }
@@ -34,6 +39,12 @@
     CGRect initialFrame = [transitionContext initialFrameForViewController:fromVC];
     fromVC.view.frame =  initialFrame;
     toVC.view.frame = initialFrame;
+    
+    if(fromVC.navigationController){
+        self.navigationBarHeight = fromVC.navigationController.navigationBar.frame.size.height;
+    }else{
+        self.navigationBarHeight = 0;
+    }
     
     NSArray* fromViewSnapshots = [self createSnapshots:fromVC.view afterScreenUpdates:NO];
     [fromVC.view removeFromSuperview ]; //remove from View from the hirerachy, use the snapshots instead.
@@ -94,7 +105,11 @@
     transition.x = newOrigin.x - oldOrigin.x;
     transition.y = newOrigin.y - oldOrigin.y;
     
-    view.center = CGPointMake (view.center.x - transition.x, view.center.y - transition.y);
+
+    self.statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+    NSLog(@"%f , %f", self.statusBarHeight, self.navigationBarHeight);
+    
+    view.center = CGPointMake (view.center.x - transition.x, view.center.y - transition.y + self.statusBarHeight + self.navigationBarHeight);
 }
 
 // creates a pair of snapshots from the given view
