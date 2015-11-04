@@ -33,6 +33,9 @@
 		DADD0A781BDD50CE00806DB6 /* ShoppingItemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0A771BDD50CE00806DB6 /* ShoppingItemTests.m */; };
 		DADD0A831BDD50CE00806DB6 /* iKea_Shopping_ListUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0A821BDD50CE00806DB6 /* iKea_Shopping_ListUITests.m */; };
 		DADD0A9A1BDD8A3800806DB6 /* ShoppingListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0A991BDD8A3800806DB6 /* ShoppingListTests.m */; };
+		DAED5BCE1BEA780700C5816F /* ArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DAED5BCD1BEA780700C5816F /* ArrayDataSource.m */; };
+		DAED5BCF1BEA780700C5816F /* ArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DAED5BCD1BEA780700C5816F /* ArrayDataSource.m */; };
+		DAED5BD01BEA780700C5816F /* ArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DAED5BCD1BEA780700C5816F /* ArrayDataSource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +83,8 @@
 		DADD0A821BDD50CE00806DB6 /* iKea_Shopping_ListUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iKea_Shopping_ListUITests.m; sourceTree = "<group>"; };
 		DADD0A841BDD50CE00806DB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DADD0A991BDD8A3800806DB6 /* ShoppingListTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListTests.m; sourceTree = "<group>"; };
+		DAED5BCC1BEA780700C5816F /* ArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayDataSource.h; sourceTree = "<group>"; };
+		DAED5BCD1BEA780700C5816F /* ArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayDataSource.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +145,15 @@
 			path = "view-controllers";
 			sourceTree = "<group>";
 		};
+		DA9ED7941BEA6B440040999D /* data-sources */ = {
+			isa = PBXGroup;
+			children = (
+				DAED5BCC1BEA780700C5816F /* ArrayDataSource.h */,
+				DAED5BCD1BEA780700C5816F /* ArrayDataSource.m */,
+			);
+			path = "data-sources";
+			sourceTree = "<group>";
+		};
 		DADD0A511BDD50CE00806DB6 = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +180,7 @@
 				DA67F9E31BE8131E00E1734A /* animations */,
 				DA67F9E61BE8131E00E1734A /* models */,
 				DA67F9EB1BE8131E00E1734A /* view-controllers */,
+				DA9ED7941BEA6B440040999D /* data-sources */,
 				DADD0A601BDD50CE00806DB6 /* AppDelegate.h */,
 				DADD0A611BDD50CE00806DB6 /* AppDelegate.m */,
 				DADD0A661BDD50CE00806DB6 /* Main.storyboard */,
@@ -340,6 +355,7 @@
 				DA67F9F31BE8131E00E1734A /* ShoppingItem.m in Sources */,
 				DA67F9F01BE8131E00E1734A /* TwoSidedDoorAnimator.m in Sources */,
 				DA67F9F91BE8131E00E1734A /* ListOfItemsTableViewController.m in Sources */,
+				DAED5BCE1BEA780700C5816F /* ArrayDataSource.m in Sources */,
 				DADD0A621BDD50CE00806DB6 /* AppDelegate.m in Sources */,
 				DADD0A5F1BDD50CE00806DB6 /* main.m in Sources */,
 				DA67F9F61BE8131E00E1734A /* ShoppingList.m in Sources */,
@@ -355,6 +371,7 @@
 				DA67F9F41BE8131E00E1734A /* ShoppingItem.m in Sources */,
 				DA67F9F11BE8131E00E1734A /* TwoSidedDoorAnimator.m in Sources */,
 				DA67F9FA1BE8131E00E1734A /* ListOfItemsTableViewController.m in Sources */,
+				DAED5BCF1BEA780700C5816F /* ArrayDataSource.m in Sources */,
 				DADD0A781BDD50CE00806DB6 /* ShoppingItemTests.m in Sources */,
 				DADD0A9A1BDD8A3800806DB6 /* ShoppingListTests.m in Sources */,
 				DA67F9F71BE8131E00E1734A /* ShoppingList.m in Sources */,
@@ -372,6 +389,7 @@
 				DA67F9F81BE8131E00E1734A /* ShoppingList.m in Sources */,
 				DA67F9F51BE8131E00E1734A /* ShoppingItem.m in Sources */,
 				DA67F9F21BE8131E00E1734A /* TwoSidedDoorAnimator.m in Sources */,
+				DAED5BD01BEA780700C5816F /* ArrayDataSource.m in Sources */,
 				DAA61BA81BE8FBF700CEC295 /* NavigationControllerDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

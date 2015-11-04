@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ShoppingList.h"
+@interface ListOfItemsTableViewController : UITableViewController <UITableViewDataSource>
 
-@interface ListOfItemsTableViewController : UITableViewController
-
+@property ShoppingList* shoppingList;
 @end

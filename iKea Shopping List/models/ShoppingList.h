@@ -8,6 +8,7 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "ShoppingItem.h"
 
 /*!
  *  @class ShoppingList
@@ -16,6 +17,21 @@
  *  @seealso //apple_ref/occ/cl/ShoppingItem ShoppingItem
  */
 @interface ShoppingList : NSObject
+
+/*!
+ *  @property title
+ *  @abstract title of the list.
+ */
+@property NSString* title;
+
+/*!
+ *  initialize a list with specific title.
+ *
+ *  @param title name of the list to be created.
+ *
+ *  @return instance of ShoppingList.
+ */
+- (instancetype)initWithTitle: (NSString*) title;
 
 /*!
  *  Add new shopping item to the list.
@@ -43,4 +59,12 @@
  */
 - (ShoppingItem*) itemAtIndex: (int) index;
 
+/*!
+ *  Return all shopping items inside the list.
+ *
+ *  @return all shopping items
+ *  @discussion the selector return generic pointer (id) type. Since the class is
+ *  wrapping the real implementation of the list.
+ */
+- (id) getItems;
 @end

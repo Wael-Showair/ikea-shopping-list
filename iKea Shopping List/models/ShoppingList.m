@@ -23,9 +23,17 @@
 
 - (instancetype)init
 {
-    self = [super init];
-    if (self) {
+    return [self initWithTitle:@""];
+}
 
+- (instancetype)initWithTitle: (NSString*) title
+{
+    self = [super init];
+    
+    if (self) {
+        /* initialize the title of the list. */
+        self.title = title;
+        
         /* Initialize the pointer to NSMutable array object. */
         self.allItems = [[NSMutableArray alloc] init];
     }
@@ -54,6 +62,8 @@
     return self.allItems.count;
 }
 
-
+-(id)getItems{
+    return self.allItems;
+}
 
 @end
