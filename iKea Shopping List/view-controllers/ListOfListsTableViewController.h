@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ListOfListsTableViewController : UITableViewController <UINavigationControllerDelegate>
+@interface ListOfListsTableViewController : UITableViewController 
 
 @end

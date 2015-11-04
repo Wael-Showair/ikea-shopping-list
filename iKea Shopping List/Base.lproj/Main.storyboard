@@ -100,10 +100,10 @@
             </objects>
             <point key="canvasLocation" x="1423" y="359"/>
         </scene>
-        <!--Table View Controller-->
+        <!--List Of Items Table View Controller-->
         <scene sceneID="r8E-GD-9kK">
             <objects>
-                <tableViewController id="E7w-zg-oA0" sceneMemberID="viewController">
+                <tableViewController id="E7w-zg-oA0" customClass="ListOfItemsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="cCW-eL-J0M">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -131,6 +131,9 @@
                                             <animations/>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <connections>
+                                            <segue destination="nPn-uq-FWl" kind="show" id="bN2-GK-92a"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="EpS-6i-le0" style="IBUITableViewCellStyleDefault" id="aJc-2b-J63">
                                         <rect key="frame" x="0.0" y="108" width="600" height="44"/>
@@ -151,6 +154,9 @@
                                             <animations/>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <connections>
+                                            <segue destination="nPn-uq-FWl" kind="show" id="gMk-V0-ocw"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="vu1-6s-JDw" style="IBUITableViewCellStyleDefault" id="jiW-kK-tVS">
                                         <rect key="frame" x="0.0" y="152" width="600" height="44"/>
@@ -171,6 +177,9 @@
                                             <animations/>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <connections>
+                                            <segue destination="nPn-uq-FWl" kind="show" id="gYu-BF-mPn"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -184,6 +193,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8q9-iw-bg1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2117" y="359"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="7pd-1V-VnL">
+            <objects>
+                <viewController id="nPn-uq-FWl" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Sme-z8-eex"/>
+                        <viewControllerLayoutGuide type="bottom" id="wwF-QD-JT6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zQC-ym-kwr">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Detailed label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfE-ki-GF3">
+                                <rect key="frame" x="134" y="202" width="211" height="162"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ri2-18-brX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2858" y="359"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bHi-ML-Owd">
@@ -207,5 +244,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="j2g-2d-dfH"/>
+        <segue reference="gYu-BF-mPn"/>
     </inferredMetricsTieBreakers>
 </document>

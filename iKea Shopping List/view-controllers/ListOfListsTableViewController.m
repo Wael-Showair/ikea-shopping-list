@@ -6,11 +6,12 @@
 //  Copyright © 2015 show0017@algonquinlive.com. All rights reserved.
 //
 
+#import "NavigationControllerDelegate.h"
 #import "ListOfListsTableViewController.h"
-#import "FlipAnimationController.h"
+#import "TwoSidedDoorAnimator.h"
 
 @interface ListOfListsTableViewController ()
-@property FlipAnimationController* navBarAnimator;
+@property NavigationControllerDelegate* navBarDelegate;
 @end
 
 @implementation ListOfListsTableViewController
@@ -21,18 +22,16 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    /* set title of the landing page table. */
+    self.title = @"My Lists";
     
-    self.navBarAnimator = [[FlipAnimationController alloc] init];
-    self.navigationController.delegate = self;
+    self.navBarDelegate = [[NavigationControllerDelegate alloc] init];
+    self.navigationController.delegate = self.navBarDelegate;
     
 }
 
-- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC{
-    
-    return self.navBarAnimator;
-}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
