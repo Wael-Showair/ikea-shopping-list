@@ -1,7 +1,7 @@
 /*!
  *  @file TwoSidedDoorAnimator.m
- *  implementation file that provides all the needed functionalities for an animation controller
- *  to open or close a view as two sided door.
+ *  implementation file that provides all the needed functionalities for an 
+ *  animation controller to open or close a view as two sided door.
  *
  *  @author Wael Showair (showair.wael\@gmail.com)
  *  @version 0.0.1
@@ -34,7 +34,7 @@
 
 /*!
  *  @define SECOND_ANIMATION_RELATIVE_START_TIME
- *  @abstract Relative start time of the second animation. It ranges from 0 to 1.
+ *  @abstract Relative start time of the second animation. It ranges from 0 to 1
  *
  *  The animation might be rotation (in case of forward animation) or scale (in 
  *  case of reserved animation).
@@ -44,9 +44,11 @@
 /*!
  *  @define TRANSITION_DURATION
  *  @abstract Total duration of the animation in seconds. It is summation of 
- *  duration of scale animation keyframe and duration of rotation animation keyframe.
+ *  duration of scale animation keyframe and duration of rotation animation 
+ *  keyframe.
  */
-#define TRANSITION_DURATION (SCALE_ANIMATION_KEY_FRAME_DURATION+ROTATION_ANIMATION_KEY_FRAME_DURATION)
+#define TRANSITION_DURATION (SCALE_ANIMATION_KEY_FRAME_DURATION +\
+                            ROTATION_ANIMATION_KEY_FRAME_DURATION)
 
 /*!
  *  @property statusBarHeight
@@ -61,42 +63,54 @@
 @property CGFloat navigationBarHeight;
 
 /*!
- *  UIKit asks the animator for the duration (in seconds) of the transition animation.
- *  @param transitionContext The context object containing information to use during the transition.
+ *  @abstract UIKit asks the animator for the duration (in seconds) of the 
+ *  transition animation.
+ *  @param transitionContext The context object containing information to use 
+ *  during the transition.
  *
  *  @return The duration, in seconds, of the custom transition animation.
  */
--(NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext;
+-(NSTimeInterval)transitionDuration:
+    (id<UIViewControllerContextTransitioning>)transitionContext;
 
 /*!
- *  UIKit asks the animator to perform the transition animations
- *  @param transitionContext The context object containing information about the transition.
+ *  @abstract UIKit asks the animator to perform the transition animations
+ *  @param transitionContext The context object containing information about the
+ *  transition.
  */
--(void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext;
+-(void)animateTransition:
+    (id<UIViewControllerContextTransitioning>)transitionContext;
 
 /*!
- *  Change the anchor point for a specific view.
+ *  @abstract Change the anchor point for a specific view.
  *
  *  @param anchorPoint
  *      location of the new anchor point.
  *  @param view
  *      the view object whose anchor point would be changed.
- *  @discussion Because the position in Core Animation is relative to the anchorPoint of the layer, changing the anchorPoint while maintaining the same position moves the layer. Compensation for such movement is dont with taking care of status/navigation bars as well.
+ *  @discussion Because the position in Core Animation is relative to the 
+ *  anchorPoint of the layer, changing the anchorPoint while maintaining the 
+ *  same position moves the layer. Compensation for such movement is dont with 
+ *  taking care of status/navigation bars as well.
  */
 - (void)updateAnchorPoint:(CGPoint)anchorPoint forView:(UIView*)view;
 
 /*!
- *  create a pair of snapshots from the given view.
+ *  @abstract create a pair of snapshots from the given view.
  *
  *  @param view
  *      the view from which snapshots are taken.
  *  @param afterUpdates
- *      A Boolean value that specifies whether the snapshot should be taken after recent changes have been incorporated.
+ *      A Boolean value that specifies whether the snapshot should be taken 
+ *      after recent changes have been incorporated.
  *
  *  @return snapshots
- *      Array of two snapshots the left-hand side snapshot. of the view is at first index while the second index contains the right-hand side snapshot of the view.
+ *      Array of two snapshots the left-hand side snapshot. of the view is at 
+ *      first index while the second index contains the right-hand side snapshot
+ *      of the view.
  */
-- (NSArray*)createSnapshots:(UIView*)view afterScreenUpdates:(BOOL) afterUpdates;
+- (NSArray*)createSnapshots:(UIView*)view
+         afterScreenUpdates:(BOOL) afterUpdates;
 @end
 
 
@@ -104,21 +118,27 @@
 
 
 
--(NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
+-(NSTimeInterval)transitionDuration:
+    (id<UIViewControllerContextTransitioning>)transitionContext
 {
     return TRANSITION_DURATION;
 }
 
--(void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
+-(void)animateTransition:
+    (id<UIViewControllerContextTransitioning>)transitionContext
 {
 
     CGAffineTransform initialScaleTransform, finalScaleTransform;
     CGFloat leftSideRotationAngle, rightSideRotationAngle;
     UIView *leftSideView,*rightSideView;
 
-    UIViewController* fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController* fromVC =
+    [transitionContext
+    viewControllerForKey:UITransitionContextFromViewControllerKey];
     
-    UIViewController* toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    UIViewController* toVC =
+    [transitionContext
+     viewControllerForKey:UITransitionContextToViewControllerKey];
     
     UIView* containerView = [transitionContext containerView];
     
@@ -129,12 +149,14 @@
     
     [containerView addSubview:toVC.view];
     // Give both VCs the same start frame
-    CGRect initialFrame = [transitionContext initialFrameForViewController:fromVC];
+    CGRect initialFrame = [transitionContext
+                           initialFrameForViewController:fromVC];
     fromVC.view.frame =  initialFrame;
     toVC.view.frame = initialFrame;
     
     if(fromVC.navigationController){
-        self.navigationBarHeight = fromVC.navigationController.navigationBar.frame.size.height;
+        self.navigationBarHeight =
+            fromVC.navigationController.navigationBar.frame.size.height;
     }else{
         self.navigationBarHeight = 0;
     }
@@ -145,8 +167,11 @@
         leftSideRotationAngle  = M_PI_2;
         rightSideRotationAngle = -M_PI_2;
 
-        NSArray* toViewSnapshots = [self createSnapshots:toVC.view afterScreenUpdates:NO];
-        [toVC.view removeFromSuperview ]; //remove to-View from the hirerachy, use the snapshots instead.
+        NSArray* toViewSnapshots = [self createSnapshots:toVC.view
+                                      afterScreenUpdates:NO];
+
+        //remove to-View from the hirerachy, use the snapshots instead.
+        [toVC.view removeFromSuperview ];
         leftSideView = toViewSnapshots[0];
         rightSideView = toViewSnapshots[1];
 
@@ -154,8 +179,10 @@
         [self updateAnchorPoint:CGPointMake(1, 1) forView:rightSideView];
         [self updateAnchorPoint:CGPointMake(0, 1) forView:leftSideView];
 
-        leftSideView.layer.transform = [self rotateYAxisToAngle:leftSideRotationAngle];
-        rightSideView.layer.transform = [self rotateYAxisToAngle:rightSideRotationAngle];
+        leftSideView.layer.transform =
+            [self rotateYAxisToAngle:leftSideRotationAngle];
+        rightSideView.layer.transform =
+            [self rotateYAxisToAngle:rightSideRotationAngle];
         
     }else{
         
@@ -164,8 +191,11 @@
         leftSideRotationAngle = M_PI_2;
         rightSideRotationAngle = -M_PI_2;
         
-        NSArray* fromViewSnapshots = [self createSnapshots:fromVC.view afterScreenUpdates:NO];
-        [fromVC.view removeFromSuperview ]; //remove from-View from the hirerachy, use the snapshots instead.
+        NSArray* fromViewSnapshots = [self createSnapshots:fromVC.view
+                                        afterScreenUpdates:NO];
+
+        //remove from-View from the hirerachy, use the snapshots instead.
+        [fromVC.view removeFromSuperview ];
         leftSideView = fromViewSnapshots[0];
         rightSideView = fromViewSnapshots[1];
         
@@ -178,10 +208,12 @@
     NSTimeInterval duration = [self transitionDuration:transitionContext];
     
 
-    [UIView animateKeyframesWithDuration:duration delay:0 options:0 animations:^{
+    [UIView animateKeyframesWithDuration:duration
+                                   delay:0
+                                 options:0
+                              animations:^{
 
         if(self.isReversed){
-
             [UIView addKeyframeWithRelativeStartTime:FIRST_ANIMATION_START_TIME
                                     relativeDuration:SCALE_ANIMATION_KEY_FRAME_DURATION
                                           animations:^{
@@ -237,12 +269,13 @@
 - (void)updateAnchorPoint:(CGPoint)anchorPoint forView:(UIView*)view{
 //    view.layer.anchorPoint = anchorPoint;
 //    float yoffset =  anchorPoint.y - 0.5;
-//    view.frame = CGRectOffset(view.frame, 0,yoffset * view.frame.size.height + 65);
+// view.frame=CGRectOffset(view.frame, 0,yoffset * view.frame.size.height + 65);
     
     /*
      * Ver importnat note:
-     * Because the position in Core Animation is relative to the anchorPoint of the layer, changing
-     * that anchorPoint while maintaining the same position moves the layer.
+     * Because the position in Core Animation is relative to the anchorPoint of 
+     * the layer, changing that anchorPoint while maintaining the same position 
+     * moves the layer.
      * I have to compensate for this movement. http://goo.gl/20FsJX
      */
     CGPoint oldOrigin = view.frame.origin;

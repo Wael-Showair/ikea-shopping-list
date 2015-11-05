@@ -1,11 +1,12 @@
-//
-//  ListsDataSource.m
-//  iKea Shopping List
-//
-//  Created by Wael Showair on 2015-11-04.
-//  Copyright © 2015 show0017@algonquinlive.com. All rights reserved.
-//
-
+/*
+ *
+ *  @file ArrayDataSource.m
+ *  implementation file that provides all the needed operations for an iKea shopping list.
+ *
+ *  @author Wael Showair (showair.wael\@gmail.com)
+ *  @version 0.0.1
+ *  @copyright 2015. Wael Showair. All rights reserved.
+ */
 #import <UIKit/UIKit.h>
 #import "ArrayDataSource.h"
 

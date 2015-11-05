@@ -274,28 +274,40 @@ function disclosure_triangle(elt) {
 </tr>
 </table></div>
 <h2>Introduction</h2>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/doc/header/TwoSidedDoorAnimator.m;name=start --><p>implementation file that provides all the needed functionalities for an animation controller
-to open or close a view as two sided door.<!-- headerDoc=discussion;uid=//apple_ref/doc/header/TwoSidedDoorAnimator.m;name=end --><!-- end discussion -->
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/doc/header/TwoSidedDoorAnimator.m;name=start --><p>implementation file that provides all the needed functionalities for an 
+animation controller to open or close a view as two sided door.<!-- headerDoc=discussion;uid=//apple_ref/doc/header/TwoSidedDoorAnimator.m;name=end --><!-- end discussion -->
 </p>
 <hr class="afterClassOrHeaderInfo">
 <br><a name="HeaderDoc_methods"></a>
 <h2 class="h2tight">Methods</h2>
 <dl>
 <dt><tt><a href="index.html#//apple_ref/c/func/animateTransition:" target="_top">+animateTransition:</a></tt></dt>
-<dd></dd>
+<dd><p>UIKit asks the animator to perform the transition animations
+</p></dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/createSnapshots:afterScreenUpdates:" target="_top">+createSnapshots:afterScreenUpdates:</a></tt></dt>
-<dd></dd>
+<dd>
+<p>create a pair of snapshots from the given view.
+</p>
+</dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/transitionDuration:" target="_top">+transitionDuration:</a></tt></dt>
-<dd></dd>
+<dd><p>UIKit asks the animator for the duration (in seconds) of the 
+transition animation.
+</p></dd>
 <dt><tt><a href="index.html#//apple_ref/c/func/updateAnchorPoint:forView:" target="_top">+updateAnchorPoint:forView:</a></tt></dt>
-<dd></dd>
+<dd>
+<p>Change the anchor point for a specific view.
+</p>
+</dd>
 </dl>
 <hr class="betweenAPIEntries">
 <!-- headerDoc=func;  uid=//apple_ref/c/func/animateTransition:;   name=animateTransition: --><a name="//apple_ref/c/func/animateTransition:"></a>
 <h3><a name="animateTransition:">animateTransition:</a></h3>
 <hr class="afterName">
+<p><!-- headerDoc=abstract;uid=//apple_ref/c/func/animateTransition:;name=start --><!-- begin abstract --></p>
+<p>UIKit asks the animator to perform the transition animations
+<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/animateTransition:;name=end --></p>
 <div class="declaration_indent">
-<pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/animateTransition:;name=start -->-(<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/struct/void //apple_ref/occ/intf/void //apple_ref/doc/anysymbol/void" machineGenerated="true" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/animateTransition //apple_ref/occ/clm/animateTransition //apple_ref/occ/intfcm/animateTransition //apple_ref/occ/intfm/animateTransition //apple_ref/occ/func/animateTransition //apple_ref/occ/ftmplt/animateTransition //apple_ref/occ/defn/animateTransition //apple_ref/occ/macro/animateTransition //apple_ref/doc/anysymbol/animateTransition" machineGenerated="true" --><span class="function">animateTransition</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/id //apple_ref/occ/tdef/id //apple_ref/occ/tag/id //apple_ref/occ/struct/id //apple_ref/occ/intf/id //apple_ref/doc/anysymbol/id" machineGenerated="true" --><span class="type">id</span><!-- /a -->&lt;<span class="param">UIViewControllerContextTransitioning</span>&gt;)<!-- a logicalPath="//apple_ref/occ/econst/transitionContext //apple_ref/occ/data/transitionContext //apple_ref/occ/clconst/transitionContext " machineGenerated="true" --><span class="var">transitionContext</span><!-- /a -->;  <!-- headerDoc=declaration;uid=//apple_ref/c/func/animateTransition:;name=end --></pre>
+<pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/animateTransition:;name=start -->-(<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/struct/void //apple_ref/occ/intf/void //apple_ref/doc/anysymbol/void" machineGenerated="true" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/animateTransition //apple_ref/occ/clm/animateTransition //apple_ref/occ/intfcm/animateTransition //apple_ref/occ/intfm/animateTransition //apple_ref/occ/func/animateTransition //apple_ref/occ/ftmplt/animateTransition //apple_ref/occ/defn/animateTransition //apple_ref/occ/macro/animateTransition //apple_ref/doc/anysymbol/animateTransition" machineGenerated="true" --><span class="function">animateTransition</span><!-- /a -->: (<!-- a logicalPath="//apple_ref/occ/cl/id //apple_ref/occ/tdef/id //apple_ref/occ/tag/id //apple_ref/occ/struct/id //apple_ref/occ/intf/id //apple_ref/doc/anysymbol/id" machineGenerated="true" --><span class="type">id</span><!-- /a -->&lt;<span class="param">UIViewControllerContextTransitioning</span>&gt;)<!-- a logicalPath="//apple_ref/occ/econst/transitionContext //apple_ref/occ/data/transitionContext //apple_ref/occ/clconst/transitionContext " machineGenerated="true" --><span class="var">transitionContext</span><!-- /a -->;  <!-- headerDoc=declaration;uid=//apple_ref/c/func/animateTransition:;name=end --></pre>
 </div>
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
 <div class="param_indent">
@@ -305,17 +317,18 @@ to open or close a view as two sided door.<!-- headerDoc=discussion;uid=//apple_
 <a name="//apple_ref/doc/methodparam/animateTransition:/transitionContext"></a>
 <code>transitionContext</code>
 </dt>
-<dd><p>The context object containing information about the transition.</p></dd>
+<dd><p>The context object containing information about the
+transition.</p></dd>
 </dl>
 </div>
-<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/animateTransition:;name=start --><p>UIKit asks the animator to perform the transition animations
-<!-- headerDoc=discussion;uid=//apple_ref/c/func/animateTransition:;name=end --><!-- end discussion -->
-</p>
 <hr class="betweenAPIEntries">
 <!-- headerDoc=func;  uid=//apple_ref/c/func/createSnapshots:afterScreenUpdates:;   name=createSnapshots:afterScreenUpdates: --><a name="//apple_ref/c/func/createSnapshots:afterScreenUpdates:"></a>
 <h3><a name="createSnapshots:afterScreenUpdates:">createSnapshots:afterScreenUpdates:</a></h3>
 <hr class="afterName">
+<p><!-- headerDoc=abstract;uid=//apple_ref/c/func/createSnapshots:afterScreenUpdates:;name=start --><!-- begin abstract --></p>
+<p>create a pair of snapshots from the given view.
+</p>
+<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/createSnapshots:afterScreenUpdates:;name=end -->
 <div class="declaration_indent">
 <pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/createSnapshots:afterScreenUpdates:;name=start -->- (<!-- a logicalPath="//apple_ref/occ/cl/NSArray //apple_ref/occ/tdef/NSArray //apple_ref/occ/tag/NSArray //apple_ref/occ/struct/NSArray //apple_ref/occ/intf/NSArray //apple_ref/doc/anysymbol/NSArray" machineGenerated="true" --><span class="type">NSArray</span><!-- /a --><span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/instm/createSnapshots //apple_ref/occ/clm/createSnapshots //apple_ref/occ/intfcm/createSnapshots //apple_ref/occ/intfm/createSnapshots //apple_ref/occ/func/createSnapshots //apple_ref/occ/ftmplt/createSnapshots //apple_ref/occ/defn/createSnapshots //apple_ref/occ/macro/createSnapshots //apple_ref/doc/anysymbol/createSnapshots" machineGenerated="true" --><span class="function">createSnapshots</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/UIView //apple_ref/occ/tdef/UIView //apple_ref/occ/tag/UIView //apple_ref/occ/struct/UIView //apple_ref/occ/intf/UIView //apple_ref/doc/anysymbol/UIView" machineGenerated="true" --><span class="type">UIView</span><!-- /a --><span class="type">*</span>)<span class="param">view</span> <!-- a logicalPath="//apple_ref/occ/instm/afterScreenUpdates //apple_ref/occ/clm/afterScreenUpdates //apple_ref/occ/intfcm/afterScreenUpdates //apple_ref/occ/intfm/afterScreenUpdates //apple_ref/occ/func/afterScreenUpdates //apple_ref/occ/ftmplt/afterScreenUpdates //apple_ref/occ/defn/afterScreenUpdates //apple_ref/occ/macro/afterScreenUpdates //apple_ref/doc/anysymbol/afterScreenUpdates" machineGenerated="true" --><span class="function">afterScreenUpdates</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/BOOL //apple_ref/occ/tdef/BOOL //apple_ref/occ/tag/BOOL //apple_ref/occ/struct/BOOL //apple_ref/occ/intf/BOOL //apple_ref/doc/anysymbol/BOOL" machineGenerated="true" --><span class="type">BOOL</span><!-- /a -->) <!-- a logicalPath="//apple_ref/occ/econst/afterUpdates //apple_ref/occ/data/afterUpdates //apple_ref/occ/clconst/afterUpdates " machineGenerated="true" --><span class="var">afterUpdates</span><!-- /a -->;  <!-- headerDoc=declaration;uid=//apple_ref/c/func/createSnapshots:afterScreenUpdates:;name=end --></pre>
 </div>
@@ -333,25 +346,28 @@ to open or close a view as two sided door.<!-- headerDoc=discussion;uid=//apple_
 <a name="//apple_ref/doc/methodparam/createSnapshots:afterScreenUpdates:/afterUpdates"></a>
 <code>afterUpdates</code>
 </dt>
-<dd><p>A Boolean value that specifies whether the snapshot should be taken after recent changes have been incorporated.</p></dd>
+<dd><p>A Boolean value that specifies whether the snapshot should be taken 
+after recent changes have been incorporated.</p></dd>
 </dl>
 </div>
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
 <p><!-- begin return value --></p>
 <p>snapshots
-Array of two snapshots the left-hand side snapshot. of the view is at first index while the second index contains the right-hand side snapshot of the view.
+Array of two snapshots the left-hand side snapshot. of the view is at 
+first index while the second index contains the right-hand side snapshot
+of the view.
 
 <!-- end return value --></p>
-<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/createSnapshots:afterScreenUpdates:;name=start --><p>create a pair of snapshots from the given view.
-</p>
-<!-- headerDoc=discussion;uid=//apple_ref/c/func/createSnapshots:afterScreenUpdates:;name=end --><!-- end discussion -->
 <hr class="betweenAPIEntries">
 <!-- headerDoc=func;  uid=//apple_ref/c/func/transitionDuration:;   name=transitionDuration: --><a name="//apple_ref/c/func/transitionDuration:"></a>
 <h3><a name="transitionDuration:">transitionDuration:</a></h3>
 <hr class="afterName">
+<p><!-- headerDoc=abstract;uid=//apple_ref/c/func/transitionDuration:;name=start --><!-- begin abstract --></p>
+<p>UIKit asks the animator for the duration (in seconds) of the 
+transition animation.
+<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/transitionDuration:;name=end --></p>
 <div class="declaration_indent">
-<pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/transitionDuration:;name=start -->-(<!-- a logicalPath="//apple_ref/occ/cl/NSTimeInterval //apple_ref/occ/tdef/NSTimeInterval //apple_ref/occ/tag/NSTimeInterval //apple_ref/occ/struct/NSTimeInterval //apple_ref/occ/intf/NSTimeInterval //apple_ref/doc/anysymbol/NSTimeInterval" machineGenerated="true" --><span class="type">NSTimeInterval</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/transitionDuration //apple_ref/occ/clm/transitionDuration //apple_ref/occ/intfcm/transitionDuration //apple_ref/occ/intfm/transitionDuration //apple_ref/occ/func/transitionDuration //apple_ref/occ/ftmplt/transitionDuration //apple_ref/occ/defn/transitionDuration //apple_ref/occ/macro/transitionDuration //apple_ref/doc/anysymbol/transitionDuration" machineGenerated="true" --><span class="function">transitionDuration</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/id //apple_ref/occ/tdef/id //apple_ref/occ/tag/id //apple_ref/occ/struct/id //apple_ref/occ/intf/id //apple_ref/doc/anysymbol/id" machineGenerated="true" --><span class="type">id</span><!-- /a -->&lt;<span class="param">UIViewControllerContextTransitioning</span>&gt;)<!-- a logicalPath="//apple_ref/occ/econst/transitionContext //apple_ref/occ/data/transitionContext //apple_ref/occ/clconst/transitionContext " machineGenerated="true" --><span class="var">transitionContext</span><!-- /a -->;  <!-- headerDoc=declaration;uid=//apple_ref/c/func/transitionDuration:;name=end --></pre>
+<pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/transitionDuration:;name=start -->-(<!-- a logicalPath="//apple_ref/occ/cl/NSTimeInterval //apple_ref/occ/tdef/NSTimeInterval //apple_ref/occ/tag/NSTimeInterval //apple_ref/occ/struct/NSTimeInterval //apple_ref/occ/intf/NSTimeInterval //apple_ref/doc/anysymbol/NSTimeInterval" machineGenerated="true" --><span class="type">NSTimeInterval</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/transitionDuration //apple_ref/occ/clm/transitionDuration //apple_ref/occ/intfcm/transitionDuration //apple_ref/occ/intfm/transitionDuration //apple_ref/occ/func/transitionDuration //apple_ref/occ/ftmplt/transitionDuration //apple_ref/occ/defn/transitionDuration //apple_ref/occ/macro/transitionDuration //apple_ref/doc/anysymbol/transitionDuration" machineGenerated="true" --><span class="function">transitionDuration</span><!-- /a -->: (<!-- a logicalPath="//apple_ref/occ/cl/id //apple_ref/occ/tdef/id //apple_ref/occ/tag/id //apple_ref/occ/struct/id //apple_ref/occ/intf/id //apple_ref/doc/anysymbol/id" machineGenerated="true" --><span class="type">id</span><!-- /a -->&lt;<span class="param">UIViewControllerContextTransitioning</span>&gt;)<!-- a logicalPath="//apple_ref/occ/econst/transitionContext //apple_ref/occ/data/transitionContext //apple_ref/occ/clconst/transitionContext " machineGenerated="true" --><span class="var">transitionContext</span><!-- /a -->;  <!-- headerDoc=declaration;uid=//apple_ref/c/func/transitionDuration:;name=end --></pre>
 </div>
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Parameters</font></h5>
 <div class="param_indent">
@@ -361,7 +377,8 @@ Array of two snapshots the left-hand side snapshot. of the view is at first inde
 <a name="//apple_ref/doc/methodparam/transitionDuration:/transitionContext"></a>
 <code>transitionContext</code>
 </dt>
-<dd><p>The context object containing information to use during the transition.</p></dd>
+<dd><p>The context object containing information to use 
+during the transition.</p></dd>
 </dl>
 </div>
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Return Value</font></h5>
@@ -369,14 +386,14 @@ Array of two snapshots the left-hand side snapshot. of the view is at first inde
 <p>The duration, in seconds, of the custom transition animation.
 
 <!-- end return value --></p>
-<h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/transitionDuration:;name=start --><p>UIKit asks the animator for the duration (in seconds) of the transition animation.
-<!-- headerDoc=discussion;uid=//apple_ref/c/func/transitionDuration:;name=end --><!-- end discussion -->
-</p>
 <hr class="betweenAPIEntries">
 <!-- headerDoc=func;  uid=//apple_ref/c/func/updateAnchorPoint:forView:;   name=updateAnchorPoint:forView: --><a name="//apple_ref/c/func/updateAnchorPoint:forView:"></a>
 <h3><a name="updateAnchorPoint:forView:">updateAnchorPoint:forView:</a></h3>
 <hr class="afterName">
+<p><!-- headerDoc=abstract;uid=//apple_ref/c/func/updateAnchorPoint:forView:;name=start --><!-- begin abstract --></p>
+<p>Change the anchor point for a specific view.
+</p>
+<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/func/updateAnchorPoint:forView:;name=end -->
 <div class="declaration_indent">
 <pre><!-- headerDoc=declaration;uid=//apple_ref/c/func/updateAnchorPoint:forView:;name=start -->- (<!-- a logicalPath="//apple_ref/occ/cl/void //apple_ref/occ/tdef/void //apple_ref/occ/tag/void //apple_ref/occ/struct/void //apple_ref/occ/intf/void //apple_ref/doc/anysymbol/void" machineGenerated="true" --><span class="type">void</span><!-- /a -->)<!-- a logicalPath="//apple_ref/occ/instm/updateAnchorPoint //apple_ref/occ/clm/updateAnchorPoint //apple_ref/occ/intfcm/updateAnchorPoint //apple_ref/occ/intfm/updateAnchorPoint //apple_ref/occ/func/updateAnchorPoint //apple_ref/occ/ftmplt/updateAnchorPoint //apple_ref/occ/defn/updateAnchorPoint //apple_ref/occ/macro/updateAnchorPoint //apple_ref/doc/anysymbol/updateAnchorPoint" machineGenerated="true" --><span class="function">updateAnchorPoint</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/CGPoint //apple_ref/occ/tdef/CGPoint //apple_ref/occ/tag/CGPoint //apple_ref/occ/struct/CGPoint //apple_ref/occ/intf/CGPoint //apple_ref/doc/anysymbol/CGPoint" machineGenerated="true" --><span class="type">CGPoint</span><!-- /a -->)<span class="param">anchorPoint</span> <!-- a logicalPath="//apple_ref/occ/instm/forView //apple_ref/occ/clm/forView //apple_ref/occ/intfcm/forView //apple_ref/occ/intfm/forView //apple_ref/occ/func/forView //apple_ref/occ/ftmplt/forView //apple_ref/occ/defn/forView //apple_ref/occ/macro/forView //apple_ref/doc/anysymbol/forView" machineGenerated="true" --><span class="function">forView</span><!-- /a -->:(<!-- a logicalPath="//apple_ref/occ/cl/UIView //apple_ref/occ/tdef/UIView //apple_ref/occ/tag/UIView //apple_ref/occ/struct/UIView //apple_ref/occ/intf/UIView //apple_ref/doc/anysymbol/UIView" machineGenerated="true" --><span class="type">UIView</span><!-- /a --><span class="type">*</span>)<!-- a logicalPath="//apple_ref/occ/econst/view //apple_ref/occ/data/view //apple_ref/occ/clconst/view " machineGenerated="true" --><span class="var">view</span><!-- /a -->;  <!-- headerDoc=declaration;uid=//apple_ref/c/func/updateAnchorPoint:forView:;name=end --></pre>
 </div>
@@ -398,7 +415,10 @@ Array of two snapshots the left-hand side snapshot. of the view is at first inde
 </dl>
 </div>
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/updateAnchorPoint:forView:;name=start --><p>Because the position in Core Animation is relative to the anchorPoint of the layer, changing the anchorPoint while maintaining the same position moves the layer. Compensation for such movement is dont with taking care of status/navigation bars as well.
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/c/func/updateAnchorPoint:forView:;name=start --><p>Because the position in Core Animation is relative to the 
+anchorPoint of the layer, changing the anchorPoint while maintaining the 
+same position moves the layer. Compensation for such movement is dont with 
+taking care of status/navigation bars as well.
 <!-- headerDoc=discussion;uid=//apple_ref/c/func/updateAnchorPoint:forView:;name=end --><!-- end discussion -->
 </p>
 <hr class="betweenSections">
@@ -448,7 +468,7 @@ case of forward animation) or scale (in case of reserved animation).
 </p></dd>
 <dt><tt><a href="index.html#//apple_ref/c/macro/SECOND_ANIMATION_RELATIVE_START_TIME" target="_top">SECOND_ANIMATION_RELATIVE_START_TIME</a></tt></dt>
 <dd>
-<p>Relative start time of the second animation. It ranges from 0 to 1.
+<p>Relative start time of the second animation. It ranges from 0 to 1
 </p>
 <p>The animation might be rotation (in case of forward animation) or scale (in 
 case of reserved animation).
@@ -456,7 +476,8 @@ case of reserved animation).
 </dd>
 <dt><tt><a href="index.html#//apple_ref/c/macro/TRANSITION_DURATION" target="_top">TRANSITION_DURATION</a></tt></dt>
 <dd><p>Total duration of the animation in seconds. It is summation of 
-duration of scale animation keyframe and duration of rotation animation keyframe.
+duration of scale animation keyframe and duration of rotation animation 
+keyframe.
 </p></dd>
 </dl>
 <hr class="betweenAPIEntries">
@@ -495,7 +516,7 @@ case of forward animation) or scale (in case of reserved animation).
 <h3><a name="SECOND_ANIMATION_RELATIVE_START_TIME">SECOND_ANIMATION_RELATIVE_START_TIME</a></h3>
 <hr class="afterName">
 <p><!-- headerDoc=abstract;uid=//apple_ref/c/macro/SECOND_ANIMATION_RELATIVE_START_TIME;name=start --><!-- begin abstract --></p>
-<p>Relative start time of the second animation. It ranges from 0 to 1.
+<p>Relative start time of the second animation. It ranges from 0 to 1
 </p>
 <p>The animation might be rotation (in case of forward animation) or scale (in 
 case of reserved animation).
@@ -509,10 +530,11 @@ case of reserved animation).
 <hr class="afterName">
 <p><!-- headerDoc=abstract;uid=//apple_ref/c/macro/TRANSITION_DURATION;name=start --><!-- begin abstract --></p>
 <p>Total duration of the animation in seconds. It is summation of 
-duration of scale animation keyframe and duration of rotation animation keyframe.
+duration of scale animation keyframe and duration of rotation animation 
+keyframe.
 <!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/c/macro/TRANSITION_DURATION;name=end --></p>
 <div class="declaration_indent">
-<pre><!-- headerDoc=declaration;uid=//apple_ref/c/macro/TRANSITION_DURATION;name=start --><span class="preprocessor">#define</span> <a machinegenerated="true" href="index.html#//apple_ref/c/macro/TRANSITION_DURATION" logicalPath="//apple_ref/occ/cl/TRANSITION_DURATION //apple_ref/occ/tdef/TRANSITION_DURATION //apple_ref/occ/tag/TRANSITION_DURATION //apple_ref/occ/struct/TRANSITION_DURATION //apple_ref/occ/intf/TRANSITION_DURATION //apple_ref/occ/econst/TRANSITION_DURATION //apple_ref/occ/data/TRANSITION_DURATION //apple_ref/occ/clconst/TRANSITION_DURATION //apple_ref/occ/instm/TRANSITION_DURATION //apple_ref/occ/clm/TRANSITION_DURATION //apple_ref/occ/intfcm/TRANSITION_DURATION //apple_ref/occ/intfm/TRANSITION_DURATION //apple_ref/occ/func/TRANSITION_DURATION //apple_ref/occ/ftmplt/TRANSITION_DURATION //apple_ref/occ/defn/TRANSITION_DURATION //apple_ref/occ/macro/TRANSITION_DURATION" target="_top"><span class="preprocessor">TRANSITION_DURATION</span></a> <span class="ignore"></span><span class="ignore"></span><span class="ignore"></span> <!-- headerDoc=declaration;uid=//apple_ref/c/macro/TRANSITION_DURATION;name=end --></pre>
+<pre><!-- headerDoc=declaration;uid=//apple_ref/c/macro/TRANSITION_DURATION;name=start --><span class="preprocessor">#define</span> <a machinegenerated="true" href="index.html#//apple_ref/c/macro/TRANSITION_DURATION" logicalPath="//apple_ref/occ/cl/TRANSITION_DURATION //apple_ref/occ/tdef/TRANSITION_DURATION //apple_ref/occ/tag/TRANSITION_DURATION //apple_ref/occ/struct/TRANSITION_DURATION //apple_ref/occ/intf/TRANSITION_DURATION //apple_ref/occ/econst/TRANSITION_DURATION //apple_ref/occ/data/TRANSITION_DURATION //apple_ref/occ/clconst/TRANSITION_DURATION //apple_ref/occ/instm/TRANSITION_DURATION //apple_ref/occ/clm/TRANSITION_DURATION //apple_ref/occ/intfcm/TRANSITION_DURATION //apple_ref/occ/intfm/TRANSITION_DURATION //apple_ref/occ/func/TRANSITION_DURATION //apple_ref/occ/ftmplt/TRANSITION_DURATION //apple_ref/occ/defn/TRANSITION_DURATION //apple_ref/occ/macro/TRANSITION_DURATION" target="_top"><span class="preprocessor">TRANSITION_DURATION</span></a> <span class="ignore"></span><span class="ignore"></span><span class="ignore"></span> <span class="ignore"></span> <!-- headerDoc=declaration;uid=//apple_ref/c/macro/TRANSITION_DURATION;name=end --></pre>
 </div>
 <p class="gapBeforeFooter">&nbsp;</p>
 <hr class="afterFooter">

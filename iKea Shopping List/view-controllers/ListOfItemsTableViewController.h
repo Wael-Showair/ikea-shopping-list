@@ -1,14 +1,22 @@
-//
-//  ListOfItemsTableViewController.h
-//  iKea Shopping List
-//
-//  Created by Wael Showair on 2015-11-02.
-//  Copyright © 2015 show0017@algonquinlive.com. All rights reserved.
-//
+/*!
+ *  @header ListOfItemsTableViewController.h
+ *  interface file that provides all the needed operations/properties for an
+ *  iKea shopping list items table view controller.
+ *
+ *  @author Wael Showair (showair.wael\@gmail.com)
+ *  @version 0.0.1
+ *  @copyright 2015. Wael Showair. All rights reserved.
+ */
 
 #import <UIKit/UIKit.h>
 #import "ShoppingList.h"
-@interface ListOfItemsTableViewController : UITableViewController <UITableViewDataSource>
+@interface ListOfItemsTableViewController : UITableViewController
+    <UITableViewDataSource>
 
+/*!
+ *  @property shoppingList
+ *  @abstract iKea shopping list of items that is passed between tabel view
+ *  controllers.
+ */
 @property ShoppingList* shoppingList;
 @end

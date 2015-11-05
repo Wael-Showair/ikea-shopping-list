@@ -1,7 +1,8 @@
 /*
  *
  *  @file ShoppingList.m
- *  implementation file that provides all the needed operations for an iKea shopping list.
+ *  implementation file that provides all the needed operations for an iKea 
+ *  shopping list.
  *
  *  @author Wael Showair (showair.wael\@gmail.com)
  *  @version 0.0.1
@@ -14,7 +15,8 @@
 @interface ShoppingList()
 /*
  *  @property allItems
- *  @abstract private property that represents a collection of items that forms the shopping list.
+ *  @abstract private property that represents a collection of items that forms 
+ *  the shopping list.
  */
 @property  NSMutableArray* allItems;
 @end

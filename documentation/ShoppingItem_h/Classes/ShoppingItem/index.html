@@ -281,7 +281,8 @@ function disclosure_triangle(elt) {
 <p>A class that represents an iKea Shopping Item
 <!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/occ/cl/ShoppingItem;name=end --></p>
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/cl/ShoppingItem;name=start --><p>All the properties of this class can be modified through setters methods.
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/cl/ShoppingItem;name=start --><p>All the properties of this class can be modified through setters
+methods.
 <!-- headerDoc=discussion;uid=//apple_ref/occ/cl/ShoppingItem;name=end --><!-- end discussion -->
 </p>
 <hr class="afterClassOrHeaderInfo">
@@ -289,12 +290,19 @@ function disclosure_triangle(elt) {
 <h2 class="h2tight">Methods</h2>
 <dl>
 <dt><tt><a href="index.html#//apple_ref/occ/instm/ShoppingItem/initWithName:price:" target="_top">-initWithName:price:</a></tt></dt>
-<dd></dd>
+<dd>
+<p>initialize a new shopping item with name &amp; price
+</p>
+</dd>
 </dl>
 <hr class="betweenAPIEntries">
 <!-- headerDoc=instm;  uid=//apple_ref/occ/instm/ShoppingItem/initWithName:price:;   name=ShoppingItem::initWithName:price: --><a name="//apple_ref/occ/instm/ShoppingItem/initWithName:price:"></a>
 <h3><a name="initWithName:price:">initWithName:price:</a></h3>
 <hr class="afterName">
+<p><!-- headerDoc=abstract;uid=//apple_ref/occ/instm/ShoppingItem/initWithName:price:;name=start --><!-- begin abstract --></p>
+<p>initialize a new shopping item with name &amp; price
+</p>
+<!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/occ/instm/ShoppingItem/initWithName:price:;name=end -->
 <div class="declaration_indent">
 <pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instm/ShoppingItem/initWithName:price:;name=start -->-(<!-- a logicalPath="//apple_ref/occ/cl/instancetype //apple_ref/occ/tdef/instancetype //apple_ref/occ/tag/instancetype //apple_ref/occ/struct/instancetype //apple_ref/occ/intf/instancetype //apple_ref/doc/anysymbol/instancetype" machineGenerated="true" --><span class="type">instancetype</span><!-- /a -->) <a machinegenerated="true" href="index.html#//apple_ref/occ/instm/ShoppingItem/initWithName:price:" logicalPath="//apple_ref/occ/instm/ShoppingItem/initWithName" target="_top"><span class="function">initWithName</span></a>:(<!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/intf/NSString //apple_ref/doc/anysymbol/NSString" machineGenerated="true" --><span class="type">NSString</span><!-- /a --><span class="type">*</span>) <span class="param">itemName</span> <a machinegenerated="true" href="index.html#//apple_ref/occ/instp/ShoppingItem/price" logicalPath="//apple_ref/occ/instm/ShoppingItem/price //apple_ref/occ/clm/ShoppingItem/price //apple_ref/occ/intfcm/ShoppingItem/price //apple_ref/occ/intfm/ShoppingItem/price //apple_ref/occ/func/price //apple_ref/occ/ftmplt/ShoppingItem/price //apple_ref/occ/defn/price //apple_ref/occ/macro/price //apple_ref/doc/anysymbol/price" target="_top"><span class="function">price</span></a>:(<!-- a logicalPath="//apple_ref/occ/cl/NSDecimalNumber //apple_ref/occ/tdef/NSDecimalNumber //apple_ref/occ/tag/NSDecimalNumber //apple_ref/occ/struct/NSDecimalNumber //apple_ref/occ/intf/NSDecimalNumber //apple_ref/doc/anysymbol/NSDecimalNumber" machineGenerated="true" --><span class="type">NSDecimalNumber</span><!-- /a --><span class="type">*</span>) <!-- a logicalPath="//apple_ref/occ/econst/itemPrice //apple_ref/occ/data/ShoppingItem/itemPrice //apple_ref/occ/data/itemPrice //apple_ref/occ/clconst/ShoppingItem/itemPrice " machineGenerated="true" --><span class="var">itemPrice</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instm/ShoppingItem/initWithName:price:;name=end --></pre>
 </div>
@@ -321,9 +329,9 @@ function disclosure_triangle(elt) {
 
 <!-- end return value --></p>
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/instm/ShoppingItem/initWithName:price:;name=start --><p>initialize a new shopping item with name &amp; price
-</p>
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/instm/ShoppingItem/initWithName:price:;name=start --><p>The currency of the item price is ignored till now.
 <!-- headerDoc=discussion;uid=//apple_ref/occ/instm/ShoppingItem/initWithName:price:;name=end --><!-- end discussion -->
+</p>
 <hr class="betweenSections">
 <a name="HeaderDoc_props"></a>
 <h2 class="h2tight">Properties</h2>
@@ -332,7 +340,8 @@ function disclosure_triangle(elt) {
 <dd><p>Aisle number form which the item is picked up.
 </p></dd>
 <dt><tt><a href="index.html#//apple_ref/occ/instp/ShoppingItem/articleNumber" target="_top">articleNumber</a></tt></dt>
-<dd><p>Article number of the shopping item. It takes the format xxx.yyy.zz
+<dd><p>Article number of the shopping item. It takes the format 
+xxx.yyy.zz
 </p></dd>
 <dt><tt><a href="index.html#//apple_ref/occ/instp/ShoppingItem/binNumber" target="_top">binNumber</a></tt></dt>
 <dd><p>Bin number from which the item is picked up.
@@ -369,13 +378,16 @@ function disclosure_triangle(elt) {
 <h3><a name="articleNumber">articleNumber</a></h3>
 <hr class="afterName">
 <p><!-- headerDoc=abstract;uid=//apple_ref/occ/instp/ShoppingItem/articleNumber;name=start --><!-- begin abstract --></p>
-<p>Article number of the shopping item. It takes the format xxx.yyy.zz
+<p>Article number of the shopping item. It takes the format 
+xxx.yyy.zz
 <!-- end abstract --><!-- headerDoc=abstract;uid=//apple_ref/occ/instp/ShoppingItem/articleNumber;name=end --></p>
 <div class="declaration_indent">
 <pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/ShoppingItem/articleNumber;name=start -->@property <!-- a logicalPath="//apple_ref/occ/cl/NSString //apple_ref/occ/tdef/NSString //apple_ref/occ/tag/NSString //apple_ref/occ/struct/NSString //apple_ref/occ/intf/NSString //apple_ref/doc/anysymbol/NSString" machineGenerated="true" --><span class="type">NSString</span><!-- /a --><span class="type">*</span> <!-- a logicalPath="//apple_ref/occ/econst/articleNumber //apple_ref/occ/data/ShoppingItem/articleNumber //apple_ref/occ/data/articleNumber //apple_ref/occ/clconst/ShoppingItem/articleNumber " machineGenerated="true" --><span class="var">articleNumber</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/ShoppingItem/articleNumber;name=end --></pre>
 </div>
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/instp/ShoppingItem/articleNumber;name=start --><p>Although this is a numeric field by nature but it needn't to be used in any sorting or calculations. It is better from performance point of view to save it in NSString*
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/instp/ShoppingItem/articleNumber;name=start --><p>Although this is a numeric field by nature but it needn't to be 
+used in any sorting or calculations. It is better from performance point of 
+view to save it in NSString*
 <!-- headerDoc=discussion;uid=//apple_ref/occ/instp/ShoppingItem/articleNumber;name=end --><!-- end discussion -->
 </p>
 <hr class="betweenAPIEntries">
@@ -423,7 +435,8 @@ function disclosure_triangle(elt) {
 <pre><!-- headerDoc=declaration;uid=//apple_ref/occ/instp/ShoppingItem/price;name=start -->@property <!-- a logicalPath="//apple_ref/occ/cl/NSDecimalNumber //apple_ref/occ/tdef/NSDecimalNumber //apple_ref/occ/tag/NSDecimalNumber //apple_ref/occ/struct/NSDecimalNumber //apple_ref/occ/intf/NSDecimalNumber //apple_ref/doc/anysymbol/NSDecimalNumber" machineGenerated="true" --><span class="type">NSDecimalNumber</span><!-- /a --><span class="type">*</span> <!-- a logicalPath="//apple_ref/occ/econst/price //apple_ref/occ/data/ShoppingItem/price //apple_ref/occ/data/price //apple_ref/occ/clconst/ShoppingItem/price " machineGenerated="true" --><span class="var">price</span><!-- /a -->; <!-- headerDoc=declaration;uid=//apple_ref/occ/instp/ShoppingItem/price;name=end --></pre>
 </div>
 <h5 class="tight"><font face="Lucida Grande,Helvetica,Arial">Discussion</font></h5>
-<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/instp/ShoppingItem/price;name=start --><p>It can be decimal numbers. It does not take into consideration the exact currency.
+<!-- begin discussion --><!-- headerDoc=discussion;uid=//apple_ref/occ/instp/ShoppingItem/price;name=start --><p>It can be decimal numbers. It does not take into consideration 
+the exact currency.
 <!-- headerDoc=discussion;uid=//apple_ref/occ/instp/ShoppingItem/price;name=end --><!-- end discussion -->
 </p>
 <hr class="betweenAPIEntries">

@@ -1,16 +1,17 @@
-//
-//  NavigationControllerDelegate.h
-//  iKea Shopping List
-//
-//  Created by Wael Showair on 2015-11-03.
-//  Copyright © 2015 show0017@algonquinlive.com. All rights reserved.
-//
+/*!
+ *  @header NavigationControllerDelegate.h
+ *  interface file that provides all the needed operations/properties for
+ *  navigation controller delegate.
+ *
+ *  @author Wael Showair (showair.wael\@gmail.com)
+ *  @version 0.0.1
+ *  @copyright 2015. Wael Showair. All rights reserved.
+ */
 
 #import <UIKit/UIKit.h>
 #import "TwoSidedDoorAnimator.h"
 
-@interface NavigationControllerDelegate : NSObject <UINavigationControllerDelegate>
-
-@property (readonly) TwoSidedDoorAnimator* animator;
+@interface NavigationControllerDelegate : NSObject
+    <UINavigationControllerDelegate>
 
 @end

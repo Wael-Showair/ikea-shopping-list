@@ -1,6 +1,7 @@
 /*
  *  @file ShoppingItem.m
- *  implementation file that provides all the needed operations for an iKea shopping item.
+ *  implementation file that provides all the needed operations for an iKea 
+ *  shopping item.
  *
  *  @author Wael Showair (showair.wael\@gmail.com)
  *  @version 0.0.1

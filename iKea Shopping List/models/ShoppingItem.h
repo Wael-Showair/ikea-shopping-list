@@ -1,6 +1,7 @@
 /*!
  *  @header ShoppingItem.h
- *  interface file that provides all the needed operations for an iKea shopping item.
+ *  interface file that provides all the needed operations for an iKea shopping
+ *  item.
  *
  *  @author Wael Showair (showair.wael\@gmail.com)
  *  @version 0.0.1
@@ -12,7 +13,8 @@
 /*!
  *  @class ShoppingItem
  *  @abstract A class that represents an iKea Shopping Item
- *  @discussion All the properties of this class can be modified through setters methods.
+ *  @discussion All the properties of this class can be modified through setters
+ *  methods.
  *  @seealso //apple_ref/occ/cl/ShoppingList ShoppingList
  */
 
@@ -34,14 +36,18 @@
 /*!
  *  @property price
  *  @abstract Price of the item.
- *  @discussion It can be decimal numbers. It does not take into consideration the exact currency.
+ *  @discussion It can be decimal numbers. It does not take into consideration 
+ *  the exact currency.
  */
 @property NSDecimalNumber* price;
 
 /*!
  *  @property articleNumber
- *  @abstract Article number of the shopping item. It takes the format xxx.yyy.zz
- *  @discussion Although this is a numeric field by nature but it needn't to be used in any sorting or calculations. It is better from performance point of view to save it in NSString*
+ *  @abstract Article number of the shopping item. It takes the format 
+ *  xxx.yyy.zz
+ *  @discussion Although this is a numeric field by nature but it needn't to be 
+ *  used in any sorting or calculations. It is better from performance point of 
+ *  view to save it in NSString*
  */
 @property NSString* articleNumber;
 
@@ -67,7 +73,7 @@
 @property NSUInteger quantity;
 
 /*!
- *  initialize a new shopping item with name & price
+ *  @abstract initialize a new shopping item with name & price
  *
  *  @param itemName  The name of the item to be instantiated.
  *  @param itemPrice The price of the item to be instantiated.

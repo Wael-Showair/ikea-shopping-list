@@ -1,6 +1,7 @@
 /*!
  *  @header ShoppingList.h
- *  interface file that provides all the needed operations for an iKea shopping list.
+ *  interface file that provides all the needed operations for an iKea shopping 
+ *  list.
  *
  *  @author Wael Showair (showair.wael\@gmail.com)
  *  @version 0.0.1
@@ -13,7 +14,8 @@
 /*!
  *  @class ShoppingList
  *  @abstract A class that represents an iKea Shopping List.
- *  @discussion The class wraps the real implementation of the list so that the maintainability of the code is easier.
+ *  @discussion The class wraps the real implementation of the list so that the 
+ *  maintainability of the code is easier.
  *  @seealso //apple_ref/occ/cl/ShoppingItem ShoppingItem
  */
 @interface ShoppingList : NSObject
@@ -25,7 +27,7 @@
 @property NSString* title;
 
 /*!
- *  initialize a list with specific title.
+ *  @abstract initialize a list with specific title.
  *
  *  @param title name of the list to be created.
  *
@@ -34,23 +36,23 @@
 - (instancetype)initWithTitle: (NSString*) title;
 
 /*!
- *  Add new shopping item to the list.
+ *  @abstract Add new shopping item to the list.
  *
  *  @param item an object of shopping item.
  *
- *  @return boolean indicating whether the item has been added succesfully or not.
+ *  @return boolean indicating whether the item's been added succesfully or not.
  */
 - (BOOL) addNewItem: (ShoppingItem*) item;
 
 /*!
- *  Get how many shopping items are in the given list.
+ *  @abstract Get how many shopping items are in the given list.
  *
  *  @return non-negative value.
  */
 - (NSUInteger)  count;
 
 /*!
- *  Get shopping item at specific index in the list.
+ *  @abstract Get shopping item at specific index in the list.
  *
  *  @param index an index within the bounds of the shopping list.
  *
@@ -60,11 +62,11 @@
 - (ShoppingItem*) itemAtIndex: (int) index;
 
 /*!
- *  Return all shopping items inside the list.
+ *  @abstract Return all shopping items inside the list.
  *
  *  @return all shopping items
- *  @discussion the selector return generic pointer (id) type. Since the class is
- *  wrapping the real implementation of the list.
+ *  @discussion the selector return generic pointer (id) type. Since the class 
+ * is wrapping the real implementation of the list.
  */
 - (id) getItems;
 @end
