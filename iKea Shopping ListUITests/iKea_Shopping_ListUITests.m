@@ -35,6 +35,14 @@
 - (void)testExample {
     // Use recording to get started writing UI tests.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    XCUIElementQuery *tablesQuery = app.tables;
+    [tablesQuery.staticTexts[@"Kitchen"] tap];
+    [tablesQuery.cells[@"Forks, 14.5"] tap];
+    [app.navigationBars[@"My Lists"].buttons[@"Kitchen"] tap];
+    [app.navigationBars[@"Kitchen"].buttons[@"My Lists"] tap];
+    
 }
 
 @end

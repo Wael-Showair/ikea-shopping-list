@@ -34,6 +34,10 @@
                                     <animations/>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" staticText="YES"/>
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <connections>
                                     <segue destination="E7w-zg-oA0" kind="show" identifier="showListOfItems" id="6xI-cJ-ta1"/>
                                 </connections>
@@ -88,6 +92,10 @@
                                     <animations/>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" staticText="YES"/>
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <connections>
                                     <segue destination="nPn-uq-FWl" kind="show" identifier="showItemDetails" id="bN2-GK-92a"/>
                                 </connections>
