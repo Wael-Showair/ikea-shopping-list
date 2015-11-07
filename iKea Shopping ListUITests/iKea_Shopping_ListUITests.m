@@ -32,17 +32,36 @@
     [super tearDown];
 }
 
-- (void)testExample {
+- (void)testNavBarCustomTransition {
     // Use recording to get started writing UI tests.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
     
     XCUIApplication *app = [[XCUIApplication alloc] init];
     XCUIElementQuery *tablesQuery = app.tables;
-    [tablesQuery.staticTexts[@"Kitchen"] tap];
-    [tablesQuery.cells[@"Forks, 14.5"] tap];
-    [app.navigationBars[@"My Lists"].buttons[@"Kitchen"] tap];
-    [app.navigationBars[@"Kitchen"].buttons[@"My Lists"] tap];
+
+    /* Get a reference to the first table (list os shopping lists)*/
+    XCUIElement* currentTabel = [tablesQuery elementBoundByIndex:0];
+    XCTAssertNotNil(currentTabel); // Make sure it is not nil
     
+    /* Get a reference to the navigation bar. it will be used to navigate back again. */
+    XCUIElement* navigationBar = [app.navigationBars elementBoundByIndex:0];
+    
+    /* Tap on first list. */
+    XCUIElement *cell = [currentTabel.cells elementBoundByIndex:0];
+    XCTAssertNotNil(cell);
+    [cell tap];
+    
+    /* Tap on first cell in the second table. Note that current table has been updated
+     to list of items table at this point. */
+    cell = [currentTabel.cells elementBoundByIndex:0];
+    XCTAssertNotNil(cell);
+    [cell tap];
+
+    /* Now, user at detailed screen. Tap back button to get back to list of shopping items table. */
+    [navigationBar.buttons[@"Back"] tap];
+
+    /* Tap back again to reach list os shopping lists table.*/
+    [navigationBar.buttons[@"Back"] tap];
 }
 
 @end
