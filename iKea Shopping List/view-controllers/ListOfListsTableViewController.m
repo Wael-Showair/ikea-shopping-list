@@ -87,8 +87,12 @@
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+    
     // Dispose of any resources that can be recreated.
+    self.navBarDelegate = nil;
+    self.listOfListsDataSource = nil;
+    
+    [super didReceiveMemoryWarning];
 }
 
 

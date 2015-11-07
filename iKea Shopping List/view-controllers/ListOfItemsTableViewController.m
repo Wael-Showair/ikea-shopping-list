@@ -61,8 +61,9 @@
 }
 
 - (void)didReceiveMemoryWarning {
+   
+    self.listOfItemsDataSource = nil;
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 /*

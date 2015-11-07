@@ -20,16 +20,12 @@
                ReferencedContainer = "container:iKea Shopping List.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-      </BuildActionEntries>
-   </BuildAction>
-   <TestAction
-      buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
-      <Testables>
-         <TestableReference
-            skipped = "NO">
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DADD0A721BDD50CE00806DB6"
@@ -37,7 +33,16 @@
                BlueprintName = "iKea Shopping ListTests"
                ReferencedContainer = "container:iKea Shopping List.xcodeproj">
             </BuildableReference>
-         </TestableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug"
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES">
+      <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
@@ -45,6 +50,16 @@
                BlueprintIdentifier = "DADD0A7D1BDD50CE00806DB6"
                BuildableName = "iKea Shopping ListUITests.xctest"
                BlueprintName = "iKea Shopping ListUITests"
+               ReferencedContainer = "container:iKea Shopping List.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DADD0A721BDD50CE00806DB6"
+               BuildableName = "iKea Shopping ListTests.xctest"
+               BlueprintName = "iKea Shopping ListTests"
                ReferencedContainer = "container:iKea Shopping List.xcodeproj">
             </BuildableReference>
          </TestableReference>
