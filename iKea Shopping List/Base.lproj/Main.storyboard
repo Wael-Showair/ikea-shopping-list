@@ -95,43 +95,22 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <animations/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="new-list-info-cell" textLabel="UDX-dw-UHH" style="IBUITableViewCellStyleDefault" id="Ffi-nP-lVb">
-                                        <rect key="frame" x="0.0" y="50" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ffi-nP-lVb" id="QKn-d3-5lx">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Hello" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UDX-dw-UHH">
-                                                    <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <animations/>
-                                        </tableViewCellContentView>
-                                        <animations/>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="bQV-bd-Y3r" firstAttribute="leading" secondItem="LGw-qf-a2x" secondAttribute="leading" id="6TB-Qv-GDj"/>
-                            <constraint firstItem="bQV-bd-Y3r" firstAttribute="trailing" secondItem="LGw-qf-a2x" secondAttribute="trailing" id="81E-xz-i9v"/>
-                            <constraint firstAttribute="trailing" secondItem="bQV-bd-Y3r" secondAttribute="trailing" id="V9T-Bg-c57"/>
-                            <constraint firstItem="bQV-bd-Y3r" firstAttribute="leading" secondItem="pjV-5q-Bg7" secondAttribute="leading" id="ZcK-Gq-a5D"/>
-                            <constraint firstItem="LGw-qf-a2x" firstAttribute="bottom" secondItem="8KI-Rp-Wx3" secondAttribute="top" id="msE-Hc-Pch"/>
-                            <constraint firstItem="bQV-bd-Y3r" firstAttribute="top" secondItem="w3k-Ou-Oaq" secondAttribute="bottom" id="yH2-7p-54e"/>
-                            <constraint firstItem="LGw-qf-a2x" firstAttribute="top" secondItem="bQV-bd-Y3r" secondAttribute="bottom" id="yL6-FE-eMw"/>
+                            <constraint firstItem="bQV-bd-Y3r" firstAttribute="leading" secondItem="pjV-5q-Bg7" secondAttribute="leading" id="08L-Sk-pUI"/>
+                            <constraint firstAttribute="trailing" secondItem="bQV-bd-Y3r" secondAttribute="trailing" id="8ZZ-9L-qbx"/>
+                            <constraint firstItem="LGw-qf-a2x" firstAttribute="bottom" secondItem="8KI-Rp-Wx3" secondAttribute="top" id="Lrv-pL-oQI"/>
+                            <constraint firstItem="LGw-qf-a2x" firstAttribute="trailing" secondItem="bQV-bd-Y3r" secondAttribute="trailing" id="Qbr-v9-9Jw"/>
+                            <constraint firstItem="LGw-qf-a2x" firstAttribute="top" secondItem="bQV-bd-Y3r" secondAttribute="bottom" id="XAe-gI-vW5"/>
+                            <constraint firstItem="bQV-bd-Y3r" firstAttribute="top" secondItem="w3k-Ou-Oaq" secondAttribute="bottom" id="cLU-Eq-bFi"/>
+                            <constraint firstItem="LGw-qf-a2x" firstAttribute="leading" secondItem="bQV-bd-Y3r" secondAttribute="leading" id="cxo-jr-szT"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btnDone" destination="bs3-jg-IJG" id="nRX-Lz-BpJ"/>
                         <outlet property="listInfoForm" destination="LGw-qf-a2x" id="WpG-mS-i8J"/>
                         <outlet property="navigationBar" destination="bQV-bd-Y3r" id="dw2-nm-N58"/>
                     </connections>

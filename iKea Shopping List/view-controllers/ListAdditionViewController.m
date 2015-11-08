@@ -7,10 +7,16 @@
 //
 
 #import "ListAdditionViewController.h"
+#import "TextInputTableViewCell.h"
 
 @interface ListAdditionViewController ()
+
+#define NEW_LIST_INFO_CELL_ID   @"new-list-info-cell"
+#define TEXT_FIELD_CELL_NIB     @"text-input-table-view-cell"
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *btnDone;
 @property (weak, nonatomic) IBOutlet UITableView *listInfoForm;
+@property (weak, nonatomic) UITextField* listNameTextField;
 
 @end
 
@@ -59,8 +65,25 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UITableViewCell* cell =
-        [tableView dequeueReusableCellWithIdentifier:@"new-list-info-cell"];
+    TextInputTableViewCell* cell =
+        [tableView dequeueReusableCellWithIdentifier:NEW_LIST_INFO_CELL_ID];
+    
+    if(cell == nil){
+        
+        UINib* nib = [UINib nibWithNibName:TEXT_FIELD_CELL_NIB bundle:nil];
+        
+        [tableView registerNib: nib
+        forCellReuseIdentifier:NEW_LIST_INFO_CELL_ID];
+        
+        cell =
+        [tableView dequeueReusableCellWithIdentifier:NEW_LIST_INFO_CELL_ID];
+        
+        [cell.inputText addTarget:self
+                           action:@selector(textFiledDidChange:)
+                 forControlEvents:UIControlEventEditingChanged];
+        
+        self.listNameTextField = cell.inputText;
+    }
 
     return cell;
 }
@@ -71,6 +94,7 @@
 - (IBAction)onTapCancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 - (IBAction)onTapDone:(id)sender {
     /* As recommended in Official View Controller iOS Programming Guide here in
      * this link: http://goo.gl/Phwrp6, Dismissing a Presented View Controller
@@ -78,8 +102,15 @@
      * return data to the presenting view controller, use the delegation design 
      * pattern to facilitate the transfer.
      */
-    [self.listInfoCreationDelegate listInfoDidCreatedWithTitle:@"Wael"];
+    [self.listInfoCreationDelegate
+        listInfoDidCreatedWithTitle:self.listNameTextField.text];
+
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)textFiledDidChange:(UITextField*)texField{
+    /* done button is enabled only when user enters name for the new list.*/
+    self.btnDone.enabled = texField.text.length>0;
 }
 
 @end
