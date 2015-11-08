@@ -12,6 +12,7 @@
 #import "ListOfListsTableViewController.h"
 #import "ArrayDataSource.h"
 #import "ListOfItemsTableViewController.h"
+#import "ListAdditionViewController.h"
 
 #import "ShoppingItem.h"
 
@@ -31,6 +32,10 @@
  *  to specific list name.
  */
 #define SHOW_LIST_ITEMS_SEGUE_ID    @"showListOfItems"
+
+
+#define ADD_NEW_LIST_SEGUE_ID     @"addNewListInfo"
+
 
 /*!
  *  @property navBarDelegate
@@ -95,6 +100,10 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)listInfoDidCreatedWithTitle:(NSString *)title{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    NSLog(@"%@",title);
+}
 
 #pragma mark - Navigation
 
@@ -114,6 +123,11 @@ preparation before navigation*/
             [self.listOfListsDataSource itemAtIndexPath:selectedIndexPath];
 
         [listOfItemsViewController setShoppingList:selectedShoppingList];
+        
+    }else if ([segue.identifier isEqualToString:ADD_NEW_LIST_SEGUE_ID]){
+        ListAdditionViewController* modalViewController =
+            [segue destinationViewController];
+        modalViewController.listInfoCreationDelegate = self;
     }
 }
 

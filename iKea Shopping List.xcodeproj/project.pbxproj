@@ -22,6 +22,7 @@
 		DADD0A831BDD50CE00806DB6 /* iKea_Shopping_ListUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0A821BDD50CE00806DB6 /* iKea_Shopping_ListUITests.m */; };
 		DADD0A9A1BDD8A3800806DB6 /* ShoppingListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0A991BDD8A3800806DB6 /* ShoppingListTests.m */; };
 		DAED5BCE1BEA780700C5816F /* ArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DAED5BCD1BEA780700C5816F /* ArrayDataSource.m */; };
+		DAF5E27D1BEE9A800023F8E8 /* ListAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5E27C1BEE9A800023F8E8 /* ListAdditionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DA0323851BEF9AD4003960B0 /* ListInfoCreationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListInfoCreationDelegate.h; sourceTree = "<group>"; };
 		DA67F9E41BE8131E00E1734A /* TwoSidedDoorAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoSidedDoorAnimator.h; sourceTree = "<group>"; };
 		DA67F9E51BE8131E00E1734A /* TwoSidedDoorAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoSidedDoorAnimator.m; sourceTree = "<group>"; };
 		DA67F9E71BE8131E00E1734A /* ShoppingItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingItem.h; sourceTree = "<group>"; };
@@ -71,6 +73,8 @@
 		DADD0A991BDD8A3800806DB6 /* ShoppingListTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListTests.m; sourceTree = "<group>"; };
 		DAED5BCC1BEA780700C5816F /* ArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayDataSource.h; sourceTree = "<group>"; };
 		DAED5BCD1BEA780700C5816F /* ArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayDataSource.m; sourceTree = "<group>"; };
+		DAF5E27B1BEE9A800023F8E8 /* ListAdditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListAdditionViewController.h; sourceTree = "<group>"; };
+		DAF5E27C1BEE9A800023F8E8 /* ListAdditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListAdditionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DA0323801BEF9692003960B0 /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+				DA0323851BEF9AD4003960B0 /* ListInfoCreationDelegate.h */,
+			);
+			path = protocols;
+			sourceTree = "<group>";
+		};
 		DA67F9E31BE8131E00E1734A /* animations */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +139,8 @@
 				DA67F9EF1BE8131E00E1734A /* ListOfListsTableViewController.m */,
 				DAA61BA41BE8FBF700CEC295 /* NavigationControllerDelegate.h */,
 				DAA61BA51BE8FBF700CEC295 /* NavigationControllerDelegate.m */,
+				DAF5E27B1BEE9A800023F8E8 /* ListAdditionViewController.h */,
+				DAF5E27C1BEE9A800023F8E8 /* ListAdditionViewController.m */,
 			);
 			path = "view-controllers";
 			sourceTree = "<group>";
@@ -167,6 +181,7 @@
 				DA67F9E61BE8131E00E1734A /* models */,
 				DA67F9EB1BE8131E00E1734A /* view-controllers */,
 				DA9ED7941BEA6B440040999D /* data-sources */,
+				DA0323801BEF9692003960B0 /* protocols */,
 				DADD0A601BDD50CE00806DB6 /* AppDelegate.h */,
 				DADD0A611BDD50CE00806DB6 /* AppDelegate.m */,
 				DADD0A661BDD50CE00806DB6 /* Main.storyboard */,
@@ -338,6 +353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAF5E27D1BEE9A800023F8E8 /* ListAdditionViewController.m in Sources */,
 				DAA61BA61BE8FBF700CEC295 /* NavigationControllerDelegate.m in Sources */,
 				DA67F9F31BE8131E00E1734A /* ShoppingItem.m in Sources */,
 				DA67F9F01BE8131E00E1734A /* TwoSidedDoorAnimator.m in Sources */,

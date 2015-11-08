@@ -9,8 +9,9 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "ListInfoCreationDelegate.h"
 
 @interface ListOfListsTableViewController : UITableViewController
-    <UITableViewDataSource>
+    <UITableViewDataSource, ListInfoCreationDelegate>
 
 @end
