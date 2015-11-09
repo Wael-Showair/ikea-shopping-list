@@ -10,11 +10,8 @@
 
 @interface ArrayDataSource : NSObject <UITableViewDataSource>
 
-typedef void (^TableViewCellConfigureBlock)(id cell, id item);
-
 - (instancetype)initWithItems:(NSMutableArray *)items
-     cellIdentifier:(NSString *)cellIdentifier
- configureCellBlock:(TableViewCellConfigureBlock)configureCellBlock;
+     cellIdentifier:(NSString *)cellIdentifier;
 
 - (id)itemAtIndexPath:(NSIndexPath *)indexPath;
 - (void)insertObject:(id)object AtIndex:(NSUInteger)indexPath;

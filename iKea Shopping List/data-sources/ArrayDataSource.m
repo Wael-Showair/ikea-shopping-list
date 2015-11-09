@@ -13,20 +13,16 @@
 @interface ArrayDataSource()
 @property NSMutableArray* allItems;
 @property NSString* cellIdentifier;
-@property (nonatomic,strong) TableViewCellConfigureBlock configureCellBlock;
 @end
 
 @implementation ArrayDataSource
 
 - (instancetype)initWithItems:(NSMutableArray *)items
-               cellIdentifier:(NSString *)cellIdentifier
-           configureCellBlock:(TableViewCellConfigureBlock)configureCellBlock
-{
+               cellIdentifier:(NSString *)cellIdentifier{
     self = [super init];
     if (self) {
         self.allItems = items;
         self.cellIdentifier = cellIdentifier;
-        self.configureCellBlock = configureCellBlock;
     }
     return self;
 }
@@ -46,8 +42,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
-    id item = [self itemAtIndexPath:indexPath];
-    self.configureCellBlock(cell, item);
+
     return cell;
 }
 

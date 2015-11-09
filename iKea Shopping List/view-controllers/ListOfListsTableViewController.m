@@ -78,18 +78,10 @@
     /* TODO: Get the main lists' names from permanent storage. */
     NSMutableArray* allLists = [self populateTableWithData];
     
-    /* Callback block that is used to populate the cells of Table view with
-     the shopping list title.*/
-    TableViewCellConfigureBlock cellConfigurationBlock =
-        ^(UITableViewCell* cell, ShoppingList* shoppingList){
-            cell.textLabel.text = shoppingList.title;
-    };
-
     /* Set data source delegate of the table view under control. */
     self.listOfListsDataSource =
         [[ArrayDataSource alloc] initWithItems:allLists
-                                cellIdentifier:LISTS_CELL_IDENTIFIER
-                            configureCellBlock:cellConfigurationBlock];
+                                cellIdentifier:LISTS_CELL_IDENTIFIER];
     self.tableView.dataSource = self.listOfListsDataSource;
     
     /* set left bar button to default button that toggles its title and 
@@ -122,6 +114,15 @@
 }
 
 #pragma table view - delegate
+-(void)tableView:(UITableView *)tableView
+ willDisplayCell:(UITableViewCell *)cell
+forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    ShoppingList* shoppingList = [self.listOfListsDataSource
+                                    itemAtIndexPath:indexPath];
+    cell.textLabel.text = shoppingList.title;
+    
+}
 
 /* Note that: If the delegate does not implement this method and the 
  * UITableViewCell object is editable (that is, it has its editing property 

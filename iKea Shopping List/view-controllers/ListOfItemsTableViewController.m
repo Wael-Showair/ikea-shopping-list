@@ -43,19 +43,10 @@
     /* Get all items that are related to certain shopping list.*/
     NSMutableArray* allItems = [self.shoppingList getItems];
     
-    /* Callback block that is used to populate the cells of Table view with
-     the shopping item brief information.*/
-    TableViewCellConfigureBlock cellConfigurationBlock =
-        ^(UITableViewCell* cell, ShoppingItem* shoppingItem){
-            cell.textLabel.text = shoppingItem.name;
-            cell.detailTextLabel.text = shoppingItem.price.stringValue;
-    };
-    
     /* Set data source delegate of the table view. */
     self.listOfItemsDataSource = [[ArrayDataSource alloc]
                                   initWithItems: allItems
-                                  cellIdentifier: LIST_OF_ITEMS_CELL_IDENTIFIER
-                                  configureCellBlock:cellConfigurationBlock];
+                                  cellIdentifier: LIST_OF_ITEMS_CELL_IDENTIFIER];
     self.tableView.dataSource = self.listOfItemsDataSource;
 
 }
@@ -66,10 +57,20 @@
     [super didReceiveMemoryWarning];
 }
 
+#pragma table view - delegate
+-(void)tableView:(UITableView *)tableView
+ willDisplayCell:(UITableViewCell *)cell
+forRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    ShoppingItem* shoppingItem = [self.listOfItemsDataSource
+                                    itemAtIndexPath:indexPath];
+    cell.textLabel.text = shoppingItem.name;
+    cell.detailTextLabel.text = shoppingItem.price.stringValue;
+}
+
 /*
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.

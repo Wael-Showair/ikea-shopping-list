@@ -11,7 +11,8 @@
 #import <UIKit/UIKit.h>
 #import "ShoppingList.h"
 @interface ListOfItemsTableViewController : UITableViewController
-    <UITableViewDataSource>
+    <UITableViewDataSource,
+     UITableViewDelegate>
 
 /*!
  *  @property shoppingList
