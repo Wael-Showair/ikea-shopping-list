@@ -92,6 +92,10 @@
                             configureCellBlock:cellConfigurationBlock];
     self.tableView.dataSource = self.listOfListsDataSource;
     
+    /* set left bar button to default button that toggles its title and 
+     associated state between Edit and Done. */
+    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -116,6 +120,17 @@
                           withRowAnimation:UITableViewRowAnimationAutomatic];
     
 }
+
+#pragma table view - delegate
+
+/* Note that: If the delegate does not implement this method and the 
+ * UITableViewCell object is editable (that is, it has its editing property 
+ * set to YES), the cell has the UITableViewCellEditingStyleDelete style set for
+ * it.*/
+//-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView
+//          editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return UITableViewCellEditingStyleDelete;
+//}
 
 #pragma list addition - delegate
 - (void)listInfoDidCreatedWithTitle:(NSString *)title{

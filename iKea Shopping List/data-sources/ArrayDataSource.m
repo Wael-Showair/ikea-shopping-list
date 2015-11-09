@@ -40,6 +40,10 @@
                         atIndex:index];
 }
 
+-(void) removeObjectAtIndex: (NSUInteger)index{
+    [self.allItems removeObjectAtIndex:index];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
     id item = [self itemAtIndexPath:indexPath];
@@ -59,17 +63,24 @@
  }
  */
 
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
+
+/* Override to support editing the table view. 
+ * To enable the swipe-to-delete feature of table views
  */
+ - (void)tableView:(UITableView *)tableView
+commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+ forRowAtIndexPath:(NSIndexPath *)indexPath {
+ 
+     if (editingStyle == UITableViewCellEditingStyleDelete) {
+         //Delete object from data array itself.
+         [self removeObjectAtIndex:indexPath.row];
+         
+         // Delete the row from the data source
+         [tableView deleteRowsAtIndexPaths:@[indexPath]
+                          withRowAnimation:UITableViewRowAnimationFade];
+         
+     }
+ }
 
 /*
  // Override to support rearranging the table view.
