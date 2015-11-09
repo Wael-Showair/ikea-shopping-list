@@ -36,6 +36,9 @@
 
 #define ADD_NEW_LIST_SEGUE_ID     @"addNewListInfo"
 
+#define FIRST_INDEX     0
+
+#define FIRST_SECTION_INDEX     0
 
 /*!
  *  @property navBarDelegate
@@ -100,9 +103,25 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)insertNewListWithTitle: (NSString*)title{
+
+    /* add the new list object to the data source. */
+    ShoppingList* newList = [[ShoppingList alloc] initWithTitle:title];
+    [self.listOfListsDataSource insertObject:newList AtIndex:FIRST_INDEX];
+    
+    /* add the new list to table view. */
+    NSIndexPath* indexPath = [NSIndexPath indexPathForItem:FIRST_INDEX
+                                                 inSection:FIRST_SECTION_INDEX];
+    [self.tableView insertRowsAtIndexPaths:@[indexPath]
+                          withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+}
+
+#pragma list addition - delegate
 - (void)listInfoDidCreatedWithTitle:(NSString *)title{
     NSLog(@"%s", __PRETTY_FUNCTION__);
     NSLog(@"%@",title);
+    [self insertNewListWithTitle:title];
 }
 
 #pragma mark - Navigation

@@ -35,6 +35,11 @@
     return [self.allItems objectAtIndex:indexPath.row];
 }
 
+-(void) insertObject:(id)object AtIndex:(NSUInteger)index{
+    [self.allItems insertObject:object
+                        atIndex:index];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
     id item = [self itemAtIndexPath:indexPath];

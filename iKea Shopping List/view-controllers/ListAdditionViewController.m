@@ -36,6 +36,13 @@
      * If it is Plain style then make sure to hide remove separators between 
      * empty cells as indicated below. */
     /*self.listInfoForm.tableFooterView = [UIView new];*/
+    
+    /* Add gesture recognizer for tapping any where on the table to dismiss the
+     * keyboard. */
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]
+                                    initWithTarget:self
+                                    action:@selector(handleTapAnywhereOnTable:)];
+    [self.view addGestureRecognizer:tap];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,15 +90,20 @@
                  forControlEvents:UIControlEventEditingChanged];
         
         self.listNameTextField = cell.inputText;
+        
+        if(self.listNameTextField.delegate == nil)
+            self.listNameTextField.delegate = self;
     }
 
     return cell;
 }
 
 
-#pragma mark - Navigation
+#pragma actions
 
 - (IBAction)onTapCancel:(id)sender {
+    
+    [self.listNameTextField resignFirstResponder];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -104,13 +116,26 @@
      */
     [self.listInfoCreationDelegate
         listInfoDidCreatedWithTitle:self.listNameTextField.text];
+    
+    /* Dismiss keyboard (in case it was displayed)*/
+    [self.listNameTextField resignFirstResponder];
 
+    /* Dismiss the presented modal view controller. */
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)textFiledDidChange:(UITextField*)texField{
     /* done button is enabled only when user enters name for the new list.*/
     self.btnDone.enabled = texField.text.length>0;
+}
+
+- (void) handleTapAnywhereOnTable: (UITapGestureRecognizer *)recognizer{
+    [self.listNameTextField resignFirstResponder];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self onTapDone:self.btnDone];
+    return YES;
 }
 
 @end

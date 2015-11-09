@@ -17,5 +17,5 @@ typedef void (^TableViewCellConfigureBlock)(id cell, id item);
  configureCellBlock:(TableViewCellConfigureBlock)configureCellBlock;
 
 - (id)itemAtIndexPath:(NSIndexPath *)indexPath;
-
+- (void)insertObject:(id)object AtIndex:(NSUInteger)indexPath;
 @end
