@@ -177,30 +177,34 @@ preparation before navigation*/
     [allLists addObject:shoppingList];
     /* Add spoons and forms to the kitchen shopping list. */
     shoppingItem = [[ShoppingItem alloc]
-                        initWithName:@"Spoons"
-                        price:[[NSDecimalNumber alloc] initWithDouble:12.3]];
+                    initWithName:@"Refrigerator"
+                    price:[[NSDecimalNumber alloc] initWithDouble:1999.00]
+                    image:@"refrigerator"];
     [shoppingList addNewItem:shoppingItem];
     shoppingItem = [[ShoppingItem alloc]
-                        initWithName:@"Forks"
-                        price:[[NSDecimalNumber alloc] initWithDouble:14.5]];
+                    initWithName:@"Mug"
+                    price:[[NSDecimalNumber alloc] initWithDouble:12.99]
+                    image:@"mug-turquoise"];
     [shoppingList addNewItem:shoppingItem];
     
     /* Create Bathrrom Shopping list and add it to all data mutable array. */
     shoppingList = [[ShoppingList alloc] initWithTitle:@"Bathroom"];
     [allLists addObject:shoppingList];
-    /* Add tissues, soap & shampoo to the bathroom shopping list. */
+    /* Add faucet, dish-set & mat to the bathroom shopping list. */
     shoppingItem = [[ShoppingItem alloc]
-                        initWithName:@"Tissues"
-                    price:[[NSDecimalNumber alloc] initWithDouble:12.3]];
+                        initWithName:@"Faucet"
+                    price:[[NSDecimalNumber alloc] initWithDouble:54.49]
+                    image:@"faucet"];
     [shoppingList addNewItem:shoppingItem];
     shoppingItem = [[ShoppingItem alloc]
-                    initWithName:@"Soap"
-                    price:[[NSDecimalNumber alloc] initWithDouble:34.5]];
+                    initWithName:@"Mat"
+                    price:[[NSDecimalNumber alloc] initWithDouble:12.99]
+                    image:@"mat"];
     [shoppingList addNewItem:shoppingItem];
     shoppingItem = [[ShoppingItem alloc]
-                    initWithName:@"Shampoo"
-                    price:[[NSDecimalNumber alloc] initWithDouble:156.5]];
-    
+                    initWithName:@"Dish Set"
+                    price:[[NSDecimalNumber alloc] initWithDouble:12.99]
+                    image:@"dish-set"];
     [shoppingList addNewItem:shoppingItem];
     
     return allLists;

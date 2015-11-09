@@ -129,7 +129,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cellForListOfItems" textLabel="6UY-pb-zuT" detailTextLabel="dy5-2h-L9k" style="IBUITableViewCellStyleSubtitle" id="B5Q-tt-zii">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cellForListOfItems" textLabel="6UY-pb-zuT" detailTextLabel="dy5-2h-L9k" style="IBUITableViewCellStyleValue1" id="B5Q-tt-zii">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B5Q-tt-zii" id="oUS-W5-eIz">
@@ -137,19 +137,19 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="item 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6UY-pb-zuT">
-                                            <rect key="frame" x="15" y="6" width="43" height="19.5"/>
+                                            <rect key="frame" x="15" y="12" width="43" height="19.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dy5-2h-L9k">
-                                            <rect key="frame" x="15" y="25.5" width="40.5" height="13.5"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dy5-2h-L9k">
+                                            <rect key="frame" x="509" y="12" width="56" height="19.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <animations/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -171,6 +171,13 @@
                             <outlet property="delegate" destination="E7w-zg-oA0" id="ijb-TA-s3u"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="cEq-Hp-1Mh">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ucl-ka-NZL">
+                            <connections>
+                                <segue destination="nPn-uq-FWl" kind="presentation" identifier="addNewItem" id="5Be-Pz-qTG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8q9-iw-bg1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -224,4 +231,7 @@
             <point key="canvasLocation" x="611" y="359"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="bN2-GK-92a"/>
+    </inferredMetricsTieBreakers>
 </document>

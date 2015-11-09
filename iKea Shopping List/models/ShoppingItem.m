@@ -17,29 +17,37 @@
 
 - (instancetype)init
 {
-    self = [super init];
-    if (self) {
+    NSDecimalNumber* price = [NSDecimalNumber decimalNumberWithString:@"0"];
+    /* invoke the designated initializer. */
+    self =  [self initWithName:@"" price:price image:@""];
+    
+    return self;
+}
 
-        /* invoke the designated initializer. */
-        NSDecimalNumber* temp = [NSDecimalNumber decimalNumberWithString:@"0"];
-        self = [self initWithName:@"" price:temp];
-    }
+
+
+-(instancetype) initWithName:(NSString*) itemName
+                       price:(NSDecimalNumber*) itemPrice
+{
+    /* invoke the designated initializer. */
+    self =  [self initWithName:itemName price:itemPrice image:@""];
     return self;
 }
 
 -(instancetype) initWithName:(NSString*) itemName
                        price:(NSDecimalNumber*) itemPrice
+                       image:(NSString*) fileName
 {
     self = [super init];
     
     if(self){
         _name = itemName;
         _price = itemPrice;
-        _imageName = @"";
+        _imageName = fileName;
     }
     return self;
 }
-                    
+
 
 @end
 

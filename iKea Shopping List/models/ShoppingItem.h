@@ -85,4 +85,7 @@
                        price:(NSDecimalNumber*) itemPrice;
 
 
+-(instancetype) initWithName:(NSString*) itemName
+                       price:(NSDecimalNumber*) itemPrice
+                       image:(NSString*) fileName;
 @end

@@ -49,6 +49,8 @@
                                   cellIdentifier: LIST_OF_ITEMS_CELL_IDENTIFIER];
     self.tableView.dataSource = self.listOfItemsDataSource;
 
+    /* make sure to hide remove separators between empty cells */
+    self.tableView.tableFooterView = [UIView new];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,6 +68,9 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                     itemAtIndexPath:indexPath];
     cell.textLabel.text = shoppingItem.name;
     cell.detailTextLabel.text = shoppingItem.price.stringValue;
+    
+    UIImage* itemImage = [UIImage imageNamed:shoppingItem.imageName];
+    [cell.imageView setImage:itemImage];
 }
 
 /*
