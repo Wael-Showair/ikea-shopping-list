@@ -8,21 +8,26 @@
  *  @copyright 2015. Wael Showair. All rights reserved.
  */
 #import <UIKit/UIKit.h>
-#import "ArrayDataSource.h"
+#import "ListsDataSource.h"
 
-@interface ArrayDataSource()
+@interface ListsDataSource()
+
+/*!
+ *  @define LISTS_CELL_IDENTIFIER
+ *  @abstract table view cell tag that is used to idenify the cells for reuse.
+ */
+#define LISTS_CELL_IDENTIFIER       @"cellForListOfLists"
+
 @property NSMutableArray* allItems;
-@property NSString* cellIdentifier;
 @end
 
-@implementation ArrayDataSource
+@implementation ListsDataSource
 
 - (instancetype)initWithItems:(NSMutableArray *)items
-               cellIdentifier:(NSString *)cellIdentifier{
+{
     self = [super init];
     if (self) {
         self.allItems = items;
-        self.cellIdentifier = cellIdentifier;
     }
     return self;
 }
@@ -40,19 +45,23 @@
     [self.allItems removeObjectAtIndex:index];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:LISTS_CELL_IDENTIFIER];
 
     return cell;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+-(NSInteger)tableView:(UITableView *)tableView
+numberOfRowsInSection:(NSInteger)section{
     return self.allItems.count;
 }
 
 /*
  // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+ - (BOOL)tableView:(UITableView *)tableView 
+ canEditRowAtIndexPath:(NSIndexPath *)indexPath {
  // Return NO if you do not want the specified item to be editable.
  return YES;
  }

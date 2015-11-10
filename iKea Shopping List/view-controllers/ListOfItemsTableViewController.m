@@ -9,16 +9,10 @@
  */
 
 #import "ListOfItemsTableViewController.h"
-#import "ArrayDataSource.h"
+#import "ItemsDataSource.h"
 #import "ShoppingItem.h"
 
 @interface ListOfItemsTableViewController ()
-
-/*!
- *  @define LIST_OF_ITEMS_CELL_IDENTIFIER
- *  @abstract table view cell tag that is used to idenify the cells for reuse.
- */
-#define LIST_OF_ITEMS_CELL_IDENTIFIER   @"cellForListOfItems"
 
 /*!
  *  @property listOfItemsDataSource
@@ -26,7 +20,7 @@
  *  @discussion separate the model from the view and controller. This is done
  *  by creating separate class for data source delegate of the UITabelView.
  */
-@property (nonatomic, strong) ArrayDataSource* listOfItemsDataSource;
+@property (nonatomic, strong) ItemsDataSource* listOfItemsDataSource;
 @end
 
 @implementation ListOfItemsTableViewController
@@ -44,9 +38,8 @@
     NSMutableArray* allItems = [self.shoppingList getItems];
     
     /* Set data source delegate of the table view. */
-    self.listOfItemsDataSource = [[ArrayDataSource alloc]
-                                  initWithItems: allItems
-                                  cellIdentifier: LIST_OF_ITEMS_CELL_IDENTIFIER];
+    self.listOfItemsDataSource = [[ItemsDataSource alloc]
+                                  initWithItems: allItems];
     self.tableView.dataSource = self.listOfItemsDataSource;
 
     /* make sure to hide remove separators between empty cells */
@@ -60,17 +53,24 @@
 }
 
 #pragma table view - delegate
--(void)tableView:(UITableView *)tableView
- willDisplayCell:(UITableViewCell *)cell
+- (void)tableView:(UITableView *)tableView
+  willDisplayCell:(UITableViewCell *)cell
 forRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    ShoppingItem* shoppingItem = [self.listOfItemsDataSource
-                                    itemAtIndexPath:indexPath];
-    cell.textLabel.text = shoppingItem.name;
-    cell.detailTextLabel.text = shoppingItem.price.stringValue;
-    
-    UIImage* itemImage = [UIImage imageNamed:shoppingItem.imageName];
-    [cell.imageView setImage:itemImage];
+    if(indexPath.row == TOTAL_PRICE_ROW_INDEX){
+        NSDecimalNumber* total = [self.listOfItemsDataSource
+                                  itemAtIndexPath:indexPath];
+        cell.textLabel.text = total.stringValue;
+    }
+    else{
+        ShoppingItem* shoppingItem = [self.listOfItemsDataSource
+                                      itemAtIndexPath:indexPath];
+        cell.textLabel.text = shoppingItem.name;
+        cell.detailTextLabel.text = shoppingItem.price.stringValue;
+        
+        UIImage* itemImage = [UIImage imageNamed:shoppingItem.imageName];
+        [cell.imageView setImage:itemImage];
+    }
 }
 
 /*

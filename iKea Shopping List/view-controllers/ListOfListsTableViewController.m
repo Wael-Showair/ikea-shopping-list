@@ -10,21 +10,13 @@
 
 #import "NavigationControllerDelegate.h"
 #import "ListOfListsTableViewController.h"
-#import "ArrayDataSource.h"
+#import "ListsDataSource.h"
 #import "ListOfItemsTableViewController.h"
 #import "ListAdditionViewController.h"
 
 #import "ShoppingItem.h"
 
 @interface ListOfListsTableViewController ()
-
-
-/*!
- *  @define LISTS_CELL_IDENTIFIER
- *  @abstract table view cell tag that is used to idenify the cells for reuse.
- */
-#define LISTS_CELL_IDENTIFIER       @"cellForListOfLists"
-
 
 /*!
  *  @define SHOW_LIST_ITEMS_SEGUE_ID
@@ -34,11 +26,11 @@
 #define SHOW_LIST_ITEMS_SEGUE_ID    @"showListOfItems"
 
 
-#define ADD_NEW_LIST_SEGUE_ID     @"addNewListInfo"
+#define ADD_NEW_LIST_SEGUE_ID       @"addNewListInfo"
 
-#define FIRST_INDEX     0
+#define FIRST_INDEX                 0
 
-#define FIRST_SECTION_INDEX     0
+#define FIRST_SECTION_INDEX         0
 
 /*!
  *  @property navBarDelegate
@@ -56,7 +48,7 @@
  *  @discussion separate the model from the view and controller. This is done
  *  by creating separate class for data source delegate of the UITabelView.
  */
-@property (nonatomic, strong) ArrayDataSource* listOfListsDataSource;
+@property (nonatomic, strong) ListsDataSource* listOfListsDataSource;
 
 @end
 
@@ -80,8 +72,7 @@
     
     /* Set data source delegate of the table view under control. */
     self.listOfListsDataSource =
-        [[ArrayDataSource alloc] initWithItems:allLists
-                                cellIdentifier:LISTS_CELL_IDENTIFIER];
+        [[ListsDataSource alloc] initWithItems:allLists];
     self.tableView.dataSource = self.listOfListsDataSource;
     
     /* set left bar button to default button that toggles its title and 

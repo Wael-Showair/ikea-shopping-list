@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface ArrayDataSource : NSObject <UITableViewDataSource>
+@interface ListsDataSource : NSObject <UITableViewDataSource>
 
-- (instancetype)initWithItems:(NSMutableArray *)items
-     cellIdentifier:(NSString *)cellIdentifier;
-
+- (instancetype)initWithItems:(NSMutableArray *)items;
 - (id)itemAtIndexPath:(NSIndexPath *)indexPath;
 - (void)insertObject:(id)object AtIndex:(NSUInteger)indexPath;
+
 @end

@@ -35,14 +35,15 @@
  */
 - (instancetype)initWithTitle: (NSString*) title;
 
+- (instancetype)initWithTitle: (NSString*) title total:(NSDecimalNumber*)total;
 /*!
  *  @abstract Add new shopping item to the list.
  *
  *  @param item an object of shopping item.
- *
- *  @return boolean indicating whether the item's been added succesfully or not.
  */
-- (BOOL) addNewItem: (ShoppingItem*) item;
+- (void) addNewItem: (ShoppingItem*) item;
+
+- (void)removeItemAtIndex:(NSUInteger)index;
 
 /*!
  *  @abstract Get how many shopping items are in the given list.
@@ -56,10 +57,12 @@
  *
  *  @param index an index within the bounds of the shopping list.
  *
- *  @return shopping item object located at the given index.
+ *  @return shopping item object located at the given index or total price
+ *  of items included in the list.
  *  @discussion if the index is out of bounds, a nil pointer is returned.
+ *  Index zero contains total price for the list of items.
  */
-- (ShoppingItem*) itemAtIndex: (int) index;
+- (id) itemAtIndex: (int) index;
 
 /*!
  *  @abstract Return all shopping items inside the list.
