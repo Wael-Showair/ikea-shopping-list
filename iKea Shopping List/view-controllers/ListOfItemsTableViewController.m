@@ -14,6 +14,7 @@
 
 @interface ListOfItemsTableViewController ()
 #define TOTAL_PRICE     @"Total Price: "
+
 /*!
  *  @property listOfItemsDataSource
  *  @abstract data source delegate for table view that display list of items.
@@ -45,8 +46,8 @@
 
     /* make sure to hide remove separators between empty cells */
     self.tableView.tableFooterView = [UIView new];
-    
-    self.tableView.tableHeaderView = [self getGlobalHeaderView];
+
+    [self loadGlobalHeaderView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,7 +57,8 @@
 }
 
 #pragma global header
--(UIView *) getGlobalHeaderView {
+-(void) loadGlobalHeaderView {
+    
     if (self.globalHeader == nil) {
         NSArray* topLevelObjects = [[NSBundle mainBundle]
                                      loadNibNamed:@"items-table-header-view"
@@ -67,8 +69,6 @@
             [TOTAL_PRICE stringByAppendingString:
                             self.shoppingList.totalPrice.stringValue];
     }
-    
-    return self.globalHeader;
 }
 
 #pragma table view - delegate
@@ -85,6 +85,15 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     [cell.imageView setImage:itemImage];
 }
 
+-(UIView *)  tableView:(UITableView *)tableView
+viewForHeaderInSection:(NSInteger)section{
+    return self.globalHeader;
+}
+
+-(CGFloat)     tableView:(UITableView *)tableView
+heightForHeaderInSection:(NSInteger)section{
+    return self.globalHeader.bounds.size.height;
+}
 /*
 #pragma mark - Navigation
 
