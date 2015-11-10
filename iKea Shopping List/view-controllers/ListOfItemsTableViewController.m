@@ -13,7 +13,7 @@
 #import "ShoppingItem.h"
 
 @interface ListOfItemsTableViewController ()
-
+#define TOTAL_PRICE     @"Total Price: "
 /*!
  *  @property listOfItemsDataSource
  *  @abstract data source delegate for table view that display list of items.
@@ -21,6 +21,7 @@
  *  by creating separate class for data source delegate of the UITabelView.
  */
 @property (nonatomic, strong) ItemsDataSource* listOfItemsDataSource;
+@property (nonatomic, weak)   UILabel* globalHeader;
 @end
 
 @implementation ListOfItemsTableViewController
@@ -44,6 +45,8 @@
 
     /* make sure to hide remove separators between empty cells */
     self.tableView.tableFooterView = [UIView new];
+    
+    self.tableView.tableHeaderView = [self getGlobalHeaderView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,25 +55,34 @@
     [super didReceiveMemoryWarning];
 }
 
+#pragma global header
+-(UIView *) getGlobalHeaderView {
+    if (self.globalHeader == nil) {
+        NSArray* topLevelObjects = [[NSBundle mainBundle]
+                                     loadNibNamed:@"items-table-header-view"
+                                            owner:self
+                                          options:nil];
+        self.globalHeader = [topLevelObjects objectAtIndex:0];
+        self.globalHeader.text =
+            [TOTAL_PRICE stringByAppendingString:
+                            self.shoppingList.totalPrice.stringValue];
+    }
+    
+    return self.globalHeader;
+}
+
 #pragma table view - delegate
 - (void)tableView:(UITableView *)tableView
   willDisplayCell:(UITableViewCell *)cell
 forRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if(indexPath.row == TOTAL_PRICE_ROW_INDEX){
-        NSDecimalNumber* total = [self.listOfItemsDataSource
+    ShoppingItem* shoppingItem = [self.listOfItemsDataSource
                                   itemAtIndexPath:indexPath];
-        cell.textLabel.text = total.stringValue;
-    }
-    else{
-        ShoppingItem* shoppingItem = [self.listOfItemsDataSource
-                                      itemAtIndexPath:indexPath];
-        cell.textLabel.text = shoppingItem.name;
-        cell.detailTextLabel.text = shoppingItem.price.stringValue;
-        
-        UIImage* itemImage = [UIImage imageNamed:shoppingItem.imageName];
-        [cell.imageView setImage:itemImage];
-    }
+    cell.textLabel.text = shoppingItem.name;
+    cell.detailTextLabel.text = shoppingItem.price.stringValue;
+    
+    UIImage* itemImage = [UIImage imageNamed:shoppingItem.imageName];
+    [cell.imageView setImage:itemImage];
 }
 
 /*

@@ -14,8 +14,6 @@
 
 @interface ShoppingList()
 
-#define TOTAL_PRICE_INDEX   0
-
 /*
  *  @property allItems
  *  @abstract private property that represents a collection of items that forms 
@@ -50,35 +48,27 @@
         /* Initialize the pointer to NSMutable array object. */
         self.allItems = [[NSMutableArray alloc] init];
         
-        /* Save total price of the list at the first index. */
-        [self.allItems insertObject:total atIndex:TOTAL_PRICE_INDEX];
+        /* Initialize the total price*/
+        self.totalPrice = total;
     }
     return self;
 }
 
 - (void)addNewItem:(ShoppingItem *)item
 {
-    [self.allItems insertObject:item atIndex:1];
-
-    NSDecimalNumber* total = [self.allItems objectAtIndex:TOTAL_PRICE_INDEX];
-    total = [total decimalNumberByAdding:item.price];
-    [self.allItems replaceObjectAtIndex:TOTAL_PRICE_INDEX withObject:total];
- 
+    [self.allItems insertObject:item atIndex:0];
+    self.totalPrice = [self.totalPrice decimalNumberByAdding:item.price];
 }
 
 - (void)removeItemAtIndex:(NSUInteger)index
 {
     ShoppingItem* item = [self.allItems objectAtIndex:index];
-
-    NSDecimalNumber* total = [self.allItems objectAtIndex:TOTAL_PRICE_INDEX];
-    total = [total decimalNumberBySubtracting:item.price];
-    [self.allItems replaceObjectAtIndex:TOTAL_PRICE_INDEX withObject:total];
-    
+    self.totalPrice = [self.totalPrice decimalNumberBySubtracting:item.price];
     [self.allItems removeObjectAtIndex:index];
     
 }
 
--(id)itemAtIndex:(int)index{
+-(ShoppingItem *)itemAtIndex:(int)index{
     @try{
         return [self.allItems objectAtIndex:index];
     }

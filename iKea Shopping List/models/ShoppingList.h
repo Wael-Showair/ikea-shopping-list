@@ -26,6 +26,7 @@
  */
 @property NSString* title;
 
+@property NSDecimalNumber* totalPrice;
 /*!
  *  @abstract initialize a list with specific title.
  *
@@ -57,12 +58,10 @@
  *
  *  @param index an index within the bounds of the shopping list.
  *
- *  @return shopping item object located at the given index or total price
- *  of items included in the list.
+ *  @return shopping item object located at the given index 
  *  @discussion if the index is out of bounds, a nil pointer is returned.
- *  Index zero contains total price for the list of items.
  */
-- (id) itemAtIndex: (int) index;
+- (ShoppingItem *) itemAtIndex: (int) index;
 
 /*!
  *  @abstract Return all shopping items inside the list.

@@ -26,6 +26,7 @@
 		DADD0A9A1BDD8A3800806DB6 /* ShoppingListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0A991BDD8A3800806DB6 /* ShoppingListTests.m */; };
 		DAED5BCE1BEA780700C5816F /* ListsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DAED5BCD1BEA780700C5816F /* ListsDataSource.m */; };
 		DAF5E27D1BEE9A800023F8E8 /* ListAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5E27C1BEE9A800023F8E8 /* ListAdditionViewController.m */; };
+		DAF7345D1BF239B00013CDDD /* items-table-header-view.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF7345C1BF239B00013CDDD /* items-table-header-view.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +84,7 @@
 		DAED5BCD1BEA780700C5816F /* ListsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListsDataSource.m; sourceTree = "<group>"; };
 		DAF5E27B1BEE9A800023F8E8 /* ListAdditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListAdditionViewController.h; sourceTree = "<group>"; };
 		DAF5E27C1BEE9A800023F8E8 /* ListAdditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListAdditionViewController.m; sourceTree = "<group>"; };
+		DAF7345C1BF239B00013CDDD /* items-table-header-view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "items-table-header-view.xib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				DA03238A1BEFCA0B003960B0 /* text-input-table-view-cell.xib */,
+				DAF7345C1BF239B00013CDDD /* items-table-header-view.xib */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAF7345D1BF239B00013CDDD /* items-table-header-view.xib in Resources */,
 				DADD0A6D1BDD50CE00806DB6 /* LaunchScreen.storyboard in Resources */,
 				DADD0A6A1BDD50CE00806DB6 /* Assets.xcassets in Resources */,
 				DADD0A681BDD50CE00806DB6 /* Main.storyboard in Resources */,

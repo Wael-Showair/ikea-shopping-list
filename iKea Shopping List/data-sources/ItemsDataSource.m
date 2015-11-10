@@ -43,9 +43,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSString* cellId = (indexPath.row == TOTAL_PRICE_ROW_INDEX)? LIST_TOTAL_PRICE_CELL_IDENTIFIER: LIST_OF_ITEMS_CELL_IDENTIFIER;
     
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:LIST_OF_ITEMS_CELL_IDENTIFIER];
     
     return cell;
 }
