@@ -13,7 +13,8 @@
 #import "ShoppingItem.h"
 
 @interface ListOfItemsTableViewController ()
-#define TOTAL_PRICE     @"Total Price: "
+#define TOTAL_PRICE_PREFIX     @"Total Price: "
+#define FIRST_INDEX_INSECTION        0
 
 /*!
  *  @property listOfItemsDataSource
@@ -36,17 +37,15 @@
     /* Set the title of the table view scene.*/
     self.title = self.shoppingList.title;
     
-    /* Get all items that are related to certain shopping list.*/
-    NSMutableArray* allItems = [self.shoppingList getItems];
-    
     /* Set data source delegate of the table view. */
     self.listOfItemsDataSource = [[ItemsDataSource alloc]
-                                  initWithItems: allItems];
+                                  initWithItems: self.shoppingList];
     self.tableView.dataSource = self.listOfItemsDataSource;
 
     /* make sure to hide remove separators between empty cells */
     self.tableView.tableFooterView = [UIView new];
 
+    /* Load global header having the total price of the list.*/
     [self loadGlobalHeaderView];
 }
 
@@ -65,19 +64,25 @@
                                             owner:self
                                           options:nil];
         self.globalHeader = [topLevelObjects objectAtIndex:0];
-        self.globalHeader.text =
-            [TOTAL_PRICE stringByAppendingString:
-                            self.shoppingList.totalPrice.stringValue];
     }
+    
+    self.globalHeader.text =
+        [TOTAL_PRICE_PREFIX stringByAppendingString:
+                        self.shoppingList.totalPrice.stringValue];
+    
+    self.tableView.tableHeaderView = self.globalHeader;
 }
 
 #pragma table view - delegate
+
 - (void)tableView:(UITableView *)tableView
   willDisplayCell:(UITableViewCell *)cell
 forRowAtIndexPath:(NSIndexPath *)indexPath{
     
+
     ShoppingItem* shoppingItem = [self.listOfItemsDataSource
                                   itemAtIndexPath:indexPath];
+    
     cell.textLabel.text = shoppingItem.name;
     cell.detailTextLabel.text = shoppingItem.price.stringValue;
     
@@ -85,15 +90,37 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     [cell.imageView setImage:itemImage];
 }
 
--(UIView *)  tableView:(UITableView *)tableView
-viewForHeaderInSection:(NSInteger)section{
-    return self.globalHeader;
+
+- (void)insertNewShoppingItem{
+    
+    /* add the new list object to the data source. */
+    ShoppingItem* newItem =
+        [[ShoppingItem alloc]
+          initWithName:@"New Name"
+                 price:[[NSDecimalNumber alloc] initWithDouble:54.49]
+                 image:@"image Name"
+           aisleNumber:50
+             binNumber:30
+         articleNumber:@"113.45.23"
+              quantity:1];
+    
+
+    /* add new item in the first index of the section */
+    NSInteger virtualSectionIndex =
+        [self.listOfItemsDataSource insertShoppingItem:newItem];
+    
+    /* TODO: in case new section is added, reload data is needed. */
+    //BOOL flag = [self.listOfItemsDataSource isNewSection:actualSectionNum];
+
+    NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0
+                                                inSection:virtualSectionIndex];
+
+    /* add the new shopping item to the table view. */
+    [self.tableView insertRowsAtIndexPaths:@[indexPath]
+                          withRowAnimation:UITableViewRowAnimationAutomatic];
+    
 }
 
--(CGFloat)     tableView:(UITableView *)tableView
-heightForHeaderInSection:(NSInteger)section{
-    return self.globalHeader.bounds.size.height;
-}
 /*
 #pragma mark - Navigation
 

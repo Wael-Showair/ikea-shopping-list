@@ -38,16 +38,52 @@
                        price:(NSDecimalNumber*) itemPrice
                        image:(NSString*) fileName
 {
+    self = [self initWithName:itemName
+                        price:itemPrice
+                        image:fileName
+                  aisleNumber:0
+                    binNumber:0
+                articleNumber:@""
+                     quantity:0];
+    return self;
+}
+
+-(instancetype) initWithName:(NSString*) itemName
+                       price:(NSDecimalNumber*) itemPrice
+                       image:(NSString*) fileName
+                 aisleNumber:(NSUInteger) aisleNumber
+{
+    self = [self initWithName:itemName
+                        price:itemPrice
+                        image:fileName
+                  aisleNumber:aisleNumber
+                    binNumber:0
+                articleNumber:@""
+                     quantity:0];
+    return self;
+}
+
+- (instancetype)initWithName:(NSString *)itemName
+                       price:(NSDecimalNumber *)itemPrice
+                       image:(NSString *)fileName
+                 aisleNumber:(NSUInteger)aisleNumber
+                   binNumber:(NSUInteger)binNumber
+               articleNumber:(NSString *)articleNumber
+                    quantity:(NSUInteger)qunatity
+{
     self = [super init];
     
     if(self){
         _name = itemName;
         _price = itemPrice;
         _imageName = fileName;
+        _aisleNumber = aisleNumber;
+        _binNumber = binNumber;
+        _articleNumber = articleNumber;
+        _quantity = qunatity;
     }
     return self;
 }
-
 
 @end
 

@@ -36,39 +36,37 @@
  */
 - (instancetype)initWithTitle: (NSString*) title;
 
-- (instancetype)initWithTitle: (NSString*) title total:(NSDecimalNumber*)total;
+- (instancetype)initWithTitle: (NSString*) title
+                        total:(NSDecimalNumber*)total;
 /*!
  *  @abstract Add new shopping item to the list.
  *
  *  @param item an object of shopping item.
  */
-- (void) addNewItem: (ShoppingItem*) item;
+- (void) addNewItem: (ShoppingItem*) item AtAisleIndex:(NSUInteger) index;
 
 - (void)removeItemAtIndex:(NSUInteger)index;
 
 /*!
- *  @abstract Get how many shopping items are in the given list.
+ *  @abstract Get how many shopping aisle numbers are in the given list.
  *
  *  @return non-negative value.
  */
-- (NSUInteger)  count;
+- (NSUInteger)  numberOfAisles;
+
+-(NSUInteger)numberOfItemsAtAisleIndex: (NSUInteger) index;
 
 /*!
  *  @abstract Get shopping item at specific index in the list.
  *
- *  @param index an index within the bounds of the shopping list.
+ *  @param indexPath an index within the bounds of the shopping list.
  *
  *  @return shopping item object located at the given index 
  *  @discussion if the index is out of bounds, a nil pointer is returned.
  */
-- (ShoppingItem *) itemAtIndex: (int) index;
+- (ShoppingItem *) itemAtAisleIndexPath: (NSIndexPath*) indexPath;
 
-/*!
- *  @abstract Return all shopping items inside the list.
- *
- *  @return all shopping items
- *  @discussion the selector return generic pointer (id) type. Since the class 
- * is wrapping the real implementation of the list.
- */
-- (id) getItems;
+
+- (id) getAislesCollection;
+
 @end

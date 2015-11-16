@@ -97,7 +97,7 @@
     [self.listOfListsDataSource insertObject:newList AtIndex:FIRST_INDEX];
     
     /* add the new list to table view. */
-    NSIndexPath* indexPath = [NSIndexPath indexPathForItem:FIRST_INDEX
+    NSIndexPath* indexPath = [NSIndexPath indexPathForRow:FIRST_INDEX
                                                  inSection:FIRST_SECTION_INDEX];
     [self.tableView insertRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -170,13 +170,14 @@ preparation before navigation*/
     shoppingItem = [[ShoppingItem alloc]
                     initWithName:@"Refrigerator"
                     price:[[NSDecimalNumber alloc] initWithDouble:1999.00]
-                    image:@"refrigerator"];
-    [shoppingList addNewItem:shoppingItem];
+                    image:@"refrigerator"
+                    aisleNumber: 50 ];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:0];
     shoppingItem = [[ShoppingItem alloc]
                     initWithName:@"Mug"
                     price:[[NSDecimalNumber alloc] initWithDouble:12.99]
                     image:@"mug-turquoise"];
-    [shoppingList addNewItem:shoppingItem];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:1];
     
     /* Create Bathrrom Shopping list and add it to all data mutable array. */
     shoppingList = [[ShoppingList alloc] initWithTitle:@"Bathroom"];
@@ -185,98 +186,226 @@ preparation before navigation*/
     shoppingItem = [[ShoppingItem alloc]
                         initWithName:@"Faucet"
                     price:[[NSDecimalNumber alloc] initWithDouble:54.49]
-                    image:@"faucet"];
-    [shoppingList addNewItem:shoppingItem];
+                    image:@"faucet"
+                    aisleNumber:50];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:0];
     shoppingItem = [[ShoppingItem alloc]
                     initWithName:@"Mat"
                     price:[[NSDecimalNumber alloc] initWithDouble:12.99]
-                    image:@"mat"];
-    [shoppingList addNewItem:shoppingItem];
+                    image:@"mat"
+                    aisleNumber:101];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:1];
+    shoppingItem = [[ShoppingItem alloc]
+                    initWithName:@"Dish Set"
+                    price:[[NSDecimalNumber alloc] initWithDouble:12.99]
+                    image:@"dish-set"
+                    aisleNumber:43];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:2];
+
+    shoppingItem = [[ShoppingItem alloc]
+                    initWithName:@"Faucet"
+                    price:[[NSDecimalNumber alloc] initWithDouble:54.49]
+                    image:@"faucet"
+                    aisleNumber:33];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:3];
+    shoppingItem = [[ShoppingItem alloc]
+                    initWithName:@"Mat"
+                    price:[[NSDecimalNumber alloc] initWithDouble:12.99]
+                    image:@"mat"
+                    aisleNumber:101];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:1];
+    shoppingItem = [[ShoppingItem alloc]
+                    initWithName:@"Dish Set"
+                    price:[[NSDecimalNumber alloc] initWithDouble:12.99]
+                    image:@"dish-set"
+                    aisleNumber:33];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:3];
+
+    shoppingItem = [[ShoppingItem alloc]
+                    initWithName:@"Faucet"
+                    price:[[NSDecimalNumber alloc] initWithDouble:54.49]
+                    image:@"faucet"
+                    aisleNumber:43];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:2];
+    shoppingItem = [[ShoppingItem alloc]
+                    initWithName:@"Mat"
+                    price:[[NSDecimalNumber alloc] initWithDouble:12.99]
+                    image:@"mat"
+                    aisleNumber:33];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:3];
+    shoppingItem = [[ShoppingItem alloc]
+                    initWithName:@"Dish Set"
+                    price:[[NSDecimalNumber alloc] initWithDouble:12.99]
+                    image:@"dish-set"
+                    aisleNumber:50];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:0];
+
+    shoppingItem = [[ShoppingItem alloc]
+                    initWithName:@"Faucet"
+                    price:[[NSDecimalNumber alloc] initWithDouble:54.49]
+                    image:@"faucet"
+                    aisleNumber:50];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:0];
+    shoppingItem = [[ShoppingItem alloc]
+                    initWithName:@"Mat"
+                    price:[[NSDecimalNumber alloc] initWithDouble:12.99]
+                    image:@"mat"
+                    aisleNumber:101];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:1];
     shoppingItem = [[ShoppingItem alloc]
                     initWithName:@"Dish Set"
                     price:[[NSDecimalNumber alloc] initWithDouble:12.99]
                     image:@"dish-set"];
-    [shoppingList addNewItem:shoppingItem];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:4];
+
+    shoppingItem = [[ShoppingItem alloc]
+                    initWithName:@"Faucet"
+                    price:[[NSDecimalNumber alloc] initWithDouble:54.49]
+                    image:@"faucet"
+                    aisleNumber:50];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:0];
+    shoppingItem = [[ShoppingItem alloc]
+                    initWithName:@"Mat"
+                    price:[[NSDecimalNumber alloc] initWithDouble:12.99]
+                    image:@"mat"
+                    aisleNumber:33];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:3];
+    shoppingItem = [[ShoppingItem alloc]
+                    initWithName:@"Dish Set"
+                    price:[[NSDecimalNumber alloc] initWithDouble:12.99]
+                    image:@"dish-set"
+                    aisleNumber:43];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:2];
+
+    shoppingItem = [[ShoppingItem alloc]
+                    initWithName:@"Faucet"
+                    price:[[NSDecimalNumber alloc] initWithDouble:54.49]
+                    image:@"faucet"
+                    aisleNumber:50];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:0];
+    shoppingItem = [[ShoppingItem alloc]
+                    initWithName:@"Mat"
+                    price:[[NSDecimalNumber alloc] initWithDouble:12.99]
+                    image:@"mat"
+                    aisleNumber:50];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:0];
+    shoppingItem = [[ShoppingItem alloc]
+                    initWithName:@"Dish Set"
+                    price:[[NSDecimalNumber alloc] initWithDouble:12.99]
+                    image:@"dish-set"
+                    aisleNumber:50];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:0];
+
+    shoppingItem = [[ShoppingItem alloc]
+                    initWithName:@"Faucet"
+                    price:[[NSDecimalNumber alloc] initWithDouble:54.49]
+                    image:@"faucet"
+                    aisleNumber:43];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:2];
+    shoppingItem = [[ShoppingItem alloc]
+                    initWithName:@"Mat"
+                    price:[[NSDecimalNumber alloc] initWithDouble:12.99]
+                    image:@"mat"
+                    aisleNumber:33];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:3];
+    shoppingItem = [[ShoppingItem alloc]
+                    initWithName:@"Dish Set"
+                    price:[[NSDecimalNumber alloc] initWithDouble:12.99]
+                    image:@"dish-set"
+                    aisleNumber:33];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:3];
+
+    shoppingItem = [[ShoppingItem alloc]
+                    initWithName:@"Faucet"
+                    price:[[NSDecimalNumber alloc] initWithDouble:54.49]
+                    image:@"faucet"
+                    aisleNumber:33];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:3];
+    shoppingItem = [[ShoppingItem alloc]
+                    initWithName:@"Mat"
+                    price:[[NSDecimalNumber alloc] initWithDouble:12.99]
+                    image:@"mat"
+                    aisleNumber:43];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:2];
+    shoppingItem = [[ShoppingItem alloc]
+                    initWithName:@"Dish Set"
+                    price:[[NSDecimalNumber alloc] initWithDouble:12.99]
+                    image:@"dish-set"
+                    aisleNumber:101];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:1];
 
     shoppingItem = [[ShoppingItem alloc]
                     initWithName:@"Faucet"
                     price:[[NSDecimalNumber alloc] initWithDouble:54.49]
                     image:@"faucet"];
-    [shoppingList addNewItem:shoppingItem];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:4];
     shoppingItem = [[ShoppingItem alloc]
                     initWithName:@"Mat"
                     price:[[NSDecimalNumber alloc] initWithDouble:12.99]
-                    image:@"mat"];
-    [shoppingList addNewItem:shoppingItem];
+                    image:@"mat"
+                    aisleNumber:101];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:1];
     shoppingItem = [[ShoppingItem alloc]
                     initWithName:@"Dish Set"
                     price:[[NSDecimalNumber alloc] initWithDouble:12.99]
-                    image:@"dish-set"];
-    [shoppingList addNewItem:shoppingItem];
+                    image:@"dish-set"
+                    aisleNumber:33];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:3];
 
     shoppingItem = [[ShoppingItem alloc]
                     initWithName:@"Faucet"
                     price:[[NSDecimalNumber alloc] initWithDouble:54.49]
-                    image:@"faucet"];
-    [shoppingList addNewItem:shoppingItem];
+                    image:@"faucet"
+                    aisleNumber:43];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:2];
     shoppingItem = [[ShoppingItem alloc]
                     initWithName:@"Mat"
                     price:[[NSDecimalNumber alloc] initWithDouble:12.99]
-                    image:@"mat"];
-    [shoppingList addNewItem:shoppingItem];
+                    image:@"mat"
+                    aisleNumber:50];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:0];
     shoppingItem = [[ShoppingItem alloc]
                     initWithName:@"Dish Set"
                     price:[[NSDecimalNumber alloc] initWithDouble:12.99]
-                    image:@"dish-set"];
-    [shoppingList addNewItem:shoppingItem];
-
+                    image:@"dish-set"
+                    aisleNumber:50];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:0];
     shoppingItem = [[ShoppingItem alloc]
                     initWithName:@"Faucet"
                     price:[[NSDecimalNumber alloc] initWithDouble:54.49]
-                    image:@"faucet"];
-    [shoppingList addNewItem:shoppingItem];
+                    image:@"faucet"
+                    aisleNumber:33];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:3];
     shoppingItem = [[ShoppingItem alloc]
                     initWithName:@"Mat"
                     price:[[NSDecimalNumber alloc] initWithDouble:12.99]
-                    image:@"mat"];
-    [shoppingList addNewItem:shoppingItem];
+                    image:@"mat"
+                    aisleNumber:43];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:2];
     shoppingItem = [[ShoppingItem alloc]
                     initWithName:@"Dish Set"
                     price:[[NSDecimalNumber alloc] initWithDouble:12.99]
-                    image:@"dish-set"];
-    [shoppingList addNewItem:shoppingItem];
-
+                    image:@"dish-set"
+                    aisleNumber:43];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:2];
     shoppingItem = [[ShoppingItem alloc]
                     initWithName:@"Faucet"
                     price:[[NSDecimalNumber alloc] initWithDouble:54.49]
-                    image:@"faucet"];
-    [shoppingList addNewItem:shoppingItem];
+                    image:@"faucet"
+                    aisleNumber:43];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:2];
     shoppingItem = [[ShoppingItem alloc]
                     initWithName:@"Mat"
                     price:[[NSDecimalNumber alloc] initWithDouble:12.99]
-                    image:@"mat"];
-    [shoppingList addNewItem:shoppingItem];
+                    image:@"mat"
+                    aisleNumber:33];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:3];
     shoppingItem = [[ShoppingItem alloc]
                     initWithName:@"Dish Set"
                     price:[[NSDecimalNumber alloc] initWithDouble:12.99]
-                    image:@"dish-set"];
-    [shoppingList addNewItem:shoppingItem];
-
-    shoppingItem = [[ShoppingItem alloc]
-                    initWithName:@"Faucet"
-                    price:[[NSDecimalNumber alloc] initWithDouble:54.49]
-                    image:@"faucet"];
-    [shoppingList addNewItem:shoppingItem];
-    shoppingItem = [[ShoppingItem alloc]
-                    initWithName:@"Mat"
-                    price:[[NSDecimalNumber alloc] initWithDouble:12.99]
-                    image:@"mat"];
-    [shoppingList addNewItem:shoppingItem];
-    shoppingItem = [[ShoppingItem alloc]
-                    initWithName:@"Dish Set"
-                    price:[[NSDecimalNumber alloc] initWithDouble:12.99]
-                    image:@"dish-set"];
-    [shoppingList addNewItem:shoppingItem];
+                    image:@"dish-set"
+                    aisleNumber:101];
+    [shoppingList addNewItem:shoppingItem AtAisleIndex:1];
 
     return allLists;
 }

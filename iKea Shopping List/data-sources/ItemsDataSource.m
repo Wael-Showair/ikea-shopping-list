@@ -6,10 +6,14 @@
 //  Copyright © 2015 showair.wael@gmail.com. All rights reserved.
 //
 
+#import "ShoppingList.h"
+#import "AislesPivotTable.h"
 #import "ItemsDataSource.h"
 
 @interface ItemsDataSource()
-@property NSMutableArray* allItems;
+#define FIRST_ROW_INDEX     0
+@property ShoppingList* allItems;
+@property AislesPivotTable* pivotTable;
 @end
 
 @implementation ItemsDataSource
@@ -24,38 +28,62 @@
 #define LIST_TOTAL_PRICE_CELL_IDENTIFIER @"list-total-price-cell"
 
 
-
-
-- (instancetype)initWithItems:(NSMutableArray *)items
+- (instancetype)initWithItems:(ShoppingList *)items
 {
     self = [super init];
     if (self) {
         self.allItems = items;
+        self.pivotTable = [[AislesPivotTable alloc] initWithItems: items];
     }
     return self;
 }
 
 -(id)itemAtIndexPath:(NSIndexPath *)indexPath{
-    return [self.allItems objectAtIndex:indexPath.row];
+    /* Get actual array index (physical section index) from pivot table.*/
+    NSInteger physicalSectionIndex = [self.pivotTable
+                        physicalSecIndexForSection:indexPath.section];
+    
+    /* construct the actual index path. */
+    NSIndexPath *actualIndexPath =
+            [NSIndexPath indexPathForRow:indexPath.row
+                               inSection:physicalSectionIndex];
+    
+    /* Get the item that is stored at the actual index path. */
+    return [self.allItems itemAtAisleIndexPath:actualIndexPath];
 }
 
+#pragma table view - data source delegate
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:LIST_OF_ITEMS_CELL_IDENTIFIER];
+    UITableViewCell* cell = [tableView
+            dequeueReusableCellWithIdentifier:LIST_OF_ITEMS_CELL_IDENTIFIER];
     
     return cell;
 }
 
-- (NSDecimalNumber *)getTotal{
-    return [self.allItems objectAtIndex:0];
-}
 
 -(NSInteger)tableView:(UITableView *)tableView
 numberOfRowsInSection:(NSInteger)section{
-    return self.allItems.count;
+    
+    /* Get actual array index (physical section index) from pivot table.*/
+    NSInteger physicalSectionIndex = [self.pivotTable
+                                      physicalSecIndexForSection:section];
+
+    return [self.allItems numberOfItemsAtAisleIndex: physicalSectionIndex];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView*) tableView{
+    return [self.pivotTable numberOfAisles];
+}
+
+- (NSString *)tableView:(UITableView *)tableView
+titleForHeaderInSection:(NSInteger)section{
+
+    NSUInteger aisleNum  = [self.pivotTable aisleNumberAtVirtualIndex:section];
+    return [NSString stringWithFormat:@"Aisle Number %@", @(aisleNum)];
 }
 
 /*
@@ -71,9 +99,9 @@ numberOfRowsInSection:(NSInteger)section{
 /* Override to support editing the table view.
  * To enable the swipe-to-delete feature of table views
  */
-- (void)tableView:(UITableView *)tableView
+- (void) tableView:(UITableView *)tableView
 commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-forRowAtIndexPath:(NSIndexPath *)indexPath {
+ forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         //TODO: Delete object from data array itself.
@@ -99,5 +127,24 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
  return YES;
  }
  */
+
+#pragma helper- methods
+
+-(NSInteger)insertShoppingItem:(ShoppingItem*)newItem{
+
+    /* Get where exactly the index of the new item's aisle number from
+     the pivot table. */
+    /* Get actual array index (physical section index) from pivot table.*/
+    NSInteger virtualSectionIndex = [self.pivotTable
+                            virtualSectionForAisleNumber:newItem.aisleNumber];
+    
+    /* Get actual array index (physical section index) from pivot table.*/
+    NSInteger physicalSectionIndex = [self.pivotTable
+                                physicalSecIndexForSection:virtualSectionIndex];
+    
+    [self.allItems addNewItem:newItem AtAisleIndex:physicalSectionIndex];
+    
+    return virtualSectionIndex;
+}
 
 @end

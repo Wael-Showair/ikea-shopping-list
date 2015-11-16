@@ -13,7 +13,11 @@
 @interface ItemsDataSource : NSObject <UITableViewDataSource>
 
 #define TOTAL_PRICE_ROW_INDEX    0
-- (instancetype)initWithItems:(NSMutableArray *)items;
--(id)itemAtIndexPath:(NSIndexPath *)indexPath;
-- (NSDecimalNumber*) getTotal;
+
+- (instancetype) initWithItems:(ShoppingList *)items;
+
+- (id) itemAtIndexPath:(NSIndexPath *)indexPath;
+
+- (NSInteger) insertShoppingItem:(ShoppingItem*)newItem;
+
 @end

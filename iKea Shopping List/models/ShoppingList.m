@@ -9,6 +9,7 @@
  *  @copyright 2015. Wael Showair. All rights reserved.
  */
 
+#import <UIKit/UIKit.h>
 #import "ShoppingItem.h"
 #import "ShoppingList.h"
 
@@ -19,7 +20,7 @@
  *  @abstract private property that represents a collection of items that forms 
  *  the shopping list.
  */
-@property  NSMutableArray* allItems;
+@property  NSMutableArray* aisleNumbers;
 @end
 
 @implementation ShoppingList
@@ -46,7 +47,7 @@
         self.title = title;
         
         /* Initialize the pointer to NSMutable array object. */
-        self.allItems = [[NSMutableArray alloc] init];
+        self.aisleNumbers = [[NSMutableArray alloc] init];
         
         /* Initialize the total price*/
         self.totalPrice = total;
@@ -54,23 +55,34 @@
     return self;
 }
 
-- (void)addNewItem:(ShoppingItem *)item
+- (void) addNewItem: (ShoppingItem*) item
+       AtAisleIndex: (NSUInteger) index
 {
-    [self.allItems insertObject:item atIndex:0];
+    NSMutableArray* array;
+    if((self.aisleNumbers.count !=0 ) && (index< self.aisleNumbers.count)){
+       array = self.aisleNumbers[index];
+    }
+    else{
+        array = [[NSMutableArray alloc] init];
+        [self.aisleNumbers addObject:array];
+    }
+        
+        
+    [array insertObject:item atIndex:0];
     self.totalPrice = [self.totalPrice decimalNumberByAdding:item.price];
 }
 
 - (void)removeItemAtIndex:(NSUInteger)index
 {
-    ShoppingItem* item = [self.allItems objectAtIndex:index];
+    ShoppingItem* item = [self.aisleNumbers objectAtIndex:index];
     self.totalPrice = [self.totalPrice decimalNumberBySubtracting:item.price];
-    [self.allItems removeObjectAtIndex:index];
+    [self.aisleNumbers removeObjectAtIndex:index];
     
 }
 
--(ShoppingItem *)itemAtIndex:(int)index{
+-(ShoppingItem *)itemAtAisleIndexPath: (NSIndexPath*) indexPath{
     @try{
-        return [self.allItems objectAtIndex:index];
+        return self.aisleNumbers[indexPath.section][indexPath.row];
     }
     @catch(NSException* exception){
         NSLog( @"NSException caught" );
@@ -80,12 +92,17 @@
     }
 }
 
--(NSUInteger)count{
-    return self.allItems.count;
+-(NSUInteger)numberOfAisles{
+    return self.aisleNumbers.count;
 }
 
--(id)getItems{
-    return self.allItems;
+- (NSUInteger)numberOfItemsAtAisleIndex:(NSUInteger)index{
+    NSMutableArray* array =  self.aisleNumbers[index];
+    return array.count;
+}
+
+- (id) getAislesCollection{
+    return self.aisleNumbers;
 }
 
 @end

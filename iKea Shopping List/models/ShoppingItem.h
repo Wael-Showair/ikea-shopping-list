@@ -88,4 +88,17 @@
 -(instancetype) initWithName:(NSString*) itemName
                        price:(NSDecimalNumber*) itemPrice
                        image:(NSString*) fileName;
+
+-(instancetype) initWithName:(NSString*) itemName
+                       price:(NSDecimalNumber*) itemPrice
+                       image:(NSString*) fileName
+                 aisleNumber:(NSUInteger) aisleNumber;
+
+-(instancetype) initWithName:(NSString*) itemName
+                       price:(NSDecimalNumber*) itemPrice
+                       image:(NSString*) fileName
+                 aisleNumber: (NSUInteger) aisleNumber
+                   binNumber:(NSUInteger) binNumber
+               articleNumber: (NSString*) articleNumber
+                    quantity: (NSUInteger) qunatity;
 @end
