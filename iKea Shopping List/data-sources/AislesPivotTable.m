@@ -75,21 +75,22 @@
 }
 
 -(NSInteger)virtualSectionForAisleNumber:(NSUInteger)aisleNum{
-    /* loop in pivot table, then return the actual index
+    /* loop in pivot table, then return the index
      of the given aisle number.
-     in case the aisle number is totally new one, return length+1 */
-    //    NSUInteger foundIndex =
-    //      [self.table indexOfObjectPassingTest:
-    //        ^BOOL(id obj, NSUInteger idx, BOOL *stop){
-    //            PivotEntry* entry = (PivotEntry*) obj;
-    //            if(entry.aisleIndex == virtualSecNum){
-    //                *stop = YES;
-    //                return idx;
-    //            }else
-    //                return idx;
-    //        
-    //    }];
-    return 0;
+     in case the aisle number is totally new one, return length as new virtual index */
+    NSUInteger foundIndex =
+    [self.table indexOfObjectPassingTest:
+     ^BOOL(id obj, NSUInteger idx, BOOL *stop){
+         PivotEntry* entry = (PivotEntry*) obj;
+         if(entry.aisleNum == aisleNum){
+             *stop = YES;
+             return YES;
+         }
+         return NO;
+         
+     }];
+    
+    return (NSNotFound == foundIndex)?self.table.count:foundIndex;
 }
 
 - (NSUInteger) aisleNumberAtVirtualIndex: (NSUInteger) sectionIndex{

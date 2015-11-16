@@ -90,35 +90,40 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     [cell.imageView setImage:itemImage];
 }
 
+- (IBAction)insertNewShoppingItem:(id)sender {
 
-- (void)insertNewShoppingItem{
-    
     /* add the new list object to the data source. */
     ShoppingItem* newItem =
-        [[ShoppingItem alloc]
-          initWithName:@"New Name"
-                 price:[[NSDecimalNumber alloc] initWithDouble:54.49]
-                 image:@"image Name"
-           aisleNumber:50
-             binNumber:30
-         articleNumber:@"113.45.23"
-              quantity:1];
+    [[ShoppingItem alloc]
+     initWithName:@"New Item"
+     price:[[NSDecimalNumber alloc] initWithDouble:54.49]
+     image:@"image Name"
+     aisleNumber:33
+     binNumber:30
+     articleNumber:@"113.45.23"
+     quantity:1];
     
-
+    
     /* add new item in the first index of the section */
     NSInteger virtualSectionIndex =
-        [self.listOfItemsDataSource insertShoppingItem:newItem];
+    [self.listOfItemsDataSource insertShoppingItem:newItem];
     
     /* TODO: in case new section is added, reload data is needed. */
     //BOOL flag = [self.listOfItemsDataSource isNewSection:actualSectionNum];
-
+    
     NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0
                                                 inSection:virtualSectionIndex];
-
+    
     /* add the new shopping item to the table view. */
     [self.tableView insertRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:UITableViewRowAnimationAutomatic];
     
+    /* Scroll to the new added row. Let the row of interest to the top of the 
+     visible table view*/
+    [self.tableView scrollToRowAtIndexPath:indexPath
+                          atScrollPosition:UITableViewScrollPositionTop
+                                  animated:YES];
+
 }
 
 /*
