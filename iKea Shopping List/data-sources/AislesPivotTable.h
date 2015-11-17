@@ -13,7 +13,7 @@
 -(instancetype) initWithItems: (ShoppingList *) items;
 
 -(void) addNewAisleNumber: (NSUInteger) aisleNumber
-      mappedToActualIndex: (NSUInteger) index;
+           forActualIndex: (NSUInteger) index;
 
 - (void) removeAisleNumber: (NSUInteger) aisleNumber;
 

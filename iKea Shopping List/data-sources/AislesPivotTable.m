@@ -60,7 +60,12 @@
 }
 
 -(void)addNewAisleNumber:(NSUInteger)aisleNumber
-     mappedToActualIndex:(NSUInteger)index{
+          forActualIndex:(NSUInteger)index{
+    PivotEntry* entry = [[PivotEntry alloc]
+                            initWithAisleNum:aisleNumber PhysicalIndex:index];
+    [self.table addObject:entry];
+    /* TODO: Here I can sort again the pivot table. In case, I decided to
+     keep them sorted all the time.*/
     
 }
 

@@ -73,6 +73,12 @@
     self.tableView.tableHeaderView = self.globalHeader;
 }
 
+- (void) updateGlobalHeaderTotalPrice{
+    self.globalHeader.text =
+    [TOTAL_PRICE_PREFIX stringByAppendingString:
+     self.shoppingList.totalPrice.stringValue];
+}
+
 #pragma table view - delegate
 
 - (void)tableView:(UITableView *)tableView
@@ -98,31 +104,62 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
      initWithName:@"New Item"
      price:[[NSDecimalNumber alloc] initWithDouble:54.49]
      image:@"image Name"
-     aisleNumber:33
+     aisleNumber:22
      binNumber:30
      articleNumber:@"113.45.23"
      quantity:1];
     
+    /* When the user adds a new shopping item, I need to know
+     * whether a new aisle number (i.e. section) has been added or not.
+     * I have two choices:
+     * 1- To return a boolean flag from insertShoppingItem: method
+     * 2- To compare number of sections before and after the insertion.
+     * The problem with the first choice is that I need to know the exact value
+     * of the new section index to be able to call insertSections method instead
+     * of reloadData method for the sake of performance. */
+    NSInteger prevNumOfSections = [self.listOfItemsDataSource numberOfSectionsInTableView:self.tableView];
     
     /* add new item in the first index of the section */
     NSInteger virtualSectionIndex =
-    [self.listOfItemsDataSource insertShoppingItem:newItem];
+        [self.listOfItemsDataSource insertShoppingItem:newItem];
     
-    /* TODO: in case new section is added, reload data is needed. */
-    //BOOL flag = [self.listOfItemsDataSource isNewSection:actualSectionNum];
+    NSInteger newNumOfSections = [self.listOfItemsDataSource numberOfSectionsInTableView:self.tableView];
     
-    NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0
-                                                inSection:virtualSectionIndex];
+    NSIndexPath* indexPath;
+    /* in case new section is added, reload data is needed. */
+    if(newNumOfSections > prevNumOfSections){
+        
+        NSIndexSet* newSection =
+            [NSIndexSet indexSetWithIndex:virtualSectionIndex];
+        
+        [self.tableView insertSections:newSection
+                      withRowAnimation:UITableViewRowAnimationTop];
+
+        /* Note: I can use reloadData but for performance considerations
+         * I decided to use insertSections only.
+         */
+        
+        indexPath = [NSIndexPath indexPathForRow:0
+                                       inSection:virtualSectionIndex];
+
+    }else{
+        
+        indexPath = [NSIndexPath indexPathForRow:0
+                                       inSection:virtualSectionIndex];
+        
+        /* add the new shopping item to the table view. */
+        [self.tableView insertRowsAtIndexPaths:@[indexPath]
+                              withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+    }
     
-    /* add the new shopping item to the table view. */
-    [self.tableView insertRowsAtIndexPaths:@[indexPath]
-                          withRowAnimation:UITableViewRowAnimationAutomatic];
-    
-    /* Scroll to the new added row. Let the row of interest to the top of the 
+    /* Scroll to the new added row. Let the row of interest to the top of the
      visible table view*/
     [self.tableView scrollToRowAtIndexPath:indexPath
                           atScrollPosition:UITableViewScrollPositionTop
                                   animated:YES];
+    
+    [self updateGlobalHeaderTotalPrice];
 
 }
 

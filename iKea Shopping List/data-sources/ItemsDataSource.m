@@ -138,13 +138,26 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
     NSInteger virtualSectionIndex = [self.pivotTable
                             virtualSectionForAisleNumber:newItem.aisleNumber];
     
-    /* Get actual array index (physical section index) from pivot table.*/
+    /*If the virtual section index is not found, create a new entry in the pivot
+     table*/
+    if([self isItNewSection:virtualSectionIndex]){
+        [self.pivotTable addNewAisleNumber:newItem.aisleNumber
+                       forActualIndex:[self.pivotTable numberOfAisles]];
+    }
+    
+    /* Get actual array index (physical section index) from pivot table.
+       Currently, Virtual/Physical indeces are the last index in the respective
+       arrays. */
     NSInteger physicalSectionIndex = [self.pivotTable
                                 physicalSecIndexForSection:virtualSectionIndex];
     
     [self.allItems addNewItem:newItem AtAisleIndex:physicalSectionIndex];
     
     return virtualSectionIndex;
+}
+
+-(BOOL) isItNewSection: (NSUInteger) section{
+    return section == [self.pivotTable numberOfAisles];
 }
 
 @end
