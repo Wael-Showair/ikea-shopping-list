@@ -28,8 +28,6 @@
 @end
 
 @interface AislesPivotTable()
-
-#define SORTING                     1
 #define SORTIN_DURING_INSERTION     1
 
 @property NSMutableArray* table;
@@ -57,7 +55,7 @@
             [_table addObject:entry];
             
         }
-#if SORTING
+#if SORTIN_DURING_INSERTION
         NSSortDescriptor* aisleDescriptor = [[NSSortDescriptor alloc] initWithKey:@"aisleNum" ascending:YES];
         NSArray* descriptors = [NSArray arrayWithObject:aisleDescriptor];
         
@@ -84,7 +82,8 @@
     
     [self.table sortUsingDescriptors:descriptors];
     return [self.table indexOfObject:entry];
-    
+#else
+    return self.table.count-1;
 #endif
 }
 
