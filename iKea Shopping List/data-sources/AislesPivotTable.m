@@ -26,6 +26,22 @@
 }
 
 
+- (NSComparisonResult)compareByAisleNumber:(PivotEntry *)otherItem {
+    if(self.aisleNum < otherItem.aisleNum)
+#if SORT_TYPE_DESCENDING
+        return NSOrderedDescending;
+#else
+        return NSOrderedAscending;
+#endif
+    else if(self.aisleNum > otherItem.aisleNum)
+#if SORT_TYPE_DESCENDING
+        return NSOrderedAscending;
+#else
+        return NSOrderedDescending;
+#endif
+    else
+        return NSOrderedSame;
+}
 @end
 
 @interface AislesPivotTable()
@@ -40,21 +56,26 @@
     if (self) {
         
         _table = [[NSMutableArray alloc] init];
-        
+        NSInteger i = 0;
         /* Loop through the given items list,
            get first element in each sub-array
            relate the actual index to aisle the number */
         NSMutableArray* aislesCollection = [items getAislesCollection];
-        for(int i=0 ;i<aislesCollection.count; i++){
-            NSMutableArray* itemsPerAisle = aislesCollection[i];
+        for(NSMutableArray* itemsPerAisle in aislesCollection){
             NSUInteger aisleNum =
                 ((ShoppingItem*)[itemsPerAisle objectAtIndex:0]).aisleNumber;
             
             PivotEntry* entry = [[PivotEntry alloc] initWithAisleNum:aisleNum
-                                                       PhysicalIndex:i];
+                                                       PhysicalIndex:i++];
             [_table addObject:entry];
             
         }
+#if SORTING
+    NSArray* sortedArray =
+            [self.table sortedArrayUsingSelector:@selector(compareByAisleNumber:)];
+    self.table = [NSMutableArray arrayWithArray:sortedArray];
+#endif /* if SORTED*/
+        
     }
     return self;
 }

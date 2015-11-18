@@ -11,6 +11,9 @@
 #import <Foundation/Foundation.h>
 #import "ShoppingItem.h"
 
+#define SORTING                  1
+
+
 /*!
  *  @class ShoppingList
  *  @abstract A class that represents an iKea Shopping List.
