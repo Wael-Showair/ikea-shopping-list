@@ -18,6 +18,7 @@
 
 - (id) itemAtIndexPath:(NSIndexPath *)indexPath;
 
-- (NSInteger) insertShoppingItem:(ShoppingItem*)newItem;
+- (NSInteger) insertShoppingItem:(ShoppingItem*)newItem
+              withAscendingOrder: (BOOL) ascenOrder;
 
 @end

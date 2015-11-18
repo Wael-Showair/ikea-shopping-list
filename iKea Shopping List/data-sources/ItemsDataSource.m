@@ -130,7 +130,8 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 
 #pragma helper- methods
 
--(NSInteger)insertShoppingItem:(ShoppingItem*)newItem{
+-(NSInteger)insertShoppingItem:(ShoppingItem*)newItem
+                withAscendingOrder: (BOOL) ascenOrder{
 
     /* Get where exactly the index of the new item's aisle number from
      the pivot table. */
@@ -141,8 +142,10 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
     /*If the virtual section index is not found, create a new entry in the pivot
      table*/
     if([self isItNewSection:virtualSectionIndex]){
-        [self.pivotTable addNewAisleNumber:newItem.aisleNumber
-                       forActualIndex:[self.pivotTable numberOfAisles]];
+        virtualSectionIndex =
+            [self.pivotTable addNewAisleNumber:newItem.aisleNumber
+                                forActualIndex:[self.pivotTable numberOfAisles]
+                            withAscendingOrder: ascenOrder];
     }
     
     /* Get actual array index (physical section index) from pivot table.

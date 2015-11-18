@@ -28,6 +28,10 @@
 @end
 
 @interface AislesPivotTable()
+
+#define SORTING                     1
+#define SORTIN_DURING_INSERTION     1
+
 @property NSMutableArray* table;
 @end
 
@@ -65,14 +69,23 @@
     return self;
 }
 
--(void)addNewAisleNumber:(NSUInteger)aisleNumber
-          forActualIndex:(NSUInteger)index{
+-(NSInteger)addNewAisleNumber:(NSUInteger)aisleNumber
+          forActualIndex:(NSUInteger)index
+     withAscendingOrder: (BOOL) ascenOrder{
     PivotEntry* entry = [[PivotEntry alloc]
                             initWithAisleNum:aisleNumber PhysicalIndex:index];
     [self.table addObject:entry];
-    /* TODO: Here I can sort again the pivot table. In case, I decided to
-     keep them sorted all the time.*/
+
+#if SORTIN_DURING_INSERTION
+    /* sort again the pivot table.*/
+    NSSortDescriptor* aisleDescriptor = [[NSSortDescriptor alloc] initWithKey:@"aisleNum" ascending:ascenOrder];
+    NSArray* descriptors = [NSArray arrayWithObject:aisleDescriptor];
     
+    
+    [self.table sortUsingDescriptors:descriptors];
+    return [self.table indexOfObject:entry];
+    
+#endif
 }
 
 - (void)removeAisleNumber:(NSUInteger)aisleNumber{

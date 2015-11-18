@@ -121,7 +121,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     /* add new item in the first index of the section */
     NSInteger virtualSectionIndex =
-        [self.listOfItemsDataSource insertShoppingItem:newItem];
+    [self.listOfItemsDataSource insertShoppingItem:newItem withAscendingOrder:YES];
     
     NSInteger newNumOfSections = [self.listOfItemsDataSource numberOfSectionsInTableView:self.tableView];
     
@@ -132,6 +132,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         NSIndexSet* newSection =
             [NSIndexSet indexSetWithIndex:virtualSectionIndex];
         
+        /* If a section already exists at the specified index location, it is 
+         * moved down one index location. */
         [self.tableView insertSections:newSection
                       withRowAnimation:UITableViewRowAnimationTop];
 

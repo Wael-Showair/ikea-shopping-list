@@ -12,8 +12,9 @@
 
 -(instancetype) initWithItems: (ShoppingList *) items;
 
--(void) addNewAisleNumber: (NSUInteger) aisleNumber
-           forActualIndex: (NSUInteger) index;
+-(NSInteger) addNewAisleNumber: (NSUInteger) aisleNumber
+           forActualIndex: (NSUInteger) index
+       withAscendingOrder: (BOOL) ascenOrder;
 
 - (void) removeAisleNumber: (NSUInteger) aisleNumber;
 
