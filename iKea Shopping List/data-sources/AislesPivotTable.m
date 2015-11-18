@@ -25,23 +25,6 @@
     return self;
 }
 
-
-- (NSComparisonResult)compareByAisleNumber:(PivotEntry *)otherItem {
-    if(self.aisleNum < otherItem.aisleNum)
-#if SORT_TYPE_DESCENDING
-        return NSOrderedDescending;
-#else
-        return NSOrderedAscending;
-#endif
-    else if(self.aisleNum > otherItem.aisleNum)
-#if SORT_TYPE_DESCENDING
-        return NSOrderedAscending;
-#else
-        return NSOrderedDescending;
-#endif
-    else
-        return NSOrderedSame;
-}
 @end
 
 @interface AislesPivotTable()
@@ -71,9 +54,11 @@
             
         }
 #if SORTING
-    NSArray* sortedArray =
-            [self.table sortedArrayUsingSelector:@selector(compareByAisleNumber:)];
-    self.table = [NSMutableArray arrayWithArray:sortedArray];
+        NSSortDescriptor* aisleDescriptor = [[NSSortDescriptor alloc] initWithKey:@"aisleNum" ascending:YES];
+        NSArray* descriptors = [NSArray arrayWithObject:aisleDescriptor];
+        
+        
+            [self.table sortUsingDescriptors:descriptors];
 #endif /* if SORTED*/
         
     }
