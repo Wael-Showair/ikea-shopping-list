@@ -45,7 +45,7 @@
  */
 - (void) addNewItem: (ShoppingItem*) item AtAisleIndex:(NSUInteger) index;
 
-- (void)removeItemAtIndex:(NSUInteger)index;
+- (void)removeItemAtIndexPath:(NSIndexPath*)index;
 
 /*!
  *  @abstract Get how many shopping aisle numbers are in the given list.

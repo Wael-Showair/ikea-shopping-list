@@ -72,24 +72,24 @@
     self.totalPrice = [self.totalPrice decimalNumberByAdding:item.price];
 }
 
-- (void)removeItemAtIndex:(NSUInteger)index
+- (void)removeItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    ShoppingItem* item = [self.aisleNumbers objectAtIndex:index];
+    ShoppingItem* item = [self itemAtAisleIndexPath:indexPath];
     self.totalPrice = [self.totalPrice decimalNumberBySubtracting:item.price];
-    [self.aisleNumbers removeObjectAtIndex:index];
+
+    NSMutableArray* itemsPerAisle = self.aisleNumbers[indexPath.section];
+    if(itemsPerAisle.count == 1)
+        [self.aisleNumbers removeObjectAtIndex:indexPath.section];
+    else
+        [itemsPerAisle removeObjectAtIndex:indexPath.row];
+    
     
 }
 
 -(ShoppingItem *)itemAtAisleIndexPath: (NSIndexPath*) indexPath{
-    @try{
-        return self.aisleNumbers[indexPath.section][indexPath.row];
-    }
-    @catch(NSException* exception){
-        NSLog( @"NSException caught" );
-        NSLog( @"Name: %@", exception.name);
-        NSLog( @"Reason: %@", exception.reason );
-        return nil;
-    }
+
+    return self.aisleNumbers[indexPath.section][indexPath.row];
+
 }
 
 -(NSUInteger)numberOfAisles{

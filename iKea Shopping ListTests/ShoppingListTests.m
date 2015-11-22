@@ -33,28 +33,101 @@
 -(void) testAddNewItem {
     NSDecimalNumber* itemPrice = [NSDecimalNumber decimalNumberWithString:@"19.99"];
     ShoppingItem* item = [[ShoppingItem alloc] initWithName:@"Standing Lamp" price:itemPrice];
-    BOOL result = [self.shoppingList addNewItem:item];
-    XCTAssertEqual(YES, result);
-    XCTAssertEqual(1, [self.shoppingList count]);
+    [self.shoppingList addNewItem:item AtAisleIndex:0];
+    XCTAssertEqual(1, [self.shoppingList numberOfAisles]);
 }
 
--(void) testGetItemAtIndex {
+-(void) testAddItemsToTheSameAisleNum {
     /* Add two shopping items to the shopping list. */
     NSDecimalNumber* itemPrice = [NSDecimalNumber decimalNumberWithString:@"19.99"];
     ShoppingItem* item1 = [[ShoppingItem alloc] initWithName:@"Standing Lamp" price:itemPrice];
     ShoppingItem* item2 = [[ShoppingItem alloc] initWithName:@"Dinning Chairs" price:itemPrice];
     
     /* Make sure that bot items are inserted properly and list lenght is 2 */
-    BOOL result = [self.shoppingList addNewItem:item1];
-    XCTAssertEqual(YES, result);
-    result = [self.shoppingList addNewItem:item2];
-    XCTAssertEqual(YES, result);
-    XCTAssertEqual(2, [self.shoppingList count]);
+    [self.shoppingList addNewItem:item1 AtAisleIndex:0];
+    [self.shoppingList addNewItem:item2 AtAisleIndex:0];
+    XCTAssertEqual(1, [self.shoppingList numberOfAisles]);
+    
+    NSIndexPath* indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+    ShoppingItem* returnedItem = [self.shoppingList itemAtAisleIndexPath:indexPath];
 
-    /* Make sure that list adds the latest item at the first index.*/
-    ShoppingItem* returnedItem = [self.shoppingList itemAtIndex:0];
+    /* Make sure that list adds the latest item at the first */
     XCTAssertEqual(item2.name, returnedItem.name);
     XCTAssertEqual(item2.price, returnedItem.price);
+    
+    NSDecimalNumber* totalPrice = [NSDecimalNumber decimalNumberWithString:@"39.98"];
+    /* Make sure the total price of the shopping list is correct. */
+    XCTAssertEqualWithAccuracy(totalPrice.floatValue, self.shoppingList.totalPrice.floatValue, 0.01);
+}
+
+-(void) testAddItemsToNewAisleNum{
+    NSDecimalNumber* itemPrice = [NSDecimalNumber decimalNumberWithString:@"10024.99"];
+    ShoppingItem* item1 = [[ShoppingItem alloc] initWithName:@"Table" price:itemPrice image:nil aisleNumber:113];
+
+    itemPrice = [NSDecimalNumber decimalNumberWithString:@"64"];
+    ShoppingItem* item2 = [[ShoppingItem alloc] initWithName:@"Chair" price:itemPrice image:nil aisleNumber:53];
+    
+    [self.shoppingList addNewItem:item1 AtAisleIndex:0];
+    [self.shoppingList addNewItem:item2 AtAisleIndex:1];
+
+    NSIndexPath* indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+    ShoppingItem* returnedItem1 = [self.shoppingList itemAtAisleIndexPath:indexPath];
+    
+    indexPath = [NSIndexPath indexPathForItem:0 inSection:1];
+    ShoppingItem* returnedItem2 = [self.shoppingList itemAtAisleIndexPath:indexPath];
+
+    XCTAssertEqual(returnedItem1.name, item1.name);
+    XCTAssertEqual(returnedItem2.name, item2.name);
+    
+    NSDecimalNumber* totalPrice = [NSDecimalNumber decimalNumberWithString:@"10088.99"];
+    /* Make sure the total price of the shopping list is correct. */
+    XCTAssertEqualWithAccuracy(totalPrice.floatValue, self.shoppingList.totalPrice.floatValue, 0.01);
+}
+
+- (void) testRetrievingItemAtInvalidIndex{
+    NSDecimalNumber* itemPrice = [NSDecimalNumber decimalNumberWithString:@"10024.99"];
+    ShoppingItem* item1 = [[ShoppingItem alloc] initWithName:@"Table" price:itemPrice image:nil aisleNumber:113];
+    [self.shoppingList addNewItem:item1 AtAisleIndex:0];
+
+    NSIndexPath* indexPath = [NSIndexPath indexPathForItem:0 inSection:1];
+
+    XCTAssertThrowsSpecificNamed([self.shoppingList itemAtAisleIndexPath:indexPath], NSException, NSRangeException);
+}
+
+- (void) testRemoveTheOnlyItemInAisle{
+    NSDecimalNumber* itemPrice = [NSDecimalNumber decimalNumberWithString:@"10024.99"];
+    ShoppingItem* item1 = [[ShoppingItem alloc] initWithName:@"Table" price:itemPrice image:nil aisleNumber:113];
+    
+    itemPrice = [NSDecimalNumber decimalNumberWithString:@"64"];
+    ShoppingItem* item2 = [[ShoppingItem alloc] initWithName:@"Chair" price:itemPrice image:nil aisleNumber:53];
+    
+    [self.shoppingList addNewItem:item1 AtAisleIndex:0];
+    [self.shoppingList addNewItem:item2 AtAisleIndex:1];
+
+    NSIndexPath* indexPath = [NSIndexPath indexPathForItem:0 inSection:1];
+    [self.shoppingList removeItemAtIndexPath:indexPath];
+    
+    NSDecimalNumber* totalPrice = [NSDecimalNumber decimalNumberWithString:@"10024.99"];
+    /* Make sure the total price of the shopping list is correct. */
+    XCTAssertEqualWithAccuracy(totalPrice.floatValue, self.shoppingList.totalPrice.floatValue, 0.01);
+}
+
+- (void) testRemoveItemFromAilse{
+    NSDecimalNumber* itemPrice = [NSDecimalNumber decimalNumberWithString:@"10024.99"];
+    ShoppingItem* item1 = [[ShoppingItem alloc] initWithName:@"Table" price:itemPrice image:nil aisleNumber:113];
+    
+    itemPrice = [NSDecimalNumber decimalNumberWithString:@"64"];
+    ShoppingItem* item2 = [[ShoppingItem alloc] initWithName:@"Chair" price:itemPrice image:nil aisleNumber:53];
+    
+    [self.shoppingList addNewItem:item1 AtAisleIndex:0];
+    [self.shoppingList addNewItem:item2 AtAisleIndex:0];
+    
+    NSIndexPath* indexPath = [NSIndexPath indexPathForItem:1 inSection:0];
+    [self.shoppingList removeItemAtIndexPath:indexPath];
+    
+    NSDecimalNumber* totalPrice = [NSDecimalNumber decimalNumberWithString:@"64"];
+    /* Make sure the total price of the shopping list is correct. */
+    XCTAssertEqualWithAccuracy(totalPrice.floatValue, self.shoppingList.totalPrice.floatValue, 0.01);
     
 }
 
