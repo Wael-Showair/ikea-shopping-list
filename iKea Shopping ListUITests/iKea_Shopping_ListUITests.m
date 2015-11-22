@@ -44,7 +44,7 @@
     XCUIElement* navigationBar = [app.navigationBars elementBoundByIndex:0];
     
     /* Tap on first list. */
-    XCUIElement *cell = [currentTabel.cells elementBoundByIndex:0];
+    XCUIElement *cell = [currentTabel.cells elementBoundByIndex:1];
     XCTAssertNotNil(cell);
     [cell tap];
     
@@ -61,4 +61,46 @@
     [navigationBar.buttons[@"Back"] tap];
 }
 
+-(void) testAddNewList{
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+
+    /* Get a reference to the navigation bar. it will be used to navigate back again. */
+    XCUIElement* navigationBar = [app.navigationBars elementBoundByIndex:0];
+
+    /* Get a reference to the Add Button. */
+    XCUIElement * addButton = [navigationBar.buttons elementBoundByIndex:2];
+    [addButton tap];
+    
+    /* Get a reference to the Text Field that is used to enter the name of the new List.*/
+    XCUIElementQuery *tablesQuery = app.tables;
+    XCUIElement * textField = tablesQuery.textFields[@"List Title"] ;
+    [textField tap];
+    
+    /* Type the new name. */
+    [textField typeText:@"Living Room"];
+    [navigationBar.buttons[@"Done"] tap];
+}
+
+
+-(void) testCancelAdditionOfNewList{
+    
+    XCUIApplication *app = [[XCUIApplication alloc] init];
+    
+    /* Get a reference to the navigation bar. it will be used to navigate back again. */
+    XCUIElement* navigationBar = [app.navigationBars elementBoundByIndex:0];
+    
+    /* Get a reference to the Add Button. */
+    XCUIElement * addButton = [navigationBar.buttons elementBoundByIndex:2];
+    [addButton tap];
+    
+    /* Get a reference to the Text Field that is used to enter the name of the new List.*/
+    XCUIElementQuery *tablesQuery = app.tables;
+    XCUIElement * textField = tablesQuery.textFields[@"List Title"] ;
+    [textField tap];
+    
+    /* Type the new name. */
+    [textField typeText:@"Something"];
+    [navigationBar.buttons[@"Cancel"] tap];
+}
 @end
