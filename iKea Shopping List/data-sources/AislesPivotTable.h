@@ -16,7 +16,7 @@
            forActualIndex: (NSUInteger) index
        withAscendingOrder: (BOOL) ascenOrder;
 
-- (void) removeAisleNumber: (NSUInteger) aisleNumber;
+- (void) removeEntryWithAisleNumber: (NSUInteger) aisleNumber;
 
 - (NSInteger) physicalSecIndexForSection: (NSUInteger) virtualSecNum;
 - (NSInteger) virtualSectionForAisleNumber: (NSUInteger) aisleNum;

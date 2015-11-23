@@ -160,7 +160,8 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
 }
 
 -(BOOL) isItNewSection: (NSUInteger) section{
-    return section == [self.pivotTable numberOfAisles];
+//    return section == [self.pivotTable numberOfAisles];
+    return section == NSNotFound;
 }
 
 @end

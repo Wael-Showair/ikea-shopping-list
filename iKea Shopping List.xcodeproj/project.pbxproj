@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		DA0323881BEFC676003960B0 /* TextInputTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA0323871BEFC676003960B0 /* TextInputTableViewCell.m */; };
 		DA03238B1BEFCA0B003960B0 /* text-input-table-view-cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA03238A1BEFCA0B003960B0 /* text-input-table-view-cell.xib */; };
+		DA14CA381C035D690043C2B6 /* AislesPivotTableTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA14CA371C035D690043C2B6 /* AislesPivotTableTests.m */; };
 		DA23133A1BF1891700E5366C /* ItemsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2313391BF1891700E5366C /* ItemsDataSource.m */; };
 		DA5866FB1C0248D800C98FC2 /* ShoppingList.m in Sources */ = {isa = PBXBuildFile; fileRef = DA67F9EA1BE8131E00E1734A /* ShoppingList.m */; };
 		DA67F9F01BE8131E00E1734A /* TwoSidedDoorAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = DA67F9E51BE8131E00E1734A /* TwoSidedDoorAnimator.m */; };
@@ -52,6 +53,8 @@
 		DA0323861BEFC676003960B0 /* TextInputTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextInputTableViewCell.h; sourceTree = "<group>"; };
 		DA0323871BEFC676003960B0 /* TextInputTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextInputTableViewCell.m; sourceTree = "<group>"; };
 		DA03238A1BEFCA0B003960B0 /* text-input-table-view-cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "text-input-table-view-cell.xib"; sourceTree = "<group>"; };
+		DA14CA371C035D690043C2B6 /* AislesPivotTableTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AislesPivotTableTests.m; sourceTree = "<group>"; };
+		DA14CA3A1C0380FB0043C2B6 /* AislesPivotTable_PivotEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AislesPivotTable_PivotEntry.h; sourceTree = "<group>"; };
 		DA2313381BF1891700E5366C /* ItemsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsDataSource.h; sourceTree = "<group>"; };
 		DA2313391BF1891700E5366C /* ItemsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsDataSource.m; sourceTree = "<group>"; };
 		DA67F9E41BE8131E00E1734A /* TwoSidedDoorAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoSidedDoorAnimator.h; sourceTree = "<group>"; };
@@ -176,6 +179,7 @@
 				DA2313391BF1891700E5366C /* ItemsDataSource.m */,
 				DAC6394D1BF54D30003A087B /* AislesPivotTable.h */,
 				DAC6394E1BF54D30003A087B /* AislesPivotTable.m */,
+				DA14CA3A1C0380FB0043C2B6 /* AislesPivotTable_PivotEntry.h */,
 			);
 			path = "data-sources";
 			sourceTree = "<group>";
@@ -235,6 +239,7 @@
 			children = (
 				DADD0A771BDD50CE00806DB6 /* ShoppingItemTests.m */,
 				DADD0A991BDD8A3800806DB6 /* ShoppingListTests.m */,
+				DA14CA371C035D690043C2B6 /* AislesPivotTableTests.m */,
 				DADD0A791BDD50CE00806DB6 /* Info.plist */,
 			);
 			name = "iKea Shopping Model Tests";
@@ -405,6 +410,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DADD0A781BDD50CE00806DB6 /* ShoppingItemTests.m in Sources */,
+				DA14CA381C035D690043C2B6 /* AislesPivotTableTests.m in Sources */,
 				DADD0A9A1BDD8A3800806DB6 /* ShoppingListTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

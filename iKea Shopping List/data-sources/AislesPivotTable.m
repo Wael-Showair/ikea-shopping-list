@@ -6,12 +6,10 @@
 //  Copyright © 2015 showair.wael@gmail.com. All rights reserved.
 //
 #import "ShoppingList.h"
+#import "AislesPivotTable_PivotEntry.h"
 #import "AislesPivotTable.h"
 
-@interface PivotEntry : NSObject
-@property NSInteger aisleIndex;
-@property NSUInteger aisleNum;
-@end
+
 
 @implementation PivotEntry
 - (instancetype)initWithAisleNum: (NSUInteger) number
@@ -87,8 +85,11 @@
 #endif
 }
 
-- (void)removeAisleNumber:(NSUInteger)aisleNumber{
-    
+- (void)removeEntryWithAisleNumber:(NSUInteger)aisleNumber{
+    NSUInteger index = [self virtualSectionForAisleNumber:aisleNumber];
+    if(NSNotFound != index){
+        [self.table removeObjectAtIndex:index];
+    }
 }
 
 - (NSInteger) physicalSecIndexForSection: (NSUInteger) virtualSecNum{
@@ -113,7 +114,8 @@
          
      }];
     
-    return (NSNotFound == foundIndex)?self.table.count:foundIndex;
+//    return (NSNotFound == foundIndex)?self.table.count:foundIndex;
+    return foundIndex;
 }
 
 - (NSUInteger) aisleNumberAtVirtualIndex: (NSUInteger) sectionIndex{
