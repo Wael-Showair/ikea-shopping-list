@@ -13,7 +13,6 @@
 #import "ShoppingItem.h"
 
 @interface ListOfItemsTableViewController ()
-#define TOTAL_PRICE_PREFIX     @"Total Price: "
 #define FIRST_INDEX_INSECTION        0
 
 /*!

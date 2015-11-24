@@ -88,8 +88,26 @@
 - (void)removeEntryWithAisleNumber:(NSUInteger)aisleNumber{
     NSUInteger index = [self virtualSectionForAisleNumber:aisleNumber];
     if(NSNotFound != index){
+        /* update any entry having physical index greater than the index to be
+         * removed such that its physical is decreased by 1. */
+        NSUInteger physicalIndexToBeRemoved = ((PivotEntry*)self.table[index]).aisleIndex;
+        for(PivotEntry* entry in self.table){
+            if(entry.aisleIndex > physicalIndexToBeRemoved)
+                entry.aisleIndex --;
+        }
         [self.table removeObjectAtIndex:index];
     }
+}
+
+- (void) removeEntryWithVirtualIndex: (NSUInteger) index{
+    /* update any entry having physical index greater than the index to be 
+     * removed such that its physical is decreased by 1. */
+    NSUInteger physicalIndexToBeRemoved = ((PivotEntry*)self.table[index]).aisleIndex;
+    for(PivotEntry* entry in self.table){
+        if(entry.aisleIndex > physicalIndexToBeRemoved)
+            entry.aisleIndex --;
+    }
+    [self.table removeObjectAtIndex:index];
 }
 
 - (NSInteger) physicalSecIndexForSection: (NSUInteger) virtualSecNum{

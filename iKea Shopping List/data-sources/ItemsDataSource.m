@@ -104,12 +104,38 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
  forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //TODO: Delete object from data array itself.
+        /* Delete object from data array itself. */
+        NSUInteger physicalIndex = [self.pivotTable physicalSecIndexForSection:indexPath.section];
+        NSIndexPath* physicalIndexPath = [NSIndexPath indexPathForRow:indexPath.row inSection:physicalIndex];
+
         
-        
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath]
-                         withRowAnimation:UITableViewRowAnimationFade];
+        /* If Aisle contains only one item, remove the entry from the pivot table
+         * and remove the whole section from the table view. */
+        if(1 == [self.allItems numberOfItemsAtAisleIndex:physicalIndex]){
+            
+            /* Remove the pivot entry. */
+            [self.pivotTable removeEntryWithVirtualIndex:indexPath.section];
+            
+            /* Remove the aisle sub-array from the data array itself. */
+            [self.allItems removeItemAtIndexPath:physicalIndexPath];
+            
+            /* Remove the section from the table view as well. */
+            NSIndexSet* sectionToBeRemoved =
+            [NSIndexSet indexSetWithIndex:indexPath.section];
+            [tableView deleteSections:sectionToBeRemoved withRowAnimation:UITableViewRowAnimationBottom];
+        }else{
+
+            /* Remove item from the aisle sub-array. */
+            [self.allItems removeItemAtIndexPath:physicalIndexPath];
+
+            [tableView deleteRowsAtIndexPaths:@[indexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
+        }
+
+        /* Update the total price of the list. */
+        ((UILabel*)tableView.tableHeaderView).text =
+            [TOTAL_PRICE_PREFIX stringByAppendingString:
+                self.allItems.totalPrice.stringValue];
         
     }
 }

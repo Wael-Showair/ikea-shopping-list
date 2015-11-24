@@ -114,12 +114,19 @@
 
 -(void) testRemoveExistingAisleNumber{
     [self.pivotTable removeEntryWithAisleNumber:43];
+    /* Make sure that the remaining aisles numbers are correct. */
     int expectedAisles []= {0,50,101};
     for(int i =0; i<[self.pivotTable numberOfAisles]; i++){
         XCTAssertEqual(expectedAisles[i], [self.pivotTable aisleNumberAtVirtualIndex:i]);
     }
-    
+    /* Make sure that the physical indeces have been updated properly. */
+    int expectedPhysicalIndeces[] = {2,0,1};
+    for(int i =0; i<[self.pivotTable numberOfAisles]; i++){
+        XCTAssertEqual(expectedPhysicalIndeces[i], [self.pivotTable physicalSecIndexForSection:i]);
+    }
+    /* Make sure that number of entreis have been decreased by 1*/
     XCTAssertEqual(3, [self.pivotTable numberOfAisles]);
+
 }
 
 -(void) testRemoveNonExistingAisleNumber{

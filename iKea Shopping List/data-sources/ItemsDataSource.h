@@ -12,6 +12,8 @@
 
 @interface ItemsDataSource : NSObject <UITableViewDataSource>
 
+#define TOTAL_PRICE_PREFIX     @"Total Price: "
+
 #define TOTAL_PRICE_ROW_INDEX    0
 
 - (instancetype) initWithItems:(ShoppingList *)items;
