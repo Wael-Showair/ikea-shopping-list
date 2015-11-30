@@ -5,7 +5,7 @@
 //  Created by Wael Showair on 2015-11-30.
 //  Copyright © 2015 showair.wael@gmail.com. All rights reserved.
 //
-
+#import "ShoppingItem.h"
 #import "DetailedItemViewController.h"
 
 @interface DetailedItemViewController()
@@ -18,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self registerForKeyboardNotifications];
+    self.title = self.shoppingItem.name;
+
 }
 
 - (void)didReceiveMemoryWarning {

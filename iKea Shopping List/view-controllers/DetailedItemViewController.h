@@ -10,4 +10,5 @@
 
 @interface DetailedItemViewController : UIViewController <UITextFieldDelegate>
 
+@property ShoppingItem* shoppingItem;
 @end

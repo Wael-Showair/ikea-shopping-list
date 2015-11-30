@@ -9,12 +9,14 @@
  */
 
 #import "ListOfItemsTableViewController.h"
+#import "DetailedItemViewController.h"
 #import "ItemsDataSource.h"
 #import "ShoppingItem.h"
 
 @interface ListOfItemsTableViewController ()
 #define FIRST_INDEX_INSECTION        0
-
+#define SHOW_ITEM_DETAILS_SEGUE_ID   @"showItemDetails"
+#define ADD_NEW_ITEM_SEGUE_ID        @"addNewItem"
 /*!
  *  @property listOfItemsDataSource
  *  @abstract data source delegate for table view that display list of items.
@@ -164,13 +166,25 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 
 }
 
-/*
+
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if([segue.identifier isEqualToString:SHOW_ITEM_DETAILS_SEGUE_ID]){
+        DetailedItemViewController* destViewController = [segue destinationViewController];
+        NSIndexPath* selectedIndexPath = [self.tableView indexPathForSelectedRow];
+        ShoppingItem* shoppingItem = [self.listOfItemsDataSource itemAtIndexPath:selectedIndexPath];
+        destViewController.shoppingItem = shoppingItem;
+        
+    }else if ([segue.identifier isEqualToString:ADD_NEW_ITEM_SEGUE_ID]){
+        DetailedItemViewController* destViewController = [segue destinationViewController];
+
+        ShoppingItem* shoppingItem = [[ShoppingItem alloc] initWithName:@"New Item" price:[NSDecimalNumber decimalNumberWithString:@"0.0"]];
+        
+        destViewController.shoppingItem = shoppingItem;
+        
+    }
 }
-*/
+
 
 @end
