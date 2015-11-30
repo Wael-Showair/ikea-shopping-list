@@ -31,10 +31,13 @@
 // Call this method somewhere in your view controller setup code.
 - (void)registerForKeyboardNotifications
 {
-    /* Register handler upon receiving keyboard displaying event. */
+    /* Register handler upon receiving keyboard displaying event.
+     * Note that UIKeyboardWillShowNotification makes the animation smoother 
+     * than using UIKeyboardDidShowNotification that was used in 
+     * Text Programming Guide for iOS https://goo.gl/yZreJl */
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWasShown:)
-                                                 name:UIKeyboardDidShowNotification object:nil];
+                                                 name:UIKeyboardWillShowNotification object:nil];
 
     /* Register handler upon receiving keyboard hiding event. */
     [[NSNotificationCenter defaultCenter] addObserver:self
