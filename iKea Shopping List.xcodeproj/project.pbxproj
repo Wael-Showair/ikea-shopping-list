@@ -17,6 +17,7 @@
 		DA67F9F31BE8131E00E1734A /* ShoppingItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DA67F9E81BE8131E00E1734A /* ShoppingItem.m */; };
 		DA67F9F91BE8131E00E1734A /* ListOfItemsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA67F9ED1BE8131E00E1734A /* ListOfItemsTableViewController.m */; };
 		DA67F9FC1BE8131E00E1734A /* ListOfListsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA67F9EF1BE8131E00E1734A /* ListOfListsTableViewController.m */; };
+		DA6E0C081C0CAA400009632F /* DetailedItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6E0C071C0CAA400009632F /* DetailedItemViewController.m */; };
 		DAA61BA61BE8FBF700CEC295 /* NavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA61BA51BE8FBF700CEC295 /* NavigationControllerDelegate.m */; };
 		DAC6394F1BF54D30003A087B /* AislesPivotTable.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC6394E1BF54D30003A087B /* AislesPivotTable.m */; };
 		DADD0A5F1BDD50CE00806DB6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0A5E1BDD50CE00806DB6 /* main.m */; };
@@ -69,6 +70,8 @@
 		DA67F9ED1BE8131E00E1734A /* ListOfItemsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOfItemsTableViewController.m; sourceTree = "<group>"; };
 		DA67F9EE1BE8131E00E1734A /* ListOfListsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListOfListsTableViewController.h; sourceTree = "<group>"; };
 		DA67F9EF1BE8131E00E1734A /* ListOfListsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOfListsTableViewController.m; sourceTree = "<group>"; };
+		DA6E0C061C0CAA400009632F /* DetailedItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailedItemViewController.h; sourceTree = "<group>"; };
+		DA6E0C071C0CAA400009632F /* DetailedItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedItemViewController.m; sourceTree = "<group>"; };
 		DAA61BA41BE8FBF700CEC295 /* NavigationControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationControllerDelegate.h; sourceTree = "<group>"; };
 		DAA61BA51BE8FBF700CEC295 /* NavigationControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationControllerDelegate.m; sourceTree = "<group>"; };
 		DAC6394D1BF54D30003A087B /* AislesPivotTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AislesPivotTable.h; sourceTree = "<group>"; };
@@ -168,6 +171,8 @@
 				DAA61BA51BE8FBF700CEC295 /* NavigationControllerDelegate.m */,
 				DAF5E27B1BEE9A800023F8E8 /* ListAdditionViewController.h */,
 				DAF5E27C1BEE9A800023F8E8 /* ListAdditionViewController.m */,
+				DA6E0C061C0CAA400009632F /* DetailedItemViewController.h */,
+				DA6E0C071C0CAA400009632F /* DetailedItemViewController.m */,
 			);
 			path = "view-controllers";
 			sourceTree = "<group>";
@@ -393,6 +398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAF5E27D1BEE9A800023F8E8 /* ListAdditionViewController.m in Sources */,
+				DA6E0C081C0CAA400009632F /* DetailedItemViewController.m in Sources */,
 				DAC6394F1BF54D30003A087B /* AislesPivotTable.m in Sources */,
 				DAA61BA61BE8FBF700CEC295 /* NavigationControllerDelegate.m in Sources */,
 				DA67F9F31BE8131E00E1734A /* ShoppingItem.m in Sources */,
