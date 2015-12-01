@@ -223,10 +223,10 @@
                                 </variation>
                             </toolbar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rOx-PZ-1Ok">
-                                <rect key="frame" x="20" y="28" width="560" height="528"/>
+                                <rect key="frame" x="20" y="72" width="560" height="484"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RhV-YZ-9rv">
-                                        <rect key="frame" x="8" y="212" width="544" height="40"/>
+                                        <rect key="frame" x="8" y="197.5" width="544" height="40"/>
                                         <animations/>
                                         <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -242,7 +242,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="price" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3BL-GN-pUO">
-                                        <rect key="frame" x="90" y="282" width="462" height="30"/>
+                                        <rect key="frame" x="90" y="267.5" width="462" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
@@ -251,14 +251,14 @@
                                         </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SwE-7v-hRs">
-                                        <rect key="frame" x="8" y="286" width="39" height="20.5"/>
+                                        <rect key="frame" x="8" y="271.5" width="39" height="20.5"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5t-lB-Hdm">
-                                        <rect key="frame" x="8" y="332" width="65" height="20.5"/>
+                                        <rect key="frame" x="8" y="317.5" width="65" height="20.5"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -268,21 +268,21 @@
                                         </variation>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aisle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Mt-h5-w4E">
-                                        <rect key="frame" x="8" y="376" width="37" height="20.5"/>
+                                        <rect key="frame" x="8" y="361.5" width="37" height="20.5"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSY-BY-HnT">
-                                        <rect key="frame" x="8" y="420.5" width="25" height="20.5"/>
+                                        <rect key="frame" x="8" y="405.5" width="25" height="20.5"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="6Ao-QW-sSi">
-                                        <rect key="frame" x="90" y="328" width="70" height="30"/>
+                                        <rect key="frame" x="90" y="313.5" width="70" height="30"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="70" id="IZA-V6-faQ"/>
@@ -294,11 +294,11 @@
                                         </connections>
                                     </textField>
                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="sZQ-ft-nh6">
-                                        <rect key="frame" x="458" y="329" width="94" height="29"/>
+                                        <rect key="frame" x="458" y="314.5" width="94" height="29"/>
                                         <animations/>
                                     </stepper>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="bin number" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="S7H-9i-t45">
-                                        <rect key="frame" x="90" y="416" width="462" height="30"/>
+                                        <rect key="frame" x="90" y="401.5" width="462" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -307,7 +307,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="aisle number" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ahf-2W-5DW">
-                                        <rect key="frame" x="90" y="372" width="462" height="30"/>
+                                        <rect key="frame" x="90" y="357.5" width="462" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -316,14 +316,14 @@
                                         </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item No." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRf-mJ-anl">
-                                        <rect key="frame" x="8" y="464.5" width="65" height="20.5"/>
+                                        <rect key="frame" x="8" y="449.5" width="65" height="20.5"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="item number xx.yy.zz" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="nL3-s9-uVF">
-                                        <rect key="frame" x="90" y="460" width="462" height="30"/>
+                                        <rect key="frame" x="90" y="445.5" width="462" height="30"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
@@ -332,7 +332,7 @@
                                         </connections>
                                     </textField>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder_image" translatesAutoresizingMaskIntoConstraints="NO" id="Rjw-Kx-C6h">
-                                        <rect key="frame" x="8" y="10" width="544" height="174.5"/>
+                                        <rect key="frame" x="8" y="10" width="544" height="160"/>
                                         <animations/>
                                     </imageView>
                                 </subviews>
@@ -393,13 +393,15 @@
                             <constraint firstAttribute="bottom" secondItem="OOk-MH-BKC" secondAttribute="bottom" id="HeP-ri-OT6"/>
                             <constraint firstAttribute="trailing" secondItem="OOk-MH-BKC" secondAttribute="trailing" id="Kjy-k4-bna"/>
                             <constraint firstItem="rOx-PZ-1Ok" firstAttribute="trailing" secondItem="zQC-ym-kwr" secondAttribute="trailingMargin" id="Msb-f2-eAl"/>
-                            <constraint firstItem="rOx-PZ-1Ok" firstAttribute="top" secondItem="Sme-z8-eex" secondAttribute="bottom" constant="8" id="V21-73-g91"/>
+                            <constraint firstItem="rOx-PZ-1Ok" firstAttribute="top" secondItem="Sme-z8-eex" secondAttribute="bottom" priority="750" constant="8" id="V21-73-g91"/>
                             <constraint firstItem="OOk-MH-BKC" firstAttribute="leading" secondItem="zQC-ym-kwr" secondAttribute="leading" id="apa-IN-3I6"/>
+                            <constraint firstItem="rOx-PZ-1Ok" firstAttribute="top" relation="greaterThanOrEqual" secondItem="zQC-ym-kwr" secondAttribute="top" constant="72" id="bmu-dB-lfz"/>
                             <constraint firstItem="rOx-PZ-1Ok" firstAttribute="bottom" secondItem="OOk-MH-BKC" secondAttribute="top" id="m98-uN-4zP"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="scrollView" destination="rOx-PZ-1Ok" id="uIT-dC-UUt"/>
+                        <outlet property="toolbar" destination="OOk-MH-BKC" id="qIH-fh-52u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ri2-18-brX" userLabel="First Responder" sceneMemberID="firstResponder"/>

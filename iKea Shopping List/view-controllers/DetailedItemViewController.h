@@ -11,4 +11,5 @@
 @interface DetailedItemViewController : UIViewController <UITextFieldDelegate>
 
 @property ShoppingItem* shoppingItem;
+@property BOOL isNewItem;
 @end

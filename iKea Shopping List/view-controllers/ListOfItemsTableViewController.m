@@ -175,6 +175,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         NSIndexPath* selectedIndexPath = [self.tableView indexPathForSelectedRow];
         ShoppingItem* shoppingItem = [self.listOfItemsDataSource itemAtIndexPath:selectedIndexPath];
         destViewController.shoppingItem = shoppingItem;
+        destViewController.isNewItem = NO;
         
     }else if ([segue.identifier isEqualToString:ADD_NEW_ITEM_SEGUE_ID]){
         DetailedItemViewController* destViewController = [segue destinationViewController];
@@ -182,7 +183,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         ShoppingItem* shoppingItem = [[ShoppingItem alloc] initWithName:@"New Item" price:[NSDecimalNumber decimalNumberWithString:@"0.0"]];
         
         destViewController.shoppingItem = shoppingItem;
-        
+        destViewController.isNewItem = YES;
+
     }
 }
 

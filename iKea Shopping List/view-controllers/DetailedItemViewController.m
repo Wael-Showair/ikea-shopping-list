@@ -10,6 +10,7 @@
 
 @interface DetailedItemViewController()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property UITextField* targetTextField;
 @end
 
@@ -17,8 +18,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self registerForKeyboardNotifications];
-    self.title = self.shoppingItem.name;
+    
+    /* Check if the Detailed Item View is presented to add new item or
+     * to display details of an existing item. */
+    if(self.isNewItem){
+        
+        /* The Detail Item View is presented modally in this case. Thus a 
+         * navigation bar must be created.*/
+        [self createNavigationBar];
+        
+        /* Hide the toolbar.*/
+        [self.toolbar setHidden:YES];
+        
+    }else{
+        self.title = self.shoppingItem.name;
+    }
+
 
 }
 
@@ -87,5 +104,45 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     self.targetTextField = nil;
+}
+
+#pragma Modal - Navigation Bar
+
+-(void) createNavigationBar{
+    
+    /* Create navigation bar at run-time for the New Item Modal view. */
+    UINavigationBar* navbar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 64)];
+    
+    /* Create navigation item object */
+    UINavigationItem* navItem = [[UINavigationItem alloc] initWithTitle:self.shoppingItem.name];
+    
+    /* Create left button item. */
+    UIBarButtonItem* cancelBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(onTapCancel:)];
+    navItem.leftBarButtonItem = cancelBtn;
+    
+    /* Create left button item. */
+    UIBarButtonItem* doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onTapDone:)];
+    navItem.rightBarButtonItem = doneBtn;
+    
+    /* Assign the navigation item to the navigation bar.
+     * The navigation bar displays information from a stack of
+     * UINavigationItem objects. At any given time, the UINavigationItem
+     * that is currently the topItem of the stack determines the title and
+     * other optional information in the navigation bar, such as the right
+     * button and prompt.*/
+    [navbar setItems:@[navItem]];
+    
+    /* add navigation bar to the root view of the item details scene.*/
+    [self.view addSubview:navbar];
+}
+
+-(IBAction)onTapCancel:(id)sender{
+    /* Dismiss the presented modal view controller. */
+    [self dismissViewControllerAnimated:YES completion:nil];
+
+}
+-(IBAction)onTapDone:(id)sender{
+    /* Dismiss the presented modal view controller. */
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end
