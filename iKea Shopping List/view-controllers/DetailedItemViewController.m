@@ -12,6 +12,11 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property UITextField* targetTextField;
+
+@property (weak, nonatomic) IBOutlet UINavigationBar* customrNavbar;
+@property (weak, nonatomic) IBOutlet NSArray* verticalConstraints;
+
+
 @end
 
 @implementation DetailedItemViewController
@@ -20,6 +25,8 @@
     [super viewDidLoad];
     
     [self registerForKeyboardNotifications];
+    
+    [self registerForDeviceChangeOrientation];
     
     /* Check if the Detailed Item View is presented to add new item or
      * to display details of an existing item. */
@@ -107,12 +114,95 @@
 }
 
 #pragma Modal - Navigation Bar
+- (void) registerForDeviceChangeOrientation{
+    
+    /* Enable the device’s accelerometer hardware and begins the delivery of acceleration events.*/
+
+    /* TODO: you should always match each call with a corresponding call to the endGeneratingDeviceOrientationNotifications. */
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    
+    /*  Add the view as an observer to the notification center specifically for
+     * device orientation change notification.*/
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(deviceOrientationDidChange:) name: UIDeviceOrientationDidChangeNotification object: nil];
+}
+
+-(void)deviceOrientationDidChange: (NSNotification *)notification{
+    
+    /* Get a reference to the navigation bar to be used in Auto Layout constraints*/
+    UINavigationBar* navigationBar = self.customrNavbar;
+
+    /* Remove the vertical constraint (Fixed Height) of the navigation bar.*/
+    [self.view removeConstraints:self.verticalConstraints];
+
+    /* Let the navigation bar has its new intrinsic size. */
+    [self.customrNavbar sizeToFit];
+    
+    /* Get a reference to the Top Layout Guide to be used in the constraint*/
+    id<UILayoutSupport> topGuide = self.topLayoutGuide;
+    
+    /* Creates a dictionary wherein the keys are string representations of the corresponding values’ variable names. */
+    NSDictionary* viewsDictionary = NSDictionaryOfVariableBindings(navigationBar, topGuide);
+
+    /* Add Vertical constraint to the navigation bar (with fixed height) */
+    NSString* verticalConstraintExpression = [NSString stringWithFormat: @"V:|[topGuide][navigationBar(%f)]", self.customrNavbar.frame.size.height];
+    NSArray* verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:verticalConstraintExpression options:0 metrics:nil views:viewsDictionary];
+    [self.view addConstraints:verticalConstraints];
+    
+    /* Save the vertical constraint for future references. It will be removed
+     * when the device orientation is changed. */
+    self.verticalConstraints = verticalConstraints;
+    
+}
+
+- (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar{
+    return UIBarPositionTopAttached;
+}
+
+- (UINavigationBar*) layoutNavigationBar{
+    
+    /* Initialize new object of standalone navigation bar. Note that the
+     * size of this bar is zero.*/
+    UINavigationBar* navigationBar = [[UINavigationBar alloc] init];
+    
+    /* Let the navigation bar have its intrinsic size. */
+    [navigationBar sizeToFit];
+
+    /* Set the current view controller as the delegate object of the navigation bar.*/
+    navigationBar.delegate = self;
+    
+    /* add navigation bar to the root view of the item details scene.*/
+    [self.view addSubview:navigationBar];
+
+    /* */
+    navigationBar.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    /* Get a reference to the Top Layout Guide.*/
+    id<UILayoutSupport> topGuide = self.topLayoutGuide;
+    
+    /* Creates a dictionary wherein the keys are string representations of the corresponding values’ variable names. */
+    NSDictionary* viewsDictionary = NSDictionaryOfVariableBindings(navigationBar, topGuide);
+    
+    /* Add Horizontal constraint to the navigation bar. */
+    NSString* horizontalConstraintExpression = [NSString stringWithFormat:@"|[navigationBar]|"];
+    NSArray* horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:horizontalConstraintExpression options:0 metrics:nil views:viewsDictionary];
+    [self.view addConstraints:horizontalConstraints];
+    
+    /* Add Vertical constraint to the navigation bar (with fixed height) */
+    NSString* verticalConstraintExpression = [NSString stringWithFormat: @"V:|[topGuide][navigationBar(%f)]", navigationBar.frame.size.height];
+    NSArray* verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:verticalConstraintExpression options:0 metrics:nil views:viewsDictionary];
+    [self.view addConstraints:verticalConstraints];
+
+    /* Save the vertical constraint for future references. It will be removed
+     * when the device orientation is changed. */
+    self.verticalConstraints = verticalConstraints;
+    
+    return navigationBar;
+}
 
 -(void) createNavigationBar{
     
     /* Create navigation bar at run-time for the New Item Modal view. */
-    UINavigationBar* navbar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 64)];
-    
+    UINavigationBar* navbar = [self layoutNavigationBar];
     /* Create navigation item object */
     UINavigationItem* navItem = [[UINavigationItem alloc] initWithTitle:self.shoppingItem.name];
     
@@ -132,8 +222,8 @@
      * button and prompt.*/
     [navbar setItems:@[navItem]];
     
-    /* add navigation bar to the root view of the item details scene.*/
-    [self.view addSubview:navbar];
+    self.customrNavbar = navbar;
+ 
 }
 
 -(IBAction)onTapCancel:(id)sender{

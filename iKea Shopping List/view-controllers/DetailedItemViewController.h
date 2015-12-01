@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailedItemViewController : UIViewController <UITextFieldDelegate>
+@interface DetailedItemViewController : UIViewController
+                        <UITextFieldDelegate,
+                         UINavigationBarDelegate>
 
 @property ShoppingItem* shoppingItem;
 @property BOOL isNewItem;
