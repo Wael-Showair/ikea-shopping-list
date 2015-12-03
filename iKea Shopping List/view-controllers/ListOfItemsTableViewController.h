@@ -10,9 +10,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ShoppingList.h"
+#import "ShoppingItemDelegate.h"
+
 @interface ListOfItemsTableViewController : UITableViewController
-    <UITableViewDataSource,
-     UITableViewDelegate>
+<UITableViewDataSource,
+UITableViewDelegate,
+ShoppingItemDelegate>
 
 /*!
  *  @property shoppingList

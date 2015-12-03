@@ -6,6 +6,7 @@
 //  Copyright © 2015 showair.wael@gmail.com. All rights reserved.
 //
 #import "ShoppingItem.h"
+#import "ShoppingItemDelegate.h"
 #import "DetailedItemViewController.h"
 
 @interface DetailedItemViewController()
@@ -32,7 +33,7 @@
      * to display details of an existing item. */
     if(self.isNewItem){
         
-        /* The Detail Item View is presented modally in this case. Thus a 
+        /* The Detail Item View is presented modally in this case. Thus a
          * navigation bar must be created.*/
         [self createNavigationBar];
         
@@ -42,8 +43,8 @@
     }else{
         self.title = self.shoppingItem.name;
     }
-
-
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,13 +59,13 @@
 - (void)registerForKeyboardNotifications
 {
     /* Register handler upon receiving keyboard displaying event.
-     * Note that UIKeyboardWillShowNotification makes the animation smoother 
-     * than using UIKeyboardDidShowNotification that was used in 
+     * Note that UIKeyboardWillShowNotification makes the animation smoother
+     * than using UIKeyboardDidShowNotification that was used in
      * Text Programming Guide for iOS https://goo.gl/yZreJl */
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWasShown:)
                                                  name:UIKeyboardWillShowNotification object:nil];
-
+    
     /* Register handler upon receiving keyboard hiding event. */
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillBeHidden:)
@@ -102,7 +103,7 @@
 }
 
 #pragma TextField Delegate - Protocol
-//each text field in the interface sets the view controller as its delegate. 
+//each text field in the interface sets the view controller as its delegate.
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     self.targetTextField = textField;
@@ -117,7 +118,7 @@
 - (void) registerForDeviceChangeOrientation{
     
     /* Enable the device’s accelerometer hardware and begins the delivery of acceleration events.*/
-
+    
     /* TODO: you should always match each call with a corresponding call to the endGeneratingDeviceOrientationNotifications. */
     [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     
@@ -130,10 +131,10 @@
     
     /* Get a reference to the navigation bar to be used in Auto Layout constraints*/
     UINavigationBar* navigationBar = self.customrNavbar;
-
+    
     /* Remove the vertical constraint (Fixed Height) of the navigation bar.*/
     [self.view removeConstraints:self.verticalConstraints];
-
+    
     /* Let the navigation bar has its new intrinsic size. */
     [self.customrNavbar sizeToFit];
     
@@ -142,7 +143,7 @@
     
     /* Creates a dictionary wherein the keys are string representations of the corresponding values’ variable names. */
     NSDictionary* viewsDictionary = NSDictionaryOfVariableBindings(navigationBar, topGuide);
-
+    
     /* Add Vertical constraint to the navigation bar (with fixed height) */
     NSString* verticalConstraintExpression = [NSString stringWithFormat: @"V:|[topGuide][navigationBar(%f)]", self.customrNavbar.frame.size.height];
     NSArray* verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:verticalConstraintExpression options:0 metrics:nil views:viewsDictionary];
@@ -166,13 +167,13 @@
     
     /* Let the navigation bar have its intrinsic size. */
     [navigationBar sizeToFit];
-
+    
     /* Set the current view controller as the delegate object of the navigation bar.*/
     navigationBar.delegate = self;
     
     /* add navigation bar to the root view of the item details scene.*/
     [self.view addSubview:navigationBar];
-
+    
     /* */
     navigationBar.translatesAutoresizingMaskIntoConstraints = NO;
     
@@ -191,7 +192,7 @@
     NSString* verticalConstraintExpression = [NSString stringWithFormat: @"V:|[topGuide][navigationBar(%f)]", navigationBar.frame.size.height];
     NSArray* verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:verticalConstraintExpression options:0 metrics:nil views:viewsDictionary];
     [self.view addConstraints:verticalConstraints];
-
+    
     /* Save the vertical constraint for future references. It will be removed
      * when the device orientation is changed. */
     self.verticalConstraints = verticalConstraints;
@@ -223,15 +224,19 @@
     [navbar setItems:@[navItem]];
     
     self.customrNavbar = navbar;
- 
+    
 }
 
 -(IBAction)onTapCancel:(id)sender{
     /* Dismiss the presented modal view controller. */
     [self dismissViewControllerAnimated:YES completion:nil];
-
+    
 }
 -(IBAction)onTapDone:(id)sender{
+    
+    
+    [self.shoppningItemDelegate itemDidCreated:self.shoppingItem];
+    
     /* Dismiss the presented modal view controller. */
     [self dismissViewControllerAnimated:YES completion:nil];
 }

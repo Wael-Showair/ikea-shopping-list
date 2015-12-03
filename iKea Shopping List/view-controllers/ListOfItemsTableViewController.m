@@ -7,11 +7,11 @@
  *  @version 0.0.1
  *  @copyright 2015. Wael Showair. All rights reserved.
  */
-
 #import "ListOfItemsTableViewController.h"
 #import "DetailedItemViewController.h"
 #import "ItemsDataSource.h"
 #import "ShoppingItem.h"
+
 
 @interface ListOfItemsTableViewController ()
 #define FIRST_INDEX_INSECTION        0
@@ -42,16 +42,16 @@
     self.listOfItemsDataSource = [[ItemsDataSource alloc]
                                   initWithItems: self.shoppingList];
     self.tableView.dataSource = self.listOfItemsDataSource;
-
+    
     /* make sure to hide remove separators between empty cells */
     self.tableView.tableFooterView = [UIView new];
-
+    
     /* Load global header having the total price of the list.*/
     [self loadGlobalHeaderView];
 }
 
 - (void)didReceiveMemoryWarning {
-   
+    
     self.listOfItemsDataSource = nil;
     [super didReceiveMemoryWarning];
 }
@@ -61,15 +61,15 @@
     
     if (self.globalHeader == nil) {
         NSArray* topLevelObjects = [[NSBundle mainBundle]
-                                     loadNibNamed:@"items-table-header-view"
-                                            owner:self
-                                          options:nil];
+                                    loadNibNamed:@"items-table-header-view"
+                                    owner:self
+                                    options:nil];
         self.globalHeader = [topLevelObjects objectAtIndex:0];
     }
     
     self.globalHeader.text =
-        [TOTAL_PRICE_PREFIX stringByAppendingString:
-                        self.shoppingList.totalPrice.stringValue];
+    [TOTAL_PRICE_PREFIX stringByAppendingString:
+     self.shoppingList.totalPrice.stringValue];
     
     self.tableView.tableHeaderView = self.globalHeader;
 }
@@ -86,7 +86,7 @@
   willDisplayCell:(UITableViewCell *)cell
 forRowAtIndexPath:(NSIndexPath *)indexPath{
     
-
+    
     ShoppingItem* shoppingItem = [self.listOfItemsDataSource
                                   itemAtIndexPath:indexPath];
     
@@ -97,18 +97,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     [cell.imageView setImage:itemImage];
 }
 
-- (IBAction)insertNewShoppingItem:(id)sender {
-
-    /* add the new list object to the data source. */
-    ShoppingItem* newItem =
-    [[ShoppingItem alloc]
-     initWithName:@"New Item"
-     price:[[NSDecimalNumber alloc] initWithDouble:54.49]
-     image:@"image Name"
-     aisleNumber:22
-     binNumber:30
-     articleNumber:@"113.45.23"
-     quantity:1];
+- (void)itemDidCreated:(ShoppingItem*)newItem {
     
     /* When the user adds a new shopping item, I need to know
      * whether a new aisle number (i.e. section) has been added or not.
@@ -131,20 +120,20 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     if(newNumOfSections > prevNumOfSections){
         
         NSIndexSet* newSection =
-            [NSIndexSet indexSetWithIndex:virtualSectionIndex];
+        [NSIndexSet indexSetWithIndex:virtualSectionIndex];
         
-        /* If a section already exists at the specified index location, it is 
+        /* If a section already exists at the specified index location, it is
          * moved down one index location. */
         [self.tableView insertSections:newSection
                       withRowAnimation:UITableViewRowAnimationTop];
-
+        
         /* Note: I can use reloadData but for performance considerations
          * I decided to use insertSections only.
          */
         
         indexPath = [NSIndexPath indexPathForRow:0
                                        inSection:virtualSectionIndex];
-
+        
     }else{
         
         indexPath = [NSIndexPath indexPathForRow:0
@@ -163,7 +152,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                   animated:YES];
     
     [self updateGlobalHeaderTotalPrice];
-
+    
 }
 
 
@@ -179,12 +168,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         
     }else if ([segue.identifier isEqualToString:ADD_NEW_ITEM_SEGUE_ID]){
         DetailedItemViewController* destViewController = [segue destinationViewController];
-
+        
         ShoppingItem* shoppingItem = [[ShoppingItem alloc] initWithName:@"New Item" price:[NSDecimalNumber decimalNumberWithString:@"0.0"]];
         
         destViewController.shoppingItem = shoppingItem;
         destViewController.isNewItem = YES;
-
+        destViewController.shoppningItemDelegate = self;
+        
     }
 }
 

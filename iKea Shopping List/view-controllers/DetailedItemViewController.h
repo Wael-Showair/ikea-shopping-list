@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ShoppingItemDelegate.h"
 
 @interface DetailedItemViewController : UIViewController
-                        <UITextFieldDelegate,
-                         UINavigationBarDelegate>
+<UITextFieldDelegate,
+UINavigationBarDelegate>
 
 @property ShoppingItem* shoppingItem;
 @property BOOL isNewItem;
+@property (weak) id <ShoppingItemDelegate> shoppningItemDelegate;
 @end
