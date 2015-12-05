@@ -11,21 +11,20 @@
 #import "StandaloneNavBar.h"
 #import "CustomScrollView.h"
 
+typedef enum{
+    PRICE       = 0,
+    QUANTITY    = 1,
+    AISLE       = 2,
+    BIN         = 3,
+    ITEM_NUM    = 4
+} TEXT_FIELD_TAG;
+
+
 @interface DetailedItemViewController()
 @property (weak, nonatomic) IBOutlet CustomScrollView *scrollView;
 @property (weak,nonatomic) IBOutlet StandaloneNavBar* navbar;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
-
-//typedef enum{
-//    PRICE       = 0,
-//    QUANTITY    = 1,
-//    AISLE       = 2,
-//    BIN         = 3,
-//    ITEM_NUM    = 4
-//} TEXT_FIELD_TAG;
-
 @end
-
 @implementation DetailedItemViewController
 
 - (void)viewDidLoad {
@@ -106,8 +105,17 @@
 -(IBAction)onTapDone:(id)sender{
     
     
-    /* Set all fields of the shopping item. */
+    /* Set all fields of the shopping item.
+     * When user switches between different text fields, the delegate is informed
+     * about editing stopping through textFieldDidEndEditing.
+     * But for the last text field that the user edits, Done button is tapped
+     * hence, endEditing must be triggered first to get the value of last text
+     * field the user was editing then inform the delegates about itemDidCreated.*/
     
+    /* Dismiss keyboard (in case it is displayed). This is more convenient since
+     * there are 5 text fields.*/
+    [self.view endEditing:YES];
+
     /* As recommended in Official View Controller iOS Programming Guide here in
      * this link: http://goo.gl/Phwrp6, Dismissing a Presented View Controller
      * section mentioned exciplictly that If the presented view controller must
@@ -116,12 +124,33 @@
      */
     [self.shoppningItemDelegate itemDidCreated:self.shoppingItem];
     
-    /* Dismiss keyboard (in case it is displayed). This is more convenient since
-     * there are 5 text fields.*/
-    [self.view endEditing:YES];
-    
-    
     /* Dismiss the presented modal view controller. */
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma TextField Delegate - Protocol
+/* Tracking Multiple Text Fields https://goo.gl/NWJqBV */
+- (void) textFieldDidEndEditing:(UITextField *)textField{
+    switch ((TEXT_FIELD_TAG)textField.tag) {
+        case PRICE:
+            self.shoppingItem.price = [NSDecimalNumber decimalNumberWithString:textField.text];
+            break;
+        case QUANTITY:
+            self.shoppingItem.quantity = textField.text.integerValue;
+            break;
+        case AISLE:
+            self.shoppingItem.aisleNumber = textField.text.integerValue;
+            break;
+        case BIN:
+            self.shoppingItem.binNumber = textField.text.integerValue;
+            break;
+        case ITEM_NUM:
+            self.shoppingItem.articleNumber = textField.text;
+            break;
+            
+        default:
+            NSLog(@"Error Undefined Text Field Tag: %ld", (long)textField.tag);
+            break;
+    }
 }
 @end
