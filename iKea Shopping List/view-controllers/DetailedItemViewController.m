@@ -8,15 +8,21 @@
 #import "ShoppingItem.h"
 #import "ShoppingItemDelegate.h"
 #import "DetailedItemViewController.h"
+#import "StandaloneNavBar.h"
+#import "CustomScrollView.h"
 
 @interface DetailedItemViewController()
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet CustomScrollView *scrollView;
+@property (weak,nonatomic) IBOutlet StandaloneNavBar* navbar;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
-@property UITextField* targetTextField;
 
-@property (weak, nonatomic) IBOutlet UINavigationBar* customrNavbar;
-@property (weak, nonatomic) IBOutlet NSArray* verticalConstraints;
-
+//typedef enum{
+//    PRICE       = 0,
+//    QUANTITY    = 1,
+//    AISLE       = 2,
+//    BIN         = 3,
+//    ITEM_NUM    = 4
+//} TEXT_FIELD_TAG;
 
 @end
 
@@ -24,8 +30,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self registerForKeyboardNotifications];
+
+    [self.scrollView registerForKeyboardNotifications];
     
     [self registerForDeviceChangeOrientation];
     
@@ -33,9 +39,18 @@
      * to display details of an existing item. */
     if(self.isNewItem){
         
+        
         /* The Detail Item View is presented modally in this case. Thus a
          * navigation bar must be created.*/
-        [self createNavigationBar];
+        StandaloneNavBar* customNavBar =
+          [[StandaloneNavBar alloc] initWithTitle:self.shoppingItem.name
+                                ForViewController:self
+                                  LeftBtnSelector:@selector(onTapCancel:)
+                                 RightBtnSelector:@selector(onTapDone:)];
+        
+        /* Set current view controller as delegate object of the navigation bar.*/
+        customNavBar.delegate = self;
+        self.navbar = customNavBar;
         
         /* Hide the toolbar.*/
         [self.toolbar setHidden:YES];
@@ -54,67 +69,8 @@
     
 }
 
-#pragma Reposition Contents Obscured by Keyboard
-// Call this method somewhere in your view controller setup code.
-- (void)registerForKeyboardNotifications
-{
-    /* Register handler upon receiving keyboard displaying event.
-     * Note that UIKeyboardWillShowNotification makes the animation smoother
-     * than using UIKeyboardDidShowNotification that was used in
-     * Text Programming Guide for iOS https://goo.gl/yZreJl */
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWasShown:)
-                                                 name:UIKeyboardWillShowNotification object:nil];
-    
-    /* Register handler upon receiving keyboard hiding event. */
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(keyboardWillBeHidden:)
-                                                 name:UIKeyboardWillHideNotification object:nil];
-    
-}
+#pragma Device Orientation Change
 
-// Called when the UIKeyboardDidShowNotification is sent.
-- (void)keyboardWasShown:(NSNotification*)aNotification
-{
-    /* Get the keyboard size from the info dictionary of the notification*/
-    NSDictionary* info = [aNotification userInfo];
-    CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    
-    /* Adjust the bottom content inset of the scroll view (as well as the scroll indicators) by the keyboard height.*/
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, kbSize.height, 0.0);
-    self.scrollView.contentInset = contentInsets;
-    self.scrollView.scrollIndicatorInsets = contentInsets;
-    
-    /* If active text field is hidden by keyboard, scroll it so it's visible */
-    CGRect aRect = self.view.frame;
-    aRect.size.height -= kbSize.height;
-    if (!CGRectContainsPoint(aRect, self.targetTextField.frame.origin) ) {
-        [self.scrollView scrollRectToVisible:self.targetTextField.frame animated:YES];
-    }
-}
-
-// Called when the UIKeyboardWillHideNotification is sent
-- (void)keyboardWillBeHidden:(NSNotification*)aNotification
-{
-    /* Reset the content inset of the scroll view (as well as the scroll indicators) to zero*/
-    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
-    self.scrollView.contentInset = contentInsets;
-    self.scrollView.scrollIndicatorInsets = contentInsets;
-}
-
-#pragma TextField Delegate - Protocol
-//each text field in the interface sets the view controller as its delegate.
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    self.targetTextField = textField;
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    self.targetTextField = nil;
-}
-
-#pragma Modal - Navigation Bar
 - (void) registerForDeviceChangeOrientation{
     
     /* Enable the device’s accelerometer hardware and begins the delivery of acceleration events.*/
@@ -128,114 +84,42 @@
 }
 
 -(void)deviceOrientationDidChange: (NSNotification *)notification{
-    
-    /* Get a reference to the navigation bar to be used in Auto Layout constraints*/
-    UINavigationBar* navigationBar = self.customrNavbar;
-    
-    /* Remove the vertical constraint (Fixed Height) of the navigation bar.*/
-    [self.view removeConstraints:self.verticalConstraints];
-    
-    /* Let the navigation bar has its new intrinsic size. */
-    [self.customrNavbar sizeToFit];
-    
-    /* Get a reference to the Top Layout Guide to be used in the constraint*/
-    id<UILayoutSupport> topGuide = self.topLayoutGuide;
-    
-    /* Creates a dictionary wherein the keys are string representations of the corresponding values’ variable names. */
-    NSDictionary* viewsDictionary = NSDictionaryOfVariableBindings(navigationBar, topGuide);
-    
-    /* Add Vertical constraint to the navigation bar (with fixed height) */
-    NSString* verticalConstraintExpression = [NSString stringWithFormat: @"V:|[topGuide][navigationBar(%f)]", self.customrNavbar.frame.size.height];
-    NSArray* verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:verticalConstraintExpression options:0 metrics:nil views:viewsDictionary];
-    [self.view addConstraints:verticalConstraints];
-    
-    /* Save the vertical constraint for future references. It will be removed
-     * when the device orientation is changed. */
-    self.verticalConstraints = verticalConstraints;
-    
+    [self.navbar onChangeDeviceOrientation];
 }
+
+#pragma Standalone Navigation Bar
 
 - (UIBarPosition)positionForBar:(id<UIBarPositioning>)bar{
     return UIBarPositionTopAttached;
 }
 
-- (UINavigationBar*) layoutNavigationBar{
-    
-    /* Initialize new object of standalone navigation bar. Note that the
-     * size of this bar is zero.*/
-    UINavigationBar* navigationBar = [[UINavigationBar alloc] init];
-    
-    /* Let the navigation bar have its intrinsic size. */
-    [navigationBar sizeToFit];
-    
-    /* Set the current view controller as the delegate object of the navigation bar.*/
-    navigationBar.delegate = self;
-    
-    /* add navigation bar to the root view of the item details scene.*/
-    [self.view addSubview:navigationBar];
-    
-    /* */
-    navigationBar.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    /* Get a reference to the Top Layout Guide.*/
-    id<UILayoutSupport> topGuide = self.topLayoutGuide;
-    
-    /* Creates a dictionary wherein the keys are string representations of the corresponding values’ variable names. */
-    NSDictionary* viewsDictionary = NSDictionaryOfVariableBindings(navigationBar, topGuide);
-    
-    /* Add Horizontal constraint to the navigation bar. */
-    NSString* horizontalConstraintExpression = [NSString stringWithFormat:@"|[navigationBar]|"];
-    NSArray* horizontalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:horizontalConstraintExpression options:0 metrics:nil views:viewsDictionary];
-    [self.view addConstraints:horizontalConstraints];
-    
-    /* Add Vertical constraint to the navigation bar (with fixed height) */
-    NSString* verticalConstraintExpression = [NSString stringWithFormat: @"V:|[topGuide][navigationBar(%f)]", navigationBar.frame.size.height];
-    NSArray* verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:verticalConstraintExpression options:0 metrics:nil views:viewsDictionary];
-    [self.view addConstraints:verticalConstraints];
-    
-    /* Save the vertical constraint for future references. It will be removed
-     * when the device orientation is changed. */
-    self.verticalConstraints = verticalConstraints;
-    
-    return navigationBar;
-}
-
--(void) createNavigationBar{
-    
-    /* Create navigation bar at run-time for the New Item Modal view. */
-    UINavigationBar* navbar = [self layoutNavigationBar];
-    /* Create navigation item object */
-    UINavigationItem* navItem = [[UINavigationItem alloc] initWithTitle:self.shoppingItem.name];
-    
-    /* Create left button item. */
-    UIBarButtonItem* cancelBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(onTapCancel:)];
-    navItem.leftBarButtonItem = cancelBtn;
-    
-    /* Create left button item. */
-    UIBarButtonItem* doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(onTapDone:)];
-    navItem.rightBarButtonItem = doneBtn;
-    
-    /* Assign the navigation item to the navigation bar.
-     * The navigation bar displays information from a stack of
-     * UINavigationItem objects. At any given time, the UINavigationItem
-     * that is currently the topItem of the stack determines the title and
-     * other optional information in the navigation bar, such as the right
-     * button and prompt.*/
-    [navbar setItems:@[navItem]];
-    
-    self.customrNavbar = navbar;
-    
-}
-
 -(IBAction)onTapCancel:(id)sender{
+
+    /* Dismiss keyboard (in case it is displayed). This is more convenient since
+     * there are 5 text fields.*/
+    [self.view endEditing:YES];
+    
     /* Dismiss the presented modal view controller. */
     [self dismissViewControllerAnimated:YES completion:nil];
-    
 }
+
 -(IBAction)onTapDone:(id)sender{
     
     
+    /* Set all fields of the shopping item. */
+    
+    /* As recommended in Official View Controller iOS Programming Guide here in
+     * this link: http://goo.gl/Phwrp6, Dismissing a Presented View Controller
+     * section mentioned exciplictly that If the presented view controller must
+     * return data to the presenting view controller, use the delegation design
+     * pattern to facilitate the transfer.
+     */
     [self.shoppningItemDelegate itemDidCreated:self.shoppingItem];
+    
+    /* Dismiss keyboard (in case it is displayed). This is more convenient since
+     * there are 5 text fields.*/
+    [self.view endEditing:YES];
+    
     
     /* Dismiss the presented modal view controller. */
     [self dismissViewControllerAnimated:YES completion:nil];

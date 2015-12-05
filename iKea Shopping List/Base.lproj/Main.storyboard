@@ -222,7 +222,7 @@
                                     <rect key="frame" x="0.0" y="756" width="600" height="44"/>
                                 </variation>
                             </toolbar>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rOx-PZ-1Ok">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rOx-PZ-1Ok" customClass="CustomScrollView">
                                 <rect key="frame" x="20" y="72" width="560" height="484"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RhV-YZ-9rv">
@@ -400,7 +400,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="scrollView" destination="rOx-PZ-1Ok" id="uIT-dC-UUt"/>
+                        <outlet property="scrollView" destination="rOx-PZ-1Ok" id="Ukj-o6-YJZ"/>
                         <outlet property="toolbar" destination="OOk-MH-BKC" id="qIH-fh-52u"/>
                     </connections>
                 </viewController>

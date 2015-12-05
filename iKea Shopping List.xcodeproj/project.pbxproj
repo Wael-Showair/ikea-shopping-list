@@ -12,6 +12,8 @@
 		DA14CA381C035D690043C2B6 /* AislesPivotTableTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA14CA371C035D690043C2B6 /* AislesPivotTableTests.m */; };
 		DA14CA3C1C03A2020043C2B6 /* ListOfItemsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA14CA3B1C03A2020043C2B6 /* ListOfItemsUITests.m */; };
 		DA23133A1BF1891700E5366C /* ItemsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2313391BF1891700E5366C /* ItemsDataSource.m */; };
+		DA5444B91C1327F4002DFD0F /* StandaloneNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5444B81C1327F4002DFD0F /* StandaloneNavBar.m */; };
+		DA5444BC1C132922002DFD0F /* CustomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5444BB1C132922002DFD0F /* CustomScrollView.m */; };
 		DA5866FB1C0248D800C98FC2 /* ShoppingList.m in Sources */ = {isa = PBXBuildFile; fileRef = DA67F9EA1BE8131E00E1734A /* ShoppingList.m */; };
 		DA67F9F01BE8131E00E1734A /* TwoSidedDoorAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = DA67F9E51BE8131E00E1734A /* TwoSidedDoorAnimator.m */; };
 		DA67F9F31BE8131E00E1734A /* ShoppingItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DA67F9E81BE8131E00E1734A /* ShoppingItem.m */; };
@@ -60,6 +62,10 @@
 		DA14CA3B1C03A2020043C2B6 /* ListOfItemsUITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOfItemsUITests.m; sourceTree = "<group>"; };
 		DA2313381BF1891700E5366C /* ItemsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsDataSource.h; sourceTree = "<group>"; };
 		DA2313391BF1891700E5366C /* ItemsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsDataSource.m; sourceTree = "<group>"; };
+		DA5444B71C1327F4002DFD0F /* StandaloneNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StandaloneNavBar.h; path = views/StandaloneNavBar.h; sourceTree = "<group>"; };
+		DA5444B81C1327F4002DFD0F /* StandaloneNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StandaloneNavBar.m; path = views/StandaloneNavBar.m; sourceTree = "<group>"; };
+		DA5444BA1C132922002DFD0F /* CustomScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomScrollView.h; path = views/CustomScrollView.h; sourceTree = "<group>"; };
+		DA5444BB1C132922002DFD0F /* CustomScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomScrollView.m; path = views/CustomScrollView.m; sourceTree = "<group>"; };
 		DA67F9E41BE8131E00E1734A /* TwoSidedDoorAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwoSidedDoorAnimator.h; sourceTree = "<group>"; };
 		DA67F9E51BE8131E00E1734A /* TwoSidedDoorAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoSidedDoorAnimator.m; sourceTree = "<group>"; };
 		DA67F9E71BE8131E00E1734A /* ShoppingItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingItem.h; sourceTree = "<group>"; };
@@ -138,6 +144,10 @@
 			children = (
 				DA03238A1BEFCA0B003960B0 /* text-input-table-view-cell.xib */,
 				DAF7345C1BF239B00013CDDD /* items-table-header-view.xib */,
+				DA5444B71C1327F4002DFD0F /* StandaloneNavBar.h */,
+				DA5444B81C1327F4002DFD0F /* StandaloneNavBar.m */,
+				DA5444BA1C132922002DFD0F /* CustomScrollView.h */,
+				DA5444BB1C132922002DFD0F /* CustomScrollView.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -401,12 +411,14 @@
 			files = (
 				DAF5E27D1BEE9A800023F8E8 /* ListAdditionViewController.m in Sources */,
 				DA6E0C081C0CAA400009632F /* DetailedItemViewController.m in Sources */,
+				DA5444BC1C132922002DFD0F /* CustomScrollView.m in Sources */,
 				DAC6394F1BF54D30003A087B /* AislesPivotTable.m in Sources */,
 				DAA61BA61BE8FBF700CEC295 /* NavigationControllerDelegate.m in Sources */,
 				DA67F9F31BE8131E00E1734A /* ShoppingItem.m in Sources */,
 				DA0323881BEFC676003960B0 /* TextInputTableViewCell.m in Sources */,
 				DA67F9F01BE8131E00E1734A /* TwoSidedDoorAnimator.m in Sources */,
 				DA67F9F91BE8131E00E1734A /* ListOfItemsTableViewController.m in Sources */,
+				DA5444B91C1327F4002DFD0F /* StandaloneNavBar.m in Sources */,
 				DAED5BCE1BEA780700C5816F /* ListsDataSource.m in Sources */,
 				DADD0A621BDD50CE00806DB6 /* AppDelegate.m in Sources */,
 				DA5866FB1C0248D800C98FC2 /* ShoppingList.m in Sources */,
