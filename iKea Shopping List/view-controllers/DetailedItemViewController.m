@@ -138,25 +138,13 @@ typedef enum{
 -(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
     BOOL shouldEndEditing = YES;
     NSNumberFormatter* formatter = [[NSNumberFormatter alloc] init];
-    formatter.numberStyle = NSNumberFormatterDecimalStyle;
-    formatter.generatesDecimalNumbers = NO;
     formatter.minimum = [NSNumber numberWithInt:0];
-    formatter.maximumFractionDigits = 0;
     
     NSNumber* parsedNumber;
-    NSDecimalNumber*  price;
     NSString* errorMsg;
     
     switch ((TEXT_FIELD_TAG)textField.tag) {
         case PRICE:
-            formatter.generatesDecimalNumbers = YES;
-            formatter.maximumFractionDigits = 2;
-            formatter.roundingMode = NSNumberFormatterRoundCeiling;
-            shouldEndEditing = [formatter getObjectValue:&price
-                                               forString:textField.text
-                                        errorDescription:&errorMsg];
-            break;
-
         case QUANTITY:
         case AISLE:
         case BIN:
