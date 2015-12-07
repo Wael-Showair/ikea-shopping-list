@@ -49,6 +49,7 @@ UILabel* errorMsgLabel;
     NSDictionary* viewsDictionary;
     NSArray* leadingConstraints;
     
+    [errorMsgLabel removeFromSuperview];
     errorMsgLabel = [[UILabel alloc] init];
     errorMsgLabel.text = message;
     errorMsgLabel.textColor = [UIColor redColor];
