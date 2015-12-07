@@ -23,7 +23,7 @@
 #define BORDER_WIDTH          1.0f
 #define BORDER_CORNER_RADIUS  5.0f
 
-
+UILabel* errorMsgLabel;
 
 -(void) displayErrorIndicators{
     self.layer.borderWidth = BORDER_WIDTH;
@@ -45,11 +45,11 @@
 -(void) displayErrorMessage: (NSString*) message{
     
     UITextField* textField = self;
-    NSString* constraintExpression, *leadingConstraintsExpression;
+    NSString* leadingConstraintsExpression;
     NSDictionary* viewsDictionary;
-    NSArray* verticalConstraints, *leadingConstraints;
+    NSArray* leadingConstraints;
     
-    UILabel* errorMsgLabel = [[UILabel alloc] init];
+    errorMsgLabel = [[UILabel alloc] init];
     errorMsgLabel.text = message;
     errorMsgLabel.textColor = [UIColor redColor];
     errorMsgLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
@@ -57,9 +57,6 @@
     errorMsgLabel.translatesAutoresizingMaskIntoConstraints = NO;
     
     viewsDictionary  = NSDictionaryOfVariableBindings(textField,errorMsgLabel);
-    
-    constraintExpression = @"V:[textField]-8-[errorMsgLabel]";
-    verticalConstraints = [NSLayoutConstraint constraintsWithVisualFormat:constraintExpression options:0 metrics:nil views:viewsDictionary];
     
     leadingConstraintsExpression = @"V:[textField][errorMsgLabel]";
     
@@ -69,13 +66,12 @@
     [textField.superview addSubview:errorMsgLabel];
     
     /* Add the constraints. */
-    [self.superview addConstraints:verticalConstraints];
     [self.superview addConstraints:leadingConstraints];
     
 }
 
 -(void) removeErrorMessage{
-    
+    [errorMsgLabel removeFromSuperview];
 }
 
 @end
