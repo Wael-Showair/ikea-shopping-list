@@ -10,6 +10,12 @@
 #import "DetailedItemViewController.h"
 #import "StandaloneNavBar.h"
 #import "CustomScrollView.h"
+#import "UITextField+Additions.h"
+
+
+
+
+@interface DetailedItemViewController()
 
 typedef enum{
     PRICE       = 0,
@@ -20,7 +26,6 @@ typedef enum{
 } TEXT_FIELD_TAG;
 
 
-@interface DetailedItemViewController()
 @property (weak, nonatomic) IBOutlet CustomScrollView *scrollView;
 @property (weak,nonatomic) IBOutlet StandaloneNavBar* navbar;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
@@ -129,6 +134,55 @@ typedef enum{
 }
 
 #pragma TextField Delegate - Protocol
+/* Validating Entered Text https://goo.gl/Wzf305 */
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+    BOOL shouldEndEditing = YES;
+    NSNumberFormatter* formatter = [[NSNumberFormatter alloc] init];
+    formatter.numberStyle = NSNumberFormatterDecimalStyle;
+    formatter.generatesDecimalNumbers = NO;
+    formatter.minimum = [NSNumber numberWithInt:0];
+    formatter.maximumFractionDigits = 0;
+    
+    NSNumber* parsedNumber;
+    NSDecimalNumber*  price;
+    NSString* errorMsg;
+    
+    switch ((TEXT_FIELD_TAG)textField.tag) {
+        case PRICE:
+            formatter.generatesDecimalNumbers = YES;
+            formatter.maximumFractionDigits = 2;
+            formatter.roundingMode = NSNumberFormatterRoundCeiling;
+            shouldEndEditing = [formatter getObjectValue:&price
+                                               forString:textField.text
+                                        errorDescription:&errorMsg];
+            break;
+
+        case QUANTITY:
+        case AISLE:
+        case BIN:
+            shouldEndEditing = [formatter getObjectValue:&parsedNumber forString:textField.text errorDescription:&errorMsg];
+
+            break;
+        case ITEM_NUM:
+            break;
+            
+        default:
+            NSLog(@"Error Undefined Text Field Tag: %ld", (long)textField.tag);
+            break;
+    }
+
+    if(shouldEndEditing == NO){
+        [textField displayErrorIndicators];
+        [textField displayErrorMessage:errorMsg];
+    }
+    else{
+        [textField removeErrorIndicators];
+        [textField removeErrorMessage];
+    }
+    
+    return shouldEndEditing;
+}
+
 /* Tracking Multiple Text Fields https://goo.gl/NWJqBV */
 - (void) textFieldDidEndEditing:(UITextField *)textField{
     switch ((TEXT_FIELD_TAG)textField.tag) {
@@ -153,4 +207,5 @@ typedef enum{
             break;
     }
 }
+
 @end
