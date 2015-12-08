@@ -83,6 +83,7 @@
              ForViewController:(UIViewController *)viewController
                LeftBtnSelector:(SEL) leftAction
               RightBtnSelector:(SEL) rightAction
+               WithNavItemView:(UIView*) view
 {
     self = [super init];
     if (self) {
@@ -94,6 +95,11 @@
         
         /* Create navigation item object */
         UINavigationItem* navItem = [[UINavigationItem alloc] initWithTitle:title];
+        
+        /* If this property value is nil, the navigation item’s title is 
+         * displayed in the center of the navigation bar when the receiver is 
+         * the top item. */
+        navItem.titleView = view;
         
         if(nil != leftAction){
             UIBarButtonItem* leftBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self.hostingViewController action:leftAction];

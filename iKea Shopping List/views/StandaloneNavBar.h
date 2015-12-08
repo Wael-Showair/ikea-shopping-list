@@ -13,6 +13,7 @@
 -(instancetype)  initWithTitle:(NSString*) title
              ForViewController:(UIViewController*)viewController
                LeftBtnSelector:(SEL) leftAction
-              RightBtnSelector:(SEL) rightAction;
+              RightBtnSelector:(SEL) rightAction
+               WithNavItemView:(UIView*) view;
 -(void) onChangeDeviceOrientation;
 @end

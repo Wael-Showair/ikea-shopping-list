@@ -22,7 +22,8 @@ typedef enum{
     QUANTITY    = 2,
     AISLE       = 3,
     BIN         = 4,
-    ITEM_NUM    = 5
+    ITEM_NUM    = 5,
+    NAME        = 6
 } TEXT_FIELD_TAG;
 
 
@@ -45,6 +46,10 @@ typedef enum{
      * to display details of an existing item. */
     if(self.isNewItem){
         
+        NSArray* topLevelObjects  =
+        [[NSBundle mainBundle]loadNibNamed:@"navigation-item-text-input"
+                                     owner:self options:nil];
+        UIView* navigationItemTitleView = [topLevelObjects objectAtIndex:0];
         
         /* The Detail Item View is presented modally in this case. Thus a
          * navigation bar must be created.*/
@@ -52,7 +57,8 @@ typedef enum{
           [[StandaloneNavBar alloc] initWithTitle:self.shoppingItem.name
                                 ForViewController:self
                                   LeftBtnSelector:@selector(onTapCancel:)
-                                 RightBtnSelector:@selector(onTapDone:)];
+                                 RightBtnSelector:@selector(onTapDone:)
+                                  WithNavItemView: navigationItemTitleView];
         
         /* Set current view controller as delegate object of the navigation bar.*/
         customNavBar.delegate = self;
