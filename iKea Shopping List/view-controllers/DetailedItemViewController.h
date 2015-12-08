@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "ShoppingItemDelegate.h"
+#import "UITextFieldValidationDelegate.h"
 
 @interface DetailedItemViewController : UIViewController
-<UITextFieldDelegate,
+<UITextFieldValidationDelegate,
 UINavigationBarDelegate>
 
 @property ShoppingItem* shoppingItem;

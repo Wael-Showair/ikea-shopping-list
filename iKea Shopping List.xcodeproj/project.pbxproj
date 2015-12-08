@@ -81,6 +81,7 @@
 		DA6E0C071C0CAA400009632F /* DetailedItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedItemViewController.m; sourceTree = "<group>"; };
 		DAA61BA41BE8FBF700CEC295 /* NavigationControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationControllerDelegate.h; sourceTree = "<group>"; };
 		DAA61BA51BE8FBF700CEC295 /* NavigationControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationControllerDelegate.m; sourceTree = "<group>"; };
+		DABFA0671C17501400312414 /* UITextFieldValidationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextFieldValidationDelegate.h; sourceTree = "<group>"; };
 		DAC6394D1BF54D30003A087B /* AislesPivotTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AislesPivotTable.h; sourceTree = "<group>"; };
 		DAC6394E1BF54D30003A087B /* AislesPivotTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AislesPivotTable.m; sourceTree = "<group>"; };
 		DAD001B81C10DFC3008A8DEE /* ShoppingItemDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingItemDelegate.h; sourceTree = "<group>"; };
@@ -138,6 +139,7 @@
 			children = (
 				DA0323851BEF9AD4003960B0 /* ListInfoCreationDelegate.h */,
 				DAD001B81C10DFC3008A8DEE /* ShoppingItemDelegate.h */,
+				DABFA0671C17501400312414 /* UITextFieldValidationDelegate.h */,
 			);
 			path = protocols;
 			sourceTree = "<group>";

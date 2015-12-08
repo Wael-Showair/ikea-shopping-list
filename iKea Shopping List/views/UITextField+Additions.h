@@ -13,4 +13,5 @@
 -(void) removeErrorIndicators;
 -(void) displayErrorMessage: (NSString*) message;
 -(void) removeErrorMessage;
+#define ERROR_MSG_TAG       13
 @end

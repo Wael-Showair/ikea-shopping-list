@@ -18,16 +18,18 @@
 @interface DetailedItemViewController()
 
 typedef enum{
-    PRICE       = 0,
-    QUANTITY    = 1,
-    AISLE       = 2,
-    BIN         = 3,
-    ITEM_NUM    = 4
+    PRICE       = 1,
+    QUANTITY    = 2,
+    AISLE       = 3,
+    BIN         = 4,
+    ITEM_NUM    = 5
 } TEXT_FIELD_TAG;
 
 
 @property (weak, nonatomic) IBOutlet CustomScrollView *scrollView;
 @property (weak,nonatomic) IBOutlet StandaloneNavBar* navbar;
+@property (weak, nonatomic) IBOutlet UITextField *priceTextField;
+@property (weak, nonatomic) IBOutlet UITextField *quantityTextField;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @end
 @implementation DetailedItemViewController
@@ -55,6 +57,9 @@ typedef enum{
         /* Set current view controller as delegate object of the navigation bar.*/
         customNavBar.delegate = self;
         self.navbar = customNavBar;
+
+        /* Disable Done button which is located at the right bar button item. */
+        customNavBar.topItem.rightBarButtonItem.enabled = NO;
         
         /* Hide the toolbar.*/
         [self.toolbar setHidden:YES];
@@ -134,41 +139,86 @@ typedef enum{
 }
 
 #pragma TextField Delegate - Protocol
-/* Validating Entered Text https://goo.gl/Wzf305 */
--(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
-    BOOL shouldEndEditing = YES;
+- (BOOL) textFieldValidate:(UITextField *)textField
+     withReplacementString:(NSString *)string{
+    BOOL isValid = YES;
     NSNumberFormatter* formatter = [[NSNumberFormatter alloc] init];
     formatter.minimum = [NSNumber numberWithInt:0];
     
     NSNumber* parsedNumber;
     NSString* errorMsg;
+    NSString* appendedString = string.length>0?
+                            [textField.text stringByAppendingString:string]:
+    [textField.text substringToIndex:textField.text.length-1];
     
     switch ((TEXT_FIELD_TAG)textField.tag) {
         case PRICE:
         case QUANTITY:
-        case AISLE:
-        case BIN:
-            shouldEndEditing = [formatter getObjectValue:&parsedNumber forString:textField.text errorDescription:&errorMsg];
-
-            break;
-        case ITEM_NUM:
+            isValid = [formatter getObjectValue:&parsedNumber
+                                      forString: appendedString
+                               errorDescription:&errorMsg];
+            if(0 == appendedString.length){
+                isValid = NO;
+                errorMsg = @"This field can't be empty";
+            }
+            
+            if(isValid == NO){
+                [textField displayErrorIndicators];
+                [textField displayErrorMessage:errorMsg];
+            }
+            else{
+                [textField removeErrorIndicators];
+                [textField removeErrorMessage];
+            }
             break;
             
         default:
-            NSLog(@"Error Undefined Text Field Tag: %ld", (long)textField.tag);
             break;
     }
-
-    if(shouldEndEditing == NO){
-        [textField displayErrorIndicators];
-        [textField displayErrorMessage:errorMsg];
-    }
-    else{
-        [textField removeErrorIndicators];
-        [textField removeErrorMessage];
-    }
+    return isValid;
     
-    return shouldEndEditing;
+}
+
+- (BOOL)            textField:(UITextField *)textField
+shouldChangeCharactersInRange:(NSRange)range
+            replacementString:(NSString *)string{
+    
+    BOOL isValid = [self textFieldValidate:textField withReplacementString:string];
+    switch ((TEXT_FIELD_TAG)textField.tag) {
+        case PRICE:
+            self.navbar.topItem.rightBarButtonItem.enabled =
+                (0 != self.quantityTextField.text.length) && isValid;
+            break;
+        case QUANTITY:
+            self.navbar.topItem.rightBarButtonItem.enabled =
+                (0 != self.priceTextField.text.length) && isValid;
+            break;
+            
+        default:
+            break;
+    }
+    return YES;
+}
+
+- (BOOL) textFieldShouldClear:(UITextField *)textField{
+    
+    [textField removeErrorMessage];
+    
+    switch ((TEXT_FIELD_TAG)textField.tag) {
+        case PRICE:
+        case QUANTITY:
+            self.navbar.topItem.rightBarButtonItem.enabled = NO;
+            break;
+            
+        default:
+            break;
+    }
+    return YES;
+}
+
+/* Validating Entered Text https://goo.gl/Wzf305 */
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+    return (nil == [self.view viewWithTag:ERROR_MSG_TAG]);
 }
 
 /* Tracking Multiple Text Fields https://goo.gl/NWJqBV */

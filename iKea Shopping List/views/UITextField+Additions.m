@@ -51,6 +51,7 @@ UILabel* errorMsgLabel;
     
     [errorMsgLabel removeFromSuperview];
     errorMsgLabel = [[UILabel alloc] init];
+    errorMsgLabel.tag = ERROR_MSG_TAG;
     errorMsgLabel.text = message;
     errorMsgLabel.textColor = [UIColor redColor];
     errorMsgLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleFootnote];
