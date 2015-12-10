@@ -20,6 +20,7 @@
 		DA67F9F91BE8131E00E1734A /* ListOfItemsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA67F9ED1BE8131E00E1734A /* ListOfItemsTableViewController.m */; };
 		DA67F9FC1BE8131E00E1734A /* ListOfListsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA67F9EF1BE8131E00E1734A /* ListOfListsTableViewController.m */; };
 		DA6E0C081C0CAA400009632F /* DetailedItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6E0C071C0CAA400009632F /* DetailedItemViewController.m */; };
+		DA8D2B6D1C1A23D100E01584 /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8D2B6C1C1A23D100E01584 /* UIView+Additions.m */; };
 		DAA61BA61BE8FBF700CEC295 /* NavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA61BA51BE8FBF700CEC295 /* NavigationControllerDelegate.m */; };
 		DAC03FD11C17890600A64054 /* navigation-item-text-input.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAC03FD01C17890600A64054 /* navigation-item-text-input.xib */; };
 		DAC6394F1BF54D30003A087B /* AislesPivotTable.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC6394E1BF54D30003A087B /* AislesPivotTable.m */; };
@@ -80,6 +81,8 @@
 		DA67F9EF1BE8131E00E1734A /* ListOfListsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOfListsTableViewController.m; sourceTree = "<group>"; };
 		DA6E0C061C0CAA400009632F /* DetailedItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailedItemViewController.h; sourceTree = "<group>"; };
 		DA6E0C071C0CAA400009632F /* DetailedItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedItemViewController.m; sourceTree = "<group>"; };
+		DA8D2B6B1C1A23D100E01584 /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Additions.h"; path = "views/UIView+Additions.h"; sourceTree = "<group>"; };
+		DA8D2B6C1C1A23D100E01584 /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Additions.m"; path = "views/UIView+Additions.m"; sourceTree = "<group>"; };
 		DAA61BA41BE8FBF700CEC295 /* NavigationControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationControllerDelegate.h; sourceTree = "<group>"; };
 		DAA61BA51BE8FBF700CEC295 /* NavigationControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationControllerDelegate.m; sourceTree = "<group>"; };
 		DABFA0671C17501400312414 /* UITextFieldValidationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextFieldValidationDelegate.h; sourceTree = "<group>"; };
@@ -158,6 +161,8 @@
 				DA5444BB1C132922002DFD0F /* CustomScrollView.m */,
 				DAE8DAB81C14828C00AB81A2 /* UITextField+Additions.h */,
 				DAE8DAB91C14828C00AB81A2 /* UITextField+Additions.m */,
+				DA8D2B6B1C1A23D100E01584 /* UIView+Additions.h */,
+				DA8D2B6C1C1A23D100E01584 /* UIView+Additions.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -423,6 +428,7 @@
 				DAF5E27D1BEE9A800023F8E8 /* ListAdditionViewController.m in Sources */,
 				DA6E0C081C0CAA400009632F /* DetailedItemViewController.m in Sources */,
 				DA5444BC1C132922002DFD0F /* CustomScrollView.m in Sources */,
+				DA8D2B6D1C1A23D100E01584 /* UIView+Additions.m in Sources */,
 				DAC6394F1BF54D30003A087B /* AislesPivotTable.m in Sources */,
 				DAA61BA61BE8FBF700CEC295 /* NavigationControllerDelegate.m in Sources */,
 				DA67F9F31BE8131E00E1734A /* ShoppingItem.m in Sources */,

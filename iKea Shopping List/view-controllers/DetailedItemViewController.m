@@ -11,7 +11,7 @@
 #import "StandaloneNavBar.h"
 #import "CustomScrollView.h"
 #import "UITextField+Additions.h"
-
+#import "UIView+Additions.h"
 
 
 
@@ -52,6 +52,7 @@ typedef enum{
                                      owner:self options:nil];
         UIView* navigationItemTitleView = [topLevelObjects objectAtIndex:0];
         self.nameTextField = (UITextField*) navigationItemTitleView;
+        self.nameTextField.delegate = self;
 
         /* The Detail Item View is presented modally in this case. Thus a
          * navigation bar must be created.*/
@@ -80,15 +81,8 @@ typedef enum{
     
 }
 -(void)viewDidAppear:(BOOL)animated{
-    [UIView animateWithDuration:0.5
-                          delay:0.0
-                        options: UIViewAnimationOptionAutoreverse |
-                                 UIViewAnimationOptionRepeat |
-                                 UIViewAnimationOptionAllowUserInteraction
-                     animations:^{
-                         self.nameTextField.layer.backgroundColor = [UIColor cyanColor].CGColor;
-                     }
-                     completion:nil];
+    if(self.nameTextField.text.length == 0)
+        [self.nameTextField startFlashAnimationWithColor:[UIColor cyanColor]];
     
 }
 
@@ -200,6 +194,18 @@ typedef enum{
     
 }
 
+-(BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    switch ((TEXT_FIELD_TAG)textField.tag) {
+        case NAME:
+            [textField stopFlashAnimation];
+            break;
+            
+        default:
+            break;
+    }
+    return YES;
+}
+
 - (BOOL)            textField:(UITextField *)textField
 shouldChangeCharactersInRange:(NSRange)range
             replacementString:(NSString *)string{
@@ -260,7 +266,12 @@ shouldChangeCharactersInRange:(NSRange)range
         case ITEM_NUM:
             self.shoppingItem.articleNumber = textField.text;
             break;
-            
+        case NAME:
+            /* The problem here is that I can't display any error message for
+             * this text field since it is located in Navigation Bar.
+             * TODO: Perhaps I can add shake animation if the user left it open.*/
+            self.shoppingItem.name = textField.text.length == 0? @"Name of New Item": textField.text;
+            break;
         default:
             NSLog(@"Error Undefined Text Field Tag: %ld", (long)textField.tag);
             break;
