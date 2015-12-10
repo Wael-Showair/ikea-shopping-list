@@ -31,6 +31,7 @@ typedef enum{
 @property (weak,nonatomic) IBOutlet StandaloneNavBar* navbar;
 @property (weak, nonatomic) IBOutlet UITextField *priceTextField;
 @property (weak, nonatomic) IBOutlet UITextField *quantityTextField;
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @end
 @implementation DetailedItemViewController
@@ -50,7 +51,8 @@ typedef enum{
         [[NSBundle mainBundle]loadNibNamed:@"navigation-item-text-input"
                                      owner:self options:nil];
         UIView* navigationItemTitleView = [topLevelObjects objectAtIndex:0];
-        
+        self.nameTextField = (UITextField*) navigationItemTitleView;
+
         /* The Detail Item View is presented modally in this case. Thus a
          * navigation bar must be created.*/
         StandaloneNavBar* customNavBar =
@@ -67,6 +69,7 @@ typedef enum{
         /* Disable Done button which is located at the right bar button item. */
         customNavBar.topItem.rightBarButtonItem.enabled = NO;
         
+        
         /* Hide the toolbar.*/
         [self.toolbar setHidden:YES];
         
@@ -74,6 +77,18 @@ typedef enum{
         self.title = self.shoppingItem.name;
     }
     
+    
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [UIView animateWithDuration:0.5
+                          delay:0.0
+                        options: UIViewAnimationOptionAutoreverse |
+                                 UIViewAnimationOptionRepeat |
+                                 UIViewAnimationOptionAllowUserInteraction
+                     animations:^{
+                         self.nameTextField.layer.backgroundColor = [UIColor cyanColor].CGColor;
+                     }
+                     completion:nil];
     
 }
 
