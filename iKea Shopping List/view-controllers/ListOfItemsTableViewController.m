@@ -147,9 +147,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     /* Scroll to the new added row. Let the row of interest to the top of the
      visible table view*/
-    [self.tableView scrollToRowAtIndexPath:indexPath
-                          atScrollPosition:UITableViewScrollPositionTop
-                                  animated:YES];
+//    [self.tableView scrollToRowAtIndexPath:indexPath
+//                          atScrollPosition:UITableViewScrollPositionTop
+//                                  animated:YES];
+
+    [self.tableView selectRowAtIndexPath:indexPath
+                                animated:YES
+                          scrollPosition:UITableViewScrollPositionTop];
     
     [self updateGlobalHeaderTotalPrice];
     
