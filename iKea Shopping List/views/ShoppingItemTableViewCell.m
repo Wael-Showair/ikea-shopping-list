@@ -11,26 +11,26 @@
 @implementation ShoppingItemTableViewCell
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
-    if(selected){
-        if(animated){
-            [UIView animateWithDuration:10.0 animations:^{
-                self.backgroundColor = [UIColor yellowColor];
-            }];
-        }else{
-            self.backgroundColor = [UIColor yellowColor];
-        }
+  [super setSelected:selected animated:animated];
+  
+  // Configure the view for the selected state
+  if(selected){
+    if(animated){
+      [UIView animateWithDuration:10.0 animations:^{
+        self.backgroundColor = [UIColor yellowColor];
+      }];
+    }else{
+      self.backgroundColor = [UIColor yellowColor];
     }
-    else if(NO == selected){
-        if(animated){
-            [UIView animateWithDuration:3.0 animations:^{
-                self.backgroundColor = [UIColor clearColor];
-            }];
-        }else{
-            self.backgroundColor = [UIColor clearColor];
-        }
+  }
+  else if(NO == selected){
+    if(animated){
+      [UIView animateWithDuration:3.0 animations:^{
+        self.backgroundColor = [UIColor clearColor];
+      }];
+    }else{
+      self.backgroundColor = [UIColor clearColor];
     }
+  }
 }
 @end

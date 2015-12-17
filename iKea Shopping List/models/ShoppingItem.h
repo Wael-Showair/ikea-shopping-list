@@ -25,31 +25,31 @@
  *  @property name
  *  @abstract Name of the shopping item.
  */
-@property NSString* name;
+@property (strong, nonatomic) NSString* name;
 
 /*!
  *  @property imageName
  *  @abstract Image name of the shopping item.
  */
-@property NSString* imageName;
+@property (strong, nonatomic) NSString* imageName;
 
 /*!
  *  @property price
  *  @abstract Price of the item.
- *  @discussion It can be decimal numbers. It does not take into consideration 
+ *  @discussion It can be decimal numbers. It does not take into consideration
  *  the exact currency.
  */
-@property NSDecimalNumber* price;
+@property (strong, nonatomic) NSDecimalNumber* price;
 
 /*!
  *  @property articleNumber
- *  @abstract Article number of the shopping item. It takes the format 
+ *  @abstract Article number of the shopping item. It takes the format
  *  xxx.yyy.zz
- *  @discussion Although this is a numeric field by nature but it needn't to be 
- *  used in any sorting or calculations. It is better from performance point of 
+ *  @discussion Although this is a numeric field by nature but it needn't to be
+ *  used in any sorting or calculations. It is better from performance point of
  *  view to save it in NSString*
  */
-@property NSString* articleNumber;
+@property (strong, nonatomic) NSString* articleNumber;
 
 /*!
  *  @property aisleNumber
@@ -85,20 +85,20 @@
                        price:(NSDecimalNumber*) itemPrice;
 
 
--(instancetype) initWithName:(NSString*) itemName
-                       price:(NSDecimalNumber*) itemPrice
-                       image:(NSString*) fileName;
+-(instancetype) initWithName: (NSString*) itemName
+                       price: (NSDecimalNumber*) itemPrice
+                       image: (NSString*) fileName;
 
--(instancetype) initWithName:(NSString*) itemName
-                       price:(NSDecimalNumber*) itemPrice
-                       image:(NSString*) fileName
-                 aisleNumber:(NSUInteger) aisleNumber;
+-(instancetype) initWithName: (NSString*) itemName
+                       price: (NSDecimalNumber*) itemPrice
+                       image: (NSString*) fileName
+                 aisleNumber: (NSUInteger) aisleNumber;
 
--(instancetype) initWithName:(NSString*) itemName
-                       price:(NSDecimalNumber*) itemPrice
-                       image:(NSString*) fileName
+-(instancetype) initWithName: (NSString*) itemName
+                       price: (NSDecimalNumber*) itemPrice
+                       image: (NSString*) fileName
                  aisleNumber: (NSUInteger) aisleNumber
-                   binNumber:(NSUInteger) binNumber
+                   binNumber: (NSUInteger) binNumber
                articleNumber: (NSString*) articleNumber
                     quantity: (NSUInteger) qunatity;
 @end

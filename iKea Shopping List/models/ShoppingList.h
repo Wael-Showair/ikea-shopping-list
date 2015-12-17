@@ -1,6 +1,6 @@
 /*!
  *  @header ShoppingList.h
- *  interface file that provides all the needed operations for an iKea shopping 
+ *  interface file that provides all the needed operations for an iKea shopping
  *  list.
  *
  *  @author Wael Showair (showair.wael\@gmail.com)
@@ -14,7 +14,7 @@
 /*!
  *  @class ShoppingList
  *  @abstract A class that represents an iKea Shopping List.
- *  @discussion The class wraps the real implementation of the list so that the 
+ *  @discussion The class wraps the real implementation of the list so that the
  *  maintainability of the code is easier.
  *  @seealso //apple_ref/occ/cl/ShoppingItem ShoppingItem
  */
@@ -37,13 +37,14 @@
 - (instancetype)initWithTitle: (NSString*) title;
 
 - (instancetype)initWithTitle: (NSString*) title
-                        total:(NSDecimalNumber*)total;
+                        total: (NSDecimalNumber*)total;
 /*!
  *  @abstract Add new shopping item to the list.
  *
  *  @param item an object of shopping item.
  */
-- (void) addNewItem: (ShoppingItem*) item AtAisleIndex:(NSUInteger) index;
+- (void) addNewItem: (ShoppingItem*) item
+       AtAisleIndex: (NSUInteger) index;
 
 - (void)removeItemAtIndexPath:(NSIndexPath*)index;
 
@@ -61,7 +62,7 @@
  *
  *  @param indexPath an index within the bounds of the shopping list.
  *
- *  @return shopping item object located at the given index 
+ *  @return shopping item object located at the given index
  *  @discussion if the index is out of bounds, a nil pointer is returned.
  */
 - (ShoppingItem *) itemAtAisleIndexPath: (NSIndexPath*) indexPath;

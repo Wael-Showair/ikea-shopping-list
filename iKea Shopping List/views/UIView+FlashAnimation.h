@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIView (UIView_Additions)
+@interface UIView (UIView_FlashAnimation)
 -(void) startFlashAnimationWithColor:(UIColor*)color;
 -(void) stopFlashAnimation;
 @end

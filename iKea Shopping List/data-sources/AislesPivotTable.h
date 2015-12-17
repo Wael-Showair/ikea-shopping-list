@@ -7,14 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ShoppingList.h"
 
 @interface AislesPivotTable : NSObject
 
 -(instancetype) initWithItems: (ShoppingList *) items;
 
 -(NSInteger) addNewAisleNumber: (NSUInteger) aisleNumber
-           forActualIndex: (NSUInteger) index
-       withAscendingOrder: (BOOL) ascenOrder;
+                forActualIndex: (NSUInteger) index
+            withAscendingOrder: (BOOL) ascenOrder;
 
 - (void) removeEntryWithAisleNumber: (NSUInteger) aisleNumber;
 - (void) removeEntryWithVirtualIndex: (NSUInteger) index;

@@ -15,9 +15,9 @@
  * UIBarPositioningDelegate.
  */
 @interface ListAdditionViewController : UIViewController
-                <UINavigationBarDelegate,
-                 UITableViewDataSource,
-                 UITextFieldDelegate>
+                                       <UINavigationBarDelegate,
+                                        UITableViewDataSource,
+                                        UITextFieldDelegate>
 
-@property (weak) id<ListInfoCreationDelegate> listInfoCreationDelegate;
+@property (weak, nonatomic) id <ListInfoCreationDelegate> listInfoCreationDelegate;
 @end

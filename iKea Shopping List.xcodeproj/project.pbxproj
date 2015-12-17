@@ -37,6 +37,7 @@
 		DAED5BCE1BEA780700C5816F /* ListsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DAED5BCD1BEA780700C5816F /* ListsDataSource.m */; };
 		DAF5E27D1BEE9A800023F8E8 /* ListAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5E27C1BEE9A800023F8E8 /* ListAdditionViewController.m */; };
 		DAF7345D1BF239B00013CDDD /* items-table-header-view.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF7345C1BF239B00013CDDD /* items-table-header-view.xib */; };
+		DAF88CD41C2334F40074E0A8 /* PivotEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF88CD31C2334F40074E0A8 /* PivotEntry.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,7 +61,7 @@
 		DA0323851BEF9AD4003960B0 /* ListInfoCreationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListInfoCreationDelegate.h; path = protocols/ListInfoCreationDelegate.h; sourceTree = "<group>"; };
 		DA03238A1BEFCA0B003960B0 /* text-input-table-view-cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "text-input-table-view-cell.xib"; sourceTree = "<group>"; };
 		DA14CA371C035D690043C2B6 /* AislesPivotTableTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AislesPivotTableTests.m; sourceTree = "<group>"; };
-		DA14CA3A1C0380FB0043C2B6 /* AislesPivotTable_PivotEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AislesPivotTable_PivotEntry.h; path = "data-sources/AislesPivotTable_PivotEntry.h"; sourceTree = "<group>"; };
+		DA14CA3A1C0380FB0043C2B6 /* PivotEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PivotEntry.h; path = "data-sources/PivotEntry.h"; sourceTree = "<group>"; };
 		DA14CA3B1C03A2020043C2B6 /* ListOfItemsUITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOfItemsUITests.m; sourceTree = "<group>"; };
 		DA2313381BF1891700E5366C /* ItemsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemsDataSource.h; path = "data-sources/ItemsDataSource.h"; sourceTree = "<group>"; };
 		DA2313391BF1891700E5366C /* ItemsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemsDataSource.m; path = "data-sources/ItemsDataSource.m"; sourceTree = "<group>"; };
@@ -115,6 +116,7 @@
 		DAF5E27B1BEE9A800023F8E8 /* ListAdditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListAdditionViewController.h; path = "view-controllers/ListAdditionViewController.h"; sourceTree = "<group>"; };
 		DAF5E27C1BEE9A800023F8E8 /* ListAdditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListAdditionViewController.m; path = "view-controllers/ListAdditionViewController.m"; sourceTree = "<group>"; };
 		DAF7345C1BF239B00013CDDD /* items-table-header-view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "items-table-header-view.xib"; sourceTree = "<group>"; };
+		DAF88CD31C2334F40074E0A8 /* PivotEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PivotEntry.m; path = "data-sources/PivotEntry.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,7 +334,8 @@
 				DA2313391BF1891700E5366C /* ItemsDataSource.m */,
 				DAC6394D1BF54D30003A087B /* AislesPivotTable.h */,
 				DAC6394E1BF54D30003A087B /* AislesPivotTable.m */,
-				DA14CA3A1C0380FB0043C2B6 /* AislesPivotTable_PivotEntry.h */,
+				DA14CA3A1C0380FB0043C2B6 /* PivotEntry.h */,
+				DAF88CD31C2334F40074E0A8 /* PivotEntry.m */,
 			);
 			name = "data source";
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				DAF5E27D1BEE9A800023F8E8 /* ListAdditionViewController.m in Sources */,
 				DA6E0C081C0CAA400009632F /* DetailedItemViewController.m in Sources */,
 				DA5444BC1C132922002DFD0F /* CustomScrollView.m in Sources */,
+				DAF88CD41C2334F40074E0A8 /* PivotEntry.m in Sources */,
 				DA8D2B6D1C1A23D100E01584 /* UIView+FlashAnimation.m in Sources */,
 				DA65F73B1C1BC0850017BBCB /* ShoppingItemTableViewCell.m in Sources */,
 				DAC6394F1BF54D30003A087B /* AislesPivotTable.m in Sources */,

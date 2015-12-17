@@ -11,7 +11,6 @@
 #import <UIKit/UIKit.h>
 #import "TwoSidedDoorAnimator.h"
 
-@interface NavigationControllerDelegate : NSObject
-    <UINavigationControllerDelegate>
+@interface NavigationControllerDelegate : NSObject <UINavigationControllerDelegate>
 
 @end

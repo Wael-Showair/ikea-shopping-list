@@ -12,8 +12,8 @@
 #import "ListInfoCreationDelegate.h"
 
 @interface ListOfListsTableViewController : UITableViewController
-    <UITableViewDataSource,
-     UITableViewDelegate,
-     ListInfoCreationDelegate>
+                                           <UITableViewDataSource,
+                                            UITableViewDelegate,
+                                            ListInfoCreationDelegate>
 
 @end

@@ -10,7 +10,6 @@
 #import <UIKit/UIKit.h>
 #import "ListsDataSource.h"
 
-@interface ListsDataSource()
 
 /*!
  *  @define LISTS_CELL_IDENTIFIER
@@ -18,52 +17,54 @@
  */
 #define LISTS_CELL_IDENTIFIER       @"cellForListOfLists"
 
-@property NSMutableArray* allItems;
+@interface ListsDataSource()
+
+@property (strong, nonatomic) NSMutableArray* allItems;
 @end
 
 @implementation ListsDataSource
 
 - (instancetype)initWithItems:(NSMutableArray *)items
 {
-    self = [super init];
-    if (self) {
-        self.allItems = items;
-    }
-    return self;
+  self = [super init];
+  if (self) {
+    self.allItems = items;
+  }
+  return self;
 }
 
 -(id)itemAtIndexPath:(NSIndexPath *)indexPath{
-    return [self.allItems objectAtIndex:indexPath.row];
+  return [self.allItems objectAtIndex:indexPath.row];
 }
 
 -(void) insertObject:(id)object AtIndex:(NSUInteger)index{
-    [self.allItems insertObject:object
-                        atIndex:index];
+  [self.allItems insertObject:object atIndex:index];
 }
 
 -(void) removeObjectAtIndex: (NSUInteger)index{
-    [self.allItems removeObjectAtIndex:index];
+  [self.allItems removeObjectAtIndex:index];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    /* Because the prototype cell is defined in a storyboard, the 
-     * dequeueReusableCellWithIdentifier: method always returns a valid cell. 
-     * You don’t need to check the return value against nil and create a cell 
-     * manually.*/
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:LISTS_CELL_IDENTIFIER];
-
-    return cell;
+  /* Because the prototype cell is defined in a storyboard, the
+   * dequeueReusableCellWithIdentifier: method always returns a valid cell.
+   * You don’t need to check the return value against nil and create a cell
+   * manually.*/
+  UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:LISTS_CELL_IDENTIFIER];
+  
+  return cell;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView
 numberOfRowsInSection:(NSInteger)section{
-    return self.allItems.count;
+  
+  return self.allItems.count;
 }
 
 /*
  // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView 
+ - (BOOL)tableView:(UITableView *)tableView
  canEditRowAtIndexPath:(NSIndexPath *)indexPath {
  // Return NO if you do not want the specified item to be editable.
  return YES;
@@ -71,23 +72,23 @@ numberOfRowsInSection:(NSInteger)section{
  */
 
 
-/* Override to support editing the table view. 
+/* Override to support editing the table view.
  * To enable the swipe-to-delete feature of table views
  */
- - (void)tableView:(UITableView *)tableView
+- (void)tableView:(UITableView *)tableView
 commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
- forRowAtIndexPath:(NSIndexPath *)indexPath {
- 
-     if (editingStyle == UITableViewCellEditingStyleDelete) {
-         //Delete object from data array itself.
-         [self removeObjectAtIndex:indexPath.row];
-         
-         // Delete the row from the data source
-         [tableView deleteRowsAtIndexPaths:@[indexPath]
-                          withRowAnimation:UITableViewRowAnimationFade];
-         
-     }
- }
+forRowAtIndexPath:(NSIndexPath *)indexPath {
+  
+  if (editingStyle == UITableViewCellEditingStyleDelete) {
+    //Delete object from data array itself.
+    [self removeObjectAtIndex:indexPath.row];
+    
+    // Delete the row from the data source
+    [tableView deleteRowsAtIndexPaths:@[indexPath]
+                     withRowAnimation:UITableViewRowAnimationFade];
+    
+  }
+}
 
 /*
  // Override to support rearranging the table view.

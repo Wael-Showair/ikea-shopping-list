@@ -12,10 +12,12 @@
 #import "AislesPivotTable.h"
 
 @interface PivotEntry : NSObject
+
 @property NSInteger aisleIndex;
 @property NSUInteger aisleNum;
+
+- (instancetype)initWithAisleNum: (NSUInteger) number
+                   PhysicalIndex: (NSInteger)  index;
+
 @end
 
-@interface AislesPivotTable ()
-
-@end

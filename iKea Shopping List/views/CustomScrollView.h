@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface CustomScrollView : UIScrollView <UITextFieldDelegate>
+
 - (void)registerForKeyboardNotifications;
 
 @end

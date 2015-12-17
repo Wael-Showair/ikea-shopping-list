@@ -9,18 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-
-@interface ItemsDataSource : NSObject <UITableViewDataSource>
-
 #define TOTAL_PRICE_PREFIX     @"Total Price: "
 
 #define TOTAL_PRICE_ROW_INDEX    0
+
+@interface ItemsDataSource : NSObject <UITableViewDataSource>
 
 - (instancetype) initWithItems:(ShoppingList *)items;
 
 - (id) itemAtIndexPath:(NSIndexPath *)indexPath;
 
-- (NSInteger) insertShoppingItem:(ShoppingItem*)newItem
+- (NSInteger) insertShoppingItem: (ShoppingItem*)newItem
               withAscendingOrder: (BOOL) ascenOrder;
 
 @end

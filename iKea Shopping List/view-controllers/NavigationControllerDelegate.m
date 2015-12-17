@@ -1,6 +1,6 @@
 /*!
  *  @file NavigationControllerDelegate.m
- *  implementation file that provides operations of the delegate for the custom 
+ *  implementation file that provides operations of the delegate for the custom
  *  navigation controller.
  *
  *  @author Wael Showair (showair.wael\@gmail.com)
@@ -15,7 +15,7 @@
 
 /*!
  *  @property animator
- *  @abstract an animator that is used during transition between view 
+ *  @abstract an animator that is used during transition between view
  *  controllers.
  */
 @property TwoSidedDoorAnimator* animator;
@@ -34,31 +34,30 @@
  *  @abstract get the custom non-interactive animator object that is used during
  *  transition between view controllers.
  *
- *  @param navigationController 
+ *  @param navigationController
  *  The navigation controller whose navigation stack is changing
- *  @param operation 
+ *  @param operation
  *  The type of transition operation that is occurring.
  *  @param fromVC
  *  The currently visible view controller.
- *  @param toVC 
+ *  @param toVC
  *  The view controller that should be visible at the end of the transition.
  *
- *  @return The animator object responsible for managing the transition 
- *  animations or nil if you want to use the standard navigation controller 
+ *  @return The animator object responsible for managing the transition
+ *  animations or nil if you want to use the standard navigation controller
  *  transitions.
  *
- *  @discussion UIKit calls checks whether the transitioning delegate object is 
- *  set. If it asks the delegate to return a noninteractive animator object for 
+ *  @discussion UIKit calls checks whether the transitioning delegate object is
+ *  set. If it asks the delegate to return a noninteractive animator object for
  *  use during view controller transitions.
  */
-- (id<UIViewControllerAnimatedTransitioning>)
-    navigationController:(UINavigationController *)navigationController
-    animationControllerForOperation:(UINavigationControllerOperation)operation
-    fromViewController:(UIViewController *)fromVC
-    toViewController:(UIViewController *)toVC;
+- (id<UIViewControllerAnimatedTransitioning>) navigationController:(UINavigationController *)navigationController
+                                   animationControllerForOperation:(UINavigationControllerOperation)operation
+                                                fromViewController:(UIViewController *)fromVC
+                                                  toViewController:(UIViewController *)toVC;
 
 /*!
- *  @abstract checks whether the given view controller is the root view 
+ *  @abstract checks whether the given view controller is the root view
  *  controller or not
  *
  *  @param viewController
@@ -73,58 +72,58 @@
 @implementation NavigationControllerDelegate
 - (instancetype)init
 {
-    self = [super init];
-    if (self) {
-        self.animator = [[TwoSidedDoorAnimator alloc] init];
-    }
-    return self;
+  self = [super init];
+  if (self) {
+    self.animator = [[TwoSidedDoorAnimator alloc] init];
+  }
+  return self;
 }
 
-- (id<UIViewControllerAnimatedTransitioning>)
-navigationController:(UINavigationController *)navigationController
-animationControllerForOperation:(UINavigationControllerOperation)operation
-fromViewController:(UIViewController *)fromVC
-toViewController:(UIViewController *)toVC
+- (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
+                                  animationControllerForOperation:(UINavigationControllerOperation)operation
+                                               fromViewController:(UIViewController *)fromVC
+                                                 toViewController:(UIViewController *)toVC
 {
-    
-    TwoSidedDoorAnimator* animator;
-    switch (operation) {
-        case UINavigationControllerOperationNone:
-            NSLog(@"None operation");
-            animator = nil;
-            break;
-        case UINavigationControllerOperationPop:
-            NSLog(@"Pop operation");
-            if([self isRootViewController:toVC]){
-                self.animator.isReversed = YES;
-                animator =  self.animator;
-            }else{
-                animator = nil;
-            }
-            break;
-        case UINavigationControllerOperationPush:
-            NSLog(@"Push operation");
-            if([self isRootViewController:fromVC]){
-                self.animator.isReversed = NO;
-                animator =  self.animator;
-            }else{
-                animator = nil;
-            }
-            break;
-        default:
-            NSLog(@"Undefined NavBar operation type: %ld", operation);
-            animator = nil;
-    }
-    
-    return animator;
+  
+  TwoSidedDoorAnimator* animator;
+  switch (operation) {
+    case UINavigationControllerOperationNone:
+      NSLog(@"None operation");
+      animator = nil;
+      break;
+    case UINavigationControllerOperationPop:
+      NSLog(@"Pop operation");
+      if([self isRootViewController:toVC]){
+        self.animator.isReversed = YES;
+        animator =  self.animator;
+      }else{
+        animator = nil;
+      }
+      break;
+    case UINavigationControllerOperationPush:
+      NSLog(@"Push operation");
+      if([self isRootViewController:fromVC]){
+        self.animator.isReversed = NO;
+        animator =  self.animator;
+      }else{
+        animator = nil;
+      }
+      break;
+    default:
+      NSLog(@"Undefined NavBar operation type: %ld", operation);
+      animator = nil;
+  }
+  
+  return animator;
 }
 
 - (BOOL) isRootViewController: (UIViewController*) viewController{
-    if(viewController.navigationController)
-        return viewController.navigationController.childViewControllers[0] ==
-                    viewController;
-    else
-        return NO;
+  
+  if(viewController.navigationController){
+    return viewController.navigationController.childViewControllers[0] == viewController;
+  }else{
+    return NO;
+  }
 }
 
 @end

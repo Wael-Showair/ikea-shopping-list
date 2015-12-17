@@ -13,14 +13,14 @@
 #import "ShoppingItemDelegate.h"
 
 @interface ListOfItemsTableViewController : UITableViewController
-<UITableViewDataSource,
-UITableViewDelegate,
-ShoppingItemDelegate>
+                                           <UITableViewDataSource,
+                                            UITableViewDelegate,
+                                            ShoppingItemDelegate>
 
 /*!
  *  @property shoppingList
  *  @abstract iKea shopping list of items that is passed between tabel view
  *  controllers.
  */
-@property ShoppingList* shoppingList;
+@property (strong,nonatomic) ShoppingList* shoppingList;
 @end

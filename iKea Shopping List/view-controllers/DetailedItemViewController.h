@@ -11,10 +11,10 @@
 #import "UITextFieldValidationDelegate.h"
 
 @interface DetailedItemViewController : UIViewController
-<UITextFieldValidationDelegate,
-UINavigationBarDelegate>
+                                       <UITextFieldValidationDelegate,
+                                        UINavigationBarDelegate>
 
 @property ShoppingItem* shoppingItem;
 @property BOOL isNewItem;
-@property (weak) id <ShoppingItemDelegate> shoppningItemDelegate;
+@property (weak,nonatomic) id <ShoppingItemDelegate> shoppningItemDelegate;
 @end

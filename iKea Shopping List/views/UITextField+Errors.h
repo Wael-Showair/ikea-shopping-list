@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UITextField (Additions)
+@interface UITextField (Errors)
 -(void) displayErrorIndicators;
 -(void) removeErrorIndicators;
 -(void) displayErrorMessage: (NSString*) message;

@@ -1,6 +1,6 @@
 /*
  *  @file ShoppingItem.m
- *  implementation file that provides all the needed operations for an iKea 
+ *  implementation file that provides all the needed operations for an iKea
  *  shopping item.
  *
  *  @author Wael Showair (showair.wael\@gmail.com)
@@ -17,11 +17,11 @@
 
 - (instancetype)init
 {
-    NSDecimalNumber* price = [NSDecimalNumber decimalNumberWithString:@"0"];
-    /* invoke the designated initializer. */
-    self =  [self initWithName:@"" price:price image:@""];
-    
-    return self;
+  NSDecimalNumber* price = [NSDecimalNumber decimalNumberWithString:@"0"];
+  /* invoke the designated initializer. */
+  self =  [self initWithName:@"" price:price image:@""];
+  
+  return self;
 }
 
 
@@ -29,23 +29,22 @@
 -(instancetype) initWithName:(NSString*) itemName
                        price:(NSDecimalNumber*) itemPrice
 {
-    /* invoke the designated initializer. */
-    self =  [self initWithName:itemName price:itemPrice image:@""];
-    return self;
+  /* invoke the designated initializer. */
+  return  [self initWithName:itemName price:itemPrice image:@""];
+
 }
 
 -(instancetype) initWithName:(NSString*) itemName
                        price:(NSDecimalNumber*) itemPrice
                        image:(NSString*) fileName
 {
-    self = [self initWithName:itemName
-                        price:itemPrice
-                        image:fileName
-                  aisleNumber:0
-                    binNumber:0
-                articleNumber:@""
-                     quantity:0];
-    return self;
+  return [self initWithName:itemName
+                      price:itemPrice
+                      image:fileName
+                aisleNumber:0
+                  binNumber:0
+              articleNumber:@""
+                   quantity:0];
 }
 
 -(instancetype) initWithName:(NSString*) itemName
@@ -53,14 +52,14 @@
                        image:(NSString*) fileName
                  aisleNumber:(NSUInteger) aisleNumber
 {
-    self = [self initWithName:itemName
-                        price:itemPrice
-                        image:fileName
-                  aisleNumber:aisleNumber
-                    binNumber:0
-                articleNumber:@""
-                     quantity:0];
-    return self;
+  return [self initWithName:itemName
+                      price:itemPrice
+                      image:fileName
+                aisleNumber:aisleNumber
+                  binNumber:0
+              articleNumber:@""
+                   quantity:0];
+
 }
 
 - (instancetype)initWithName:(NSString *)itemName
@@ -71,18 +70,18 @@
                articleNumber:(NSString *)articleNumber
                     quantity:(NSUInteger)qunatity
 {
-    self = [super init];
-    
-    if(self){
-        _name = itemName;
-        _price = itemPrice;
-        _imageName = fileName;
-        _aisleNumber = aisleNumber;
-        _binNumber = binNumber;
-        _articleNumber = articleNumber;
-        _quantity = qunatity;
-    }
-    return self;
+  self = [super init];
+  
+  if(self){
+    self.name = itemName;
+    self.price = itemPrice;
+    self.imageName = fileName;
+    self.aisleNumber = aisleNumber;
+    self.binNumber = binNumber;
+    self.articleNumber = articleNumber;
+    self.quantity = qunatity;
+  }
+  return self;
 }
 
 @end
