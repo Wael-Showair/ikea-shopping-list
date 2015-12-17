@@ -10,8 +10,8 @@
 #import "DetailedItemViewController.h"
 #import "StandaloneNavBar.h"
 #import "CustomScrollView.h"
-#import "UITextField+Additions.h"
-#import "UIView+Additions.h"
+#import "UITextField+Errors.h"
+#import "UIView+FlashAnimation.h"
 
 
 

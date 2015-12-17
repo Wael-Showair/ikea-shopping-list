@@ -6,7 +6,7 @@
 //  Copyright © 2015 showair.wael@gmail.com. All rights reserved.
 //
 
-#import "UITextField+Additions.h"
+#import "UITextField+Errors.h"
 
 @implementation UITextField (Additions)
 

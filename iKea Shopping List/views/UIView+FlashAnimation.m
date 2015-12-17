@@ -6,7 +6,7 @@
 //  Copyright © 2015 showair.wael@gmail.com. All rights reserved.
 //
 
-#import "UIView+Additions.h"
+#import "UIView+FlashAnimation.h"
 
 @implementation UIView (UIView_Additions)
 -(void) startFlashAnimationWithColor: (UIColor* )color{

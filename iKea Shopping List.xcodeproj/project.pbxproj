@@ -21,7 +21,7 @@
 		DA67F9F91BE8131E00E1734A /* ListOfItemsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA67F9ED1BE8131E00E1734A /* ListOfItemsTableViewController.m */; };
 		DA67F9FC1BE8131E00E1734A /* ListOfListsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA67F9EF1BE8131E00E1734A /* ListOfListsTableViewController.m */; };
 		DA6E0C081C0CAA400009632F /* DetailedItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6E0C071C0CAA400009632F /* DetailedItemViewController.m */; };
-		DA8D2B6D1C1A23D100E01584 /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8D2B6C1C1A23D100E01584 /* UIView+Additions.m */; };
+		DA8D2B6D1C1A23D100E01584 /* UIView+FlashAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8D2B6C1C1A23D100E01584 /* UIView+FlashAnimation.m */; };
 		DAA61BA61BE8FBF700CEC295 /* NavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA61BA51BE8FBF700CEC295 /* NavigationControllerDelegate.m */; };
 		DAC03FD11C17890600A64054 /* navigation-item-text-input.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAC03FD01C17890600A64054 /* navigation-item-text-input.xib */; };
 		DAC6394F1BF54D30003A087B /* AislesPivotTable.m in Sources */ = {isa = PBXBuildFile; fileRef = DAC6394E1BF54D30003A087B /* AislesPivotTable.m */; };
@@ -33,7 +33,7 @@
 		DADD0A781BDD50CE00806DB6 /* ShoppingItemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0A771BDD50CE00806DB6 /* ShoppingItemTests.m */; };
 		DADD0A831BDD50CE00806DB6 /* ListOfListsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0A821BDD50CE00806DB6 /* ListOfListsUITests.m */; };
 		DADD0A9A1BDD8A3800806DB6 /* ShoppingListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0A991BDD8A3800806DB6 /* ShoppingListTests.m */; };
-		DAE8DABA1C14828C00AB81A2 /* UITextField+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE8DAB91C14828C00AB81A2 /* UITextField+Additions.m */; };
+		DAE8DABA1C14828C00AB81A2 /* UITextField+Errors.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE8DAB91C14828C00AB81A2 /* UITextField+Errors.m */; };
 		DAED5BCE1BEA780700C5816F /* ListsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DAED5BCD1BEA780700C5816F /* ListsDataSource.m */; };
 		DAF5E27D1BEE9A800023F8E8 /* ListAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5E27C1BEE9A800023F8E8 /* ListAdditionViewController.m */; };
 		DAF7345D1BF239B00013CDDD /* items-table-header-view.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF7345C1BF239B00013CDDD /* items-table-header-view.xib */; };
@@ -57,13 +57,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DA0323851BEF9AD4003960B0 /* ListInfoCreationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListInfoCreationDelegate.h; sourceTree = "<group>"; };
+		DA0323851BEF9AD4003960B0 /* ListInfoCreationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListInfoCreationDelegate.h; path = protocols/ListInfoCreationDelegate.h; sourceTree = "<group>"; };
 		DA03238A1BEFCA0B003960B0 /* text-input-table-view-cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "text-input-table-view-cell.xib"; sourceTree = "<group>"; };
 		DA14CA371C035D690043C2B6 /* AislesPivotTableTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AislesPivotTableTests.m; sourceTree = "<group>"; };
-		DA14CA3A1C0380FB0043C2B6 /* AislesPivotTable_PivotEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AislesPivotTable_PivotEntry.h; sourceTree = "<group>"; };
+		DA14CA3A1C0380FB0043C2B6 /* AislesPivotTable_PivotEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AislesPivotTable_PivotEntry.h; path = "data-sources/AislesPivotTable_PivotEntry.h"; sourceTree = "<group>"; };
 		DA14CA3B1C03A2020043C2B6 /* ListOfItemsUITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOfItemsUITests.m; sourceTree = "<group>"; };
-		DA2313381BF1891700E5366C /* ItemsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemsDataSource.h; sourceTree = "<group>"; };
-		DA2313391BF1891700E5366C /* ItemsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemsDataSource.m; sourceTree = "<group>"; };
+		DA2313381BF1891700E5366C /* ItemsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemsDataSource.h; path = "data-sources/ItemsDataSource.h"; sourceTree = "<group>"; };
+		DA2313391BF1891700E5366C /* ItemsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemsDataSource.m; path = "data-sources/ItemsDataSource.m"; sourceTree = "<group>"; };
 		DA5444B71C1327F4002DFD0F /* StandaloneNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StandaloneNavBar.h; path = views/StandaloneNavBar.h; sourceTree = "<group>"; };
 		DA5444B81C1327F4002DFD0F /* StandaloneNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StandaloneNavBar.m; path = views/StandaloneNavBar.m; sourceTree = "<group>"; };
 		DA5444BA1C132922002DFD0F /* CustomScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomScrollView.h; path = views/CustomScrollView.h; sourceTree = "<group>"; };
@@ -76,23 +76,23 @@
 		DA67F9E51BE8131E00E1734A /* TwoSidedDoorAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwoSidedDoorAnimator.m; sourceTree = "<group>"; };
 		DA67F9E71BE8131E00E1734A /* ShoppingItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingItem.h; sourceTree = "<group>"; };
 		DA67F9E81BE8131E00E1734A /* ShoppingItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingItem.m; sourceTree = "<group>"; };
-		DA67F9E91BE8131E00E1734A /* ShoppingList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingList.h; sourceTree = "<group>"; };
-		DA67F9EA1BE8131E00E1734A /* ShoppingList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingList.m; sourceTree = "<group>"; };
-		DA67F9EC1BE8131E00E1734A /* ListOfItemsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListOfItemsTableViewController.h; sourceTree = "<group>"; };
-		DA67F9ED1BE8131E00E1734A /* ListOfItemsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOfItemsTableViewController.m; sourceTree = "<group>"; };
-		DA67F9EE1BE8131E00E1734A /* ListOfListsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListOfListsTableViewController.h; sourceTree = "<group>"; };
-		DA67F9EF1BE8131E00E1734A /* ListOfListsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOfListsTableViewController.m; sourceTree = "<group>"; };
-		DA6E0C061C0CAA400009632F /* DetailedItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailedItemViewController.h; sourceTree = "<group>"; };
-		DA6E0C071C0CAA400009632F /* DetailedItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailedItemViewController.m; sourceTree = "<group>"; };
-		DA8D2B6B1C1A23D100E01584 /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Additions.h"; path = "views/UIView+Additions.h"; sourceTree = "<group>"; };
-		DA8D2B6C1C1A23D100E01584 /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Additions.m"; path = "views/UIView+Additions.m"; sourceTree = "<group>"; };
-		DAA61BA41BE8FBF700CEC295 /* NavigationControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationControllerDelegate.h; sourceTree = "<group>"; };
-		DAA61BA51BE8FBF700CEC295 /* NavigationControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationControllerDelegate.m; sourceTree = "<group>"; };
-		DABFA0671C17501400312414 /* UITextFieldValidationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextFieldValidationDelegate.h; sourceTree = "<group>"; };
+		DA67F9E91BE8131E00E1734A /* ShoppingList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingList.h; path = models/ShoppingList.h; sourceTree = "<group>"; };
+		DA67F9EA1BE8131E00E1734A /* ShoppingList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShoppingList.m; path = models/ShoppingList.m; sourceTree = "<group>"; };
+		DA67F9EC1BE8131E00E1734A /* ListOfItemsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListOfItemsTableViewController.h; path = "view-controllers/ListOfItemsTableViewController.h"; sourceTree = "<group>"; };
+		DA67F9ED1BE8131E00E1734A /* ListOfItemsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListOfItemsTableViewController.m; path = "view-controllers/ListOfItemsTableViewController.m"; sourceTree = "<group>"; };
+		DA67F9EE1BE8131E00E1734A /* ListOfListsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListOfListsTableViewController.h; path = "view-controllers/ListOfListsTableViewController.h"; sourceTree = "<group>"; };
+		DA67F9EF1BE8131E00E1734A /* ListOfListsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListOfListsTableViewController.m; path = "view-controllers/ListOfListsTableViewController.m"; sourceTree = "<group>"; };
+		DA6E0C061C0CAA400009632F /* DetailedItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailedItemViewController.h; path = "view-controllers/DetailedItemViewController.h"; sourceTree = "<group>"; };
+		DA6E0C071C0CAA400009632F /* DetailedItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailedItemViewController.m; path = "view-controllers/DetailedItemViewController.m"; sourceTree = "<group>"; };
+		DA8D2B6B1C1A23D100E01584 /* UIView+FlashAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+FlashAnimation.h"; path = "views/UIView+FlashAnimation.h"; sourceTree = "<group>"; };
+		DA8D2B6C1C1A23D100E01584 /* UIView+FlashAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+FlashAnimation.m"; path = "views/UIView+FlashAnimation.m"; sourceTree = "<group>"; };
+		DAA61BA41BE8FBF700CEC295 /* NavigationControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NavigationControllerDelegate.h; path = "view-controllers/NavigationControllerDelegate.h"; sourceTree = "<group>"; };
+		DAA61BA51BE8FBF700CEC295 /* NavigationControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NavigationControllerDelegate.m; path = "view-controllers/NavigationControllerDelegate.m"; sourceTree = "<group>"; };
+		DABFA0671C17501400312414 /* UITextFieldValidationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UITextFieldValidationDelegate.h; path = protocols/UITextFieldValidationDelegate.h; sourceTree = "<group>"; };
 		DAC03FD01C17890600A64054 /* navigation-item-text-input.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "navigation-item-text-input.xib"; path = "views/navigation-item-text-input.xib"; sourceTree = "<group>"; };
-		DAC6394D1BF54D30003A087B /* AislesPivotTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AislesPivotTable.h; sourceTree = "<group>"; };
-		DAC6394E1BF54D30003A087B /* AislesPivotTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AislesPivotTable.m; sourceTree = "<group>"; };
-		DAD001B81C10DFC3008A8DEE /* ShoppingItemDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingItemDelegate.h; sourceTree = "<group>"; };
+		DAC6394D1BF54D30003A087B /* AislesPivotTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AislesPivotTable.h; path = "data-sources/AislesPivotTable.h"; sourceTree = "<group>"; };
+		DAC6394E1BF54D30003A087B /* AislesPivotTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AislesPivotTable.m; path = "data-sources/AislesPivotTable.m"; sourceTree = "<group>"; };
+		DAD001B81C10DFC3008A8DEE /* ShoppingItemDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingItemDelegate.h; path = protocols/ShoppingItemDelegate.h; sourceTree = "<group>"; };
 		DADD0A5A1BDD50CE00806DB6 /* iKea Shopping List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iKea Shopping List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DADD0A5E1BDD50CE00806DB6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DADD0A601BDD50CE00806DB6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -108,12 +108,12 @@
 		DADD0A821BDD50CE00806DB6 /* ListOfListsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListOfListsUITests.m; sourceTree = "<group>"; };
 		DADD0A841BDD50CE00806DB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DADD0A991BDD8A3800806DB6 /* ShoppingListTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListTests.m; sourceTree = "<group>"; };
-		DAE8DAB81C14828C00AB81A2 /* UITextField+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextField+Additions.h"; path = "views/UITextField+Additions.h"; sourceTree = "<group>"; };
-		DAE8DAB91C14828C00AB81A2 /* UITextField+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextField+Additions.m"; path = "views/UITextField+Additions.m"; sourceTree = "<group>"; };
-		DAED5BCC1BEA780700C5816F /* ListsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListsDataSource.h; sourceTree = "<group>"; };
-		DAED5BCD1BEA780700C5816F /* ListsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListsDataSource.m; sourceTree = "<group>"; };
-		DAF5E27B1BEE9A800023F8E8 /* ListAdditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListAdditionViewController.h; sourceTree = "<group>"; };
-		DAF5E27C1BEE9A800023F8E8 /* ListAdditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListAdditionViewController.m; sourceTree = "<group>"; };
+		DAE8DAB81C14828C00AB81A2 /* UITextField+Errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextField+Errors.h"; path = "views/UITextField+Errors.h"; sourceTree = "<group>"; };
+		DAE8DAB91C14828C00AB81A2 /* UITextField+Errors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextField+Errors.m"; path = "views/UITextField+Errors.m"; sourceTree = "<group>"; };
+		DAED5BCC1BEA780700C5816F /* ListsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListsDataSource.h; path = "data-sources/ListsDataSource.h"; sourceTree = "<group>"; };
+		DAED5BCD1BEA780700C5816F /* ListsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListsDataSource.m; path = "data-sources/ListsDataSource.m"; sourceTree = "<group>"; };
+		DAF5E27B1BEE9A800023F8E8 /* ListAdditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListAdditionViewController.h; path = "view-controllers/ListAdditionViewController.h"; sourceTree = "<group>"; };
+		DAF5E27C1BEE9A800023F8E8 /* ListAdditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListAdditionViewController.m; path = "view-controllers/ListAdditionViewController.m"; sourceTree = "<group>"; };
 		DAF7345C1BF239B00013CDDD /* items-table-header-view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "items-table-header-view.xib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -142,36 +142,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DA0323801BEF9692003960B0 /* protocols */ = {
+		DA0323891BEFC9C9003960B0 /* common */ = {
 			isa = PBXGroup;
 			children = (
-				DA0323851BEF9AD4003960B0 /* ListInfoCreationDelegate.h */,
-				DAD001B81C10DFC3008A8DEE /* ShoppingItemDelegate.h */,
-				DABFA0671C17501400312414 /* UITextFieldValidationDelegate.h */,
+				DAE8DAB81C14828C00AB81A2 /* UITextField+Errors.h */,
+				DAE8DAB91C14828C00AB81A2 /* UITextField+Errors.m */,
+				DA8D2B6B1C1A23D100E01584 /* UIView+FlashAnimation.h */,
+				DA8D2B6C1C1A23D100E01584 /* UIView+FlashAnimation.m */,
 			);
-			path = protocols;
-			sourceTree = "<group>";
-		};
-		DA0323891BEFC9C9003960B0 /* views */ = {
-			isa = PBXGroup;
-			children = (
-				DA03238A1BEFCA0B003960B0 /* text-input-table-view-cell.xib */,
-				DAF7345C1BF239B00013CDDD /* items-table-header-view.xib */,
-				DAC03FD01C17890600A64054 /* navigation-item-text-input.xib */,
-				DA5444B71C1327F4002DFD0F /* StandaloneNavBar.h */,
-				DA5444B81C1327F4002DFD0F /* StandaloneNavBar.m */,
-				DA5444BA1C132922002DFD0F /* CustomScrollView.h */,
-				DA5444BB1C132922002DFD0F /* CustomScrollView.m */,
-				DAE8DAB81C14828C00AB81A2 /* UITextField+Additions.h */,
-				DAE8DAB91C14828C00AB81A2 /* UITextField+Additions.m */,
-				DA8D2B6B1C1A23D100E01584 /* UIView+Additions.h */,
-				DA8D2B6C1C1A23D100E01584 /* UIView+Additions.m */,
-				DA65F7331C1BBBE90017BBCB /* TextInputTableViewCell.h */,
-				DA65F7341C1BBBE90017BBCB /* TextInputTableViewCell.m */,
-				DA65F7391C1BC0850017BBCB /* ShoppingItemTableViewCell.h */,
-				DA65F73A1C1BC0850017BBCB /* ShoppingItemTableViewCell.m */,
-			);
-			name = views;
+			name = common;
 			sourceTree = "<group>";
 		};
 		DA67F9E31BE8131E00E1734A /* animations */ = {
@@ -183,46 +162,14 @@
 			path = animations;
 			sourceTree = "<group>";
 		};
-		DA67F9E61BE8131E00E1734A /* models */ = {
+		DA67F9E61BE8131E00E1734A /* model */ = {
 			isa = PBXGroup;
 			children = (
 				DA67F9E71BE8131E00E1734A /* ShoppingItem.h */,
 				DA67F9E81BE8131E00E1734A /* ShoppingItem.m */,
-				DA67F9E91BE8131E00E1734A /* ShoppingList.h */,
-				DA67F9EA1BE8131E00E1734A /* ShoppingList.m */,
 			);
+			name = model;
 			path = models;
-			sourceTree = "<group>";
-		};
-		DA67F9EB1BE8131E00E1734A /* view-controllers */ = {
-			isa = PBXGroup;
-			children = (
-				DA67F9EC1BE8131E00E1734A /* ListOfItemsTableViewController.h */,
-				DA67F9ED1BE8131E00E1734A /* ListOfItemsTableViewController.m */,
-				DA67F9EE1BE8131E00E1734A /* ListOfListsTableViewController.h */,
-				DA67F9EF1BE8131E00E1734A /* ListOfListsTableViewController.m */,
-				DAA61BA41BE8FBF700CEC295 /* NavigationControllerDelegate.h */,
-				DAA61BA51BE8FBF700CEC295 /* NavigationControllerDelegate.m */,
-				DAF5E27B1BEE9A800023F8E8 /* ListAdditionViewController.h */,
-				DAF5E27C1BEE9A800023F8E8 /* ListAdditionViewController.m */,
-				DA6E0C061C0CAA400009632F /* DetailedItemViewController.h */,
-				DA6E0C071C0CAA400009632F /* DetailedItemViewController.m */,
-			);
-			path = "view-controllers";
-			sourceTree = "<group>";
-		};
-		DA9ED7941BEA6B440040999D /* data-sources */ = {
-			isa = PBXGroup;
-			children = (
-				DAED5BCC1BEA780700C5816F /* ListsDataSource.h */,
-				DAED5BCD1BEA780700C5816F /* ListsDataSource.m */,
-				DA2313381BF1891700E5366C /* ItemsDataSource.h */,
-				DA2313391BF1891700E5366C /* ItemsDataSource.m */,
-				DAC6394D1BF54D30003A087B /* AislesPivotTable.h */,
-				DAC6394E1BF54D30003A087B /* AislesPivotTable.m */,
-				DA14CA3A1C0380FB0043C2B6 /* AislesPivotTable_PivotEntry.h */,
-			);
-			path = "data-sources";
 			sourceTree = "<group>";
 		};
 		DADD0A511BDD50CE00806DB6 = {
@@ -248,12 +195,10 @@
 		DADD0A5C1BDD50CE00806DB6 /* iKea Shopping List */ = {
 			isa = PBXGroup;
 			children = (
-				DA0323891BEFC9C9003960B0 /* views */,
-				DA67F9E31BE8131E00E1734A /* animations */,
-				DA67F9E61BE8131E00E1734A /* models */,
-				DA67F9EB1BE8131E00E1734A /* view-controllers */,
-				DA9ED7941BEA6B440040999D /* data-sources */,
-				DA0323801BEF9692003960B0 /* protocols */,
+				DAF88CC31C230E520074E0A8 /* List of Lists */,
+				DAF88CC41C230E700074E0A8 /* List of Items */,
+				DAF88CC51C230E870074E0A8 /* Shopping Item Details */,
+				DA0323891BEFC9C9003960B0 /* common */,
 				DADD0A601BDD50CE00806DB6 /* AppDelegate.h */,
 				DADD0A611BDD50CE00806DB6 /* AppDelegate.m */,
 				DADD0A661BDD50CE00806DB6 /* Main.storyboard */,
@@ -294,6 +239,166 @@
 			);
 			name = "iKea Shopping UI Tests";
 			path = "iKea Shopping ListUITests";
+			sourceTree = "<group>";
+		};
+		DAF88CC31C230E520074E0A8 /* List of Lists */ = {
+			isa = PBXGroup;
+			children = (
+				DAF88CC91C23185F0074E0A8 /* view controllers */,
+				DAF88CC61C2318110074E0A8 /* navigation */,
+				DAF88CCA1C2318830074E0A8 /* views */,
+				DAF88CC81C2318390074E0A8 /* data source */,
+				DAF88CC71C2318310074E0A8 /* model */,
+			);
+			name = "List of Lists";
+			sourceTree = "<group>";
+		};
+		DAF88CC41C230E700074E0A8 /* List of Items */ = {
+			isa = PBXGroup;
+			children = (
+				DAF88CCE1C23193D0074E0A8 /* view controllers */,
+				DAF88CCD1C2319090074E0A8 /* views */,
+				DAF88CCB1C2318BA0074E0A8 /* data source */,
+				DA67F9E61BE8131E00E1734A /* model */,
+				DAF88CCC1C2318F70074E0A8 /* protocols */,
+			);
+			name = "List of Items";
+			sourceTree = "<group>";
+		};
+		DAF88CC51C230E870074E0A8 /* Shopping Item Details */ = {
+			isa = PBXGroup;
+			children = (
+				DAF88CCF1C2319BA0074E0A8 /* view controllers */,
+				DAF88CD21C231A340074E0A8 /* navigation */,
+				DAF88CD11C231A150074E0A8 /* views */,
+				DAF88CD01C2319CE0074E0A8 /* protocols */,
+			);
+			name = "Shopping Item Details";
+			sourceTree = "<group>";
+		};
+		DAF88CC61C2318110074E0A8 /* navigation */ = {
+			isa = PBXGroup;
+			children = (
+				DAA61BA41BE8FBF700CEC295 /* NavigationControllerDelegate.h */,
+				DAA61BA51BE8FBF700CEC295 /* NavigationControllerDelegate.m */,
+				DA67F9E31BE8131E00E1734A /* animations */,
+			);
+			name = navigation;
+			sourceTree = "<group>";
+		};
+		DAF88CC71C2318310074E0A8 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				DA67F9E91BE8131E00E1734A /* ShoppingList.h */,
+				DA67F9EA1BE8131E00E1734A /* ShoppingList.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		DAF88CC81C2318390074E0A8 /* data source */ = {
+			isa = PBXGroup;
+			children = (
+				DAED5BCC1BEA780700C5816F /* ListsDataSource.h */,
+				DAED5BCD1BEA780700C5816F /* ListsDataSource.m */,
+			);
+			name = "data source";
+			sourceTree = "<group>";
+		};
+		DAF88CC91C23185F0074E0A8 /* view controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DA67F9EE1BE8131E00E1734A /* ListOfListsTableViewController.h */,
+				DA67F9EF1BE8131E00E1734A /* ListOfListsTableViewController.m */,
+				DAF5E27B1BEE9A800023F8E8 /* ListAdditionViewController.h */,
+				DAF5E27C1BEE9A800023F8E8 /* ListAdditionViewController.m */,
+			);
+			name = "view controllers";
+			sourceTree = "<group>";
+		};
+		DAF88CCA1C2318830074E0A8 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				DA65F7331C1BBBE90017BBCB /* TextInputTableViewCell.h */,
+				DA65F7341C1BBBE90017BBCB /* TextInputTableViewCell.m */,
+				DA03238A1BEFCA0B003960B0 /* text-input-table-view-cell.xib */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
+		DAF88CCB1C2318BA0074E0A8 /* data source */ = {
+			isa = PBXGroup;
+			children = (
+				DA2313381BF1891700E5366C /* ItemsDataSource.h */,
+				DA2313391BF1891700E5366C /* ItemsDataSource.m */,
+				DAC6394D1BF54D30003A087B /* AislesPivotTable.h */,
+				DAC6394E1BF54D30003A087B /* AislesPivotTable.m */,
+				DA14CA3A1C0380FB0043C2B6 /* AislesPivotTable_PivotEntry.h */,
+			);
+			name = "data source";
+			sourceTree = "<group>";
+		};
+		DAF88CCC1C2318F70074E0A8 /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+				DA0323851BEF9AD4003960B0 /* ListInfoCreationDelegate.h */,
+			);
+			name = protocols;
+			sourceTree = "<group>";
+		};
+		DAF88CCD1C2319090074E0A8 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				DAF7345C1BF239B00013CDDD /* items-table-header-view.xib */,
+				DA65F7391C1BC0850017BBCB /* ShoppingItemTableViewCell.h */,
+				DA65F73A1C1BC0850017BBCB /* ShoppingItemTableViewCell.m */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
+		DAF88CCE1C23193D0074E0A8 /* view controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DA67F9EC1BE8131E00E1734A /* ListOfItemsTableViewController.h */,
+				DA67F9ED1BE8131E00E1734A /* ListOfItemsTableViewController.m */,
+			);
+			name = "view controllers";
+			sourceTree = "<group>";
+		};
+		DAF88CCF1C2319BA0074E0A8 /* view controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DA6E0C061C0CAA400009632F /* DetailedItemViewController.h */,
+				DA6E0C071C0CAA400009632F /* DetailedItemViewController.m */,
+			);
+			name = "view controllers";
+			sourceTree = "<group>";
+		};
+		DAF88CD01C2319CE0074E0A8 /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+				DAD001B81C10DFC3008A8DEE /* ShoppingItemDelegate.h */,
+				DABFA0671C17501400312414 /* UITextFieldValidationDelegate.h */,
+			);
+			name = protocols;
+			sourceTree = "<group>";
+		};
+		DAF88CD11C231A150074E0A8 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				DAC03FD01C17890600A64054 /* navigation-item-text-input.xib */,
+				DA5444BA1C132922002DFD0F /* CustomScrollView.h */,
+				DA5444BB1C132922002DFD0F /* CustomScrollView.m */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
+		DAF88CD21C231A340074E0A8 /* navigation */ = {
+			isa = PBXGroup;
+			children = (
+				DA5444B71C1327F4002DFD0F /* StandaloneNavBar.h */,
+				DA5444B81C1327F4002DFD0F /* StandaloneNavBar.m */,
+			);
+			name = navigation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -433,7 +538,7 @@
 				DAF5E27D1BEE9A800023F8E8 /* ListAdditionViewController.m in Sources */,
 				DA6E0C081C0CAA400009632F /* DetailedItemViewController.m in Sources */,
 				DA5444BC1C132922002DFD0F /* CustomScrollView.m in Sources */,
-				DA8D2B6D1C1A23D100E01584 /* UIView+Additions.m in Sources */,
+				DA8D2B6D1C1A23D100E01584 /* UIView+FlashAnimation.m in Sources */,
 				DA65F73B1C1BC0850017BBCB /* ShoppingItemTableViewCell.m in Sources */,
 				DAC6394F1BF54D30003A087B /* AislesPivotTable.m in Sources */,
 				DAA61BA61BE8FBF700CEC295 /* NavigationControllerDelegate.m in Sources */,
@@ -442,7 +547,7 @@
 				DA67F9F91BE8131E00E1734A /* ListOfItemsTableViewController.m in Sources */,
 				DA5444B91C1327F4002DFD0F /* StandaloneNavBar.m in Sources */,
 				DAED5BCE1BEA780700C5816F /* ListsDataSource.m in Sources */,
-				DAE8DABA1C14828C00AB81A2 /* UITextField+Additions.m in Sources */,
+				DAE8DABA1C14828C00AB81A2 /* UITextField+Errors.m in Sources */,
 				DADD0A621BDD50CE00806DB6 /* AppDelegate.m in Sources */,
 				DA5866FB1C0248D800C98FC2 /* ShoppingList.m in Sources */,
 				DADD0A5F1BDD50CE00806DB6 /* main.m in Sources */,
