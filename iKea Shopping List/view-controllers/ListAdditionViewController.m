@@ -75,6 +75,10 @@
     TextInputTableViewCell* cell =
         [tableView dequeueReusableCellWithIdentifier:NEW_LIST_INFO_CELL_ID];
     
+    /* Because the prototype cell is NOT defined in a storyboard, the
+     * dequeueReusableCellWithIdentifier: method might NOT return a valid cell.
+     * You need to check the return value against nil and create a cell
+     * manually.*/
     if(cell == nil){
         
         UINib* nib = [UINib nibWithNibName:TEXT_FIELD_CELL_NIB bundle:nil];

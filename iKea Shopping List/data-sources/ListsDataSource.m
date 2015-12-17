@@ -47,7 +47,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    /* Because the prototype cell is defined in a storyboard, the 
+     * dequeueReusableCellWithIdentifier: method always returns a valid cell. 
+     * You don’t need to check the return value against nil and create a cell 
+     * manually.*/
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:LISTS_CELL_IDENTIFIER];
 
     return cell;

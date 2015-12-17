@@ -145,12 +145,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
         
     }
     
-    /* Scroll to the new added row. Let the row of interest to the top of the
-     visible table view*/
-//    [self.tableView scrollToRowAtIndexPath:indexPath
-//                          atScrollPosition:UITableViewScrollPositionTop
-//                                  animated:YES];
-
+    /* Scroll & Select to the new added row so that the user becomes aware of
+     * the successfull operation. */
     [self.tableView selectRowAtIndexPath:indexPath
                                 animated:YES
                           scrollPosition:UITableViewScrollPositionTop];
