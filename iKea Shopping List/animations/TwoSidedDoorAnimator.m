@@ -22,6 +22,7 @@
  */
 #define ROTATION_ANIMATION_KEY_FRAME_DURATION               1.0
 
+#define NAVBAR_ANIMATION_KEY_FRAME_DURATION                 0.3
 /*!
  *  @define FIRST_ANIMATION_START_TIME
  *  @abstract Relative start time of the first animation which is rotation (in
@@ -38,14 +39,16 @@
  */
 #define SECOND_ANIMATION_RELATIVE_START_TIME                0.5
 
+#define NAVBAR_ANIMATION_RELATIVE_START_TIME                0.7
 /*!
  *  @define TRANSITION_DURATION
  *  @abstract Total duration of the animation in seconds. It is summation of
  *  duration of scale animation keyframe and duration of rotation animation
  *  keyframe.
  */
-#define TRANSITION_DURATION (SCALE_ANIMATION_KEY_FRAME_DURATION +\
-ROTATION_ANIMATION_KEY_FRAME_DURATION)
+#define TRANSITION_DURATION (SCALE_ANIMATION_KEY_FRAME_DURATION +     \
+                             ROTATION_ANIMATION_KEY_FRAME_DURATION) + \
+                             NAVBAR_ANIMATION_KEY_FRAME_DURATION
 
 @interface TwoSidedDoorAnimator()
 
@@ -96,91 +99,98 @@ ROTATION_ANIMATION_KEY_FRAME_DURATION)
 -(void)animateTransition: (id<UIViewControllerContextTransitioning>)transitionContext
 {
   
-  CGAffineTransform initialScaleTransform, finalScaleTransform, translationTransform, xx;
+  CGAffineTransform initialScaleTransformationMatrix, finalScaleTransform, translationTransform,
+                    combinedTransformationMatrix;
   CGFloat leftSideRotationAngle, rightSideRotationAngle;
-  UIView *leftSideView,*rightSideView;
+  UIView *leftSideView,*rightSideView,*viewToBeRemoved;
   
-  UIViewController* fromVC =
-  [transitionContext
-   viewControllerForKey:UITransitionContextFromViewControllerKey];
+  UIViewController* fromVC = [transitionContext   viewControllerForKey:UITransitionContextFromViewControllerKey];
   
-  UIViewController* toVC =
-  [transitionContext
-   viewControllerForKey:UITransitionContextToViewControllerKey];
+  UIViewController* toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
   
   UIView* containerView = [transitionContext containerView];
   
-  // Add a perspective transform
-  CATransform3D transform = CATransform3DIdentity;
-  transform.m34 = -0.002;
-  [containerView.layer setSublayerTransform:transform];
+  /* Add a perspective transformation matrix to the container view of both to/from views.
+   * It represents how much horizontal skewing will be applied to view's layer. */
+  CATransform3D skewTransformationMatrix = CATransform3DIdentity;
+  skewTransformationMatrix.m34 = -0.002;
   
+  /* The sublayerTransform property defines additional transformations that apply only to the
+   * sublayers and is used most commonly to add a perspective visual effect to the contents of a 
+   * scene. https://goo.gl/0Q51eP */
+  [containerView.layer setSublayerTransform:skewTransformationMatrix];
+  
+  /* Add detination view to the view's hirerachy.*/
   [containerView addSubview:toVC.view];
+
   // Give both VCs the same start frame
-  CGRect initialFrame = [transitionContext
-                         initialFrameForViewController:fromVC];
+  CGRect initialFrame = [transitionContext initialFrameForViewController:fromVC];
   fromVC.view.frame =  initialFrame;
   toVC.view.frame   = initialFrame;
-
+  
+  /* Angle of rotation for the  snapshot views.*/
+  leftSideRotationAngle  = M_PI_2;
+  rightSideRotationAngle = -M_PI_2;
   
   if(self.isReversed){
-    initialScaleTransform  = CGAffineTransformMakeScale(1, 1);
-    finalScaleTransform    = CGAffineTransformMakeScale(0, 0);
-    leftSideRotationAngle  = M_PI_2;
-    rightSideRotationAngle = -M_PI_2;
     
-//    NSArray* toViewSnapshots = [self createSnapshots:toVC.view afterScreenUpdates:NO];
+    initialScaleTransformationMatrix = CGAffineTransformMakeScale(1, 1);
+    finalScaleTransform              = CGAffineTransformMakeScale(0, 0);
     
-    //remove to-View from the hirerachy, use the snapshots instead.
-    [toVC.view removeFromSuperview ];
-    leftSideView = self.snapshotViews[0];
-    rightSideView = self.snapshotViews[1];
+    viewToBeRemoved = toVC.view;
 
-    [containerView addSubview:leftSideView];
-    [containerView addSubview:rightSideView];
+    /* Hide the navigation bar. TODO: Use scale/translation transformation matrix instead. */
     [self.navigationBarView setHidden:YES];
     
-    
-    fromVC.view.layer.affineTransform = initialScaleTransform;
-    [self updateAnchorPoint:CGPointMake(1, 1) forView:rightSideView];
-    [self updateAnchorPoint:CGPointMake(0, 1) forView:leftSideView];
-    
-    leftSideView.layer.transform  = [self rotateYAxisToAngle:leftSideRotationAngle];
-    rightSideView.layer.transform = [self rotateYAxisToAngle:rightSideRotationAngle];
-    
+    /* Set source view's layer 2D transformation matrix to scale (1,1). This is the initial
+     * state before starting animation. */
+    fromVC.view.layer.affineTransform = initialScaleTransformationMatrix;
+   
+    /* No need to rotate the snapshot views of the destination view's layer since both of them
+     * are actually kept rotated by the end of the forward animation. */
   }else{
     
-    initialScaleTransform  = CGAffineTransformMakeScale(0, 0);
-    finalScaleTransform    = CGAffineTransformMakeScale(1, 1);
+    initialScaleTransformationMatrix  = CGAffineTransformMakeScale(0, 0);
+    finalScaleTransform               = CGAffineTransformMakeScale(1, 1);
     
+    /* Navigation bar has to be animated in the same way as target view's layer (i.e. scaling
+     * up from zero to 1 in x,y dimensions). But It also needs to be shifted down to the
+     * middle of the screen so that it looks like as if it moves with the target view's layer. 
+     * This means that navigation bar view's layer needs to have translation & scale transformations*/
     translationTransform = CGAffineTransformMakeTranslation(0, [[UIScreen mainScreen] bounds].size.height/2);
-    xx = CGAffineTransformScale(translationTransform, 0, 0);
+    combinedTransformationMatrix = CGAffineTransformScale(translationTransform, 0, 0);
     
-    leftSideRotationAngle  = M_PI_2;
-    rightSideRotationAngle = -M_PI_2;
+    /* Take a UIView snapshot from the whole window, dividing it in two parts.*/
+    [self takeSnapshotFromMainWindowContainingView:fromVC.view afterScreenUpdates:NO];
     
-    NSArray* fromViewSnapshots = [self takeSnapshotFromMainWindowContainingView:fromVC.view afterScreenUpdates:NO];
-
-    self.snapshotViews = fromViewSnapshots;
+    viewToBeRemoved = fromVC.view;
     
-    /* remove from-View from the hirerachy, use the snapshots instead.*/
-    [fromVC.view removeFromSuperview ];
-    leftSideView = fromViewSnapshots[0];
-    rightSideView = fromViewSnapshots[1];
+    /* Set destination view's layer 2D transformation matrix to scale (0,0). This is the initial
+     * state before starting animation. */
+    toVC.view.layer.affineTransform = initialScaleTransformationMatrix;
     
-    toVC.view.layer.affineTransform = initialScaleTransform;
-
+    /* Show the navigation bar. */
     [self.navigationBarView setHidden:NO];
+
+    /* Set navigation bar view's layer to the combined transoformation matrix. */
+    self.navigationBarView.layer.affineTransform = combinedTransformationMatrix;
     
-    self.navigationBarView.layer.affineTransform = xx;
-    
-    [self updateAnchorPoint:CGPointMake(1, 1) forView:rightSideView];
-    [self updateAnchorPoint:CGPointMake(0, 1) forView:leftSideView];
   }
+
+  /* remove to-View from the hirerachy, use the snapshots instead. */
+  [viewToBeRemoved removeFromSuperview ];
+  leftSideView = self.snapshotViews[0];
+  rightSideView = self.snapshotViews[1];
+
+  /* Add snapshot views to the view's hirerachy. */
+  [containerView addSubview:leftSideView];
+  [containerView addSubview:rightSideView];
   
+  /* Set the reference point of transformations that are going to be animated. */
+  [self updateAnchorPoint:CGPointMake(1, 1) forView:rightSideView];
+  [self updateAnchorPoint:CGPointMake(0, 1) forView:leftSideView];
   
   NSTimeInterval duration = [self transitionDuration:transitionContext];
-  
   
   [UIView animateKeyframesWithDuration:duration delay:0 options:0 animations:^{
     
@@ -197,8 +207,8 @@ ROTATION_ANIMATION_KEY_FRAME_DURATION)
                               relativeDuration:ROTATION_ANIMATION_KEY_FRAME_DURATION
                                     animations:^{
                                       // rotate the to-view
-                                      leftSideView.layer.transform = [self rotateYAxisToAngle:0.0];
-                                      rightSideView.layer.transform = [self rotateYAxisToAngle:0.0];
+                                      leftSideView.layer.transform = [self rotateAroundYAxisByAngle:0.0];
+                                      rightSideView.layer.transform = [self rotateAroundYAxisByAngle:0.0];
                                       
                                     }];
       
@@ -209,9 +219,9 @@ ROTATION_ANIMATION_KEY_FRAME_DURATION)
                                     animations:^{
                                       // rotate the from view
                                       leftSideView.layer.transform =
-                                      [self rotateYAxisToAngle:leftSideRotationAngle];
+                                      [self rotateAroundYAxisByAngle:leftSideRotationAngle];
                                       rightSideView.layer.transform =
-                                      [self rotateYAxisToAngle:rightSideRotationAngle];
+                                      [self rotateAroundYAxisByAngle:rightSideRotationAngle];
                                     }];
       
       [UIView addKeyframeWithRelativeStartTime:SECOND_ANIMATION_RELATIVE_START_TIME
@@ -221,19 +231,29 @@ ROTATION_ANIMATION_KEY_FRAME_DURATION)
                                       toVC.view.layer.affineTransform = finalScaleTransform;
                                     }];
       
-      /* 0.75, 0.25 for 6/6s plus 
+      /* 0.75, 0.25 for 6/6s plus
        * 0.70 0.30  for 6/6s  */
-      [UIView addKeyframeWithRelativeStartTime:0.7 relativeDuration:0.3 animations:^{
-        self.navigationBarView.layer.affineTransform = finalScaleTransform;
-      }];
+      [UIView addKeyframeWithRelativeStartTime:NAVBAR_ANIMATION_RELATIVE_START_TIME
+                              relativeDuration:NAVBAR_ANIMATION_KEY_FRAME_DURATION
+                                    animations:^{
+                                      self.navigationBarView.layer.affineTransform = finalScaleTransform;
+                                    }];
     }/* else */
   } completion:^(BOOL finished){
+
+    /* Remove snapshotviews */
     [leftSideView removeFromSuperview];
     [rightSideView removeFromSuperview];
+    
+    /* Notifies the system that the transition animation is done.*/
     [transitionContext completeTransition:YES];
     
     if(self.isReversed){
+      
+      /* Add destination view in the views hirerachy. */
       [containerView addSubview:toVC.view];
+
+      /* Display navigation bar again. */
       [self.navigationBarView setHidden:NO];
     }
   }];
@@ -242,7 +262,7 @@ ROTATION_ANIMATION_KEY_FRAME_DURATION)
 }
 
 
-- (CATransform3D) rotateYAxisToAngle:(CGFloat) angle {
+- (CATransform3D) rotateAroundYAxisByAngle:(CGFloat) angle {
   return  CATransform3DMakeRotation(angle, 0.0, 1.0, 0.0);
 }
 
@@ -271,7 +291,7 @@ ROTATION_ANIMATION_KEY_FRAME_DURATION)
 }
 
 
-- (NSArray*)takeSnapshotFromMainWindowContainingView:(UIView*) view afterScreenUpdates:(BOOL) afterUpdates{
+- (void)takeSnapshotFromMainWindowContainingView:(UIView*) view afterScreenUpdates:(BOOL) afterUpdates{
   
   UIWindow * mainWindow = [UIApplication sharedApplication].windows.firstObject;
   UIView* containerView = view.superview;
@@ -280,29 +300,28 @@ ROTATION_ANIMATION_KEY_FRAME_DURATION)
   CGRect snapshotRegion = CGRectMake(0, 0, mainWindow.frame.size.width / 2, mainWindow.frame.size.height);
   
   UIView *leftHandView = [mainWindow resizableSnapshotViewFromRect:snapshotRegion
-                                          afterScreenUpdates:afterUpdates
-                                               withCapInsets:UIEdgeInsetsZero];
+                                                afterScreenUpdates:afterUpdates
+                                                     withCapInsets:UIEdgeInsetsZero];
   leftHandView.frame = snapshotRegion;
-  [containerView addSubview:leftHandView];
   
   // snapshot the right-hand side of the view
   snapshotRegion = CGRectMake(mainWindow.frame.size.width / 2, 0,
                               mainWindow.frame.size.width / 2, mainWindow.frame.size.height);
   
   UIView *rightHandView = [mainWindow resizableSnapshotViewFromRect:snapshotRegion
-                                           afterScreenUpdates:afterUpdates
-                                                withCapInsets:UIEdgeInsetsZero];
+                                                 afterScreenUpdates:afterUpdates
+                                                      withCapInsets:UIEdgeInsetsZero];
   rightHandView.frame = snapshotRegion;
-  [containerView addSubview:rightHandView];
   
   // send the view that was snapshotted to the back
   [containerView sendSubviewToBack:view];
   
+  /* Hide navigation bar since it is a subview for container view. */
   UINavigationBar* navbarView = [mainWindow viewWithTag:20];
   [navbarView setHidden:YES];
   self.navigationBarView = navbarView;
   
-  return @[leftHandView, rightHandView];
+  self.snapshotViews =  @[leftHandView, rightHandView];
   
 }
 
