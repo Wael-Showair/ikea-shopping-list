@@ -47,24 +47,11 @@
 #define TRANSITION_DURATION (SCALE_ANIMATION_KEY_FRAME_DURATION +\
 ROTATION_ANIMATION_KEY_FRAME_DURATION)
 
-
-
-
 @interface TwoSidedDoorAnimator()
 
-/*!
- *  @property statusBarHeight
- *  @abstract Height of status bar (in points).
- */
-@property CGFloat statusBarHeight;
-
-/*!
- *  @property navigationBarHeight
- *  @abstract Height of navigation bar (in points).
- */
-@property CGFloat navigationBarHeight;
-
 @property (weak, nonatomic) UINavigationBar* navigationBarView;
+@property (strong, nonatomic) NSArray* snapshotViews;
+
 /*!
  *  @abstract UIKit asks the animator for the duration (in seconds) of the
  *  transition animation.
@@ -96,21 +83,6 @@ ROTATION_ANIMATION_KEY_FRAME_DURATION)
  */
 - (void)updateAnchorPoint:(CGPoint)anchorPoint forView:(UIView*)view;
 
-/*!
- *  @abstract create a pair of snapshots from the given view.
- *
- *  @param view
- *      the view from which snapshots are taken.
- *  @param afterUpdates
- *      A Boolean value that specifies whether the snapshot should be taken
- *      after recent changes have been incorporated.
- *
- *  @return snapshots
- *      Array of two snapshots the left-hand side snapshot. of the view is at
- *      first index while the second index contains the right-hand side snapshot
- *      of the view.
- */
-- (NSArray*)createSnapshots:(UIView*)view afterScreenUpdates:(BOOL) afterUpdates;
 @end
 
 
@@ -149,12 +121,7 @@ ROTATION_ANIMATION_KEY_FRAME_DURATION)
                          initialFrameForViewController:fromVC];
   fromVC.view.frame =  initialFrame;
   toVC.view.frame   = initialFrame;
-  
-  if(fromVC.navigationController){
-    self.navigationBarHeight = fromVC.navigationController.navigationBar.frame.size.height;
-  }else{
-    self.navigationBarHeight = 0;
-  }
+
   
   if(self.isReversed){
     initialScaleTransform  = CGAffineTransformMakeScale(1, 1);
@@ -162,12 +129,17 @@ ROTATION_ANIMATION_KEY_FRAME_DURATION)
     leftSideRotationAngle  = M_PI_2;
     rightSideRotationAngle = -M_PI_2;
     
-    NSArray* toViewSnapshots = [self createSnapshots:toVC.view afterScreenUpdates:NO];
+//    NSArray* toViewSnapshots = [self createSnapshots:toVC.view afterScreenUpdates:NO];
     
     //remove to-View from the hirerachy, use the snapshots instead.
     [toVC.view removeFromSuperview ];
-    leftSideView = toViewSnapshots[0];
-    rightSideView = toViewSnapshots[1];
+    leftSideView = self.snapshotViews[0];
+    rightSideView = self.snapshotViews[1];
+
+    [containerView addSubview:leftSideView];
+    [containerView addSubview:rightSideView];
+    [self.navigationBarView setHidden:YES];
+    
     
     fromVC.view.layer.affineTransform = initialScaleTransform;
     [self updateAnchorPoint:CGPointMake(1, 1) forView:rightSideView];
@@ -189,6 +161,7 @@ ROTATION_ANIMATION_KEY_FRAME_DURATION)
     
     NSArray* fromViewSnapshots = [self takeSnapshotFromMainWindowContainingView:fromVC.view afterScreenUpdates:NO];
 
+    self.snapshotViews = fromViewSnapshots;
     
     /* remove from-View from the hirerachy, use the snapshots instead.*/
     [fromVC.view removeFromSuperview ];
@@ -261,6 +234,7 @@ ROTATION_ANIMATION_KEY_FRAME_DURATION)
     
     if(self.isReversed){
       [containerView addSubview:toVC.view];
+      [self.navigationBarView setHidden:NO];
     }
   }];
   
@@ -291,43 +265,11 @@ ROTATION_ANIMATION_KEY_FRAME_DURATION)
   offset.x = newOrigin.x - oldOrigin.x;
   offset.y = newOrigin.y - oldOrigin.y;
   
-  /* Status/Navigation Bars' height should also be considered after changing anchor point
-   * Otherwise, @ the begining of animation, the snapshot views would start from
-   * status bar.
-   */
-  self.statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
-  
   /* Re-center the view again after calculating all offsets.*/
   view.center = CGPointMake (view.center.x - offset.x,
                              view.center.y - offset.y);
 }
 
-- (NSArray*)createSnapshots:(UIView*)view afterScreenUpdates:(BOOL) afterUpdates{
-  UIView* containerView = view.superview;
-  
-  // snapshot the left-hand side of the view
-  CGRect snapshotRegion = CGRectMake(0, 0, view.frame.size.width / 2, view.frame.size.height);
-  UIView *leftHandView = [view resizableSnapshotViewFromRect:snapshotRegion
-                                          afterScreenUpdates:afterUpdates
-                                               withCapInsets:UIEdgeInsetsZero];
-  leftHandView.frame = snapshotRegion;
-  [containerView addSubview:leftHandView];
-  
-  // snapshot the right-hand side of the view
-  snapshotRegion = CGRectMake(view.frame.size.width / 2, 0,
-                              view.frame.size.width / 2, view.frame.size.height);
-  
-  UIView *rightHandView = [view resizableSnapshotViewFromRect:snapshotRegion
-                                           afterScreenUpdates:afterUpdates
-                                                withCapInsets:UIEdgeInsetsZero];
-  rightHandView.frame = snapshotRegion;
-  [containerView addSubview:rightHandView];
-  
-  // send the view that was snapshotted to the back
-  [containerView sendSubviewToBack:view];
-  
-  return @[leftHandView, rightHandView];
-}
 
 - (NSArray*)takeSnapshotFromMainWindowContainingView:(UIView*) view afterScreenUpdates:(BOOL) afterUpdates{
   
