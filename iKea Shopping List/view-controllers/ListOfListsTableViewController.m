@@ -30,6 +30,8 @@
 
 #define FIRST_SECTION_INDEX         0
 
+#define UI_EDGE_INSET_TOP           -64.0
+
 @interface ListOfListsTableViewController ()
 
 /*!
@@ -49,6 +51,9 @@
  *  by creating separate class for data source delegate of the UITabelView.
  */
 @property (strong, nonatomic) ListsDataSource* listOfListsDataSource;
+
+@property (weak, nonatomic) IBOutlet UITableView *listsTableView;
+@property (weak, nonatomic) IBOutlet UIView *addNewListView;
 
 @end
 
@@ -72,7 +77,21 @@
   
   /* Set data source delegate of the table view under control. */
   self.listOfListsDataSource = [[ListsDataSource alloc] initWithItems:allLists];
-  self.tableView.dataSource = self.listOfListsDataSource;
+  self.listsTableView.dataSource = self.listOfListsDataSource;
+  self.listsTableView.delegate = self;
+  
+  /* There is vertical spacing (64point) between the table view top edge & first cell top edge.
+   * Usually, this spacing is due either headerView or contentInset table properties.
+   * Neither of these cases is true, so I have to shift up the first cell by negative value. */
+  self.listsTableView.contentInset = UIEdgeInsetsMake(UI_EDGE_INSET_TOP,
+                                                      UIEdgeInsetsZero.left,
+                                                      UIEdgeInsetsZero.bottom,
+                                                      UIEdgeInsetsZero.right);
+  
+  //self.listsTableView.bounces = NO;
+  CGAffineTransform combinedTransform  = CGAffineTransformMakeScale(1, 1);
+  combinedTransform = CGAffineTransformTranslate(combinedTransform, 0, 0);
+  self.addNewListView.layer.affineTransform = combinedTransform;
   
   /* set left bar button to default button that toggles its title and
    associated state between Edit and Done. */
@@ -97,8 +116,35 @@
   
   /* add the new list to table view. */
   NSIndexPath* indexPath = [NSIndexPath indexPathForRow:FIRST_INDEX inSection:FIRST_SECTION_INDEX];
-  [self.tableView insertRowsAtIndexPaths:@[indexPath]
+  [self.listsTableView insertRowsAtIndexPaths:@[indexPath]
                         withRowAnimation:UITableViewRowAnimationAutomatic];
+  
+}
+#pragma scroll view - delegate
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
+                     withVelocity:(CGPoint)velocity
+              targetContentOffset:(inout CGPoint *)targetContentOffset{
+  NSLog(@"*********************************** x:%f , y=%f", velocity.x, velocity.y);
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+  NSLog(@"scrolling offset is %f", scrollView.contentOffset.y);
+  //scrollView.bounces = (scrollView.contentOffset.y > 0);
+  
+  
+  if((scrollView.contentOffset.y > 0) && (scrollView.contentOffset.y < 10) && (self.addNewListView.frame.size.height > 62)){
+    
+    CGFloat height = self.addNewListView.bounds.size.height;
+    CGFloat verticalScalingPercent = (height - 2*scrollView.contentOffset.y) / height;
+    
+    CGAffineTransform currentTransform = self.addNewListView.layer.affineTransform;
+    
+    CGAffineTransform newTransfrom = CGAffineTransformScale(currentTransform,1, verticalScalingPercent);
+    newTransfrom = CGAffineTransformTranslate(newTransfrom, 0, -2*scrollView.contentOffset.y);
+    self.addNewListView.layer.affineTransform = newTransfrom;
+    
+  }
+  NSLog(@"height is %f",self.addNewListView.frame.size.height);
   
 }
 
@@ -139,7 +185,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     ListOfItemsTableViewController* listOfItemsViewController =
     [segue destinationViewController];
     
-    NSIndexPath* selectedIndexPath = [self.tableView indexPathForSelectedRow];
+    NSIndexPath* selectedIndexPath = [self.listsTableView indexPathForSelectedRow];
     
     ShoppingList* selectedShoppingList =
       [self.listOfListsDataSource itemAtIndexPath:selectedIndexPath];
@@ -402,6 +448,23 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                   aisleNumber:101];
   [shoppingList addNewItem:shoppingItem AtAisleIndex:1];
   
+  shoppingList = [[ShoppingList alloc] initWithTitle:@"Living"];
+  [allLists addObject:shoppingList];
+
+  shoppingList = [[ShoppingList alloc] initWithTitle:@"WishList"];
+  [allLists addObject:shoppingList];
+
+  shoppingList = [[ShoppingList alloc] initWithTitle:@"Gifts"];
+  [allLists addObject:shoppingList];
+
+  shoppingList = [[ShoppingList alloc] initWithTitle:@"Living"];
+  [allLists addObject:shoppingList];
+  
+  shoppingList = [[ShoppingList alloc] initWithTitle:@"WishList"];
+  [allLists addObject:shoppingList];
+  
+  shoppingList = [[ShoppingList alloc] initWithTitle:@"Gifts"];
+  [allLists addObject:shoppingList];
   return allLists;
 }
 
