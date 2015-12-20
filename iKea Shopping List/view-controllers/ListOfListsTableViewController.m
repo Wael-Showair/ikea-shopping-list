@@ -51,6 +51,7 @@
  *  by creating separate class for data source delegate of the UITabelView.
  */
 @property (strong, nonatomic) ListsDataSource* listOfListsDataSource;
+@property (weak, nonatomic) IBOutlet UIScrollView *outerScrollView;
 
 @property (weak, nonatomic) IBOutlet UITableView *listsTableView;
 @property (weak, nonatomic) IBOutlet UIView *addNewListView;
@@ -80,13 +81,13 @@
   self.listsTableView.dataSource = self.listOfListsDataSource;
   self.listsTableView.delegate = self;
   
-  /* There is vertical spacing (64point) between the table view top edge & first cell top edge.
-   * Usually, this spacing is due either headerView or contentInset table properties.
-   * Neither of these cases is true, so I have to shift up the first cell by negative value. */
-  self.listsTableView.contentInset = UIEdgeInsetsMake(UI_EDGE_INSET_TOP,
-                                                      UIEdgeInsetsZero.left,
-                                                      UIEdgeInsetsZero.bottom,
-                                                      UIEdgeInsetsZero.right);
+  /* There's vertical spacing (64point) between the top edges of outer scrollview  & wrapper view.
+   * This spacing is due contentInset property which is set to zeros so I have to shift up the 
+   * the child wrapper by negative value. */
+  self.outerScrollView.contentInset = UIEdgeInsetsMake(UI_EDGE_INSET_TOP,
+                                                       UIEdgeInsetsZero.left,
+                                                       UIEdgeInsetsZero.bottom,
+                                                       UIEdgeInsetsZero.right);
   
   //self.listsTableView.bounces = NO;
   CGAffineTransform combinedTransform  = CGAffineTransformMakeScale(1, 1);
@@ -120,33 +121,33 @@
                         withRowAnimation:UITableViewRowAnimationAutomatic];
   
 }
-#pragma scroll view - delegate
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
-                     withVelocity:(CGPoint)velocity
-              targetContentOffset:(inout CGPoint *)targetContentOffset{
-  NSLog(@"*********************************** x:%f , y=%f", velocity.x, velocity.y);
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-  NSLog(@"scrolling offset is %f", scrollView.contentOffset.y);
-  //scrollView.bounces = (scrollView.contentOffset.y > 0);
-  
-  
-  if((scrollView.contentOffset.y > 0) && (scrollView.contentOffset.y < 10) && (self.addNewListView.frame.size.height > 62)){
-    
-    CGFloat height = self.addNewListView.bounds.size.height;
-    CGFloat verticalScalingPercent = (height - 2*scrollView.contentOffset.y) / height;
-    
-    CGAffineTransform currentTransform = self.addNewListView.layer.affineTransform;
-    
-    CGAffineTransform newTransfrom = CGAffineTransformScale(currentTransform,1, verticalScalingPercent);
-    newTransfrom = CGAffineTransformTranslate(newTransfrom, 0, -2*scrollView.contentOffset.y);
-    self.addNewListView.layer.affineTransform = newTransfrom;
-    
-  }
-  NSLog(@"height is %f",self.addNewListView.frame.size.height);
-  
-}
+//#pragma scroll view - delegate
+//- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
+//                     withVelocity:(CGPoint)velocity
+//              targetContentOffset:(inout CGPoint *)targetContentOffset{
+//  NSLog(@"*********************************** x:%f , y=%f", velocity.x, velocity.y);
+//}
+//
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//  NSLog(@"scrolling offset is %f", scrollView.contentOffset.y);
+//  //scrollView.bounces = (scrollView.contentOffset.y > 0);
+//  
+//  
+//  if((scrollView.contentOffset.y > 0) && (scrollView.contentOffset.y < 10) && (self.addNewListView.frame.size.height > 62)){
+//    
+//    CGFloat height = self.addNewListView.bounds.size.height;
+//    CGFloat verticalScalingPercent = (height - 2*scrollView.contentOffset.y) / height;
+//    
+//    CGAffineTransform currentTransform = self.addNewListView.layer.affineTransform;
+//    
+//    CGAffineTransform newTransfrom = CGAffineTransformScale(currentTransform,1, verticalScalingPercent);
+//    newTransfrom = CGAffineTransformTranslate(newTransfrom, 0, -2*scrollView.contentOffset.y);
+//    self.addNewListView.layer.affineTransform = newTransfrom;
+//    
+//  }
+//  NSLog(@"height is %f",self.addNewListView.frame.size.height);
+//  
+//}
 
 #pragma table view - delegate
 - (void)tableView:(UITableView *)tableView
