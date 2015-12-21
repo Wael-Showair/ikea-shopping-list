@@ -85,6 +85,11 @@ typedef enum{
   
 }
 
+- (void)viewDidDisappear:(BOOL)animated{
+  
+  [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+}
+
 - (void)didReceiveMemoryWarning {
   
   // Dispose of any resources that can be recreated.
@@ -98,7 +103,7 @@ typedef enum{
   
   /* Enable the device’s accelerometer hardware and begins the delivery of acceleration events.*/
   
-  /* TODO: you should always match each call with a corresponding call to the
+  /* you should always match each call with a corresponding call to the
    * endGeneratingDeviceOrientationNotifications. */
   [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
   
