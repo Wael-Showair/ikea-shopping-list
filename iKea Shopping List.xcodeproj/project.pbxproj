@@ -19,7 +19,7 @@
 		DA67F9F01BE8131E00E1734A /* TwoSidedDoorAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = DA67F9E51BE8131E00E1734A /* TwoSidedDoorAnimator.m */; };
 		DA67F9F31BE8131E00E1734A /* ShoppingItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DA67F9E81BE8131E00E1734A /* ShoppingItem.m */; };
 		DA67F9F91BE8131E00E1734A /* ListOfItemsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA67F9ED1BE8131E00E1734A /* ListOfItemsTableViewController.m */; };
-		DA67F9FC1BE8131E00E1734A /* ListOfListsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA67F9EF1BE8131E00E1734A /* ListOfListsTableViewController.m */; };
+		DA6B141E1C2787F900F19404 /* ListOfListsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6B141D1C2787F900F19404 /* ListOfListsViewController.m */; };
 		DA6E0C081C0CAA400009632F /* DetailedItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6E0C071C0CAA400009632F /* DetailedItemViewController.m */; };
 		DA8D2B6D1C1A23D100E01584 /* UIView+FlashAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8D2B6C1C1A23D100E01584 /* UIView+FlashAnimation.m */; };
 		DAA61BA61BE8FBF700CEC295 /* NavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA61BA51BE8FBF700CEC295 /* NavigationControllerDelegate.m */; };
@@ -81,8 +81,8 @@
 		DA67F9EA1BE8131E00E1734A /* ShoppingList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShoppingList.m; path = models/ShoppingList.m; sourceTree = "<group>"; };
 		DA67F9EC1BE8131E00E1734A /* ListOfItemsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListOfItemsTableViewController.h; path = "view-controllers/ListOfItemsTableViewController.h"; sourceTree = "<group>"; };
 		DA67F9ED1BE8131E00E1734A /* ListOfItemsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListOfItemsTableViewController.m; path = "view-controllers/ListOfItemsTableViewController.m"; sourceTree = "<group>"; };
-		DA67F9EE1BE8131E00E1734A /* ListOfListsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListOfListsTableViewController.h; path = "view-controllers/ListOfListsTableViewController.h"; sourceTree = "<group>"; };
-		DA67F9EF1BE8131E00E1734A /* ListOfListsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListOfListsTableViewController.m; path = "view-controllers/ListOfListsTableViewController.m"; sourceTree = "<group>"; };
+		DA6B141C1C2787F900F19404 /* ListOfListsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListOfListsViewController.h; path = "view-controllers/ListOfListsViewController.h"; sourceTree = "<group>"; };
+		DA6B141D1C2787F900F19404 /* ListOfListsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListOfListsViewController.m; path = "view-controllers/ListOfListsViewController.m"; sourceTree = "<group>"; };
 		DA6E0C061C0CAA400009632F /* DetailedItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailedItemViewController.h; path = "view-controllers/DetailedItemViewController.h"; sourceTree = "<group>"; };
 		DA6E0C071C0CAA400009632F /* DetailedItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailedItemViewController.m; path = "view-controllers/DetailedItemViewController.m"; sourceTree = "<group>"; };
 		DA8D2B6B1C1A23D100E01584 /* UIView+FlashAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+FlashAnimation.h"; path = "views/UIView+FlashAnimation.h"; sourceTree = "<group>"; };
@@ -309,8 +309,8 @@
 		DAF88CC91C23185F0074E0A8 /* view controllers */ = {
 			isa = PBXGroup;
 			children = (
-				DA67F9EE1BE8131E00E1734A /* ListOfListsTableViewController.h */,
-				DA67F9EF1BE8131E00E1734A /* ListOfListsTableViewController.m */,
+				DA6B141C1C2787F900F19404 /* ListOfListsViewController.h */,
+				DA6B141D1C2787F900F19404 /* ListOfListsViewController.m */,
 				DAF5E27B1BEE9A800023F8E8 /* ListAdditionViewController.h */,
 				DAF5E27C1BEE9A800023F8E8 /* ListAdditionViewController.m */,
 			);
@@ -550,6 +550,7 @@
 				DA67F9F01BE8131E00E1734A /* TwoSidedDoorAnimator.m in Sources */,
 				DA67F9F91BE8131E00E1734A /* ListOfItemsTableViewController.m in Sources */,
 				DA5444B91C1327F4002DFD0F /* StandaloneNavBar.m in Sources */,
+				DA6B141E1C2787F900F19404 /* ListOfListsViewController.m in Sources */,
 				DAED5BCE1BEA780700C5816F /* ListsDataSource.m in Sources */,
 				DAE8DABA1C14828C00AB81A2 /* UITextField+Errors.m in Sources */,
 				DADD0A621BDD50CE00806DB6 /* AppDelegate.m in Sources */,
@@ -557,7 +558,6 @@
 				DADD0A5F1BDD50CE00806DB6 /* main.m in Sources */,
 				DA65F7351C1BBBE90017BBCB /* TextInputTableViewCell.m in Sources */,
 				DA23133A1BF1891700E5366C /* ItemsDataSource.m in Sources */,
-				DA67F9FC1BE8131E00E1734A /* ListOfListsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

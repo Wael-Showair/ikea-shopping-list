@@ -11,8 +11,8 @@
 #import <UIKit/UIKit.h>
 #import "ListInfoCreationDelegate.h"
 
-@interface ListOfListsTableViewController : UIViewController
-                                           <UITableViewDelegate,
-                                            ListInfoCreationDelegate>
+@interface ListOfListsViewController : UIViewController
+                                      <UITableViewDelegate,
+                                       ListInfoCreationDelegate>
 
 @end

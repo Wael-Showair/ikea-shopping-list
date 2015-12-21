@@ -9,11 +9,10 @@
  */
 
 #import "NavigationControllerDelegate.h"
-#import "ListOfListsTableViewController.h"
+#import "ListOfListsViewController.h"
 #import "ListsDataSource.h"
 #import "ListOfItemsTableViewController.h"
 #import "ListAdditionViewController.h"
-
 #import "ShoppingItem.h"
 
 /*!
@@ -30,9 +29,8 @@
 
 #define FIRST_SECTION_INDEX         0
 
-#define UI_EDGE_INSET_TOP           -64.0
 
-@interface ListOfListsTableViewController ()
+@interface ListOfListsViewController ()
 
 /*!
  *  @property navBarDelegate
@@ -52,19 +50,19 @@
  */
 @property (strong, nonatomic) ListsDataSource* listOfListsDataSource;
 @property (weak, nonatomic) IBOutlet UIScrollView *outerScrollView;
-
 @property (weak, nonatomic) IBOutlet UITableView *listsTableView;
 @property (weak, nonatomic) IBOutlet UIView *addNewListView;
 
 @end
 
-@implementation ListOfListsTableViewController
+@implementation ListOfListsViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];
   
   // Uncomment the following line to preserve selection between presentations.
   // self.clearsSelectionOnViewWillAppear = NO;
+  
   
   /* set title of the landing page table. */
   self.title = @"My Lists";
@@ -80,15 +78,7 @@
   self.listOfListsDataSource = [[ListsDataSource alloc] initWithItems:allLists];
   self.listsTableView.dataSource = self.listOfListsDataSource;
   self.listsTableView.delegate = self;
-  
-  /* There's vertical spacing (64point) between the top edges of outer scrollview  & wrapper view.
-   * This spacing is due contentInset property which is set to zeros so I have to shift up the 
-   * the child wrapper by negative value. */
-  self.outerScrollView.contentInset = UIEdgeInsetsMake(UI_EDGE_INSET_TOP,
-                                                       UIEdgeInsetsZero.left,
-                                                       UIEdgeInsetsZero.bottom,
-                                                       UIEdgeInsetsZero.right);
-  
+    
   //self.listsTableView.bounces = NO;
   CGAffineTransform combinedTransform  = CGAffineTransformMakeScale(1, 1);
   combinedTransform = CGAffineTransformTranslate(combinedTransform, 0, 0);
@@ -96,8 +86,12 @@
   
   /* set left bar button to default button that toggles its title and
    associated state between Edit and Done. */
-  self.navigationItem.leftBarButtonItem = self.editButtonItem;
+  self.navigationItem.rightBarButtonItem = self.editButtonItem;
   
+}
+
+- (void)viewDidDisappear:(BOOL)animated{  
+  [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -128,7 +122,13 @@
 //  NSLog(@"*********************************** x:%f , y=%f", velocity.x, velocity.y);
 //}
 //
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+  NSLog(@"Drag: Scrollview tag is %ld", (long)scrollView.tag);
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+  NSLog(@"scrolling: Scrollview tag is %ld", (long)scrollView.tag);
+  
 //  NSLog(@"scrolling offset is %f", scrollView.contentOffset.y);
 //  //scrollView.bounces = (scrollView.contentOffset.y > 0);
 //  
@@ -147,7 +147,8 @@
 //  }
 //  NSLog(@"height is %f",self.addNewListView.frame.size.height);
 //  
-//}
+}
+
 
 #pragma table view - delegate
 - (void)tableView:(UITableView *)tableView
