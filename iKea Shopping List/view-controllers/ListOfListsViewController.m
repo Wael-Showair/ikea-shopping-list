@@ -14,7 +14,8 @@
 #import "ListOfItemsTableViewController.h"
 #import "ListAdditionViewController.h"
 #import "ShoppingItem.h"
-
+#import "OuterScrollView.h"
+#import "ShoppingListsTableView.h"
 /*!
  *  @define SHOW_LIST_ITEMS_SEGUE_ID
  *  @abstract Segue identifier that is used to show list of items related
@@ -49,8 +50,8 @@
  *  by creating separate class for data source delegate of the UITabelView.
  */
 @property (strong, nonatomic) ListsDataSource* listOfListsDataSource;
-@property (weak, nonatomic) IBOutlet UIScrollView *outerScrollView;
-@property (weak, nonatomic) IBOutlet UITableView *listsTableView;
+@property (weak, nonatomic) IBOutlet OuterScrollView *outerScrollView;
+@property (weak, nonatomic) IBOutlet ShoppingListsTableView *listsTableView;
 @property (weak, nonatomic) IBOutlet UIView *addNewListView;
 
 @end
@@ -67,7 +68,8 @@
   /* set title of the landing page table. */
   self.title = @"My Lists";
   
-  /* Set delegate for navigation controller. */
+  /* Set delegate for navigation controller. TODO: Chech whether you really need
+   * this delegate as a property or not? I don't think that it must be a property.*/
   self.navBarDelegate = [[NavigationControllerDelegate alloc] init];
   self.navigationController.delegate = self.navBarDelegate;
   
@@ -78,20 +80,14 @@
   self.listOfListsDataSource = [[ListsDataSource alloc] initWithItems:allLists];
   self.listsTableView.dataSource = self.listOfListsDataSource;
   self.listsTableView.delegate = self;
-    
-  //self.listsTableView.bounces = NO;
-  CGAffineTransform combinedTransform  = CGAffineTransformMakeScale(1, 1);
-  combinedTransform = CGAffineTransformTranslate(combinedTransform, 0, 0);
-  self.addNewListView.layer.affineTransform = combinedTransform;
   
   /* set left bar button to default button that toggles its title and
    associated state between Edit and Done. */
   self.navigationItem.rightBarButtonItem = self.editButtonItem;
-  
-}
 
-- (void)viewDidDisappear:(BOOL)animated{  
-  [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+  self.outerScrollView.stickyHeader = self.addNewListView;
+  self.listsTableView.scrollingDelegate = self.outerScrollView;
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -115,40 +111,18 @@
                         withRowAnimation:UITableViewRowAnimationAutomatic];
   
 }
-//#pragma scroll view - delegate
-//- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView
-//                     withVelocity:(CGPoint)velocity
-//              targetContentOffset:(inout CGPoint *)targetContentOffset{
-//  NSLog(@"*********************************** x:%f , y=%f", velocity.x, velocity.y);
-//}
-//
--(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-  NSLog(@"Drag: Scrollview tag is %ld", (long)scrollView.tag);
-}
+
+#pragma scroll view - delegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-  NSLog(@"scrolling: Scrollview tag is %ld", (long)scrollView.tag);
-  
-//  NSLog(@"scrolling offset is %f", scrollView.contentOffset.y);
-//  //scrollView.bounces = (scrollView.contentOffset.y > 0);
-//  
-//  
-//  if((scrollView.contentOffset.y > 0) && (scrollView.contentOffset.y < 10) && (self.addNewListView.frame.size.height > 62)){
-//    
-//    CGFloat height = self.addNewListView.bounds.size.height;
-//    CGFloat verticalScalingPercent = (height - 2*scrollView.contentOffset.y) / height;
-//    
-//    CGAffineTransform currentTransform = self.addNewListView.layer.affineTransform;
-//    
-//    CGAffineTransform newTransfrom = CGAffineTransformScale(currentTransform,1, verticalScalingPercent);
-//    newTransfrom = CGAffineTransformTranslate(newTransfrom, 0, -2*scrollView.contentOffset.y);
-//    self.addNewListView.layer.affineTransform = newTransfrom;
-//    
-//  }
-//  NSLog(@"height is %f",self.addNewListView.frame.size.height);
-//  
+  if((scrollView.contentOffset.y > 30.0) && (YES == self.listsTableView.shouldNotifyDelegate)){
+    [self.listsTableView.scrollingDelegate scrollViewDidCrossOverThreshold:scrollView];
+    self.listsTableView.shouldNotifyDelegate = NO;
+  }else if((scrollView.contentOffset.y < 30.0) && (NO == self.listsTableView.shouldNotifyDelegate)){
+    [self.listsTableView.scrollingDelegate scrollViewDidReturnBelowThreshold:scrollView];
+    self.listsTableView.shouldNotifyDelegate = YES;
+  }
 }
-
 
 #pragma table view - delegate
 - (void)tableView:(UITableView *)tableView

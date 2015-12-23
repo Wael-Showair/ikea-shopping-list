@@ -10,7 +10,9 @@
 		DA03238B1BEFCA0B003960B0 /* text-input-table-view-cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA03238A1BEFCA0B003960B0 /* text-input-table-view-cell.xib */; };
 		DA14CA381C035D690043C2B6 /* AislesPivotTableTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA14CA371C035D690043C2B6 /* AislesPivotTableTests.m */; };
 		DA14CA3C1C03A2020043C2B6 /* ListOfItemsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DA14CA3B1C03A2020043C2B6 /* ListOfItemsUITests.m */; };
+		DA1DF70C1C288D3A00CBD994 /* ShoppingListsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1DF70B1C288D3A00CBD994 /* ShoppingListsTableView.m */; };
 		DA23133A1BF1891700E5366C /* ItemsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2313391BF1891700E5366C /* ItemsDataSource.m */; };
+		DA2C316E1C27FD690080AF31 /* OuterScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2C316D1C27FD690080AF31 /* OuterScrollView.m */; };
 		DA5444B91C1327F4002DFD0F /* StandaloneNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5444B81C1327F4002DFD0F /* StandaloneNavBar.m */; };
 		DA5444BC1C132922002DFD0F /* CustomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5444BB1C132922002DFD0F /* CustomScrollView.m */; };
 		DA5866FB1C0248D800C98FC2 /* ShoppingList.m in Sources */ = {isa = PBXBuildFile; fileRef = DA67F9EA1BE8131E00E1734A /* ShoppingList.m */; };
@@ -63,8 +65,13 @@
 		DA14CA371C035D690043C2B6 /* AislesPivotTableTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AislesPivotTableTests.m; sourceTree = "<group>"; };
 		DA14CA3A1C0380FB0043C2B6 /* PivotEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PivotEntry.h; path = "data-sources/PivotEntry.h"; sourceTree = "<group>"; };
 		DA14CA3B1C03A2020043C2B6 /* ListOfItemsUITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOfItemsUITests.m; sourceTree = "<group>"; };
+		DA1DF70A1C288D3A00CBD994 /* ShoppingListsTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingListsTableView.h; path = views/ShoppingListsTableView.h; sourceTree = "<group>"; };
+		DA1DF70B1C288D3A00CBD994 /* ShoppingListsTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShoppingListsTableView.m; path = views/ShoppingListsTableView.m; sourceTree = "<group>"; };
+		DA1DF70E1C288EFB00CBD994 /* UIScrollingNotificationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UIScrollingNotificationDelegate.h; path = protocols/UIScrollingNotificationDelegate.h; sourceTree = "<group>"; };
 		DA2313381BF1891700E5366C /* ItemsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemsDataSource.h; path = "data-sources/ItemsDataSource.h"; sourceTree = "<group>"; };
 		DA2313391BF1891700E5366C /* ItemsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemsDataSource.m; path = "data-sources/ItemsDataSource.m"; sourceTree = "<group>"; };
+		DA2C316C1C27FD690080AF31 /* OuterScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OuterScrollView.h; path = views/OuterScrollView.h; sourceTree = "<group>"; };
+		DA2C316D1C27FD690080AF31 /* OuterScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OuterScrollView.m; path = views/OuterScrollView.m; sourceTree = "<group>"; };
 		DA5444B71C1327F4002DFD0F /* StandaloneNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StandaloneNavBar.h; path = views/StandaloneNavBar.h; sourceTree = "<group>"; };
 		DA5444B81C1327F4002DFD0F /* StandaloneNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StandaloneNavBar.m; path = views/StandaloneNavBar.m; sourceTree = "<group>"; };
 		DA5444BA1C132922002DFD0F /* CustomScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomScrollView.h; path = views/CustomScrollView.h; sourceTree = "<group>"; };
@@ -151,6 +158,7 @@
 				DAE8DAB91C14828C00AB81A2 /* UITextField+Errors.m */,
 				DA8D2B6B1C1A23D100E01584 /* UIView+FlashAnimation.h */,
 				DA8D2B6C1C1A23D100E01584 /* UIView+FlashAnimation.m */,
+				DA1DF70E1C288EFB00CBD994 /* UIScrollingNotificationDelegate.h */,
 			);
 			name = common;
 			sourceTree = "<group>";
@@ -320,9 +328,13 @@
 		DAF88CCA1C2318830074E0A8 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				DA2C316C1C27FD690080AF31 /* OuterScrollView.h */,
+				DA2C316D1C27FD690080AF31 /* OuterScrollView.m */,
 				DA65F7331C1BBBE90017BBCB /* TextInputTableViewCell.h */,
 				DA65F7341C1BBBE90017BBCB /* TextInputTableViewCell.m */,
 				DA03238A1BEFCA0B003960B0 /* text-input-table-view-cell.xib */,
+				DA1DF70A1C288D3A00CBD994 /* ShoppingListsTableView.h */,
+				DA1DF70B1C288D3A00CBD994 /* ShoppingListsTableView.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -547,6 +559,8 @@
 				DAC6394F1BF54D30003A087B /* AislesPivotTable.m in Sources */,
 				DAA61BA61BE8FBF700CEC295 /* NavigationControllerDelegate.m in Sources */,
 				DA67F9F31BE8131E00E1734A /* ShoppingItem.m in Sources */,
+				DA1DF70C1C288D3A00CBD994 /* ShoppingListsTableView.m in Sources */,
+				DA2C316E1C27FD690080AF31 /* OuterScrollView.m in Sources */,
 				DA67F9F01BE8131E00E1734A /* TwoSidedDoorAnimator.m in Sources */,
 				DA67F9F91BE8131E00E1734A /* ListOfItemsTableViewController.m in Sources */,
 				DA5444B91C1327F4002DFD0F /* StandaloneNavBar.m in Sources */,
