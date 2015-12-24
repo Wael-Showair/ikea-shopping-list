@@ -31,9 +31,9 @@
   
   CGAffineTransform currentTransform = self.stickyHeader.layer.affineTransform;
   
-  CGAffineTransform translateTransform = CGAffineTransformMakeTranslation(0, -47.0);
+//  CGAffineTransform translateTransform = CGAffineTransformMakeTranslation(0, -47.0);
   
-  CGAffineTransform newTransfrom = CGAffineTransformScale(currentTransform, 1.0, 0.5);
+  CGAffineTransform newTransfrom = CGAffineTransformScale(currentTransform, 0.5, 0.5);
   
   /* When the scaling transformation matrix is applied, the view's height has been shrinked by 0.5,
    * now the view is shifted by height/4 from top and bottom.
@@ -42,23 +42,23 @@
    * height/8 so to compnsate this you have to move the origin at the original coordinate system
    * by height/4*2 = height/2 so that it will be converted to height/4 in the shrinked coordinate
    * system*/
-  newTransfrom = CGAffineTransformTranslate(newTransfrom, 0.0, -47.0);
+  newTransfrom = CGAffineTransformTranslate(newTransfrom, -200.0, -188.0); //-94*2
   
   
-  UIButton* button = (UIButton*) [self viewWithTag:2];
-  CGFloat fontSize = button.titleLabel.font.pointSize;
-  button.titleLabel.adjustsFontSizeToFitWidth  = YES;
-  button.titleLabel.numberOfLines = 1;
-  button.titleLabel.minimumScaleFactor = 2;
-  button.titleLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
-  button.titleLabel.font = [UIFont systemFontOfSize:fontSize*2];
+//  UIButton* button = (UIButton*) [self viewWithTag:2];
+
+//  CGFloat fontSize = button.titleLabel.font.pointSize;
+//  button.titleLabel.adjustsFontSizeToFitWidth  = YES;
+//  button.titleLabel.numberOfLines = 1;
+//  button.titleLabel.minimumScaleFactor = 2;
+//  button.titleLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+  
   
   [UIView animateWithDuration:0.3 animations:^{
     self.stickyHeader.layer.affineTransform = newTransfrom;
-    scrollView.layer.affineTransform = translateTransform;
-    button.titleLabel.font = [UIFont systemFontOfSize:fontSize];
+    scrollView.layer.affineTransform = CGAffineTransformMakeTranslation( 0.0, -94.0);
   }completion: ^(BOOL finished){
-    
+    [self.stickyDelegate viewDidDisappear:self.stickyHeader];
   }];
 }
 
@@ -67,13 +67,13 @@
   CGAffineTransform newTransfrom = CGAffineTransformMakeScale(1, 1);
   CGAffineTransform translateTransform = CGAffineTransformMakeTranslation(0, 0);
   
-  UIButton* button = (UIButton*) [self viewWithTag:2];
-  CGFloat fontSize = button.titleLabel.font.pointSize;
-  
+//  UIButton* button = (UIButton*) [self viewWithTag:2];
+//  CGFloat fontSize = button.titleLabel.font.pointSize;
+  [self.stickyDelegate viewWillAppear:self.stickyHeader];
   [UIView animateWithDuration:0.3 animations:^{
     self.stickyHeader.layer.affineTransform = newTransfrom;
     scrollView.layer.affineTransform = translateTransform;
-    
+    //button.titleLabel.font = [UIFont systemFontOfSize:fontSize-5];
   }];
 }
 @end

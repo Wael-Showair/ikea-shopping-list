@@ -87,6 +87,7 @@
 
   self.outerScrollView.stickyHeader = self.addNewListView;
   self.listsTableView.scrollingDelegate = self.outerScrollView;
+  self.outerScrollView.stickyDelegate = self;
 
 }
 
@@ -124,6 +125,22 @@
   }
 }
 
+#pragma sticky view - delegate
+
+- (void)viewDidDisappear: (UIView*) stickyView{
+  
+  UIBarButtonItem* addBtn = [[UIBarButtonItem alloc]
+                             initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                             target:self
+                             action:@selector(onTapAdd:)];
+  
+  self.navigationItem.leftBarButtonItem = addBtn;
+}
+
+-(void) viewWillAppear: (UIView*) stickyView{
+  self.navigationItem.leftBarButtonItem = nil;
+}
+
 #pragma table view - delegate
 - (void)tableView:(UITableView *)tableView
   willDisplayCell:(UITableViewCell *)cell
@@ -144,6 +161,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 //}
 
 #pragma list addition - delegate
+                             
+- (IBAction)onTapAdd:(id)sender {
+  
+  NSLog(@"%s", __PRETTY_FUNCTION__);
+  
+}
+                             
 - (void)listInfoDidCreatedWithTitle:(NSString *)title{
   NSLog(@"%s", __PRETTY_FUNCTION__);
   NSLog(@"%@",title);

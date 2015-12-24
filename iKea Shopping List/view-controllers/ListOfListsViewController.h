@@ -10,9 +10,11 @@
 
 #import <UIKit/UIKit.h>
 #import "ListInfoCreationDelegate.h"
+#import "OuterScrollView.h"
 
 @interface ListOfListsViewController : UIViewController
                                       <UITableViewDelegate,
-                                       ListInfoCreationDelegate>
+                                       ListInfoCreationDelegate,
+                                       UIStickyViewDelegate>
 
 @end

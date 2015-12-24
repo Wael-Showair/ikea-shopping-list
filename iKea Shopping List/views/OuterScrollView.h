@@ -9,6 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "UIScrollingNotificationDelegate.h"
 
+@protocol UIStickyViewDelegate <NSObject>
+-(void) viewDidDisappear: (UIView*) stickyView;
+-(void) viewWillAppear : (UIView*) stickyView;
+@end
+
 @interface OuterScrollView : UIScrollView <UIScrollingNotificationDelegate>
 @property (weak, nonatomic) UIView* stickyHeader;
+@property (weak, nonatomic) id<UIStickyViewDelegate> stickyDelegate;
 @end
+
+

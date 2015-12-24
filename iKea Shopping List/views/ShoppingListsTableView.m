@@ -13,6 +13,8 @@
 @implementation ShoppingListsTableView
 -(void)awakeFromNib{
   self.shouldNotifyDelegate = YES;
+  /* Remove empty cells from the table view. */
+  self.tableFooterView = [UIView new];
 }
 
 #pragma scroll view - delegate
