@@ -81,7 +81,7 @@
   self.listsTableView.dataSource = self.listOfListsDataSource;
   self.listsTableView.delegate = self;
   
-  /* set left bar button to default button that toggles its title and
+  /* set right bar button to default button that toggles its title and
    associated state between Edit and Done. */
   self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
@@ -439,7 +439,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
   shoppingList = [[ShoppingList alloc] initWithTitle:@"WishList"];
   [allLists addObject:shoppingList];
   
-  shoppingList = [[ShoppingList alloc] initWithTitle:@"Gifts"];
+  shoppingList = [[ShoppingList alloc] initWithTitle:@"Gifts33"];
   [allLists addObject:shoppingList];
   return allLists;
 }

@@ -18,31 +18,14 @@
 //  combinedTransform = CGAffineTransformTranslate(combinedTransform, 0, 0);
 //  self.stickyHeader.layer.affineTransform = combinedTransform;
 //  
-  self.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);  
+ // self.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
 }
-//- (void)layoutSubviews{
-//  [super layoutSubviews];
-//  
-//  if((self.contentOffset.y>= 30.0) && (YES == self.shouldAnimateStickyHeader)){
-//    self.shouldAnimateStickyHeader = NO;
-//    CGAffineTransform currentTransform = self.stickyHeader.layer.affineTransform;
-//    
-//    CGAffineTransform newTransfrom = CGAffineTransformScale(currentTransform,1, 0.5);
-//    newTransfrom = CGAffineTransformTranslate(newTransfrom, 0, -5);
-//    [UIView animateWithDuration:1.0 animations:^{
-//      self.stickyHeader.layer.affineTransform = newTransfrom;
-//    }];
-//  }else if((self.contentOffset.y< 30.0) && (self.contentOffset.y > 0.0)){
-//    CGAffineTransform newTransfrom = CGAffineTransformMakeScale(1, 1);
-//    newTransfrom = CGAffineTransformTranslate(newTransfrom, 0, 5);
-//    
-//    self.shouldAnimateStickyHeader = YES;
-//    
-//    [UIView animateWithDuration:1.0 animations:^{
-//      self.stickyHeader.layer.affineTransform = newTransfrom;
-//    }];
-//  }
-//}
+- (void)layoutSubviews{
+  [super layoutSubviews];
+  NSLog(@"offset = %f", self.contentOffset.y);
+//  self.stickyHeader.layer.affineTransform = CGAffineTransformMakeTranslation(0, self.contentOffset.y);
+//  self.stickyHeader.layer.zPosition =2;
+}
 
 -(void)scrollViewDidCrossOverThreshold:(UIScrollView *)scrollView{
   
