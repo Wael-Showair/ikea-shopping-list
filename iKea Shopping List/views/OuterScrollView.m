@@ -8,55 +8,49 @@
 
 #import "OuterScrollView.h"
 
-@interface OuterScrollView()
+#define ANIMATION_DURATION  0.3
 
-@end
+#define X_SCALING_DOWN_FACTOR  0.5
+#define Y_SCALING_DOWN_FACTOR  X_SCALING_DOWN_FACTOR
+
+#define STICKY_VIEW_HEIGHT  94.0
+#define TRANSLATE_TY_STICKY_VIEW_UP -STICKY_VIEW_HEIGHT*2
+#define TRANSLATE_TX_STICKY_VIEW_LEFT -200.0
+
+#define TRANSLATE_TY_SCROLL_VIEW_UP  -STICKY_VIEW_HEIGHT
+#define TRANSLATE_TX_SCROLL_VIEW_LEFT  0.0
+
+#define X_SCALING_UP_FACTOR 1.0
+#define Y_SCALING_UP_FACTOR 1.0
+
+#define TRANSLATE_TX_LEFT 0.0
+#define TRANSLATE_TY_DOWN 0.0
 
 @implementation OuterScrollView
--(void)awakeFromNib{
-//  CGAffineTransform combinedTransform  = CGAffineTransformMakeScale(1, 1);
-//  combinedTransform = CGAffineTransformTranslate(combinedTransform, 0, 0);
-//  self.stickyHeader.layer.affineTransform = combinedTransform;
-//  
- // self.contentInset = UIEdgeInsetsMake(-64, 0, 0, 0);
-}
-- (void)layoutSubviews{
-  [super layoutSubviews];
-  NSLog(@"offset = %f", self.contentOffset.y);
-//  self.stickyHeader.layer.affineTransform = CGAffineTransformMakeTranslation(0, self.contentOffset.y);
-//  self.stickyHeader.layer.zPosition =2;
-}
 
 -(void)scrollViewDidCrossOverThreshold:(UIScrollView *)scrollView{
   
   CGAffineTransform currentTransform = self.stickyHeader.layer.affineTransform;
   
-//  CGAffineTransform translateTransform = CGAffineTransformMakeTranslation(0, -47.0);
-  
-  CGAffineTransform newTransfrom = CGAffineTransformScale(currentTransform, 0.5, 0.5);
+  CGAffineTransform combinedTransform = CGAffineTransformScale(currentTransform,
+                                                               X_SCALING_DOWN_FACTOR,
+                                                               Y_SCALING_DOWN_FACTOR);
   
   /* When the scaling transformation matrix is applied, the view's height has been shrinked by 0.5,
    * now the view is shifted by height/4 from top and bottom.
    * To shift the object at the top of the screen, you should have move the origin by hieght/4
    * but wait a second, every point would divided by two so the object will actually be shifted by
    * height/8 so to compnsate this you have to move the origin at the original coordinate system
-   * by height/4*2 = height/2 so that it will be converted to height/4 in the shrinked coordinate
+   * by 2*height/4 = height/2 so that it will be converted to height/4 in the scaled down coordinate
    * system*/
-  newTransfrom = CGAffineTransformTranslate(newTransfrom, -200.0, -188.0); //-94*2
+  combinedTransform = CGAffineTransformTranslate(combinedTransform,
+                                                 TRANSLATE_TX_STICKY_VIEW_LEFT,
+                                                 TRANSLATE_TY_STICKY_VIEW_UP);
   
-  
-//  UIButton* button = (UIButton*) [self viewWithTag:2];
-
-//  CGFloat fontSize = button.titleLabel.font.pointSize;
-//  button.titleLabel.adjustsFontSizeToFitWidth  = YES;
-//  button.titleLabel.numberOfLines = 1;
-//  button.titleLabel.minimumScaleFactor = 2;
-//  button.titleLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
-  
-  
-  [UIView animateWithDuration:0.3 animations:^{
-    self.stickyHeader.layer.affineTransform = newTransfrom;
-    scrollView.layer.affineTransform = CGAffineTransformMakeTranslation( 0.0, -94.0);
+  [UIView animateWithDuration:ANIMATION_DURATION animations:^{
+    self.stickyHeader.layer.affineTransform = combinedTransform;
+    scrollView.layer.affineTransform = CGAffineTransformMakeTranslation(TRANSLATE_TX_SCROLL_VIEW_LEFT,
+                                                                        TRANSLATE_TY_SCROLL_VIEW_UP);
   }completion: ^(BOOL finished){
     [self.stickyDelegate viewDidDisappear:self.stickyHeader];
   }];
@@ -64,16 +58,16 @@
 
 -(void)scrollViewDidReturnBelowThreshold:(UIScrollView *)scrollView{
   
-  CGAffineTransform newTransfrom = CGAffineTransformMakeScale(1, 1);
-  CGAffineTransform translateTransform = CGAffineTransformMakeTranslation(0, 0);
+  CGAffineTransform newTransfrom = CGAffineTransformMakeScale(X_SCALING_UP_FACTOR,
+                                                              Y_SCALING_UP_FACTOR);
   
-//  UIButton* button = (UIButton*) [self viewWithTag:2];
-//  CGFloat fontSize = button.titleLabel.font.pointSize;
+  CGAffineTransform translateTransform = CGAffineTransformMakeTranslation(TRANSLATE_TX_LEFT,
+                                                                          TRANSLATE_TY_DOWN);
+  
   [self.stickyDelegate viewWillAppear:self.stickyHeader];
-  [UIView animateWithDuration:0.3 animations:^{
+  [UIView animateWithDuration:ANIMATION_DURATION animations:^{
     self.stickyHeader.layer.affineTransform = newTransfrom;
     scrollView.layer.affineTransform = translateTransform;
-    //button.titleLabel.font = [UIFont systemFontOfSize:fontSize-5];
   }];
 }
 @end

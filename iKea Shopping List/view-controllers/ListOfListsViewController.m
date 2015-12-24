@@ -84,11 +84,11 @@
   /* set right bar button to default button that toggles its title and
    associated state between Edit and Done. */
   self.navigationItem.rightBarButtonItem = self.editButtonItem;
-
+  
   self.outerScrollView.stickyHeader = self.addNewListView;
   self.listsTableView.scrollingDelegate = self.outerScrollView;
   self.outerScrollView.stickyDelegate = self;
-
+  
 }
 
 - (void)didReceiveMemoryWarning {
@@ -109,7 +109,7 @@
   /* add the new list to table view. */
   NSIndexPath* indexPath = [NSIndexPath indexPathForRow:FIRST_INDEX inSection:FIRST_SECTION_INDEX];
   [self.listsTableView insertRowsAtIndexPaths:@[indexPath]
-                        withRowAnimation:UITableViewRowAnimationAutomatic];
+                             withRowAnimation:UITableViewRowAnimationAutomatic];
   
 }
 
@@ -128,7 +128,6 @@
 #pragma sticky view - delegate
 
 - (void)viewDidDisappear: (UIView*) stickyView{
-  
   UIBarButtonItem* addBtn = [[UIBarButtonItem alloc]
                              initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                              target:self
@@ -161,13 +160,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 //}
 
 #pragma list addition - delegate
-                             
+
 - (IBAction)onTapAdd:(id)sender {
   
   NSLog(@"%s", __PRETTY_FUNCTION__);
   
 }
-                             
+
 - (void)listInfoDidCreatedWithTitle:(NSString *)title{
   NSLog(@"%s", __PRETTY_FUNCTION__);
   NSLog(@"%@",title);
@@ -188,7 +187,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     NSIndexPath* selectedIndexPath = [self.listsTableView indexPathForSelectedRow];
     
     ShoppingList* selectedShoppingList =
-      [self.listOfListsDataSource itemAtIndexPath:selectedIndexPath];
+    [self.listOfListsDataSource itemAtIndexPath:selectedIndexPath];
     
     [listOfItemsViewController setShoppingList:selectedShoppingList];
     
@@ -450,13 +449,13 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
   
   shoppingList = [[ShoppingList alloc] initWithTitle:@"Living"];
   [allLists addObject:shoppingList];
-
+  
   shoppingList = [[ShoppingList alloc] initWithTitle:@"WishList"];
   [allLists addObject:shoppingList];
-
+  
   shoppingList = [[ShoppingList alloc] initWithTitle:@"Gifts"];
   [allLists addObject:shoppingList];
-
+  
   shoppingList = [[ShoppingList alloc] initWithTitle:@"Living"];
   [allLists addObject:shoppingList];
   
