@@ -362,7 +362,7 @@
                                     <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uIt-y3-AEV" userLabel="scrollview wrapper">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                         <subviews>
-                                            <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q49-KT-eph" userLabel="Sticky Header View">
+                                            <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q49-KT-eph" userLabel="Sticky Header View">
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="94"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jZM-Ug-DGM">
@@ -377,7 +377,7 @@
                                                     <constraint firstItem="jZM-Ug-DGM" firstAttribute="centerX" secondItem="Q49-KT-eph" secondAttribute="centerX" id="wre-NB-G6J"/>
                                                 </constraints>
                                             </view>
-                                            <tableView clipsSubviews="YES" tag="2" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="94" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iwW-LY-Iga" customClass="ShoppingListsTableView">
+                                            <tableView clipsSubviews="YES" tag="3" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="94" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iwW-LY-Iga" customClass="ShoppingListsTableView">
                                                 <rect key="frame" x="0.0" y="94" width="600" height="536"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -410,10 +410,10 @@
                                             </tableView>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="Q49-KT-eph" firstAttribute="top" secondItem="uIt-y3-AEV" secondAttribute="top" id="1hv-xh-61d"/>
                                             <constraint firstItem="iwW-LY-Iga" firstAttribute="centerX" secondItem="uIt-y3-AEV" secondAttribute="centerX" id="37d-nZ-zz4"/>
                                             <constraint firstItem="iwW-LY-Iga" firstAttribute="bottom" secondItem="uIt-y3-AEV" secondAttribute="bottom" constant="94" id="A3t-6i-HcB"/>
                                             <constraint firstItem="iwW-LY-Iga" firstAttribute="leading" secondItem="Q49-KT-eph" secondAttribute="leading" id="H3r-ea-o9T"/>
-                                            <constraint firstItem="Q49-KT-eph" firstAttribute="top" secondItem="uIt-y3-AEV" secondAttribute="top" id="Ixq-Ic-TKj"/>
                                             <constraint firstAttribute="height" constant="600" id="JLh-aY-U5f"/>
                                             <constraint firstItem="iwW-LY-Iga" firstAttribute="leading" secondItem="uIt-y3-AEV" secondAttribute="leading" id="MWI-V9-A1D"/>
                                             <constraint firstItem="Q49-KT-eph" firstAttribute="centerX" secondItem="uIt-y3-AEV" secondAttribute="centerX" id="SuZ-co-0vv"/>
@@ -439,27 +439,25 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="WWf-Y8-xg3" firstAttribute="bottom" secondItem="Qkc-JB-1aV" secondAttribute="top" id="0pq-fw-1wl"/>
-                            <constraint firstItem="Q49-KT-eph" firstAttribute="top" secondItem="WWf-Y8-xg3" secondAttribute="bottom" id="3Da-FO-Pnh"/>
                             <constraint firstAttribute="bottom" secondItem="Qkc-JB-1aV" secondAttribute="bottom" id="PFa-J3-yFK"/>
                             <constraint firstAttribute="trailing" secondItem="Qkc-JB-1aV" secondAttribute="trailing" id="PPQ-kB-X8u"/>
                             <constraint firstItem="Qkc-JB-1aV" firstAttribute="top" secondItem="hyH-x5-QUI" secondAttribute="top" id="Sff-Si-vDN"/>
+                            <constraint firstItem="WWf-Y8-xg3" firstAttribute="bottom" secondItem="Qkc-JB-1aV" secondAttribute="top" id="T30-TR-f4r"/>
+                            <constraint firstItem="Q49-KT-eph" firstAttribute="top" secondItem="WWf-Y8-xg3" secondAttribute="bottom" id="Xmt-LJ-TVn"/>
                             <constraint firstItem="Qkc-JB-1aV" firstAttribute="leading" secondItem="hyH-x5-QUI" secondAttribute="leading" id="eLA-N1-Cl6"/>
-                            <constraint firstItem="Qkc-JB-1aV" firstAttribute="bottom" secondItem="Uih-ue-d23" secondAttribute="top" id="jUZ-Jz-K2Z"/>
-                            <constraint firstItem="Qkc-JB-1aV" firstAttribute="top" secondItem="WWf-Y8-xg3" secondAttribute="bottom" id="tEK-hJ-Dnm"/>
+                            <constraint firstItem="Qkc-JB-1aV" firstAttribute="bottom" secondItem="Uih-ue-d23" secondAttribute="top" id="uI1-A1-Nnl"/>
+                            <constraint firstItem="Qkc-JB-1aV" firstAttribute="top" secondItem="WWf-Y8-xg3" secondAttribute="bottom" id="ykl-pC-bpO"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="3Da-FO-Pnh"/>
+                                <exclude reference="T30-TR-f4r"/>
+                                <exclude reference="Xmt-LJ-TVn"/>
                                 <exclude reference="Sff-Si-vDN"/>
-                                <exclude reference="jUZ-Jz-K2Z"/>
-                                <exclude reference="tEK-hJ-Dnm"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="UAH-4h-joB"/>
                     <connections>
-                        <outlet property="addNewListView" destination="Q49-KT-eph" id="QuH-R2-Fc3"/>
                         <outlet property="listsTableView" destination="iwW-LY-Iga" id="GIk-NW-UmE"/>
                         <outlet property="outerScrollView" destination="Qkc-JB-1aV" id="NbE-8Y-Jvv"/>
                     </connections>

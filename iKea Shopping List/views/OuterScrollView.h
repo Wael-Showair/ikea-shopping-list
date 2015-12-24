@@ -15,7 +15,6 @@
 @end
 
 @interface OuterScrollView : UIScrollView <UIScrollingNotificationDelegate>
-@property (weak, nonatomic) UIView* stickyHeader;
 @property (weak, nonatomic) id<UIStickyViewDelegate> stickyDelegate;
 @end
 

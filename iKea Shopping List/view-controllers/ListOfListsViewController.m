@@ -52,7 +52,7 @@
 @property (strong, nonatomic) ListsDataSource* listOfListsDataSource;
 @property (weak, nonatomic) IBOutlet OuterScrollView *outerScrollView;
 @property (weak, nonatomic) IBOutlet ShoppingListsTableView *listsTableView;
-@property (weak, nonatomic) IBOutlet UIView *addNewListView;
+//@property (weak, nonatomic) IBOutlet UIView *addNewListView;
 
 @end
 
@@ -84,9 +84,8 @@
   /* set right bar button to default button that toggles its title and
    associated state between Edit and Done. */
   self.navigationItem.rightBarButtonItem = self.editButtonItem;
-  
-  self.outerScrollView.stickyHeader = self.addNewListView;
-  self.listsTableView.scrollingDelegate = self.outerScrollView;
+    
+  /* Set the view controller as a delegate for Sticky Header Protocol. */
   self.outerScrollView.stickyDelegate = self;
   
 }
@@ -116,13 +115,7 @@
 #pragma scroll view - delegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-  if((scrollView.contentOffset.y > 30.0) && (YES == self.listsTableView.shouldNotifyDelegate)){
-    [self.listsTableView.scrollingDelegate scrollViewDidCrossOverThreshold:scrollView];
-    self.listsTableView.shouldNotifyDelegate = NO;
-  }else if((scrollView.contentOffset.y < 30.0) && (NO == self.listsTableView.shouldNotifyDelegate)){
-    [self.listsTableView.scrollingDelegate scrollViewDidReturnBelowThreshold:scrollView];
-    self.listsTableView.shouldNotifyDelegate = YES;
-  }
+  [(ShoppingListsTableView*)scrollView scrollViewDidScroll];
 }
 
 #pragma sticky view - delegate

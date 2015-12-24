@@ -7,6 +7,7 @@
 //
 
 #import "OuterScrollView.h"
+#import "ShoppingListsTableView.h"
 
 #define ANIMATION_DURATION  0.3
 
@@ -26,7 +27,23 @@
 #define TRANSLATE_TX_LEFT 0.0
 #define TRANSLATE_TY_DOWN 0.0
 
+@interface OuterScrollView ()
+@property (weak, nonatomic) UIView* stickyHeader;
+@property (weak, nonatomic) UIScrollView* innerScrollView;
+@end
+
 @implementation OuterScrollView
+
+-(void)awakeFromNib{
+  /* Get a reference to the sticky header view. */
+  self.stickyHeader = [self viewWithTag:2];
+  
+  /* Get a reference to inner scroll view. */
+  self.innerScrollView = [self viewWithTag:3];
+
+  /* Set outer scroll view as a delegate for scrolling notification protocol */
+  ((ShoppingListsTableView*)self.innerScrollView).scrollingDelegate = self;
+}
 
 -(void)scrollViewDidCrossOverThreshold:(UIScrollView *)scrollView{
   
