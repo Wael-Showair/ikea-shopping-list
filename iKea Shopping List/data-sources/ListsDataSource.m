@@ -45,8 +45,8 @@
   self.rowIndexForTextInputCell = index;
 }
 
--(void) removeObjectAtIndex: (NSUInteger)index{
-  [self.allItems removeObjectAtIndex:index];
+-(void) removeListAtIndexPath: (NSIndexPath*) indexPath{
+  [self.allItems removeObjectAtIndex:indexPath.row];
 }
 
 - (void)renameListToTitle:(NSString*) newTitle atIndexPath:(NSIndexPath*) indexPath{
@@ -108,7 +108,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath {
   
   if (editingStyle == UITableViewCellEditingStyleDelete) {
     //Delete object from data array itself.
-    [self removeObjectAtIndex:indexPath.row];
+    [self removeListAtIndexPath:indexPath];
     
     // Delete the row from the data source
     [tableView deleteRowsAtIndexPaths:@[indexPath]

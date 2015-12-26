@@ -177,6 +177,25 @@
 -(void) keyboardDidShow:(NSNotification*) notification{
   /* Display the overlay after showing the keyboard.*/
   [self.view addOverlayExceptAround:self.outerScrollView.textFieldObscuredByKeyboard];
+
+  /* Note that gesture recoginzer should be added only to one view. You can't add the same
+   * gesture recognizer to multiple views. */
+  UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapOverlay)];
+  [self.view.upperOverlayView addGestureRecognizer:tapGesture];
+  
+  tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapOverlay)];
+  [self.view.lowerOverlayView addGestureRecognizer:tapGesture];
+}
+
+-(IBAction)onTapOverlay{
+  /* Dismiss the keyboard. */
+  [self.outerScrollView.textFieldObscuredByKeyboard resignFirstResponder];
+  
+  /* Delete the newly added list from the lists. */
+  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:LAST_INDEX inSection:FIRST_SECTION_INDEX];
+  [self.listOfListsDataSource removeListAtIndexPath:indexPath];
+  [self.listsTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+  
 }
 
 #pragma table view - delegate

@@ -18,4 +18,5 @@
 - (id)itemAtIndexPath:(NSIndexPath *)indexPath;
 - (void)insertObject:(id)object AtIndex:(NSUInteger)indexPath;
 - (void)renameListToTitle:(NSString*) title atIndexPath:(NSIndexPath*) indexPath;
+- (void) removeListAtIndexPath: (NSIndexPath*) indexPath;
 @end
