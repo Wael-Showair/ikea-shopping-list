@@ -10,6 +10,7 @@
         <!--List Addition View Controller-->
         <scene sceneID="uJA-FM-j8w">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GvX-vH-dix" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="n50-jz-PjJ" customClass="ListAdditionViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="w3k-Ou-Oaq"/>
@@ -58,7 +59,6 @@
                         <outlet property="navigationBar" destination="bQV-bd-Y3r" id="dw2-nm-N58"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GvX-vH-dix" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1392" y="1120"/>
         </scene>

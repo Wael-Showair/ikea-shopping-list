@@ -17,6 +17,7 @@
 #import "OuterScrollView.h"
 #import "ShoppingListsTableView.h"
 #import "TextInputTableViewCell.h"
+#import "UIView+Overlay.h"
 
 /*!
  *  @define SHOW_LIST_ITEMS_SEGUE_ID
@@ -24,6 +25,7 @@
  *  to specific list name.
  */
 #define SHOW_LIST_ITEMS_SEGUE_ID    @"showListOfItems"
+
 #define EMPTY_STRING                @""
 
 #define ADD_NEW_LIST_SEGUE_ID       @"addNewListInfo"
@@ -87,9 +89,14 @@
   /* set right bar button to default button that toggles its title and
    associated state between Edit and Done. */
   self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
+  
   /* Set the view controller as a delegate for Sticky Header Protocol. */
   self.outerScrollView.stickyDelegate = self;
+  
+  /* Add keyboard listener to display the overlay properly*/
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(keyboardDidShow:)
+                                               name:UIKeyboardDidShowNotification object:nil];
   
 }
 
@@ -103,16 +110,16 @@
 }
 
 //- (void)insertNewListWithTitle: (NSString*)title{
-//  
+//
 //  /* add the new list object to the data source. */
 //  ShoppingList* newList = [[ShoppingList alloc] initWithTitle:title];
 //  [self.listOfListsDataSource insertObject:newList AtIndex:FIRST_INDEX];
-//  
+//
 //  /* add the new list to table view. */
 //  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:FIRST_INDEX inSection:FIRST_SECTION_INDEX];
 //  [self.listsTableView insertRowsAtIndexPaths:@[indexPath]
 //                             withRowAnimation:UITableViewRowAnimationAutomatic];
-//  
+//
 //}
 
 #pragma scroll view - delegate
@@ -139,21 +146,37 @@
 #pragma text field - delegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
+  /* Set text field that might be obscured by the keyboard. */
   self.outerScrollView.textFieldObscuredByKeyboard = textField;
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
   NSIndexPath* indexPath = [NSIndexPath indexPathForRow:LAST_INDEX inSection:FIRST_SECTION_INDEX];
-    [self.listOfListsDataSource renameListToTitle:textField.text atIndexPath:indexPath];
-    [self.listsTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-    [textField resignFirstResponder];
-    return YES;
+  
+  /* rename the list to the new name entered by the user. */
+  [self.listOfListsDataSource renameListToTitle:textField.text atIndexPath:indexPath];
+  
+  /* Reload the row whose text label has been changed. */
+  [self.listsTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+  
+  /* Dismiss keyboard. */
+  [textField resignFirstResponder];
+  return YES;
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField{
-  /* Hide Overlay view */
-  NSLog(@"%s", __PRETTY_FUNCTION__);
+  
+  /* reset any text field that could be obscured by keyboard since keyboard is already disappeared*/
   self.outerScrollView.textFieldObscuredByKeyboard = nil;
+  
+  /* Remove overvaly*/
+  [self.view removeOverlay];
+}
+
+#pragma keyboard - notifications
+-(void) keyboardDidShow:(NSNotification*) notification{
+  /* Display the overlay after showing the keyboard.*/
+  [self.view addOverlayExceptAround:self.outerScrollView.textFieldObscuredByKeyboard];
 }
 
 #pragma table view - delegate
@@ -162,7 +185,7 @@
 forRowAtIndexPath:(NSIndexPath *)indexPath{
   
   if(indexPath.row == self.listOfListsDataSource.rowIndexForTextInputCell){
-
+    
     ((TextInputTableViewCell*)cell).inputText.text = EMPTY_STRING;
     
     /* Set the current view controller as a delegate for the textfield in the cell. */
@@ -202,8 +225,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
   [self.listsTableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
   [self.listsTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:NO];
   
-  /* Add a light overlay to the whole list view. On tap the overlay, dismiss the keyboard
-   * & remove the newest entry from the table view. */
+  /* Note that the overlay will be added on showing the keyboard. On tap the overlay, dismiss the 
+   * keyboard & remove the newest entry from the table view. */
   /* If the user tap Go button, change the cell contents from text field to basic label.*/
   
 }

@@ -37,6 +37,7 @@
 		DADD0A831BDD50CE00806DB6 /* ListOfListsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0A821BDD50CE00806DB6 /* ListOfListsUITests.m */; };
 		DADD0A9A1BDD8A3800806DB6 /* ShoppingListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0A991BDD8A3800806DB6 /* ShoppingListTests.m */; };
 		DAE8DABA1C14828C00AB81A2 /* UITextField+Errors.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE8DAB91C14828C00AB81A2 /* UITextField+Errors.m */; };
+		DAE9BADC1C2F05C800CE2A85 /* UIView+Overlay.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE9BADB1C2F05C800CE2A85 /* UIView+Overlay.m */; };
 		DAED5BCE1BEA780700C5816F /* ListsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DAED5BCD1BEA780700C5816F /* ListsDataSource.m */; };
 		DAF5E27D1BEE9A800023F8E8 /* ListAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5E27C1BEE9A800023F8E8 /* ListAdditionViewController.m */; };
 		DAF7345D1BF239B00013CDDD /* items-table-header-view.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF7345C1BF239B00013CDDD /* items-table-header-view.xib */; };
@@ -121,6 +122,8 @@
 		DADD0A991BDD8A3800806DB6 /* ShoppingListTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListTests.m; sourceTree = "<group>"; };
 		DAE8DAB81C14828C00AB81A2 /* UITextField+Errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextField+Errors.h"; path = "views/UITextField+Errors.h"; sourceTree = "<group>"; };
 		DAE8DAB91C14828C00AB81A2 /* UITextField+Errors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextField+Errors.m"; path = "views/UITextField+Errors.m"; sourceTree = "<group>"; };
+		DAE9BADA1C2F05C800CE2A85 /* UIView+Overlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Overlay.h"; path = "views/UIView+Overlay.h"; sourceTree = "<group>"; };
+		DAE9BADB1C2F05C800CE2A85 /* UIView+Overlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Overlay.m"; path = "views/UIView+Overlay.m"; sourceTree = "<group>"; };
 		DAED5BCC1BEA780700C5816F /* ListsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListsDataSource.h; path = "data-sources/ListsDataSource.h"; sourceTree = "<group>"; };
 		DAED5BCD1BEA780700C5816F /* ListsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListsDataSource.m; path = "data-sources/ListsDataSource.m"; sourceTree = "<group>"; };
 		DAF5E27B1BEE9A800023F8E8 /* ListAdditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListAdditionViewController.h; path = "view-controllers/ListAdditionViewController.h"; sourceTree = "<group>"; };
@@ -164,6 +167,8 @@
 				DA1DF70E1C288EFB00CBD994 /* UIScrollingNotificationDelegate.h */,
 				DA8862B71C2E3B0100B8876C /* UIScrollView+ObscuringKeyboard.h */,
 				DA8862B81C2E3B0100B8876C /* UIScrollView+ObscuringKeyboard.m */,
+				DAE9BADA1C2F05C800CE2A85 /* UIView+Overlay.h */,
+				DAE9BADB1C2F05C800CE2A85 /* UIView+Overlay.m */,
 			);
 			name = common;
 			sourceTree = "<group>";
@@ -572,6 +577,7 @@
 				DA6B141E1C2787F900F19404 /* ListOfListsViewController.m in Sources */,
 				DAED5BCE1BEA780700C5816F /* ListsDataSource.m in Sources */,
 				DAE8DABA1C14828C00AB81A2 /* UITextField+Errors.m in Sources */,
+				DAE9BADC1C2F05C800CE2A85 /* UIView+Overlay.m in Sources */,
 				DA8862B91C2E3B0100B8876C /* UIScrollView+ObscuringKeyboard.m in Sources */,
 				DADD0A621BDD50CE00806DB6 /* AppDelegate.m in Sources */,
 				DA5866FB1C0248D800C98FC2 /* ShoppingList.m in Sources */,
