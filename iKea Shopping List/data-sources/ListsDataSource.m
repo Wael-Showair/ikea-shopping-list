@@ -9,13 +9,15 @@
  */
 #import <UIKit/UIKit.h>
 #import "ListsDataSource.h"
-
+#import "ShoppingList.h"
 
 /*!
  *  @define LISTS_CELL_IDENTIFIER
  *  @abstract table view cell tag that is used to idenify the cells for reuse.
  */
 #define LISTS_CELL_IDENTIFIER       @"cellForListOfLists"
+#define NEW_LIST_INFO_CELL_ID   @"new-list-info-cell"
+#define TEXT_FIELD_CELL_NIB     @"text-input-table-view-cell"
 
 @interface ListsDataSource()
 
@@ -29,6 +31,7 @@
   self = [super init];
   if (self) {
     self.allItems = items;
+    self.rowIndexForTextInputCell = INVALID_ROW_INDEX;
   }
   return self;
 }
@@ -39,20 +42,44 @@
 
 -(void) insertObject:(id)object AtIndex:(NSUInteger)index{
   [self.allItems insertObject:object atIndex:index];
+  self.rowIndexForTextInputCell = index;
 }
 
 -(void) removeObjectAtIndex: (NSUInteger)index{
   [self.allItems removeObjectAtIndex:index];
 }
 
+- (void)renameListToTitle:(NSString*) newTitle atIndexPath:(NSIndexPath*) indexPath{
+  ShoppingList* list = (ShoppingList*) [self.allItems objectAtIndex:indexPath.row];
+  list.title = newTitle;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-  /* Because the prototype cell is defined in a storyboard, the
-   * dequeueReusableCellWithIdentifier: method always returns a valid cell.
-   * You don’t need to check the return value against nil and create a cell
-   * manually.*/
-  UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:LISTS_CELL_IDENTIFIER];
+  UITableViewCell* cell;
   
+  if(indexPath.row == self.rowIndexForTextInputCell){
+    cell = [tableView dequeueReusableCellWithIdentifier:NEW_LIST_INFO_CELL_ID];
+    /* Because the prototype cell is NOT defined in a storyboard, the
+     * dequeueReusableCellWithIdentifier: method might NOT return a valid cell.
+     * You need to check the return value against nil and create a cell
+     * manually.*/
+    if(cell == nil){
+      
+      UINib* nib = [UINib nibWithNibName:TEXT_FIELD_CELL_NIB bundle:nil];
+      
+      [tableView registerNib:nib forCellReuseIdentifier:NEW_LIST_INFO_CELL_ID];
+      
+      cell = [tableView dequeueReusableCellWithIdentifier:NEW_LIST_INFO_CELL_ID];
+    }
+    
+  }else{
+    /* Because the prototype cell is defined in a storyboard, the
+     * dequeueReusableCellWithIdentifier: method always returns a valid cell.
+     * You don’t need to check the return value against nil and create a cell
+     * manually.*/
+     cell = [tableView dequeueReusableCellWithIdentifier:LISTS_CELL_IDENTIFIER];
+  }
   return cell;
 }
 

@@ -43,6 +43,9 @@
 
   /* Set outer scroll view as a delegate for scrolling notification protocol */
   ((ShoppingListsTableView*)self.innerScrollView).scrollingDelegate = self;
+  
+  /* Listen for keyboard events to handle text field that might be obscured by keyboard. */
+  [self registerForKeyboardNotifications];
 }
 
 -(void)scrollViewDidCrossOverThreshold:(UIScrollView *)scrollView{

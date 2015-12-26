@@ -9,10 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#define INVALID_ROW_INDEX   -1
+
 @interface ListsDataSource : NSObject <UITableViewDataSource>
+@property NSUInteger rowIndexForTextInputCell;
 
 - (instancetype)initWithItems:(NSMutableArray *)items;
 - (id)itemAtIndexPath:(NSIndexPath *)indexPath;
 - (void)insertObject:(id)object AtIndex:(NSUInteger)indexPath;
-
+- (void)renameListToTitle:(NSString*) title atIndexPath:(NSIndexPath*) indexPath;
 @end

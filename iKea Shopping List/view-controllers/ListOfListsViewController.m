@@ -16,13 +16,15 @@
 #import "ShoppingItem.h"
 #import "OuterScrollView.h"
 #import "ShoppingListsTableView.h"
+#import "TextInputTableViewCell.h"
+
 /*!
  *  @define SHOW_LIST_ITEMS_SEGUE_ID
  *  @abstract Segue identifier that is used to show list of items related
  *  to specific list name.
  */
 #define SHOW_LIST_ITEMS_SEGUE_ID    @"showListOfItems"
-
+#define EMPTY_STRING                @""
 
 #define ADD_NEW_LIST_SEGUE_ID       @"addNewListInfo"
 
@@ -30,6 +32,9 @@
 
 #define FIRST_SECTION_INDEX         0
 
+#define NUM_OF_LISTS                [self.listsTableView numberOfRowsInSection:0]
+
+#define LAST_INDEX                  NUM_OF_LISTS - 1
 
 @interface ListOfListsViewController ()
 
@@ -52,8 +57,6 @@
 @property (strong, nonatomic) ListsDataSource* listOfListsDataSource;
 @property (weak, nonatomic) IBOutlet OuterScrollView *outerScrollView;
 @property (weak, nonatomic) IBOutlet ShoppingListsTableView *listsTableView;
-//@property (weak, nonatomic) IBOutlet UIView *addNewListView;
-
 @end
 
 @implementation ListOfListsViewController
@@ -99,18 +102,18 @@
   [super didReceiveMemoryWarning];
 }
 
-- (void)insertNewListWithTitle: (NSString*)title{
-  
-  /* add the new list object to the data source. */
-  ShoppingList* newList = [[ShoppingList alloc] initWithTitle:title];
-  [self.listOfListsDataSource insertObject:newList AtIndex:FIRST_INDEX];
-  
-  /* add the new list to table view. */
-  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:FIRST_INDEX inSection:FIRST_SECTION_INDEX];
-  [self.listsTableView insertRowsAtIndexPaths:@[indexPath]
-                             withRowAnimation:UITableViewRowAnimationAutomatic];
-  
-}
+//- (void)insertNewListWithTitle: (NSString*)title{
+//  
+//  /* add the new list object to the data source. */
+//  ShoppingList* newList = [[ShoppingList alloc] initWithTitle:title];
+//  [self.listOfListsDataSource insertObject:newList AtIndex:FIRST_INDEX];
+//  
+//  /* add the new list to table view. */
+//  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:FIRST_INDEX inSection:FIRST_SECTION_INDEX];
+//  [self.listsTableView insertRowsAtIndexPaths:@[indexPath]
+//                             withRowAnimation:UITableViewRowAnimationAutomatic];
+//  
+//}
 
 #pragma scroll view - delegate
 
@@ -133,13 +136,47 @@
   self.navigationItem.leftBarButtonItem = nil;
 }
 
+#pragma text field - delegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+  self.outerScrollView.textFieldObscuredByKeyboard = textField;
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:LAST_INDEX inSection:FIRST_SECTION_INDEX];
+    [self.listOfListsDataSource renameListToTitle:textField.text atIndexPath:indexPath];
+    [self.listsTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [textField resignFirstResponder];
+    return YES;
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField{
+  /* Hide Overlay view */
+  NSLog(@"%s", __PRETTY_FUNCTION__);
+  self.outerScrollView.textFieldObscuredByKeyboard = nil;
+}
+
 #pragma table view - delegate
 - (void)tableView:(UITableView *)tableView
   willDisplayCell:(UITableViewCell *)cell
 forRowAtIndexPath:(NSIndexPath *)indexPath{
   
-  ShoppingList* shoppingList = [self.listOfListsDataSource itemAtIndexPath:indexPath];
-  cell.textLabel.text = shoppingList.title;
+  if(indexPath.row == self.listOfListsDataSource.rowIndexForTextInputCell){
+
+    ((TextInputTableViewCell*)cell).inputText.text = EMPTY_STRING;
+    
+    /* Set the current view controller as a delegate for the textfield in the cell. */
+    ((TextInputTableViewCell*)cell).inputText.delegate = self;
+    
+    /* populate the keyboard automatically. */
+    [((TextInputTableViewCell*)cell).inputText becomeFirstResponder];
+    
+    /* Inform the data source that it should not use text input anymore. */
+    self.listOfListsDataSource.rowIndexForTextInputCell = INVALID_ROW_INDEX;
+  }else{
+    ShoppingList* shoppingList = [self.listOfListsDataSource itemAtIndexPath:indexPath];
+    cell.textLabel.text = shoppingList.title;
+  }
   
 }
 
@@ -156,14 +193,25 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
 
 - (IBAction)onTapAdd:(id)sender {
   
-  NSLog(@"%s", __PRETTY_FUNCTION__);
+  /* add the new list object to the data source. */
+  ShoppingList* newList = [[ShoppingList alloc] initWithTitle:@""];
+  [self.listOfListsDataSource insertObject:newList AtIndex:LAST_INDEX+1];
+  
+  /* add the new list row to table view. */
+  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:LAST_INDEX+1 inSection:FIRST_SECTION_INDEX];
+  [self.listsTableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+  [self.listsTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:NO];
+  
+  /* Add a light overlay to the whole list view. On tap the overlay, dismiss the keyboard
+   * & remove the newest entry from the table view. */
+  /* If the user tap Go button, change the cell contents from text field to basic label.*/
   
 }
 
 - (void)listInfoDidCreatedWithTitle:(NSString *)title{
   NSLog(@"%s", __PRETTY_FUNCTION__);
   NSLog(@"%@",title);
-  [self insertNewListWithTitle:title];
+  //[self insertNewListWithTitle:title];
 }
 
 #pragma mark - Navigation

@@ -366,13 +366,20 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="600" height="94"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jZM-Ug-DGM">
-                                                        <rect key="frame" x="249" y="32" width="102" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="600" height="94"/>
                                                         <state key="normal" title="Create new list"/>
+                                                        <connections>
+                                                            <action selector="onTapAdd:" destination="ekK-wL-KBd" eventType="touchUpInside" id="Y2N-y5-h2q"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
+                                                    <constraint firstItem="jZM-Ug-DGM" firstAttribute="top" secondItem="Q49-KT-eph" secondAttribute="top" id="OAv-Gu-Bn1"/>
+                                                    <constraint firstAttribute="trailing" secondItem="jZM-Ug-DGM" secondAttribute="trailing" id="ZX5-iL-um2"/>
                                                     <constraint firstItem="jZM-Ug-DGM" firstAttribute="centerY" secondItem="Q49-KT-eph" secondAttribute="centerY" id="ddm-4H-lem"/>
+                                                    <constraint firstItem="jZM-Ug-DGM" firstAttribute="leading" secondItem="Q49-KT-eph" secondAttribute="leading" id="gKv-z6-gFI"/>
+                                                    <constraint firstAttribute="bottom" secondItem="jZM-Ug-DGM" secondAttribute="bottom" id="jb4-dy-h01"/>
                                                     <constraint firstAttribute="height" constant="94" id="o5X-sw-r5k"/>
                                                     <constraint firstItem="jZM-Ug-DGM" firstAttribute="centerX" secondItem="Q49-KT-eph" secondAttribute="centerX" id="wre-NB-G6J"/>
                                                 </constraints>

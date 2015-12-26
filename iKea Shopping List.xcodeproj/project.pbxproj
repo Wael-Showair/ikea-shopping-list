@@ -23,6 +23,7 @@
 		DA67F9F91BE8131E00E1734A /* ListOfItemsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA67F9ED1BE8131E00E1734A /* ListOfItemsTableViewController.m */; };
 		DA6B141E1C2787F900F19404 /* ListOfListsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6B141D1C2787F900F19404 /* ListOfListsViewController.m */; };
 		DA6E0C081C0CAA400009632F /* DetailedItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6E0C071C0CAA400009632F /* DetailedItemViewController.m */; };
+		DA8862B91C2E3B0100B8876C /* UIScrollView+ObscuringKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8862B81C2E3B0100B8876C /* UIScrollView+ObscuringKeyboard.m */; };
 		DA8D2B6D1C1A23D100E01584 /* UIView+FlashAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8D2B6C1C1A23D100E01584 /* UIView+FlashAnimation.m */; };
 		DAA61BA61BE8FBF700CEC295 /* NavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA61BA51BE8FBF700CEC295 /* NavigationControllerDelegate.m */; };
 		DAC03FD11C17890600A64054 /* navigation-item-text-input.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAC03FD01C17890600A64054 /* navigation-item-text-input.xib */; };
@@ -92,6 +93,8 @@
 		DA6B141D1C2787F900F19404 /* ListOfListsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListOfListsViewController.m; path = "view-controllers/ListOfListsViewController.m"; sourceTree = "<group>"; };
 		DA6E0C061C0CAA400009632F /* DetailedItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailedItemViewController.h; path = "view-controllers/DetailedItemViewController.h"; sourceTree = "<group>"; };
 		DA6E0C071C0CAA400009632F /* DetailedItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailedItemViewController.m; path = "view-controllers/DetailedItemViewController.m"; sourceTree = "<group>"; };
+		DA8862B71C2E3B0100B8876C /* UIScrollView+ObscuringKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+ObscuringKeyboard.h"; path = "views/UIScrollView+ObscuringKeyboard.h"; sourceTree = "<group>"; };
+		DA8862B81C2E3B0100B8876C /* UIScrollView+ObscuringKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+ObscuringKeyboard.m"; path = "views/UIScrollView+ObscuringKeyboard.m"; sourceTree = "<group>"; };
 		DA8D2B6B1C1A23D100E01584 /* UIView+FlashAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+FlashAnimation.h"; path = "views/UIView+FlashAnimation.h"; sourceTree = "<group>"; };
 		DA8D2B6C1C1A23D100E01584 /* UIView+FlashAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+FlashAnimation.m"; path = "views/UIView+FlashAnimation.m"; sourceTree = "<group>"; };
 		DAA61BA41BE8FBF700CEC295 /* NavigationControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NavigationControllerDelegate.h; path = "view-controllers/NavigationControllerDelegate.h"; sourceTree = "<group>"; };
@@ -159,6 +162,8 @@
 				DA8D2B6B1C1A23D100E01584 /* UIView+FlashAnimation.h */,
 				DA8D2B6C1C1A23D100E01584 /* UIView+FlashAnimation.m */,
 				DA1DF70E1C288EFB00CBD994 /* UIScrollingNotificationDelegate.h */,
+				DA8862B71C2E3B0100B8876C /* UIScrollView+ObscuringKeyboard.h */,
+				DA8862B81C2E3B0100B8876C /* UIScrollView+ObscuringKeyboard.m */,
 			);
 			name = common;
 			sourceTree = "<group>";
@@ -567,6 +572,7 @@
 				DA6B141E1C2787F900F19404 /* ListOfListsViewController.m in Sources */,
 				DAED5BCE1BEA780700C5816F /* ListsDataSource.m in Sources */,
 				DAE8DABA1C14828C00AB81A2 /* UITextField+Errors.m in Sources */,
+				DA8862B91C2E3B0100B8876C /* UIScrollView+ObscuringKeyboard.m in Sources */,
 				DADD0A621BDD50CE00806DB6 /* AppDelegate.m in Sources */,
 				DA5866FB1C0248D800C98FC2 /* ShoppingList.m in Sources */,
 				DADD0A5F1BDD50CE00806DB6 /* main.m in Sources */,

@@ -15,6 +15,7 @@
 @interface ListOfListsViewController : UIViewController
                                       <UITableViewDelegate,
                                        ListInfoCreationDelegate,
-                                       UIStickyViewDelegate>
+                                       UIStickyViewDelegate,
+                                       UITextFieldDelegate>
 
 @end

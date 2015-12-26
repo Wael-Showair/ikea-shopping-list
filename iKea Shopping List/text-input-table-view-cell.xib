@@ -31,6 +31,7 @@
             <connections>
                 <outlet property="inputText" destination="ORW-cy-R44" id="7nb-br-Cdk"/>
             </connections>
+            <point key="canvasLocation" x="217" y="321"/>
         </tableViewCell>
     </objects>
 </document>

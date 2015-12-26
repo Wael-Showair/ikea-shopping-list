@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "UIScrollingNotificationDelegate.h"
+#import "UIScrollView+ObscuringKeyboard.h"
+
 
 @protocol UIStickyViewDelegate <NSObject>
 -(void) viewDidDisappear: (UIView*) stickyView;
