@@ -38,6 +38,7 @@
 		DADD0A9A1BDD8A3800806DB6 /* ShoppingListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0A991BDD8A3800806DB6 /* ShoppingListTests.m */; };
 		DAE8DABA1C14828C00AB81A2 /* UITextField+Errors.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE8DAB91C14828C00AB81A2 /* UITextField+Errors.m */; };
 		DAE9BADC1C2F05C800CE2A85 /* UIView+Overlay.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE9BADB1C2F05C800CE2A85 /* UIView+Overlay.m */; };
+		DAE9BADE1C2F5EB900CE2A85 /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = DAE9BADD1C2F5EB900CE2A85 /* data.plist */; };
 		DAED5BCE1BEA780700C5816F /* ListsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DAED5BCD1BEA780700C5816F /* ListsDataSource.m */; };
 		DAF5E27D1BEE9A800023F8E8 /* ListAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5E27C1BEE9A800023F8E8 /* ListAdditionViewController.m */; };
 		DAF7345D1BF239B00013CDDD /* items-table-header-view.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF7345C1BF239B00013CDDD /* items-table-header-view.xib */; };
@@ -124,6 +125,7 @@
 		DAE8DAB91C14828C00AB81A2 /* UITextField+Errors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextField+Errors.m"; path = "views/UITextField+Errors.m"; sourceTree = "<group>"; };
 		DAE9BADA1C2F05C800CE2A85 /* UIView+Overlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Overlay.h"; path = "views/UIView+Overlay.h"; sourceTree = "<group>"; };
 		DAE9BADB1C2F05C800CE2A85 /* UIView+Overlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Overlay.m"; path = "views/UIView+Overlay.m"; sourceTree = "<group>"; };
+		DAE9BADD1C2F5EB900CE2A85 /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
 		DAED5BCC1BEA780700C5816F /* ListsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListsDataSource.h; path = "data-sources/ListsDataSource.h"; sourceTree = "<group>"; };
 		DAED5BCD1BEA780700C5816F /* ListsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListsDataSource.m; path = "data-sources/ListsDataSource.m"; sourceTree = "<group>"; };
 		DAF5E27B1BEE9A800023F8E8 /* ListAdditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListAdditionViewController.h; path = "view-controllers/ListAdditionViewController.h"; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				DADD0A6B1BDD50CE00806DB6 /* LaunchScreen.storyboard */,
 				DADD0A6E1BDD50CE00806DB6 /* Info.plist */,
 				DADD0A5D1BDD50CE00806DB6 /* Supporting Files */,
+				DAE9BADD1C2F5EB900CE2A85 /* data.plist */,
 			);
 			path = "iKea Shopping List";
 			sourceTree = "<group>";
@@ -535,6 +538,7 @@
 				DADD0A6D1BDD50CE00806DB6 /* LaunchScreen.storyboard in Resources */,
 				DADD0A6A1BDD50CE00806DB6 /* Assets.xcassets in Resources */,
 				DADD0A681BDD50CE00806DB6 /* Main.storyboard in Resources */,
+				DAE9BADE1C2F5EB900CE2A85 /* data.plist in Resources */,
 				DA03238B1BEFCA0B003960B0 /* text-input-table-view-cell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -56,17 +56,19 @@
 }
 
 - (void) addNewItem: (ShoppingItem*) item
-       AtAisleIndex: (NSUInteger) index
 {
   NSMutableArray* array;
-  if((self.aisleNumbers.count !=0 ) && (index< self.aisleNumbers.count))
-  {
-    array = self.aisleNumbers[index];
-  }
-  else
+  NSUInteger index = [self getListIndexOfAisleNumber:item.aisleNumber];
+
+  if(NSNotFound == index)
   {
     array = [[NSMutableArray alloc] init];
     [self.aisleNumbers addObject:array];
+
+  }
+  else
+  {
+    array = self.aisleNumbers[index];
   }
   
   [array insertObject:item atIndex:0];
@@ -111,4 +113,23 @@
   return self.aisleNumbers;
 }
 
+- (NSUInteger) getListIndexOfAisleNumber: (NSUInteger) requiredAisleNum{
+  NSUInteger foundIndex =
+  [self.aisleNumbers indexOfObjectPassingTest:
+   ^BOOL(id itemsPerAisle, NSUInteger idx, BOOL *stop){
+     ShoppingItem* shoppingItem = [itemsPerAisle objectAtIndex:0];
+     if(requiredAisleNum == shoppingItem.aisleNumber){
+       *stop = YES;
+       return YES;
+     }else{
+       *stop = NO;
+       return NO;
+     }
+     
+   }];
+  
+  return foundIndex;
+
+
+}
 @end

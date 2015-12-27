@@ -181,8 +181,8 @@ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
    arrays. */
   NSInteger physicalSectionIndex = [self.pivotTable physicalSecIndexForSection:virtualSectionIndex];
   
-  [self.allItems addNewItem:newItem AtAisleIndex:physicalSectionIndex];
-  
+//  [self.allItems addNewItem:newItem AtAisleIndex:physicalSectionIndex];
+    [self.allItems addNewItem:newItem];
   return virtualSectionIndex;
 }
 

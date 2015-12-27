@@ -43,8 +43,7 @@
  *
  *  @param item an object of shopping item.
  */
-- (void) addNewItem: (ShoppingItem*) item
-       AtAisleIndex: (NSUInteger) index;
+- (void) addNewItem: (ShoppingItem*) item;
 
 - (void)removeItemAtIndexPath:(NSIndexPath*)index;
 
