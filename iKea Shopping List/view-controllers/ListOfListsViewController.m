@@ -12,7 +12,6 @@
 #import "ListOfListsViewController.h"
 #import "ListsDataSource.h"
 #import "ListOfItemsTableViewController.h"
-#import "ListAdditionViewController.h"
 #import "ShoppingItem.h"
 #import "OuterScrollView.h"
 #import "ShoppingListsTableView.h"
@@ -27,8 +26,6 @@
 #define SHOW_LIST_ITEMS_SEGUE_ID    @"showListOfItems"
 
 #define EMPTY_STRING                @""
-
-#define ADD_NEW_LIST_SEGUE_ID       @"addNewListInfo"
 
 #define FIRST_INDEX                 0
 
@@ -259,12 +256,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
   
 }
 
-- (void)listInfoDidCreatedWithTitle:(NSString *)title{
-  NSLog(@"%s", __PRETTY_FUNCTION__);
-  NSLog(@"%@",title);
-  //[self insertNewListWithTitle:title];
-}
-
 #pragma mark - Navigation
 
 /* In a storyboard-based application, you will often want to do a little
@@ -283,9 +274,6 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [listOfItemsViewController setShoppingList:selectedShoppingList];
     
-  }else if ([segue.identifier isEqualToString:ADD_NEW_LIST_SEGUE_ID]){
-    ListAdditionViewController* modalViewController = [segue destinationViewController];
-    modalViewController.listInfoCreationDelegate = self;
   }
 }
 

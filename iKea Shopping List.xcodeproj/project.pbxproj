@@ -40,7 +40,6 @@
 		DAE9BADC1C2F05C800CE2A85 /* UIView+Overlay.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE9BADB1C2F05C800CE2A85 /* UIView+Overlay.m */; };
 		DAE9BADE1C2F5EB900CE2A85 /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = DAE9BADD1C2F5EB900CE2A85 /* data.plist */; };
 		DAED5BCE1BEA780700C5816F /* ListsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DAED5BCD1BEA780700C5816F /* ListsDataSource.m */; };
-		DAF5E27D1BEE9A800023F8E8 /* ListAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF5E27C1BEE9A800023F8E8 /* ListAdditionViewController.m */; };
 		DAF7345D1BF239B00013CDDD /* items-table-header-view.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAF7345C1BF239B00013CDDD /* items-table-header-view.xib */; };
 		DAF88CD41C2334F40074E0A8 /* PivotEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF88CD31C2334F40074E0A8 /* PivotEntry.m */; };
 /* End PBXBuildFile section */
@@ -128,8 +127,6 @@
 		DAE9BADD1C2F5EB900CE2A85 /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
 		DAED5BCC1BEA780700C5816F /* ListsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListsDataSource.h; path = "data-sources/ListsDataSource.h"; sourceTree = "<group>"; };
 		DAED5BCD1BEA780700C5816F /* ListsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListsDataSource.m; path = "data-sources/ListsDataSource.m"; sourceTree = "<group>"; };
-		DAF5E27B1BEE9A800023F8E8 /* ListAdditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListAdditionViewController.h; path = "view-controllers/ListAdditionViewController.h"; sourceTree = "<group>"; };
-		DAF5E27C1BEE9A800023F8E8 /* ListAdditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListAdditionViewController.m; path = "view-controllers/ListAdditionViewController.m"; sourceTree = "<group>"; };
 		DAF7345C1BF239B00013CDDD /* items-table-header-view.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "items-table-header-view.xib"; sourceTree = "<group>"; };
 		DAF88CD31C2334F40074E0A8 /* PivotEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PivotEntry.m; path = "data-sources/PivotEntry.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -332,8 +329,6 @@
 			children = (
 				DA6B141C1C2787F900F19404 /* ListOfListsViewController.h */,
 				DA6B141D1C2787F900F19404 /* ListOfListsViewController.m */,
-				DAF5E27B1BEE9A800023F8E8 /* ListAdditionViewController.h */,
-				DAF5E27C1BEE9A800023F8E8 /* ListAdditionViewController.m */,
 			);
 			name = "view controllers";
 			sourceTree = "<group>";
@@ -564,7 +559,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAF5E27D1BEE9A800023F8E8 /* ListAdditionViewController.m in Sources */,
 				DA6E0C081C0CAA400009632F /* DetailedItemViewController.m in Sources */,
 				DA5444BC1C132922002DFD0F /* CustomScrollView.m in Sources */,
 				DAF88CD41C2334F40074E0A8 /* PivotEntry.m in Sources */,
