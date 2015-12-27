@@ -127,7 +127,7 @@
 
 #pragma sticky view - delegate
 
-- (void)viewDidDisappear: (UIView*) stickyView{
+- (void)stickyViewDidDisappear: (UIView*) stickyView{
   UIBarButtonItem* addBtn = [[UIBarButtonItem alloc]
                              initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
                              target:self
@@ -136,7 +136,7 @@
   self.navigationItem.leftBarButtonItem = addBtn;
 }
 
--(void) viewWillAppear: (UIView*) stickyView{
+-(void) stickyViewWillAppear: (UIView*) stickyView{
   self.navigationItem.leftBarButtonItem = nil;
 }
 

@@ -72,7 +72,7 @@
     scrollView.layer.affineTransform = CGAffineTransformMakeTranslation(TRANSLATE_TX_SCROLL_VIEW_LEFT,
                                                                         TRANSLATE_TY_SCROLL_VIEW_UP);
   }completion: ^(BOOL finished){
-    [self.stickyDelegate viewDidDisappear:self.stickyHeader];
+    [self.stickyDelegate stickyViewDidDisappear:self.stickyHeader];
   }];
 }
 
@@ -84,7 +84,7 @@
   CGAffineTransform translateTransform = CGAffineTransformMakeTranslation(TRANSLATE_TX_LEFT,
                                                                           TRANSLATE_TY_DOWN);
   
-  [self.stickyDelegate viewWillAppear:self.stickyHeader];
+  [self.stickyDelegate stickyViewWillAppear:self.stickyHeader];
   [UIView animateWithDuration:ANIMATION_DURATION animations:^{
     self.stickyHeader.layer.affineTransform = newTransfrom;
     scrollView.layer.affineTransform = translateTransform;

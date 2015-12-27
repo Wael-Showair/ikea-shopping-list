@@ -12,8 +12,8 @@
 
 
 @protocol UIStickyViewDelegate <NSObject>
--(void) viewDidDisappear: (UIView*) stickyView;
--(void) viewWillAppear : (UIView*) stickyView;
+-(void) stickyViewDidDisappear: (UIView*) stickyView;
+-(void) stickyViewWillAppear : (UIView*) stickyView;
 @end
 
 @interface OuterScrollView : UIScrollView <UIScrollingNotificationDelegate>
