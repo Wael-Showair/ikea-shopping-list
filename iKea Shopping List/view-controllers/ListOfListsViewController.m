@@ -151,6 +151,17 @@
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
+
+  /* Note that you have to dismiss the keyboard before updating the tableview otherwise you
+   * will get an log error message:
+   * "no index path for table cell being reused"
+   * It makes since because when after you update the tableview, the textInput cell will be replaced
+   * by a basic cell. So If I tried to dismiss the keyboard, the whole cell is removed.
+   * Thus UIKit complains about that there is no index path for the textInput cell type. */
+  
+  /* Dismiss keyboard. */
+  [textField resignFirstResponder];
+  
   NSIndexPath* indexPath = [NSIndexPath indexPathForRow:LAST_INDEX inSection:FIRST_SECTION_INDEX];
   
   /* rename the list to the new name entered by the user. */
@@ -159,8 +170,6 @@
   /* Reload the row whose text label has been changed. */
   [self.listsTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
   
-  /* Dismiss keyboard. */
-  [textField resignFirstResponder];
   return YES;
 }
 
