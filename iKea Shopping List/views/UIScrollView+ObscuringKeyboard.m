@@ -55,23 +55,19 @@
   CGRect aRect = self.superview.frame;
   aRect.size.height -= kbSize.height;
 
-  /* Check whether the scrollview rect contains the origin of textfield.
+  /* Convert the frame of the text field obscured by the keyboard to scroll view coordinate system.
    * Note that the text field is not always a direct child to scrollview, so in this case
-   * a conversion from textfield origin coordinate system must be done towards scrollview rect 
+   * a conversion from textfield coordinate system must be done towards scrollview
    * coordinate system. Text Programming Guide for iOS https://goo.gl/yZreJl */
-  CGPoint convertedOrigin =
-    [self.textFieldObscuredByKeyboard.superview convertPoint:self.textFieldObscuredByKeyboard.frame.origin
-                                                      toView:self.superview];
-  
-  if (!CGRectContainsPoint(aRect,convertedOrigin ) ) {
-    /* Convert the frame of the text field obscured by the keyboard to scroll view coordinate system*/
-//    CGRect convertedRect = CGRectMake(convertedOrigin.x,
-//                                      convertedOrigin.y,
-//                                      self.textFieldObscuredByKeyboard.bounds.size.width,
-//                                      self.textFieldObscuredByKeyboard.bounds.size.height);
-    
-    CGRect convertedRect = [self.textFieldObscuredByKeyboard.superview convertRect:self.textFieldObscuredByKeyboard.frame toView:self.superview];
-    
+
+  CGRect convertedRect =
+    [self.textFieldObscuredByKeyboard.superview convertRect:self.textFieldObscuredByKeyboard.frame
+                                                     toView:self.superview];
+
+  /* Since both rects are measured in the same coordinate system, they can be compared to each other
+   * Check whether the scrollview rect contains the rect of textfield */
+  if (!CGRectContainsRect(aRect, convertedRect) ) {
+   
     /* Scroll to the converted visible frame rectangle of the text field. */
     [self scrollRectToVisible:convertedRect animated:YES];
   }
