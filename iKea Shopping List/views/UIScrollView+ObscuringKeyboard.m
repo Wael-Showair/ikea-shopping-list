@@ -67,7 +67,14 @@
   /* Since both rects are measured in the same coordinate system, they can be compared to each other
    * Check whether the scrollview rect contains the rect of textfield */
   if (!CGRectContainsRect(aRect, convertedRect) ) {
-   
+
+    CGFloat screenHeight = [UIScreen mainScreen].bounds.size.height;
+    /* The following corner case are most likely to happen on iPhone 4s Devices since they have
+     * short screens. Without this step, the obscured view will be located at the top of the screen.*/
+    if(CGRectGetMaxY(convertedRect)> screenHeight){
+      convertedRect.origin.y -= convertedRect.size.height;
+    }
+    
     /* Scroll to the converted visible frame rectangle of the text field. */
     [self scrollRectToVisible:convertedRect animated:YES];
   }

@@ -308,10 +308,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                         <subviews>
                                             <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q49-KT-eph" userLabel="Sticky Header View">
-                                                <rect key="frame" x="0.0" y="0.0" width="600" height="94"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="84.5"/>
                                                 <subviews>
                                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jZM-Ug-DGM">
-                                                        <rect key="frame" x="0.0" y="0.0" width="600" height="94"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="600" height="84.5"/>
                                                         <state key="normal" title="Create new list"/>
                                                         <connections>
                                                             <action selector="onTapAdd:" destination="ekK-wL-KBd" eventType="touchUpInside" id="Y2N-y5-h2q"/>
@@ -328,10 +328,15 @@
                                                     <constraint firstAttribute="height" constant="94" id="o5X-sw-r5k"/>
                                                     <constraint firstItem="jZM-Ug-DGM" firstAttribute="centerX" secondItem="Q49-KT-eph" secondAttribute="centerX" id="wre-NB-G6J"/>
                                                 </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="o5X-sw-r5k"/>
+                                                    </mask>
+                                                </variation>
                                             </view>
                                             <tableView clipsSubviews="YES" tag="3" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="94" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iwW-LY-Iga" customClass="ShoppingListsTableView">
-                                                <rect key="frame" x="0.0" y="94" width="600" height="536"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <rect key="frame" x="0.0" y="84.5" width="600" height="451.5"/>
+                                                <color key="backgroundColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="442" id="l5j-60-ZD8"/>
                                                 </constraints>
@@ -364,10 +369,11 @@
                                                 </variation>
                                             </tableView>
                                         </subviews>
+                                        <color key="backgroundColor" red="1" green="0.27711810570000001" blue="0.2451457507" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="Q49-KT-eph" firstAttribute="top" secondItem="uIt-y3-AEV" secondAttribute="top" id="1hv-xh-61d"/>
                                             <constraint firstItem="iwW-LY-Iga" firstAttribute="centerX" secondItem="uIt-y3-AEV" secondAttribute="centerX" id="37d-nZ-zz4"/>
-                                            <constraint firstItem="iwW-LY-Iga" firstAttribute="bottom" secondItem="uIt-y3-AEV" secondAttribute="bottom" constant="94" id="A3t-6i-HcB"/>
+                                            <constraint firstItem="iwW-LY-Iga" firstAttribute="bottom" secondItem="uIt-y3-AEV" secondAttribute="bottom" id="A3t-6i-HcB"/>
                                             <constraint firstItem="iwW-LY-Iga" firstAttribute="leading" secondItem="Q49-KT-eph" secondAttribute="leading" id="H3r-ea-o9T"/>
                                             <constraint firstAttribute="height" constant="600" id="JLh-aY-U5f"/>
                                             <constraint firstItem="iwW-LY-Iga" firstAttribute="leading" secondItem="uIt-y3-AEV" secondAttribute="leading" id="MWI-V9-A1D"/>
@@ -382,6 +388,7 @@
                                         </variation>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" red="0.98893652229999995" green="1" blue="0.25936630129999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="uIt-y3-AEV" firstAttribute="leading" secondItem="Qkc-JB-1aV" secondAttribute="leading" id="DMu-2Q-fE9"/>
                                     <constraint firstItem="uIt-y3-AEV" firstAttribute="top" secondItem="Qkc-JB-1aV" secondAttribute="top" id="IwW-sB-tgS"/>
@@ -390,9 +397,12 @@
                                     <constraint firstAttribute="trailing" secondItem="uIt-y3-AEV" secondAttribute="trailing" id="jjC-3O-f0x"/>
                                     <constraint firstItem="uIt-y3-AEV" firstAttribute="centerX" secondItem="Qkc-JB-1aV" secondAttribute="centerX" id="reQ-x1-9nM"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="ekK-wL-KBd" id="LoC-dn-tGv"/>
+                                </connections>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Qkc-JB-1aV" secondAttribute="bottom" id="PFa-J3-yFK"/>
                             <constraint firstAttribute="trailing" secondItem="Qkc-JB-1aV" secondAttribute="trailing" id="PPQ-kB-X8u"/>
@@ -401,6 +411,7 @@
                             <constraint firstItem="Q49-KT-eph" firstAttribute="top" secondItem="WWf-Y8-xg3" secondAttribute="bottom" id="Xmt-LJ-TVn"/>
                             <constraint firstItem="Qkc-JB-1aV" firstAttribute="leading" secondItem="hyH-x5-QUI" secondAttribute="leading" id="eLA-N1-Cl6"/>
                             <constraint firstItem="Qkc-JB-1aV" firstAttribute="bottom" secondItem="Uih-ue-d23" secondAttribute="top" id="uI1-A1-Nnl"/>
+                            <constraint firstItem="Q49-KT-eph" firstAttribute="height" secondItem="hyH-x5-QUI" secondAttribute="height" multiplier="0.1409" id="urP-2w-c3I"/>
                             <constraint firstItem="Qkc-JB-1aV" firstAttribute="top" secondItem="WWf-Y8-xg3" secondAttribute="bottom" id="ykl-pC-bpO"/>
                         </constraints>
                         <variation key="default">
@@ -408,6 +419,7 @@
                                 <exclude reference="T30-TR-f4r"/>
                                 <exclude reference="Xmt-LJ-TVn"/>
                                 <exclude reference="Sff-Si-vDN"/>
+                                <exclude reference="uI1-A1-Nnl"/>
                             </mask>
                         </variation>
                     </view>

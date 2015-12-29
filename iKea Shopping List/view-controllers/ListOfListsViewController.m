@@ -94,7 +94,6 @@
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(keyboardDidShow:)
                                                name:UIKeyboardDidShowNotification object:nil];
-  
 }
 
 - (void)didReceiveMemoryWarning {
@@ -106,23 +105,26 @@
   [super didReceiveMemoryWarning];
 }
 
-//- (void)insertNewListWithTitle: (NSString*)title{
-//
-//  /* add the new list object to the data source. */
-//  ShoppingList* newList = [[ShoppingList alloc] initWithTitle:title];
-//  [self.listOfListsDataSource insertObject:newList AtIndex:FIRST_INDEX];
-//
-//  /* add the new list to table view. */
-//  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:FIRST_INDEX inSection:FIRST_SECTION_INDEX];
-//  [self.listsTableView insertRowsAtIndexPaths:@[indexPath]
-//                             withRowAnimation:UITableViewRowAnimationAutomatic];
-//
-//}
-
 #pragma scroll view - delegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-  [(ShoppingListsTableView*)scrollView scrollViewDidScroll];
+  if(scrollView == self.listsTableView){
+    [(ShoppingListsTableView*)scrollView scrollViewDidScroll];
+  }
+  else if(scrollView == self.outerScrollView){
+    NSLog(@"OuterScrollView offset:%f",scrollView.contentOffset.y);
+//    NSLog(@"InnerScrollView offset:%f",self.listsTableView.contentOffset.y);
+//    
+//    NSLog(@"OuterScrollView contentSize:%@", NSStringFromCGSize(scrollView.contentSize));
+//    NSLog(@"InnerScrollView contentSize:%@", NSStringFromCGSize(self.listsTableView.contentSize));
+//    NSLog(@"InnerScrollView height:%f", self.listsTableView.bounds.size.height);
+//    if((scrollView.contentOffset.y > 94.0) && (nil == self.navigationItem.leftBarButtonItem)){
+//    
+//    }else if((scrollView.contentOffset.y < 94.0) && (nil != self.navigationItem.leftBarButtonItem)){
+//    
+//    }
+  }
+
 }
 
 #pragma sticky view - delegate
@@ -165,7 +167,13 @@
   [self.listOfListsDataSource renameListToTitle:textField.text atIndexPath:indexPath];
   
   /* Reload the row whose text label has been changed. */
-  [self.listsTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+  [self.listsTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+  
+  [self.listsTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+  
+  if(self.listsTableView.contentOffset.y > 30.0){
+    [self.listsTableView.scrollingDelegate scrollViewDidCrossOverThreshold:self.listsTableView];
+  }
   
   return YES;
 }
@@ -205,6 +213,10 @@
 }
 
 #pragma table view - delegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+  return self.outerScrollView.stickyHeader.bounds.size.height;
+}
+
 - (void)tableView:(UITableView *)tableView
   willDisplayCell:(UITableViewCell *)cell
 forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -248,7 +260,10 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
   /* add the new list row to table view. */
   NSIndexPath* indexPath = [NSIndexPath indexPathForRow:LAST_INDEX+1 inSection:FIRST_SECTION_INDEX];
   [self.listsTableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-  [self.listsTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:NO];
+  
+  self.listsTableView.shouldNotifyDelegate = NO;
+  
+  [self.listsTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:NO];
   
   /* Note that the overlay will be added on showing the keyboard. On tap the overlay, dismiss the 
    * keyboard & remove the newest entry from the table view. */

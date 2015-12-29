@@ -14,11 +14,11 @@
 #define X_SCALING_DOWN_FACTOR  0.5
 #define Y_SCALING_DOWN_FACTOR  X_SCALING_DOWN_FACTOR
 
-#define STICKY_VIEW_HEIGHT  94.0
+#define STICKY_VIEW_HEIGHT  self.stickyHeader.frame.size.height
 #define TRANSLATE_TY_STICKY_VIEW_UP -STICKY_VIEW_HEIGHT*2
 #define TRANSLATE_TX_STICKY_VIEW_LEFT -200.0
 
-#define TRANSLATE_TY_SCROLL_VIEW_UP  -STICKY_VIEW_HEIGHT
+#define TRANSLATE_TY_SCROLL_VIEW_UP  -STICKY_VIEW_HEIGHT*2
 #define TRANSLATE_TX_SCROLL_VIEW_LEFT  0.0
 
 #define X_SCALING_UP_FACTOR 1.0
@@ -28,7 +28,6 @@
 #define TRANSLATE_TY_DOWN 0.0
 
 @interface OuterScrollView ()
-@property (weak, nonatomic) UIView* stickyHeader;
 @property (weak, nonatomic) UIScrollView* innerScrollView;
 @end
 
@@ -72,6 +71,7 @@
     scrollView.layer.affineTransform = CGAffineTransformMakeTranslation(TRANSLATE_TX_SCROLL_VIEW_LEFT,
                                                                         TRANSLATE_TY_SCROLL_VIEW_UP);
   }completion: ^(BOOL finished){
+    self.stickyHeader.hidden = YES;
     [self.stickyDelegate stickyViewDidDisappear:self.stickyHeader];
   }];
 }
@@ -85,6 +85,7 @@
                                                                           TRANSLATE_TY_DOWN);
   
   [self.stickyDelegate stickyViewWillAppear:self.stickyHeader];
+  self.stickyHeader.hidden = NO;
   [UIView animateWithDuration:ANIMATION_DURATION animations:^{
     self.stickyHeader.layer.affineTransform = newTransfrom;
     scrollView.layer.affineTransform = translateTransform;
