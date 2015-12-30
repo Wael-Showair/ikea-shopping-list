@@ -49,6 +49,11 @@
 
 -(void)scrollViewDidCrossOverThreshold:(UIScrollView *)scrollView{
   
+  CGRect frame = self.innerScrollView.frame;
+  CGFloat height = CGRectGetHeight(self.stickyHeader.bounds);
+  frame.size.height += height;
+  self.innerScrollView.frame = frame;
+  
   CGAffineTransform currentTransform = self.stickyHeader.layer.affineTransform;
   
   CGAffineTransform combinedTransform = CGAffineTransformScale(currentTransform,
@@ -77,6 +82,11 @@
 }
 
 -(void)scrollViewDidReturnBelowThreshold:(UIScrollView *)scrollView{
+
+  CGRect frame = self.innerScrollView.frame;
+  CGFloat height = CGRectGetHeight(self.stickyHeader.bounds);
+  frame.size.height -= height;
+  self.innerScrollView.frame = frame;
   
   CGAffineTransform newTransfrom = CGAffineTransformMakeScale(X_SCALING_UP_FACTOR,
                                                               Y_SCALING_UP_FACTOR);
