@@ -96,6 +96,11 @@
                                                name:UIKeyboardDidShowNotification object:nil];
 }
 
+-(void)viewDidDisappear:(BOOL)animated{
+  NSIndexPath* indexPath = [self.listsTableView indexPathForSelectedRow];
+  [self.listsTableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
 - (void)didReceiveMemoryWarning {
   
   // Dispose of any resources that can be recreated.
