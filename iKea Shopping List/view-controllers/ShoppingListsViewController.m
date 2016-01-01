@@ -9,7 +9,7 @@
  */
 
 #import "NavigationControllerDelegate.h"
-#import "ListOfListsViewController.h"
+#import "ShoppingListsViewController.h"
 #import "ListsDataSource.h"
 #import "ListOfItemsTableViewController.h"
 #import "ShoppingItem.h"
@@ -35,7 +35,7 @@
 
 #define LAST_INDEX                  NUM_OF_LISTS - 1
 
-@interface ListOfListsViewController ()
+@interface ShoppingListsViewController ()
 
 /*!
  *  @property navBarDelegate
@@ -58,7 +58,7 @@
 @property (weak, nonatomic) IBOutlet ShoppingListsTableView *listsTableView;
 @end
 
-@implementation ListOfListsViewController
+@implementation ShoppingListsViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];

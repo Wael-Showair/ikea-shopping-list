@@ -289,10 +289,10 @@
             </objects>
             <point key="canvasLocation" x="611" y="359"/>
         </scene>
-        <!--List Of Lists View Controller-->
+        <!--Shopping Lists View Controller-->
         <scene sceneID="CcL-fp-C3D">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="ekK-wL-KBd" customClass="ListOfListsViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="ekK-wL-KBd" customClass="ShoppingListsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WWf-Y8-xg3"/>
                         <viewControllerLayoutGuide type="bottom" id="Uih-ue-d23"/>

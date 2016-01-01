@@ -9,12 +9,11 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "ListInfoCreationDelegate.h"
 #import "OuterScrollView.h"
 
-@interface ListOfListsViewController : UIViewController
-                                      <UITableViewDelegate,
-                                       UIStickyViewDelegate,
-                                       UITextFieldDelegate>
+@interface ShoppingListsViewController : UIViewController
+                                        <UITableViewDelegate,
+                                        UIStickyViewDelegate,
+                                        UITextFieldDelegate>
 
 @end
