@@ -11,7 +11,7 @@
 #import "NavigationControllerDelegate.h"
 #import "ShoppingListsViewController.h"
 #import "ListsDataSource.h"
-#import "ListOfItemsTableViewController.h"
+#import "ShoppingItemsViewController.h"
 #import "ShoppingItem.h"
 #import "OuterScrollView.h"
 #import "ShoppingListsTableView.h"
@@ -284,7 +284,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
   
   if([segue.identifier isEqualToString:SHOW_LIST_ITEMS_SEGUE_ID]){
     
-    ListOfItemsTableViewController* listOfItemsViewController =
+    ShoppingItemsViewController* listOfItemsViewController =
     [segue destinationViewController];
     
     NSIndexPath* selectedIndexPath = [self.listsTableView indexPathForSelectedRow];

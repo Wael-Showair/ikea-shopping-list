@@ -11,11 +11,12 @@
 #import <UIKit/UIKit.h>
 #import "ShoppingList.h"
 #import "ShoppingItemDelegate.h"
+#import "UIScrollingNotificationDelegate.h"
 
-@interface ListOfItemsTableViewController : UITableViewController
-                                           <UITableViewDataSource,
-                                            UITableViewDelegate,
-                                            ShoppingItemDelegate>
+@interface ShoppingItemsViewController : UIViewController
+                                        <UITableViewDelegate,
+                                         ShoppingItemDelegate,
+                                         UIScrollingNotificationDelegate>
 
 /*!
  *  @property shoppingList

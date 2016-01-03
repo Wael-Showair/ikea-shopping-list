@@ -7,16 +7,17 @@
  *  @version 0.0.1
  *  @copyright 2015. Wael Showair. All rights reserved.
  */
-#import "ListOfItemsTableViewController.h"
+#import "ShoppingItemsViewController.h"
 #import "DetailedItemViewController.h"
 #import "ItemsDataSource.h"
 #import "ShoppingItem.h"
+#import "ShoppingItemsTableView.h"
 
 #define FIRST_INDEX_INSECTION        0
 #define SHOW_ITEM_DETAILS_SEGUE_ID   @"showItemDetails"
 #define ADD_NEW_ITEM_SEGUE_ID        @"addNewItem"
 
-@interface ListOfItemsTableViewController ()
+@interface ShoppingItemsViewController ()
 
 /*!
  *  @property listOfItemsDataSource
@@ -24,11 +25,12 @@
  *  @discussion separate the model from the view and controller. This is done
  *  by creating separate class for data source delegate of the UITabelView.
  */
-@property (nonatomic, strong) ItemsDataSource* listOfItemsDataSource;
-@property (nonatomic, weak)   UILabel* globalHeader;
+@property (strong,nonatomic) ItemsDataSource* listOfItemsDataSource;
+@property (weak, nonatomic) IBOutlet UILabel *pinnedLabel;
+@property (weak, nonatomic) IBOutlet  ShoppingItemsTableView* itemsTableView;
 @end
 
-@implementation ListOfItemsTableViewController
+@implementation ShoppingItemsViewController
 
 - (void)viewDidLoad {
   [super viewDidLoad];
@@ -41,13 +43,23 @@
   
   /* Set data source delegate of the table view. */
   self.listOfItemsDataSource = [[ItemsDataSource alloc] initWithItems: self.shoppingList];
-  self.tableView.dataSource  = self.listOfItemsDataSource;
+  self.itemsTableView.dataSource  = self.listOfItemsDataSource;
+  self.itemsTableView.scrollingDelegate = self;
   
-  /* make sure to hide remove separators between empty cells */
-  self.tableView.tableFooterView = [UIView new];
+  /* Set global header of the table view with the total price of the list.*/
+  [self.itemsTableView updateGlobalHeaderWithPrice:self.shoppingList.totalPrice.stringValue];
+  self.pinnedLabel.text = [TOTAL_PRICE_PREFIX stringByAppendingString:self.shoppingList.totalPrice.stringValue];
   
-  /* Load global header having the total price of the list.*/
-  [self loadGlobalHeaderView];
+
+  self.pinnedLabel.superview.layer.affineTransform = CGAffineTransformMakeTranslation(0, -64);
+  self.pinnedLabel.superview.hidden = YES;
+  
+  self.itemsTableView.transform = CGAffineTransformMakeTranslation(0, -64);
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+  NSIndexPath* selectedIndexPath = [self.itemsTableView indexPathForSelectedRow];
+  [self.itemsTableView deselectRowAtIndexPath:selectedIndexPath animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,25 +68,34 @@
   [super didReceiveMemoryWarning];
 }
 
-#pragma global header
--(void) loadGlobalHeaderView {
-  
-  if (self.globalHeader == nil) {
-    NSArray* topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"items-table-header-view"
-                                                             owner:self
-                                                           options:nil];
-    self.globalHeader = [topLevelObjects objectAtIndex:0];
+#pragma scroll view - delegate
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+  if(scrollView == self.itemsTableView){
+    [self.itemsTableView scrollViewDidScroll];
   }
-  
-  self.globalHeader.text = [TOTAL_PRICE_PREFIX stringByAppendingString:
-   self.shoppingList.totalPrice.stringValue];
-  
-  self.tableView.tableHeaderView = self.globalHeader;
 }
 
-- (void) updateGlobalHeaderTotalPrice{
-  self.globalHeader.text = [TOTAL_PRICE_PREFIX stringByAppendingString:
-   self.shoppingList.totalPrice.stringValue];
+#pragma scroll notification - delegate
+- (void)scrollViewDidCrossOverThreshold:(UIScrollView *)scrollView{
+    self.pinnedLabel.superview.hidden = NO;
+  [UIView animateWithDuration:0.3 animations:^{
+    self.itemsTableView.layer.affineTransform = CGAffineTransformMakeTranslation(0, 0);
+    self.pinnedLabel.superview.layer.affineTransform = CGAffineTransformMakeTranslation( 0, 0);
+  }];
+    self.itemsTableView.contentSize = CGSizeMake(self.itemsTableView.contentSize.width, self.itemsTableView.contentSize.height+66.0);
+}
+
+-(void)scrollViewDidReturnBelowThreshold:(UIScrollView *)scrollView{
+  
+
+  [UIView animateWithDuration:0.3 animations:^{
+    self.pinnedLabel.superview.layer.affineTransform = CGAffineTransformMakeTranslation(0, -64.0);
+    self.itemsTableView.transform = CGAffineTransformMakeTranslation(0, -64);
+  }completion:^(BOOL finished){
+      self.pinnedLabel.superview.hidden = YES;
+  }];
+  
+      self.itemsTableView.contentSize = CGSizeMake(self.itemsTableView.contentSize.width, self.itemsTableView.contentSize.height-66.0);
 }
 
 #pragma table view - delegate
@@ -104,14 +125,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
    * of the new section index to be able to call insertSections method instead
    * of reloadData method for the sake of performance. */
   NSInteger prevNumOfSections =
-      [self.listOfItemsDataSource numberOfSectionsInTableView:self.tableView];
+      [self.listOfItemsDataSource numberOfSectionsInTableView:self.itemsTableView];
   
   /* add new item in the first index of the section */
   NSInteger virtualSectionIndex = [self.listOfItemsDataSource insertShoppingItem:newItem
                                                               withAscendingOrder:YES];
   
   NSInteger newNumOfSections =
-    [self.listOfItemsDataSource numberOfSectionsInTableView:self.tableView];
+    [self.listOfItemsDataSource numberOfSectionsInTableView:self.itemsTableView];
   
   NSIndexPath* indexPath;
   /* in case new section is added, reload data is needed. */
@@ -121,7 +142,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     /* If a section already exists at the specified index location, it is
      * moved down one index location. */
-    [self.tableView insertSections:newSection
+    [self.itemsTableView insertSections:newSection
                   withRowAnimation:UITableViewRowAnimationTop];
     
     /* Note: I can use reloadData but for performance considerations
@@ -137,19 +158,19 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
                                    inSection:virtualSectionIndex];
     
     /* add the new shopping item to the table view. */
-    [self.tableView insertRowsAtIndexPaths:@[indexPath]
+    [self.itemsTableView insertRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:UITableViewRowAnimationAutomatic];
     
   }
   
   /* Scroll & Select to the new added row so that the user becomes aware of
    * the successfull operation. */
-  [self.tableView selectRowAtIndexPath:indexPath
+  [self.itemsTableView selectRowAtIndexPath:indexPath
                               animated:YES
                         scrollPosition:UITableViewScrollPositionTop];
   
-  [self updateGlobalHeaderTotalPrice];
-  
+  [self.itemsTableView updateGlobalHeaderWithPrice:self.shoppingList.totalPrice.stringValue];
+  self.pinnedLabel.text = [TOTAL_PRICE_PREFIX stringByAppendingString:self.shoppingList.totalPrice.stringValue];
 }
 
 
@@ -160,7 +181,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
   if([segue.identifier isEqualToString:SHOW_ITEM_DETAILS_SEGUE_ID]){
     
     DetailedItemViewController* destViewController = [segue destinationViewController];
-    NSIndexPath* selectedIndexPath = [self.tableView indexPathForSelectedRow];
+    NSIndexPath* selectedIndexPath = [self.itemsTableView indexPathForSelectedRow];
     ShoppingItem* shoppingItem = [self.listOfItemsDataSource itemAtIndexPath:selectedIndexPath];
     destViewController.shoppingItem = shoppingItem;
     destViewController.isNewItem = NO;

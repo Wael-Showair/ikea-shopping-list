@@ -20,9 +20,10 @@
 		DA65F73B1C1BC0850017BBCB /* ShoppingItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DA65F73A1C1BC0850017BBCB /* ShoppingItemTableViewCell.m */; };
 		DA67F9F01BE8131E00E1734A /* TwoSidedDoorAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = DA67F9E51BE8131E00E1734A /* TwoSidedDoorAnimator.m */; };
 		DA67F9F31BE8131E00E1734A /* ShoppingItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DA67F9E81BE8131E00E1734A /* ShoppingItem.m */; };
-		DA67F9F91BE8131E00E1734A /* ListOfItemsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA67F9ED1BE8131E00E1734A /* ListOfItemsTableViewController.m */; };
+		DA67F9F91BE8131E00E1734A /* ShoppingItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA67F9ED1BE8131E00E1734A /* ShoppingItemsViewController.m */; };
 		DA6B141E1C2787F900F19404 /* ShoppingListsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6B141D1C2787F900F19404 /* ShoppingListsViewController.m */; };
 		DA6E0C081C0CAA400009632F /* DetailedItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA6E0C071C0CAA400009632F /* DetailedItemViewController.m */; };
+		DA7BBDC81C371587000B0BF3 /* ShoppingItemsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA7BBDC71C371587000B0BF3 /* ShoppingItemsTableView.m */; };
 		DA8862B91C2E3B0100B8876C /* UIScrollView+ObscuringKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8862B81C2E3B0100B8876C /* UIScrollView+ObscuringKeyboard.m */; };
 		DA8D2B6D1C1A23D100E01584 /* UIView+FlashAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = DA8D2B6C1C1A23D100E01584 /* UIView+FlashAnimation.m */; };
 		DAA61BA61BE8FBF700CEC295 /* NavigationControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA61BA51BE8FBF700CEC295 /* NavigationControllerDelegate.m */; };
@@ -87,12 +88,14 @@
 		DA67F9E81BE8131E00E1734A /* ShoppingItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingItem.m; sourceTree = "<group>"; };
 		DA67F9E91BE8131E00E1734A /* ShoppingList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingList.h; path = models/ShoppingList.h; sourceTree = "<group>"; };
 		DA67F9EA1BE8131E00E1734A /* ShoppingList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShoppingList.m; path = models/ShoppingList.m; sourceTree = "<group>"; };
-		DA67F9EC1BE8131E00E1734A /* ListOfItemsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ListOfItemsTableViewController.h; path = "view-controllers/ListOfItemsTableViewController.h"; sourceTree = "<group>"; };
-		DA67F9ED1BE8131E00E1734A /* ListOfItemsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ListOfItemsTableViewController.m; path = "view-controllers/ListOfItemsTableViewController.m"; sourceTree = "<group>"; };
+		DA67F9EC1BE8131E00E1734A /* ShoppingItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingItemsViewController.h; path = "view-controllers/ShoppingItemsViewController.h"; sourceTree = "<group>"; };
+		DA67F9ED1BE8131E00E1734A /* ShoppingItemsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShoppingItemsViewController.m; path = "view-controllers/ShoppingItemsViewController.m"; sourceTree = "<group>"; };
 		DA6B141C1C2787F900F19404 /* ShoppingListsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingListsViewController.h; path = "view-controllers/ShoppingListsViewController.h"; sourceTree = "<group>"; };
 		DA6B141D1C2787F900F19404 /* ShoppingListsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShoppingListsViewController.m; path = "view-controllers/ShoppingListsViewController.m"; sourceTree = "<group>"; };
 		DA6E0C061C0CAA400009632F /* DetailedItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailedItemViewController.h; path = "view-controllers/DetailedItemViewController.h"; sourceTree = "<group>"; };
 		DA6E0C071C0CAA400009632F /* DetailedItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailedItemViewController.m; path = "view-controllers/DetailedItemViewController.m"; sourceTree = "<group>"; };
+		DA7BBDC61C371587000B0BF3 /* ShoppingItemsTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingItemsTableView.h; path = views/ShoppingItemsTableView.h; sourceTree = "<group>"; };
+		DA7BBDC71C371587000B0BF3 /* ShoppingItemsTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShoppingItemsTableView.m; path = views/ShoppingItemsTableView.m; sourceTree = "<group>"; };
 		DA8862B71C2E3B0100B8876C /* UIScrollView+ObscuringKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIScrollView+ObscuringKeyboard.h"; path = "views/UIScrollView+ObscuringKeyboard.h"; sourceTree = "<group>"; };
 		DA8862B81C2E3B0100B8876C /* UIScrollView+ObscuringKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIScrollView+ObscuringKeyboard.m"; path = "views/UIScrollView+ObscuringKeyboard.m"; sourceTree = "<group>"; };
 		DA8D2B6B1C1A23D100E01584 /* UIView+FlashAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+FlashAnimation.h"; path = "views/UIView+FlashAnimation.h"; sourceTree = "<group>"; };
@@ -279,7 +282,6 @@
 				DAF88CCD1C2319090074E0A8 /* views */,
 				DAF88CCB1C2318BA0074E0A8 /* data source */,
 				DA67F9E61BE8131E00E1734A /* model */,
-				DAF88CCC1C2318F70074E0A8 /* protocols */,
 			);
 			name = "Shopping Items";
 			sourceTree = "<group>";
@@ -359,19 +361,14 @@
 			name = "data source";
 			sourceTree = "<group>";
 		};
-		DAF88CCC1C2318F70074E0A8 /* protocols */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = protocols;
-			sourceTree = "<group>";
-		};
 		DAF88CCD1C2319090074E0A8 /* views */ = {
 			isa = PBXGroup;
 			children = (
 				DAF7345C1BF239B00013CDDD /* items-table-header-view.xib */,
 				DA65F7391C1BC0850017BBCB /* ShoppingItemTableViewCell.h */,
 				DA65F73A1C1BC0850017BBCB /* ShoppingItemTableViewCell.m */,
+				DA7BBDC61C371587000B0BF3 /* ShoppingItemsTableView.h */,
+				DA7BBDC71C371587000B0BF3 /* ShoppingItemsTableView.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -379,8 +376,8 @@
 		DAF88CCE1C23193D0074E0A8 /* view controllers */ = {
 			isa = PBXGroup;
 			children = (
-				DA67F9EC1BE8131E00E1734A /* ListOfItemsTableViewController.h */,
-				DA67F9ED1BE8131E00E1734A /* ListOfItemsTableViewController.m */,
+				DA67F9EC1BE8131E00E1734A /* ShoppingItemsViewController.h */,
+				DA67F9ED1BE8131E00E1734A /* ShoppingItemsViewController.m */,
 			);
 			name = "view controllers";
 			sourceTree = "<group>";
@@ -565,10 +562,11 @@
 				DAC6394F1BF54D30003A087B /* AislesPivotTable.m in Sources */,
 				DAA61BA61BE8FBF700CEC295 /* NavigationControllerDelegate.m in Sources */,
 				DA67F9F31BE8131E00E1734A /* ShoppingItem.m in Sources */,
+				DA7BBDC81C371587000B0BF3 /* ShoppingItemsTableView.m in Sources */,
 				DA1DF70C1C288D3A00CBD994 /* ShoppingListsTableView.m in Sources */,
 				DA2C316E1C27FD690080AF31 /* OuterScrollView.m in Sources */,
 				DA67F9F01BE8131E00E1734A /* TwoSidedDoorAnimator.m in Sources */,
-				DA67F9F91BE8131E00E1734A /* ListOfItemsTableViewController.m in Sources */,
+				DA67F9F91BE8131E00E1734A /* ShoppingItemsViewController.m in Sources */,
 				DA5444B91C1327F4002DFD0F /* StandaloneNavBar.m in Sources */,
 				DA6B141E1C2787F900F19404 /* ShoppingListsViewController.m in Sources */,
 				DAED5BCE1BEA780700C5816F /* ListsDataSource.m in Sources */,

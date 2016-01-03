@@ -18,6 +18,36 @@
 	<array>
 		<dict>
 			<key>aisle_num</key>
+			<integer>0</integer>
+			<key>name</key>
+			<string>Dish Set</string>
+			<key>price</key>
+			<real>12.99</real>
+			<key>image</key>
+			<string>dish-set</string>
+		</dict>
+		<dict>
+			<key>aisle_num</key>
+			<integer>0</integer>
+			<key>name</key>
+			<string>Dish Set</string>
+			<key>price</key>
+			<real>12.99</real>
+			<key>image</key>
+			<string>dish-set</string>
+		</dict>
+		<dict>
+			<key>aisle_num</key>
+			<integer>0</integer>
+			<key>name</key>
+			<string>Dish Set</string>
+			<key>price</key>
+			<real>12.99</real>
+			<key>image</key>
+			<string>dish-set</string>
+		</dict>
+		<dict>
+			<key>aisle_num</key>
 			<integer>101</integer>
 			<key>name</key>
 			<string>Dish Set</string>
@@ -25,6 +55,16 @@
 			<real>12.99</real>
 			<key>image</key>
 			<string>dish-set</string>
+		</dict>
+		<dict>
+			<key>aisle_num</key>
+			<integer>0</integer>
+			<key>name</key>
+			<string>Mat</string>
+			<key>image</key>
+			<string>mat</string>
+			<key>price</key>
+			<real>12.99</real>
 		</dict>
 		<dict>
 			<key>aisle_num</key>
