@@ -28,6 +28,8 @@
 @property (strong,nonatomic) ItemsDataSource* listOfItemsDataSource;
 @property (weak, nonatomic) IBOutlet UILabel *pinnedLabel;
 @property (weak, nonatomic) IBOutlet  ShoppingItemsTableView* itemsTableView;
+@property (weak,nonatomic) IBOutlet UIView* cameraOverlay;
+@property (weak,nonatomic) IBOutlet UIButton* manualInputBtn;
 @end
 
 @implementation ShoppingItemsViewController
@@ -173,6 +175,48 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
   self.pinnedLabel.text = [TOTAL_PRICE_PREFIX stringByAppendingString:self.shoppingList.totalPrice.stringValue];
 }
 
+#pragma camera
+
+- (BOOL) startCameraControllerFromViewController: (UIViewController*) controller
+                                   usingDelegate: (id <UIImagePickerControllerDelegate,
+                                                       UINavigationControllerDelegate>) delegate {
+  
+  if (([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera] == NO)
+      || (delegate == nil)
+      || (controller == nil))
+    return NO;
+  
+  
+  UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
+  cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
+  
+  // Displays a control that allows the user to choose picture or
+  // movie capture, if both are available:
+  cameraUI.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+  
+  // Hides the controls for moving & scaling pictures, or for
+  // trimming movies. To instead show the controls, use YES.
+  cameraUI.allowsEditing = NO;
+  
+  //cameraUI.delegate = delegate;
+  
+  /*
+   Load the overlay view from the OverlayView nib file. Self is the File's Owner for the nib file, so the overlayView outlet is set to the main view in the nib. Pass that view to the image picker controller to use as its overlay view, and set self's reference to the view to nil.
+   */
+  [[NSBundle mainBundle] loadNibNamed:@"camera-overlay" owner:self options:nil];
+  self.cameraOverlay.frame = cameraUI.cameraOverlayView.frame;
+  cameraUI.cameraOverlayView = self.cameraOverlay;
+  
+  cameraUI.cameraOverlayView.alpha = 0.8;
+  self.cameraOverlay = nil;
+  
+  [controller presentViewController:cameraUI animated:YES completion:nil];
+  return YES;
+}
+- (IBAction)onTapAddNewItem:(id)sender {
+  [self startCameraControllerFromViewController: self usingDelegate: self];
+}
+
 
 #pragma mark - Navigation
 
@@ -188,15 +232,15 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     
   }else if ([segue.identifier isEqualToString:ADD_NEW_ITEM_SEGUE_ID]){
     
-    DetailedItemViewController* destViewController = [segue destinationViewController];
-    
-    ShoppingItem* shoppingItem =
-      [[ShoppingItem alloc] initWithName:@"New Item"
-                                   price:[NSDecimalNumber decimalNumberWithString:@"0.0"]];
-    
-    destViewController.shoppingItem = shoppingItem;
-    destViewController.isNewItem = YES;
-    destViewController.shoppningItemDelegate = self;
+//    DetailedItemViewController* destViewController = [segue destinationViewController];
+//    
+//    ShoppingItem* shoppingItem =
+//      [[ShoppingItem alloc] initWithName:@"New Item"
+//                                   price:[NSDecimalNumber decimalNumberWithString:@"0.0"]];
+//    
+//    destViewController.shoppingItem = shoppingItem;
+//    destViewController.isNewItem = YES;
+//    destViewController.shoppningItemDelegate = self;
     
   }
 }

@@ -459,9 +459,9 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="YNS-n1-pQS">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="1x7-IF-IRJ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="1x7-IF-IRJ">
                             <connections>
-                                <segue destination="nPn-uq-FWl" kind="presentation" identifier="addNewItem" id="CIr-wm-HgF"/>
+                                <action selector="onTapAddNewItem:" destination="w5H-OC-JtZ" id="UXn-0V-yvD"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -479,7 +479,4 @@
     <resources>
         <image name="placeholder_image" width="279" height="87"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="CIr-wm-HgF"/>
-    </inferredMetricsTieBreakers>
 </document>

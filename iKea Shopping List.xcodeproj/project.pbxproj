@@ -13,6 +13,7 @@
 		DA1DF70C1C288D3A00CBD994 /* ShoppingListsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1DF70B1C288D3A00CBD994 /* ShoppingListsTableView.m */; };
 		DA23133A1BF1891700E5366C /* ItemsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2313391BF1891700E5366C /* ItemsDataSource.m */; };
 		DA2C316E1C27FD690080AF31 /* OuterScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2C316D1C27FD690080AF31 /* OuterScrollView.m */; };
+		DA3F97BB1C3B4D9D00B99D0B /* camera-overlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA3F97BA1C3B4D9D00B99D0B /* camera-overlay.xib */; };
 		DA5444B91C1327F4002DFD0F /* StandaloneNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5444B81C1327F4002DFD0F /* StandaloneNavBar.m */; };
 		DA5444BC1C132922002DFD0F /* CustomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5444BB1C132922002DFD0F /* CustomScrollView.m */; };
 		DA5866FB1C0248D800C98FC2 /* ShoppingList.m in Sources */ = {isa = PBXBuildFile; fileRef = DA67F9EA1BE8131E00E1734A /* ShoppingList.m */; };
@@ -74,6 +75,7 @@
 		DA2313391BF1891700E5366C /* ItemsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemsDataSource.m; path = "data-sources/ItemsDataSource.m"; sourceTree = "<group>"; };
 		DA2C316C1C27FD690080AF31 /* OuterScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OuterScrollView.h; path = views/OuterScrollView.h; sourceTree = "<group>"; };
 		DA2C316D1C27FD690080AF31 /* OuterScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OuterScrollView.m; path = views/OuterScrollView.m; sourceTree = "<group>"; };
+		DA3F97BA1C3B4D9D00B99D0B /* camera-overlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "camera-overlay.xib"; path = "views/camera-overlay.xib"; sourceTree = "<group>"; };
 		DA5444B71C1327F4002DFD0F /* StandaloneNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StandaloneNavBar.h; path = views/StandaloneNavBar.h; sourceTree = "<group>"; };
 		DA5444B81C1327F4002DFD0F /* StandaloneNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StandaloneNavBar.m; path = views/StandaloneNavBar.m; sourceTree = "<group>"; };
 		DA5444BA1C132922002DFD0F /* CustomScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomScrollView.h; path = views/CustomScrollView.h; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 				DA65F73A1C1BC0850017BBCB /* ShoppingItemTableViewCell.m */,
 				DA7BBDC61C371587000B0BF3 /* ShoppingItemsTableView.h */,
 				DA7BBDC71C371587000B0BF3 /* ShoppingItemsTableView.m */,
+				DA3F97BA1C3B4D9D00B99D0B /* camera-overlay.xib */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -526,6 +529,7 @@
 				DAC03FD11C17890600A64054 /* navigation-item-text-input.xib in Resources */,
 				DAF7345D1BF239B00013CDDD /* items-table-header-view.xib in Resources */,
 				DADD0A6D1BDD50CE00806DB6 /* LaunchScreen.storyboard in Resources */,
+				DA3F97BB1C3B4D9D00B99D0B /* camera-overlay.xib in Resources */,
 				DADD0A6A1BDD50CE00806DB6 /* Assets.xcassets in Resources */,
 				DADD0A681BDD50CE00806DB6 /* Main.storyboard in Resources */,
 				DAE9BADE1C2F5EB900CE2A85 /* data.plist in Resources */,
