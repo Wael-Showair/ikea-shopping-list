@@ -13,7 +13,6 @@
 		DA1DF70C1C288D3A00CBD994 /* ShoppingListsTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1DF70B1C288D3A00CBD994 /* ShoppingListsTableView.m */; };
 		DA23133A1BF1891700E5366C /* ItemsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2313391BF1891700E5366C /* ItemsDataSource.m */; };
 		DA2C316E1C27FD690080AF31 /* OuterScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2C316D1C27FD690080AF31 /* OuterScrollView.m */; };
-		DA3F97BB1C3B4D9D00B99D0B /* camera-overlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA3F97BA1C3B4D9D00B99D0B /* camera-overlay.xib */; };
 		DA5444B91C1327F4002DFD0F /* StandaloneNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5444B81C1327F4002DFD0F /* StandaloneNavBar.m */; };
 		DA5444BC1C132922002DFD0F /* CustomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5444BB1C132922002DFD0F /* CustomScrollView.m */; };
 		DA5866FB1C0248D800C98FC2 /* ShoppingList.m in Sources */ = {isa = PBXBuildFile; fileRef = DA67F9EA1BE8131E00E1734A /* ShoppingList.m */; };
@@ -38,6 +37,7 @@
 		DADD0A781BDD50CE00806DB6 /* ShoppingItemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0A771BDD50CE00806DB6 /* ShoppingItemTests.m */; };
 		DADD0A831BDD50CE00806DB6 /* ListOfListsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0A821BDD50CE00806DB6 /* ListOfListsUITests.m */; };
 		DADD0A9A1BDD8A3800806DB6 /* ShoppingListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DADD0A991BDD8A3800806DB6 /* ShoppingListTests.m */; };
+		DAE42F1E1C3EBFC100E30184 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE42F1D1C3EBFC100E30184 /* CameraViewController.m */; };
 		DAE8DABA1C14828C00AB81A2 /* UITextField+Errors.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE8DAB91C14828C00AB81A2 /* UITextField+Errors.m */; };
 		DAE9BADC1C2F05C800CE2A85 /* UIView+Overlay.m in Sources */ = {isa = PBXBuildFile; fileRef = DAE9BADB1C2F05C800CE2A85 /* UIView+Overlay.m */; };
 		DAE9BADE1C2F5EB900CE2A85 /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = DAE9BADD1C2F5EB900CE2A85 /* data.plist */; };
@@ -75,7 +75,6 @@
 		DA2313391BF1891700E5366C /* ItemsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemsDataSource.m; path = "data-sources/ItemsDataSource.m"; sourceTree = "<group>"; };
 		DA2C316C1C27FD690080AF31 /* OuterScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OuterScrollView.h; path = views/OuterScrollView.h; sourceTree = "<group>"; };
 		DA2C316D1C27FD690080AF31 /* OuterScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OuterScrollView.m; path = views/OuterScrollView.m; sourceTree = "<group>"; };
-		DA3F97BA1C3B4D9D00B99D0B /* camera-overlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "camera-overlay.xib"; path = "views/camera-overlay.xib"; sourceTree = "<group>"; };
 		DA5444B71C1327F4002DFD0F /* StandaloneNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StandaloneNavBar.h; path = views/StandaloneNavBar.h; sourceTree = "<group>"; };
 		DA5444B81C1327F4002DFD0F /* StandaloneNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StandaloneNavBar.m; path = views/StandaloneNavBar.m; sourceTree = "<group>"; };
 		DA5444BA1C132922002DFD0F /* CustomScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomScrollView.h; path = views/CustomScrollView.h; sourceTree = "<group>"; };
@@ -124,6 +123,8 @@
 		DADD0A821BDD50CE00806DB6 /* ListOfListsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListOfListsUITests.m; sourceTree = "<group>"; };
 		DADD0A841BDD50CE00806DB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DADD0A991BDD8A3800806DB6 /* ShoppingListTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingListTests.m; sourceTree = "<group>"; };
+		DAE42F1C1C3EBFC100E30184 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CameraViewController.h; path = "view-controllers/CameraViewController.h"; sourceTree = "<group>"; };
+		DAE42F1D1C3EBFC100E30184 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CameraViewController.m; path = "view-controllers/CameraViewController.m"; sourceTree = "<group>"; };
 		DAE8DAB81C14828C00AB81A2 /* UITextField+Errors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextField+Errors.h"; path = "views/UITextField+Errors.h"; sourceTree = "<group>"; };
 		DAE8DAB91C14828C00AB81A2 /* UITextField+Errors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextField+Errors.m"; path = "views/UITextField+Errors.m"; sourceTree = "<group>"; };
 		DAE9BADA1C2F05C800CE2A85 /* UIView+Overlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Overlay.h"; path = "views/UIView+Overlay.h"; sourceTree = "<group>"; };
@@ -371,7 +372,6 @@
 				DA65F73A1C1BC0850017BBCB /* ShoppingItemTableViewCell.m */,
 				DA7BBDC61C371587000B0BF3 /* ShoppingItemsTableView.h */,
 				DA7BBDC71C371587000B0BF3 /* ShoppingItemsTableView.m */,
-				DA3F97BA1C3B4D9D00B99D0B /* camera-overlay.xib */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -381,6 +381,8 @@
 			children = (
 				DA67F9EC1BE8131E00E1734A /* ShoppingItemsViewController.h */,
 				DA67F9ED1BE8131E00E1734A /* ShoppingItemsViewController.m */,
+				DAE42F1C1C3EBFC100E30184 /* CameraViewController.h */,
+				DAE42F1D1C3EBFC100E30184 /* CameraViewController.m */,
 			);
 			name = "view controllers";
 			sourceTree = "<group>";
@@ -529,7 +531,6 @@
 				DAC03FD11C17890600A64054 /* navigation-item-text-input.xib in Resources */,
 				DAF7345D1BF239B00013CDDD /* items-table-header-view.xib in Resources */,
 				DADD0A6D1BDD50CE00806DB6 /* LaunchScreen.storyboard in Resources */,
-				DA3F97BB1C3B4D9D00B99D0B /* camera-overlay.xib in Resources */,
 				DADD0A6A1BDD50CE00806DB6 /* Assets.xcassets in Resources */,
 				DADD0A681BDD50CE00806DB6 /* Main.storyboard in Resources */,
 				DAE9BADE1C2F5EB900CE2A85 /* data.plist in Resources */,
@@ -573,6 +574,7 @@
 				DA67F9F91BE8131E00E1734A /* ShoppingItemsViewController.m in Sources */,
 				DA5444B91C1327F4002DFD0F /* StandaloneNavBar.m in Sources */,
 				DA6B141E1C2787F900F19404 /* ShoppingListsViewController.m in Sources */,
+				DAE42F1E1C3EBFC100E30184 /* CameraViewController.m in Sources */,
 				DAED5BCE1BEA780700C5816F /* ListsDataSource.m in Sources */,
 				DAE8DABA1C14828C00AB81A2 /* UITextField+Errors.m in Sources */,
 				DAE9BADC1C2F05C800CE2A85 /* UIView+Overlay.m in Sources */,

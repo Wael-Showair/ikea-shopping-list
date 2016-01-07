@@ -461,7 +461,7 @@
                     <navigationItem key="navigationItem" id="YNS-n1-pQS">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="1x7-IF-IRJ">
                             <connections>
-                                <action selector="onTapAddNewItem:" destination="w5H-OC-JtZ" id="UXn-0V-yvD"/>
+                                <segue destination="Vg3-ej-DUJ" kind="presentation" identifier="openCamera" id="cmh-gP-lyL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -474,6 +474,72 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WHu-kY-y3x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2097" y="359"/>
+        </scene>
+        <!--Camera View Controller-->
+        <scene sceneID="LaN-it-qtM">
+            <objects>
+                <viewController id="Vg3-ej-DUJ" customClass="CameraViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Yc7-Wc-8Xx"/>
+                        <viewControllerLayoutGuide type="bottom" id="RsX-rs-eY2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sQX-VQ-RFS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wd5-yl-VXt">
+                                <rect key="frame" x="0.0" y="536" width="600" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="hr1-ry-Hhs"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem id="iek-W4-7OR"/>
+                                </items>
+                            </toolbar>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Ad-lE-rjQ">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <items>
+                                    <navigationItem id="uZe-fC-t4f">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="88l-dt-7W5"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y2x-Wm-Qwq" userLabel="Preview">
+                                <rect key="frame" x="0.0" y="64" width="600" height="472"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="3Ad-lE-rjQ" secondAttribute="trailing" id="0Ot-rl-joh"/>
+                            <constraint firstItem="y2x-Wm-Qwq" firstAttribute="top" secondItem="Yc7-Wc-8Xx" secondAttribute="bottom" id="3et-O1-opD"/>
+                            <constraint firstItem="wd5-yl-VXt" firstAttribute="leading" secondItem="sQX-VQ-RFS" secondAttribute="leading" id="8gq-Og-PgO"/>
+                            <constraint firstItem="y2x-Wm-Qwq" firstAttribute="top" secondItem="3Ad-lE-rjQ" secondAttribute="bottom" id="B3a-j1-iBb"/>
+                            <constraint firstAttribute="trailing" secondItem="y2x-Wm-Qwq" secondAttribute="trailing" id="Dag-hg-3Lj"/>
+                            <constraint firstItem="y2x-Wm-Qwq" firstAttribute="leading" secondItem="sQX-VQ-RFS" secondAttribute="leading" id="Dj9-3Z-fhX"/>
+                            <constraint firstItem="y2x-Wm-Qwq" firstAttribute="centerY" secondItem="sQX-VQ-RFS" secondAttribute="centerY" id="FNX-gl-jzx"/>
+                            <constraint firstAttribute="trailing" secondItem="wd5-yl-VXt" secondAttribute="trailing" id="U2y-bd-RQC"/>
+                            <constraint firstItem="y2x-Wm-Qwq" firstAttribute="bottom" secondItem="wd5-yl-VXt" secondAttribute="top" id="Xah-jg-Fty"/>
+                            <constraint firstItem="3Ad-lE-rjQ" firstAttribute="leading" secondItem="sQX-VQ-RFS" secondAttribute="leading" id="jcx-Of-cc6"/>
+                            <constraint firstAttribute="bottom" secondItem="wd5-yl-VXt" secondAttribute="bottom" id="r3s-KB-Bt1"/>
+                            <constraint firstItem="3Ad-lE-rjQ" firstAttribute="top" secondItem="Yc7-Wc-8Xx" secondAttribute="bottom" id="w73-9O-DJF"/>
+                            <constraint firstItem="y2x-Wm-Qwq" firstAttribute="centerX" secondItem="sQX-VQ-RFS" secondAttribute="centerX" id="zKT-nE-H4g"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="3et-O1-opD"/>
+                                <exclude reference="FNX-gl-jzx"/>
+                                <exclude reference="zKT-nE-H4g"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="navigationBar" destination="3Ad-lE-rjQ" id="tgQ-Kj-Lhc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z3e-kl-pQY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2097" y="1126"/>
         </scene>
     </scenes>
     <resources>
