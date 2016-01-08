@@ -506,7 +506,6 @@
                             </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y2x-Wm-Qwq" userLabel="Preview">
                                 <rect key="frame" x="0.0" y="64" width="600" height="472"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -534,6 +533,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="cameraPreview" destination="y2x-Wm-Qwq" id="clt-bd-P5W"/>
                         <outlet property="navigationBar" destination="3Ad-lE-rjQ" id="tgQ-Kj-Lhc"/>
                     </connections>
                 </viewController>
