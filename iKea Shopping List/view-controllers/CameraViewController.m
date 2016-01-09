@@ -8,6 +8,7 @@
 
 #import <AVFoundation/AVFoundation.h>
 #import "CameraViewController.h"
+#import "DetectionAreaOverlayView.h"
 
 @interface CameraViewController ()
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
@@ -15,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UIView *toolbar;
 @property (strong, nonatomic) AVCaptureSession* session;
 @property (strong, nonatomic) dispatch_queue_t sessionQueue;
+@property int i;
 @end
 
 @implementation CameraViewController
@@ -48,23 +50,44 @@
   /* Add input capture to the session. */
   [self.session addInput:cameraCaptureInput];
   
-  /* create capture outupt of type still Image. */
-  AVCaptureStillImageOutput *stillImageOutput = [[AVCaptureStillImageOutput alloc] init];
-  stillImageOutput.outputSettings = @{AVVideoCodecKey : AVVideoCodecJPEG};
-  [self.session addOutput:stillImageOutput];
+  /* Add Capture output for preview frames before before presenting them to the user to add detection area */
+  AVCaptureVideoDataOutput* cameraCaptureOuput = [[AVCaptureVideoDataOutput alloc] init];
+  cameraCaptureOuput.videoSettings = @{ (NSString *)kCVPixelBufferPixelFormatTypeKey : @(kCVPixelFormatType_32BGRA) };
+  cameraCaptureOuput.alwaysDiscardsLateVideoFrames = YES;
+  [cameraCaptureOuput setSampleBufferDelegate:self queue:self.sessionQueue];
+  [self.session addOutput:cameraCaptureOuput];
   
-  /* Show the user what the camera is actually seeing. */
-  AVCaptureVideoPreviewLayer *captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.session];
-  captureVideoPreviewLayer.connection.videoOrientation = AVCaptureVideoOrientationPortrait;
-  captureVideoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-  captureVideoPreviewLayer.frame = self.cameraPreview.bounds;
-  [self.cameraPreview.layer addSublayer:captureVideoPreviewLayer];
   [self.session startRunning];
+  
+  
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+-(void)viewDidAppear:(BOOL)animated{
+  /* Note that the exact sizes of all views are set after triggering this method i.e. after
+   * appearence of the view into the window. */
+  
+  /* Show the user what the camera is actually seeing. */
+  AVCaptureVideoPreviewLayer *captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.session];
+  captureVideoPreviewLayer.connection.videoOrientation = AVCaptureVideoOrientationPortrait;
+  captureVideoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+  /* This is the line that forces me to do all of this stuff here in this method because bounds are
+   * set properly. Note that if use viewDidLoad instead, the bounds will be equal to the neutral
+   * values of the width and the height that are set in Interface builder (600, 472) in this case.*/
+  captureVideoPreviewLayer.frame = self.cameraPreview.bounds;
+  [self.cameraPreview.layer addSublayer:captureVideoPreviewLayer];
+  
+  /* Create overlay on top of camera preview. */
+  DetectionAreaOverlayView* overlay = [[DetectionAreaOverlayView alloc] initWithFrame:captureVideoPreviewLayer.bounds];
+  
+  [self.cameraPreview addSubview:overlay];
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    NSLog(@"%i", self.i);
 }
 
 -(UIBarPosition)positionForBar:(id<UIBarPositioning>)bar{
@@ -94,5 +117,14 @@
   }
   
   return captureDevice;
+}
+
+-(void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection{
+  //NSLog(@"%s", __PRETTY_FUNCTION__);
+}
+
+-(void)captureOutput:(AVCaptureOutput *)captureOutput didDropSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection{
+  
+  self.i++;
 }
 @end

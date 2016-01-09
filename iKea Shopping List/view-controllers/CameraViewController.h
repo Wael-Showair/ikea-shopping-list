@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CameraViewController : UIViewController <UINavigationBarDelegate>
+@interface CameraViewController : UIViewController <UINavigationBarDelegate,
+                                                    AVCaptureVideoDataOutputSampleBufferDelegate>
 
 @end
