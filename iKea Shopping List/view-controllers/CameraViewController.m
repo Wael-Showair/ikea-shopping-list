@@ -17,6 +17,7 @@
 @property (strong, nonatomic) AVCaptureSession* session;
 @property (strong, nonatomic) dispatch_queue_t sessionQueue;
 @property int i;
+@property (strong, nonatomic) CIDetector* rectDetector;
 @end
 
 @implementation CameraViewController
@@ -56,6 +57,14 @@
   cameraCaptureOuput.alwaysDiscardsLateVideoFrames = YES;
   [cameraCaptureOuput setSampleBufferDelegate:self queue:self.sessionQueue];
   [self.session addOutput:cameraCaptureOuput];
+  
+  /* Setup detector for rectangular areas in an image. */
+  CIContext *context = [CIContext contextWithOptions:nil];
+  NSDictionary *opts = @{ CIDetectorAccuracy : CIDetectorAccuracyHigh,
+                          CIDetectorAspectRatio: @2.0};
+  self.rectDetector = [CIDetector detectorOfType:CIDetectorTypeRectangle
+                                            context:context
+                                            options:opts];
   
   [self.session startRunning];
   
@@ -120,11 +129,70 @@
 }
 
 -(void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection{
-  //NSLog(@"%s", __PRETTY_FUNCTION__);
+  UIImage* srcImage = [self imageFromSampleBuffer:sampleBuffer];
+  /* May be need to use some sort of notification technique here instead of direct function call. */
+  [self handleImageCaptured: srcImage];
 }
 
 -(void)captureOutput:(AVCaptureOutput *)captureOutput didDropSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection{
   
   self.i++;
 }
+
+// Create a CIImage from sample buffer data. source: https://goo.gl/BXqx8p
+- (UIImage *) imageFromSampleBuffer:(CMSampleBufferRef) sampleBuffer{
+
+    // Get a CMSampleBuffer's Core Video image buffer for the media data
+    CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
+    // Lock the base address of the pixel buffer
+//    CVPixelBufferLockBaseAddress(imageBuffer, 0);
+  
+    // Get the base address for the pixel buffer
+//    void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
+  
+//    // Get the number of bytes per row for the pixel buffer
+//    size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
+//    // Get the pixel buffer width and height
+//    size_t width = CVPixelBufferGetWidth(imageBuffer);
+//    size_t height = CVPixelBufferGetHeight(imageBuffer);
+//    
+//    // Create a device-dependent RGB color space
+//    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+//    
+//    // Create a bitmap graphics context with the sample buffer data
+//    CGContextRef context = CGBitmapContextCreate(baseAddress, width, height, 8,
+//                                                 bytesPerRow, colorSpace, kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
+//    // Create a Quartz image from the pixel data in the bitmap graphics context
+//    CGImageRef quartzImage = CGBitmapContextCreateImage(context);
+    // Unlock the pixel buffer
+//    CVPixelBufferUnlockBaseAddress(imageBuffer,0);
+//    
+//    // Free up the context and color space
+//    CGContextRelease(context);
+//    CGColorSpaceRelease(colorSpace);
+//    
+//    // Create an image object from the Quartz image
+//    UIImage *image = [UIImage imageWithCGImage:quartzImage];
+//    
+//    // Release the Quartz image
+//    CGImageRelease(quartzImage);
+  CIImage* ciimage = [CIImage imageWithCVImageBuffer:imageBuffer];
+  UIImage* image = [UIImage imageWithCIImage:ciimage];
+    return image;
+}
+
+-(void) handleImageCaptured: (UIImage *) srcImage{
+  CIImage* mm = srcImage.CIImage;
+  ;
+  //CIImage* nn = (__bridge CIImage*) mm;
+  NSArray<CIFeature*> *features = [self.rectDetector featuresInImage:mm];
+  
+  NSLog(@"number of detected rects is = %ld", features.count);
+  /* the rectangle detector will only ever detect one rectangle in an image, so the features array will have either exactly one or zero CIRectangleFeature objects in it.*/
+//  for (CIRectangleFeature* feature in features) {
+//    /* Do Something.*/
+//    NSLog(@"%@", NSStringFromCGRect(feature.bounds));
+//  }
+}
+
 @end
