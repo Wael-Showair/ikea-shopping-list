@@ -6,6 +6,8 @@
 //  Copyright © 2016 showair.wael@gmail.com. All rights reserved.
 //
 
+@import GLKit;
+
 #import <AVFoundation/AVFoundation.h>
 #import "CameraViewController.h"
 #import "DetectionAreaOverlayView.h"
@@ -18,6 +20,11 @@
 @property (strong, nonatomic) dispatch_queue_t sessionQueue;
 @property int i;
 @property (strong, nonatomic) CIDetector* rectDetector;
+
+@property (strong, nonatomic) GLKView* liveGLKView;
+@property (strong, nonatomic) CIContext* renderContext;
+@property CGRect liveGLKViewBoundsInPixels;
+
 @end
 
 @implementation CameraViewController
@@ -80,19 +87,52 @@
    * appearence of the view into the window. */
   
   /* Show the user what the camera is actually seeing. */
-  AVCaptureVideoPreviewLayer *captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.session];
-  captureVideoPreviewLayer.connection.videoOrientation = AVCaptureVideoOrientationPortrait;
-  captureVideoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+//  AVCaptureVideoPreviewLayer *captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:self.session];
+//  captureVideoPreviewLayer.connection.videoOrientation = AVCaptureVideoOrientationPortrait;
+//  captureVideoPreviewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
   /* This is the line that forces me to do all of this stuff here in this method because bounds are
    * set properly. Note that if use viewDidLoad instead, the bounds will be equal to the neutral
    * values of the width and the height that are set in Interface builder (600, 472) in this case.*/
-  captureVideoPreviewLayer.frame = self.cameraPreview.bounds;
-  [self.cameraPreview.layer addSublayer:captureVideoPreviewLayer];
+//  captureVideoPreviewLayer.frame = self.cameraPreview.bounds;
+//  [self.cameraPreview.layer addSublayer:captureVideoPreviewLayer];
   
   /* Create overlay on top of camera preview. */
-  DetectionAreaOverlayView* overlay = [[DetectionAreaOverlayView alloc] initWithFrame:captureVideoPreviewLayer.bounds];
+//  DetectionAreaOverlayView* overlay = [[DetectionAreaOverlayView alloc] initWithFrame:captureVideoPreviewLayer.bounds];
   
-  [self.cameraPreview addSubview:overlay];
+//  [self.cameraPreview addSubview:overlay];
+  
+  // setup the GLKView for video/image preview
+  EAGLContext* eagleContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+  self.liveGLKView = [[GLKView alloc] initWithFrame:self.cameraPreview.bounds context: eagleContext];
+  self.liveGLKView.enableSetNeedsDisplay = NO;
+  
+  /* because the native video image from the back camera is in UIDeviceOrientationLandscapeLeft
+   * (i.e. the home button is on the right), we need to apply a clockwise 90 degree transform so that
+   * we can draw the video preview as if we were in a landscape-oriented view;*/
+  self.liveGLKView.transform = CGAffineTransformMakeRotation(M_PI_2);
+
+  
+  self.liveGLKView.frame = self.cameraPreview.bounds;
+  [self.cameraPreview addSubview:self.liveGLKView];
+  
+  /* this makes FHViewController's view (and its UI elements) on top of the video preview, and also
+   * makes video preview unaffected by device rotation*/
+  [self.cameraPreview sendSubviewToBack:self.liveGLKView];
+
+  // create the CIContext instance, note that this must be done after live preview is properly set up
+  self.renderContext = [CIContext contextWithEAGLContext:eagleContext];
+  
+  // bind the frame buffer to get the frame buffer width and height;
+  // the bounds used by CIContext when drawing to a GLKView are in pixels (not points),
+  // hence the need to read from the frame buffer's width and height;
+  // in addition, since we will be accessing the bounds in another queue (_captureSessionQueue),
+  // we want to obtain this piece of information so that we won't be
+  // accessing _videoPreviewView's properties from another thread/queue
+  [self.liveGLKView bindDrawable];
+  self.liveGLKViewBoundsInPixels = CGRectMake(0, 0, self.liveGLKView.drawableWidth, self.liveGLKView.drawableHeight);
+
+
+  
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
@@ -129,9 +169,9 @@
 }
 
 -(void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection{
-  UIImage* srcImage = [self imageFromSampleBuffer:sampleBuffer];
+   [self imageFromSampleBuffer:sampleBuffer];
   /* May be need to use some sort of notification technique here instead of direct function call. */
-  [self handleImageCaptured: srcImage];
+  //[self handleImageCaptured: srcImage];
 }
 
 -(void)captureOutput:(AVCaptureOutput *)captureOutput didDropSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection{
@@ -140,45 +180,42 @@
 }
 
 // Create a CIImage from sample buffer data. source: https://goo.gl/BXqx8p
-- (UIImage *) imageFromSampleBuffer:(CMSampleBufferRef) sampleBuffer{
+- (void) imageFromSampleBuffer:(CMSampleBufferRef) sampleBuffer{
 
-    // Get a CMSampleBuffer's Core Video image buffer for the media data
-    CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-    // Lock the base address of the pixel buffer
-//    CVPixelBufferLockBaseAddress(imageBuffer, 0);
+  // Get a CMSampleBuffer's Core pixel buffer from the sample buffer.
+  CVPixelBufferRef imageBuffer = (CVPixelBufferRef) CMSampleBufferGetImageBuffer(sampleBuffer);
   
-    // Get the base address for the pixel buffer
-//    void *baseAddress = CVPixelBufferGetBaseAddress(imageBuffer);
-  
-//    // Get the number of bytes per row for the pixel buffer
-//    size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
-//    // Get the pixel buffer width and height
-//    size_t width = CVPixelBufferGetWidth(imageBuffer);
-//    size_t height = CVPixelBufferGetHeight(imageBuffer);
-//    
-//    // Create a device-dependent RGB color space
-//    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-//    
-//    // Create a bitmap graphics context with the sample buffer data
-//    CGContextRef context = CGBitmapContextCreate(baseAddress, width, height, 8,
-//                                                 bytesPerRow, colorSpace, kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
-//    // Create a Quartz image from the pixel data in the bitmap graphics context
-//    CGImageRef quartzImage = CGBitmapContextCreateImage(context);
-    // Unlock the pixel buffer
-//    CVPixelBufferUnlockBaseAddress(imageBuffer,0);
-//    
-//    // Free up the context and color space
-//    CGContextRelease(context);
-//    CGColorSpaceRelease(colorSpace);
-//    
-//    // Create an image object from the Quartz image
-//    UIImage *image = [UIImage imageWithCGImage:quartzImage];
-//    
-//    // Release the Quartz image
-//    CGImageRelease(quartzImage);
+  // Create Core Image instance from the data contained inside the pixel buffer.
   CIImage* ciimage = [CIImage imageWithCVImageBuffer:imageBuffer];
-  UIImage* image = [UIImage imageWithCIImage:ciimage];
-    return image;
+
+  CGRect sourceExtent = ciimage.extent;
+  
+  CGFloat sourceAspect = sourceExtent.size.width / sourceExtent.size.height;
+  CGFloat previewAspect = self.liveGLKViewBoundsInPixels.size.width  / self.liveGLKViewBoundsInPixels.size.height;
+  
+  // we want to maintain the aspect radio of the screen size, so we clip the video image
+  CGRect drawRect = sourceExtent;
+  if (sourceAspect > previewAspect)
+  {
+    // use full height of the video image, and center crop the width
+    drawRect.origin.x += (drawRect.size.width - drawRect.size.height * previewAspect) / 2.0;
+    drawRect.size.width = drawRect.size.height * previewAspect;
+  }
+  else
+  {
+    // use full width of the video image, and center crop the height
+    drawRect.origin.y += (drawRect.size.height - drawRect.size.width / previewAspect) / 2.0;
+    drawRect.size.height = drawRect.size.width / previewAspect;
+  }
+  
+  //Render the core image instance into the EAGL Context.
+  [self.renderContext drawImage:ciimage inRect:self.liveGLKViewBoundsInPixels fromRect:drawRect];
+  
+  //Display the rendered core image instance.
+  [self.liveGLKView display];
+  
+//  UIImage* image = [UIImage imageWithCIImage:rotatedciimage];
+//    return image;
 }
 
 -(void) handleImageCaptured: (UIImage *) srcImage{
