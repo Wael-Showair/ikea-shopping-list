@@ -19,7 +19,7 @@
 @property (strong, nonatomic) AVCaptureSession* session;
 @property (strong, nonatomic) dispatch_queue_t sessionQueue;
 @property int i;
-@property (strong, nonatomic) CIDetector* rectDetector;
+@property (strong, nonatomic) CIDetector* textDetector;
 
 @property (strong, nonatomic) GLKView* liveGLKView;
 @property (strong, nonatomic) CIContext* renderContext;
@@ -65,13 +65,7 @@
   [cameraCaptureOuput setSampleBufferDelegate:self queue:self.sessionQueue];
   [self.session addOutput:cameraCaptureOuput];
   
-  /* Setup detector for rectangular areas in an image. */
-  CIContext *context = [CIContext contextWithOptions:nil];
-  NSDictionary *opts = @{ CIDetectorAccuracy : CIDetectorAccuracyHigh,
-                          CIDetectorAspectRatio: @2.0};
-  self.rectDetector = [CIDetector detectorOfType:CIDetectorTypeRectangle
-                                            context:context
-                                            options:opts];
+
   
   [self.session startRunning];
   
@@ -131,7 +125,12 @@
   [self.liveGLKView bindDrawable];
   self.liveGLKViewBoundsInPixels = CGRectMake(0, 0, self.liveGLKView.drawableWidth, self.liveGLKView.drawableHeight);
 
-
+  /* Setup detector for rectangular areas in an image. */
+  CIContext *context = [CIContext contextWithEAGLContext:eagleContext];
+  NSDictionary *opts = @{ CIDetectorAccuracy : CIDetectorAccuracyHigh };
+  self.textDetector = [CIDetector detectorOfType:CIDetectorTypeText
+                                         context:context
+                                         options:opts];
   
 }
 
@@ -187,7 +186,11 @@
   
   // Create Core Image instance from the data contained inside the pixel buffer.
   CIImage* ciimage = [CIImage imageWithCVImageBuffer:imageBuffer];
-
+  ciimage = [ciimage imageByApplyingTransform:CGAffineTransformMakeRotation(-M_PI_2)];
+  
+  ciimage = [self handleImageCaptured:ciimage];
+  ciimage = [ciimage imageByApplyingTransform:CGAffineTransformMakeRotation(M_PI_2)];
+  
   CGRect sourceExtent = ciimage.extent;
   
   CGFloat sourceAspect = sourceExtent.size.width / sourceExtent.size.height;
@@ -208,6 +211,7 @@
     drawRect.size.height = drawRect.size.width / previewAspect;
   }
   
+  
   //Render the core image instance into the EAGL Context.
   [self.renderContext drawImage:ciimage inRect:self.liveGLKViewBoundsInPixels fromRect:drawRect];
   
@@ -218,18 +222,30 @@
 //    return image;
 }
 
--(void) handleImageCaptured: (UIImage *) srcImage{
-  CIImage* mm = srcImage.CIImage;
-  ;
-  //CIImage* nn = (__bridge CIImage*) mm;
-  NSArray<CIFeature*> *features = [self.rectDetector featuresInImage:mm];
+-(CIImage*) handleImageCaptured: (CIImage *) ciimage{
+//  CIImage* ciimage = srcImage.CIImage;
+
+  NSArray<CIFeature*> *features = [self.textDetector featuresInImage:ciimage];
   
   NSLog(@"number of detected rects is = %ld", features.count);
-  /* the rectangle detector will only ever detect one rectangle in an image, so the features array will have either exactly one or zero CIRectangleFeature objects in it.*/
-//  for (CIRectangleFeature* feature in features) {
-//    /* Do Something.*/
-//    NSLog(@"%@", NSStringFromCGRect(feature.bounds));
-//  }
+
+  
+  for (CIRectangleFeature* feature in features) {
+    /* Places the input image over the input background image.*/
+    ciimage = [CIFilter filterWithName:@"CISourceOverCompositing" keysAndValues:kCIInputImageKey,[self highlightText: feature],kCIInputBackgroundImageKey, ciimage, nil].outputImage;
+  }
+  
+  return ciimage;
 }
 
+-(CIImage*) highlightText:(CIFeature*) feature{
+  CIColor* color = [CIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.5];
+  CIImage* ciimage = [CIFilter filterWithName:@"CIConstantColorGenerator" keysAndValues:@"inputColor",color, nil].outputImage;
+  
+  ciimage = [CIFilter filterWithName:@"CICrop" keysAndValues:kCIInputImageKey,ciimage,
+             @"inputRectangle",[CIVector vectorWithCGRect:feature.bounds], nil].outputImage;
+  
+  return ciimage;
+  
+}
 @end
