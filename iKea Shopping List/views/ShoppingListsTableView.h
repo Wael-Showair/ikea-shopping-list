@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UIScrollingNotificationDelegate.h"
 
-@interface ShoppingListsTableView : UITableView <UIScrollViewDelegate>
+@interface ShoppingListsTableView : UICollectionView <UIScrollViewDelegate>
 @property (weak, nonatomic) id<UIScrollingNotificationDelegate> scrollingDelegate;
 @property BOOL shouldNotifyDelegate;
 

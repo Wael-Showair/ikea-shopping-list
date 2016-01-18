@@ -54,12 +54,16 @@
   list.title = newTitle;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView
-         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-  UITableViewCell* cell;
+#pragma collection view - data source
+
+
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+
+  UICollectionViewCell* cell;
   
   if(indexPath.row == self.rowIndexForTextInputCell){
-    cell = [tableView dequeueReusableCellWithIdentifier:NEW_LIST_INFO_CELL_ID];
+    cell = [collectionView dequeueReusableCellWithReuseIdentifier:NEW_LIST_INFO_CELL_ID forIndexPath:indexPath ];
     /* Because the prototype cell is NOT defined in a storyboard, the
      * dequeueReusableCellWithIdentifier: method might NOT return a valid cell.
      * You need to check the return value against nil and create a cell
@@ -68,9 +72,9 @@
       
       UINib* nib = [UINib nibWithNibName:TEXT_FIELD_CELL_NIB bundle:nil];
       
-      [tableView registerNib:nib forCellReuseIdentifier:NEW_LIST_INFO_CELL_ID];
+      [collectionView registerNib:nib forCellWithReuseIdentifier:NEW_LIST_INFO_CELL_ID];
       
-      cell = [tableView dequeueReusableCellWithIdentifier:NEW_LIST_INFO_CELL_ID];
+      cell = [collectionView dequeueReusableCellWithReuseIdentifier:NEW_LIST_INFO_CELL_ID forIndexPath:indexPath];
     }
     
   }else{
@@ -78,14 +82,17 @@
      * dequeueReusableCellWithIdentifier: method always returns a valid cell.
      * You don’t need to check the return value against nil and create a cell
      * manually.*/
-     cell = [tableView dequeueReusableCellWithIdentifier:LISTS_CELL_IDENTIFIER];
+    cell = [collectionView dequeueReusableCellWithReuseIdentifier:LISTS_CELL_IDENTIFIER forIndexPath:indexPath];
   }
   return cell;
 }
 
--(NSInteger)tableView:(UITableView *)tableView
-numberOfRowsInSection:(NSInteger)section{
-  
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+  return 1;
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView
+    numberOfItemsInSection:(NSInteger)section{
   return self.allItems.count;
 }
 

@@ -12,7 +12,7 @@
 #import "OuterScrollView.h"
 
 @interface ShoppingListsViewController : UIViewController
-                                        <UITableViewDelegate,
+                                        <UICollectionViewDelegateFlowLayout,
                                         UIStickyViewDelegate,
                                         UITextFieldDelegate>
 

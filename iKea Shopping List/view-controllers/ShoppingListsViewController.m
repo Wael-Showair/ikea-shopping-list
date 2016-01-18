@@ -17,6 +17,8 @@
 #import "ShoppingListsTableView.h"
 #import "TextInputTableViewCell.h"
 #import "UIView+Overlay.h"
+#import "ShoppingListCell.h"
+#import "UIImage+Overlay.h"
 
 /*!
  *  @define SHOW_LIST_ITEMS_SEGUE_ID
@@ -31,7 +33,7 @@
 
 #define FIRST_SECTION_INDEX         0
 
-#define NUM_OF_LISTS                [self.listsTableView numberOfRowsInSection:0]
+#define NUM_OF_LISTS                [self.listsTableView numberOfItemsInSection:0]
 
 #define LAST_INDEX                  NUM_OF_LISTS - 1
 
@@ -82,6 +84,7 @@
   self.listOfListsDataSource = [[ListsDataSource alloc] initWithItems:allLists];
   self.listsTableView.dataSource = self.listOfListsDataSource;
   self.listsTableView.delegate = self;
+
   
   /* set right bar button to default button that toggles its title and
    associated state between Edit and Done. */
@@ -97,8 +100,8 @@
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
-  NSIndexPath* indexPath = [self.listsTableView indexPathForSelectedRow];
-  [self.listsTableView deselectRowAtIndexPath:indexPath animated:NO];
+  NSIndexPath* indexPath = [[self.listsTableView indexPathsForSelectedItems] objectAtIndex:0];
+  [self.listsTableView deselectItemAtIndexPath:indexPath animated:NO];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -166,15 +169,16 @@
   /* Dismiss keyboard. */
   [textField resignFirstResponder];
   
-  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:LAST_INDEX inSection:FIRST_SECTION_INDEX];
+  NSIndexPath* indexPath = [NSIndexPath indexPathForItem:LAST_INDEX inSection:FIRST_SECTION_INDEX];
   
   /* rename the list to the new name entered by the user. */
   [self.listOfListsDataSource renameListToTitle:textField.text atIndexPath:indexPath];
   
   /* Reload the row whose text label has been changed. */
-  [self.listsTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+
+  [self.listsTableView reloadItemsAtIndexPaths:@[indexPath]];
   
-  [self.listsTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+  [self.listsTableView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
   
   if(self.listsTableView.contentOffset.y > 30.0){
     [self.listsTableView.scrollingDelegate scrollViewDidCrossOverThreshold:self.listsTableView];
@@ -213,18 +217,31 @@
   /* Delete the newly added list from the lists. */
   NSIndexPath* indexPath = [NSIndexPath indexPathForRow:LAST_INDEX inSection:FIRST_SECTION_INDEX];
   [self.listOfListsDataSource removeListAtIndexPath:indexPath];
-  [self.listsTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+  [self.listsTableView deleteItemsAtIndexPaths:@[indexPath] ];
   
 }
 
-#pragma table view - delegate
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-  return self.outerScrollView.stickyHeader.bounds.size.height;
+#pragma collection view - layout flow delegate
+
+/* Determine size of each cell in the collection. */
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+  CGFloat width = [UIScreen mainScreen].bounds.size.width/2 - 15;
+  
+  CGFloat height = width;
+
+  return CGSizeMake(width, height);
 }
 
-- (void)tableView:(UITableView *)tableView
-  willDisplayCell:(UITableViewCell *)cell
-forRowAtIndexPath:(NSIndexPath *)indexPath{
+/* Determine the inset of the contents for each cell. */
+-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+  return UIEdgeInsetsMake(0, 10, 10, 10);
+}
+
+#pragma collection view - delegate
+
+-(void)collectionView:(UICollectionView *)collectionView
+      willDisplayCell:(UICollectionViewCell *)cell
+   forItemAtIndexPath:(NSIndexPath *)indexPath{
   
   if(indexPath.row == self.listOfListsDataSource.rowIndexForTextInputCell){
     
@@ -238,9 +255,17 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     /* Inform the data source that it should not use text input anymore. */
     self.listOfListsDataSource.rowIndexForTextInputCell = INVALID_ROW_INDEX;
+    
   }else{
+    
     ShoppingList* shoppingList = [self.listOfListsDataSource itemAtIndexPath:indexPath];
-    cell.textLabel.text = shoppingList.title;
+    
+    UIImage* image = [UIImage imageNamed:[shoppingList.title lowercaseString]];
+    image = [image imageWithColorOverlay:[UIColor colorWithRed:0.0 green:0.333 blue:0.659 alpha:0.7]];
+    ((ShoppingListCell*)cell).backgroundImage.image = image;
+    
+    ((ShoppingListCell*)cell).textLabel.text = shoppingList.title;
+
   }
   
 }
@@ -264,11 +289,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
   
   /* add the new list row to table view. */
   NSIndexPath* indexPath = [NSIndexPath indexPathForRow:LAST_INDEX+1 inSection:FIRST_SECTION_INDEX];
-  [self.listsTableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-  
+
+  [self.listsTableView insertItemsAtIndexPaths:@[indexPath]];
   self.listsTableView.shouldNotifyDelegate = NO;
   
-  [self.listsTableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+  [self.listsTableView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
   
   /* Note that the overlay will be added on showing the keyboard. On tap the overlay, dismiss the 
    * keyboard & remove the newest entry from the table view. */
@@ -287,7 +312,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     ShoppingItemsViewController* listOfItemsViewController =
     [segue destinationViewController];
     
-    NSIndexPath* selectedIndexPath = [self.listsTableView indexPathForSelectedRow];
+    NSIndexPath* selectedIndexPath = [[self.listsTableView indexPathsForSelectedItems] objectAtIndex:0];
     
     ShoppingList* selectedShoppingList =
     [self.listOfListsDataSource itemAtIndexPath:selectedIndexPath];

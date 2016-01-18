@@ -11,7 +11,7 @@
 
 #define INVALID_ROW_INDEX   -1
 
-@interface ListsDataSource : NSObject <UITableViewDataSource>
+@interface ListsDataSource : NSObject <UICollectionViewDataSource>
 @property NSUInteger rowIndexForTextInputCell;
 
 - (instancetype)initWithItems:(NSMutableArray *)items;
