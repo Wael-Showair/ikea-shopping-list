@@ -100,6 +100,13 @@
 }
 
 #pragma table view - delegate
+-(void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section{
+  
+  UITableViewHeaderFooterView* sectionHeaderView = (UITableViewHeaderFooterView*) view;
+  sectionHeaderView.tintColor = [UIColor colorWithRed:0.0 green:0.333 blue:0.659 alpha:1.0];
+  [sectionHeaderView.textLabel setTextColor:[UIColor whiteColor]];
+
+}
 
 - (void)tableView:(UITableView *)tableView
   willDisplayCell:(UITableViewCell *)cell
