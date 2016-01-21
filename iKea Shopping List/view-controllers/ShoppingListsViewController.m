@@ -19,6 +19,7 @@
 #import "UIView+Overlay.h"
 #import "ShoppingListCell.h"
 #import "UIImage+Overlay.h"
+#import "UIView+ShakeAnimation.h"
 
 /*!
  *  @define SHOW_LIST_ITEMS_SEGUE_ID
@@ -299,13 +300,14 @@
 - (IBAction)onTapEdit:(UIBarButtonItem*)barButton {
   if([barButton.title isEqualToString:@"Edit"]){
     barButton.title = @"Done";
-
+    CGFloat delay = 0.0;
     for (ShoppingListCell* cell in self.listsTableView.visibleCells) {
       /* Display Circular Delete button */
       cell.deleteBtn.hidden = NO;
 
-      /* TODO: Shake the cell of collection view */
-      
+      /* Shake the cell of collection view */
+      [cell startShakeAnimationWithDelay:delay];
+      delay+= 0.05;
     }
     
     
@@ -313,6 +315,7 @@
     barButton.title = @"Edit";
     for (ShoppingListCell* cell in self.listsTableView.visibleCells) {
       cell.deleteBtn.hidden = YES;
+      [cell stoptShakeAnimation];
     }
   }
 }

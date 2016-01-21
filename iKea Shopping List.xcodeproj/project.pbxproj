@@ -14,6 +14,7 @@
 		DA23133A1BF1891700E5366C /* ItemsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2313391BF1891700E5366C /* ItemsDataSource.m */; };
 		DA2C316E1C27FD690080AF31 /* OuterScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2C316D1C27FD690080AF31 /* OuterScrollView.m */; };
 		DA3D9EB01C4D26C200D0D0C9 /* UIImage+Overlay.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3D9EAF1C4D26C200D0D0C9 /* UIImage+Overlay.m */; };
+		DA4FA0851C5144E800C6294F /* UIView+ShakeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4FA0841C5144E800C6294F /* UIView+ShakeAnimation.m */; };
 		DA5444B91C1327F4002DFD0F /* StandaloneNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5444B81C1327F4002DFD0F /* StandaloneNavBar.m */; };
 		DA5444BC1C132922002DFD0F /* CustomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5444BB1C132922002DFD0F /* CustomScrollView.m */; };
 		DA5866FB1C0248D800C98FC2 /* ShoppingList.m in Sources */ = {isa = PBXBuildFile; fileRef = DA67F9EA1BE8131E00E1734A /* ShoppingList.m */; };
@@ -80,6 +81,8 @@
 		DA2C316D1C27FD690080AF31 /* OuterScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OuterScrollView.m; path = views/OuterScrollView.m; sourceTree = "<group>"; };
 		DA3D9EAE1C4D26C200D0D0C9 /* UIImage+Overlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Overlay.h"; path = "views/UIImage+Overlay.h"; sourceTree = "<group>"; };
 		DA3D9EAF1C4D26C200D0D0C9 /* UIImage+Overlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Overlay.m"; path = "views/UIImage+Overlay.m"; sourceTree = "<group>"; };
+		DA4FA0831C5144E800C6294F /* UIView+ShakeAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+ShakeAnimation.h"; path = "views/UIView+ShakeAnimation.h"; sourceTree = "<group>"; };
+		DA4FA0841C5144E800C6294F /* UIView+ShakeAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+ShakeAnimation.m"; path = "views/UIView+ShakeAnimation.m"; sourceTree = "<group>"; };
 		DA5444B71C1327F4002DFD0F /* StandaloneNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StandaloneNavBar.h; path = views/StandaloneNavBar.h; sourceTree = "<group>"; };
 		DA5444B81C1327F4002DFD0F /* StandaloneNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StandaloneNavBar.m; path = views/StandaloneNavBar.m; sourceTree = "<group>"; };
 		DA5444BA1C132922002DFD0F /* CustomScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomScrollView.h; path = views/CustomScrollView.h; sourceTree = "<group>"; };
@@ -184,6 +187,8 @@
 				DAE9BADB1C2F05C800CE2A85 /* UIView+Overlay.m */,
 				DA3D9EAE1C4D26C200D0D0C9 /* UIImage+Overlay.h */,
 				DA3D9EAF1C4D26C200D0D0C9 /* UIImage+Overlay.m */,
+				DA4FA0831C5144E800C6294F /* UIView+ShakeAnimation.h */,
+				DA4FA0841C5144E800C6294F /* UIView+ShakeAnimation.m */,
 			);
 			name = common;
 			sourceTree = "<group>";
@@ -595,6 +600,7 @@
 				DA3D9EB01C4D26C200D0D0C9 /* UIImage+Overlay.m in Sources */,
 				DAE8DABA1C14828C00AB81A2 /* UITextField+Errors.m in Sources */,
 				DAE9BADC1C2F05C800CE2A85 /* UIView+Overlay.m in Sources */,
+				DA4FA0851C5144E800C6294F /* UIView+ShakeAnimation.m in Sources */,
 				DA8862B91C2E3B0100B8876C /* UIScrollView+ObscuringKeyboard.m in Sources */,
 				DADD0A621BDD50CE00806DB6 /* AppDelegate.m in Sources */,
 				DA5866FB1C0248D800C98FC2 /* ShoppingList.m in Sources */,
