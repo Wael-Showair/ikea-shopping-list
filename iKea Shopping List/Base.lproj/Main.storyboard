@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -283,7 +284,7 @@
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2nD-4C-sK7" customClass="ShoppingListsTableView">
                                                 <rect key="frame" x="0.0" y="94.5" width="600" height="441.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="KsX-cH-Ssk">
+                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="KsX-cH-Ssk">
                                                     <size key="itemSize" width="300" height="300"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -298,7 +299,7 @@
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4b5-vB-hjn">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                                                                    <rect key="frame" x="11" y="11" width="278" height="278"/>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdf-mk-WK5">
                                                                     <rect key="frame" x="130" y="140" width="41.5" height="19.5"/>
@@ -306,19 +307,37 @@
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v1z-hE-3F8">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
+                                                                    <color key="backgroundColor" red="1" green="0.27711810570000001" blue="0.2451457507" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="v1z-hE-3F8" secondAttribute="height" multiplier="1:1" id="Cjv-ki-OgK"/>
+                                                                        <constraint firstAttribute="width" constant="22" id="cBQ-e7-Wh7"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                    <state key="normal" title="X">
+                                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <action selector="onDeleteList:" destination="ekK-wL-KBd" eventType="touchUpInside" id="Ceo-OC-9mj"/>
+                                                                    </connections>
+                                                                </button>
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         </view>
                                                         <constraints>
+                                                            <constraint firstItem="v1z-hE-3F8" firstAttribute="top" secondItem="6IZ-Ae-bcs" secondAttribute="top" id="837-eY-smp"/>
+                                                            <constraint firstItem="v1z-hE-3F8" firstAttribute="leading" secondItem="6IZ-Ae-bcs" secondAttribute="leading" id="9SE-HX-lad"/>
                                                             <constraint firstItem="wdf-mk-WK5" firstAttribute="centerX" secondItem="6IZ-Ae-bcs" secondAttribute="centerX" id="GEo-Y5-8g9"/>
                                                             <constraint firstItem="wdf-mk-WK5" firstAttribute="centerY" secondItem="6IZ-Ae-bcs" secondAttribute="centerY" id="TSd-OC-C3D"/>
-                                                            <constraint firstItem="4b5-vB-hjn" firstAttribute="top" secondItem="6IZ-Ae-bcs" secondAttribute="top" id="Yhe-uQ-joB"/>
-                                                            <constraint firstAttribute="bottom" secondItem="4b5-vB-hjn" secondAttribute="bottom" id="eIO-p3-tvc"/>
-                                                            <constraint firstAttribute="trailing" secondItem="4b5-vB-hjn" secondAttribute="trailing" id="eKF-f3-XgB"/>
-                                                            <constraint firstItem="4b5-vB-hjn" firstAttribute="leading" secondItem="6IZ-Ae-bcs" secondAttribute="leading" id="zxc-FJ-RBx"/>
+                                                            <constraint firstItem="4b5-vB-hjn" firstAttribute="top" secondItem="6IZ-Ae-bcs" secondAttribute="top" constant="11" id="Yhe-uQ-joB"/>
+                                                            <constraint firstAttribute="bottom" secondItem="4b5-vB-hjn" secondAttribute="bottom" constant="11" id="eIO-p3-tvc"/>
+                                                            <constraint firstAttribute="trailing" secondItem="4b5-vB-hjn" secondAttribute="trailing" constant="11" id="eKF-f3-XgB"/>
+                                                            <constraint firstItem="4b5-vB-hjn" firstAttribute="leading" secondItem="6IZ-Ae-bcs" secondAttribute="leading" constant="11" id="zxc-FJ-RBx"/>
                                                         </constraints>
                                                         <connections>
                                                             <outlet property="backgroundImage" destination="4b5-vB-hjn" id="HK2-jJ-m04"/>
+                                                            <outlet property="deleteBtn" destination="v1z-hE-3F8" id="J0d-hH-UNr"/>
                                                             <outlet property="textLabel" destination="wdf-mk-WK5" id="GJT-jY-zWi"/>
                                                             <segue destination="w5H-OC-JtZ" kind="show" identifier="showListOfItems" id="yAd-xj-Vbh"/>
                                                         </connections>
@@ -378,7 +397,13 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="UAH-4h-joB"/>
+                    <navigationItem key="navigationItem" id="UAH-4h-joB">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="cXQ-BA-5I6">
+                            <connections>
+                                <action selector="onTapEdit:" destination="ekK-wL-KBd" id="7pd-NO-1Qt"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="listsTableView" destination="2nD-4C-sK7" id="feH-nV-vjf"/>
                         <outlet property="outerScrollView" destination="Qkc-JB-1aV" id="NbE-8Y-Jvv"/>

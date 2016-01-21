@@ -10,4 +10,10 @@
 
 @implementation ShoppingListCell
 
+-(void)awakeFromNib{
+  /*If the width equals to the height and the corner radius is set to lenght/2
+   * then the square will turn into circle. */
+  self.deleteBtn.layer.cornerRadius = self.deleteBtn.bounds.size.height/2;
+  self.deleteBtn.hidden = YES;
+}
 @end

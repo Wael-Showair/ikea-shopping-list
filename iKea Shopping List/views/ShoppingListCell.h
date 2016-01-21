@@ -12,4 +12,5 @@
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
+@property (weak, nonatomic) IBOutlet UIButton *deleteBtn;
 @end

@@ -86,10 +86,6 @@
   self.listsTableView.delegate = self;
 
   
-  /* set right bar button to default button that toggles its title and
-   associated state between Edit and Done. */
-  self.navigationItem.rightBarButtonItem = self.editButtonItem;
-  
   /* Set the view controller as a delegate for Sticky Header Protocol. */
   self.outerScrollView.stickyDelegate = self;
   
@@ -225,7 +221,7 @@
 
 /* Determine size of each cell in the collection. */
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-  CGFloat width = [UIScreen mainScreen].bounds.size.width/2 - 15;
+  CGFloat width = [UIScreen mainScreen].bounds.size.width/2 - 5;
   
   CGFloat height = width;
 
@@ -234,7 +230,7 @@
 
 /* Determine the inset of the contents for each cell. */
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-  return UIEdgeInsetsMake(0, 10, 10, 10);
+  return UIEdgeInsetsMake(0, 5, 0, 5);
 }
 
 #pragma collection view - delegate
@@ -279,7 +275,7 @@
 //    return UITableViewCellEditingStyleDelete;
 //}
 
-#pragma list addition - delegate
+#pragma actions
 
 - (IBAction)onTapAdd:(id)sender {
   
@@ -299,6 +295,36 @@
    * keyboard & remove the newest entry from the table view. */
   /* If the user tap Go button, change the cell contents from text field to basic label.*/
   
+}
+- (IBAction)onTapEdit:(UIBarButtonItem*)barButton {
+  if([barButton.title isEqualToString:@"Edit"]){
+    barButton.title = @"Done";
+
+    for (ShoppingListCell* cell in self.listsTableView.visibleCells) {
+      /* Display Circular Delete button */
+      cell.deleteBtn.hidden = NO;
+
+      /* TODO: Shake the cell of collection view */
+      
+    }
+    
+    
+  }else{
+    barButton.title = @"Edit";
+    for (ShoppingListCell* cell in self.listsTableView.visibleCells) {
+      cell.deleteBtn.hidden = YES;
+    }
+  }
+}
+- (IBAction)onDeleteList:(UIButton*)button {
+  /* Get the index path of the cell whose button has been tapped. Make sure to convert
+   * the center point of the delete button to the collection view coordinate space first.*/
+  CGPoint point = [button convertPoint:button.center toView:self.listsTableView];
+  NSIndexPath* indexPath = [self.listsTableView indexPathForItemAtPoint:point];
+
+  [self.listOfListsDataSource removeListAtIndexPath:indexPath];
+  [self.listsTableView deleteItemsAtIndexPaths:@[indexPath]];
+
 }
 
 #pragma mark - Navigation
