@@ -7,15 +7,41 @@
 //
 
 #import "ShoppingListsTableView.h"
+#import "ShoppingListCell.h"
+
 #define SCROLLING_THRESHOLD 30.0
 
 @implementation ShoppingListsTableView
 
 -(void)awakeFromNib{
   self.shouldNotifyDelegate = YES;
-  
+  self.editingMode = NO;
   /* Remove empty cells from the table view. */
   //self.tableFooterView = [UIView new];
+}
+
+-(UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
+  
+  UIView* view;
+  
+  /* When the collection view is in editing mode, you should not trigger the segue of showing detailed
+   * shopping items (it is ID is Main.Storyboard equals to showListOfItems).
+   * There are two possible solutions here, either to trigger the segue manually or bypass any tap
+   * gesture on the whole cell to the delete button, hence the cell will be deleted by tapping any
+   * where in the cell.
+   * I would go with the second solution because I don't want to lose the segue visual connection 
+   * between the two view controllers. Another benefit for this solution if the user finger is big,
+   * He does not have to press exactly on top of the small delete button. */
+  
+  if(YES ==self.editingMode){
+    NSIndexPath* indexPath = [self indexPathForItemAtPoint:point];
+    ShoppingListCell* cell = (ShoppingListCell*)[self cellForItemAtIndexPath:indexPath];
+    view = cell.deleteBtn;
+    
+  }else{
+    view = [super hitTest:point withEvent:event];
+  }
+  return view;
 }
 
 #pragma scroll view - delegate

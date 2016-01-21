@@ -299,6 +299,7 @@
 }
 - (IBAction)onTapEdit:(UIBarButtonItem*)barButton {
   if([barButton.title isEqualToString:@"Edit"]){
+    self.listsTableView.editingMode = YES;
     barButton.title = @"Done";
     CGFloat delay = 0.0;
     for (ShoppingListCell* cell in self.listsTableView.visibleCells) {
@@ -317,6 +318,7 @@
       cell.deleteBtn.hidden = YES;
       [cell stoptShakeAnimation];
     }
+    self.listsTableView.editingMode = NO;
   }
 }
 - (IBAction)onDeleteList:(UIButton*)button {

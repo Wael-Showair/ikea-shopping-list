@@ -14,5 +14,7 @@
 @property BOOL shouldNotifyDelegate;
 
 -(void)scrollViewDidScroll;
+
+@property BOOL editingMode;
 @end
 
