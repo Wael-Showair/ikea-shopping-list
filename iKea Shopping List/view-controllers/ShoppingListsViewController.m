@@ -328,7 +328,17 @@
   NSIndexPath* indexPath = [self.listsTableView indexPathForItemAtPoint:point];
 
   [self.listOfListsDataSource removeListAtIndexPath:indexPath];
-  [self.listsTableView deleteItemsAtIndexPaths:@[indexPath]];
+  /* When cell is deleted, the ongoing animation of the cells whose index paths are coming next,
+   * stop their animation. I have to restart their animation. In this case, I am just restarting
+   * all of them. */
+  [self.listsTableView performBatchUpdates:^{
+    [self.listsTableView deleteItemsAtIndexPaths:@[indexPath]];
+  }completion:^(BOOL finished){
+    for (ShoppingListCell* cell in self.listsTableView.visibleCells) {
+      [cell startShakeAnimationWithDelay:0.0];
+    }
+  }];
+
 
 }
 
