@@ -1,5 +1,5 @@
 /*!
- *  @file ListOfListsTableViewController.m
+ *  @file ListOflistsCollectionViewController.m
  *  implementation file that provides required operations for UI Tabel view
  *  controller for list of shopping items lists.
  *
@@ -14,7 +14,7 @@
 #import "ShoppingItemsViewController.h"
 #import "ShoppingItem.h"
 #import "OuterScrollView.h"
-#import "ShoppingListsTableView.h"
+#import "ShoppingListsCollectionView.h"
 #import "TextInputTableViewCell.h"
 #import "UIView+Overlay.h"
 #import "ShoppingListCell.h"
@@ -34,7 +34,7 @@
 
 #define FIRST_SECTION_INDEX         0
 
-#define NUM_OF_LISTS                [self.listsTableView numberOfItemsInSection:0]
+#define NUM_OF_LISTS                [self.listsCollectionView numberOfItemsInSection:0]
 
 #define LAST_INDEX                  NUM_OF_LISTS - 1
 
@@ -58,7 +58,7 @@
  */
 @property (strong, nonatomic) ListsDataSource* listOfListsDataSource;
 @property (weak, nonatomic) IBOutlet OuterScrollView *outerScrollView;
-@property (weak, nonatomic) IBOutlet ShoppingListsTableView *listsTableView;
+@property (weak, nonatomic) IBOutlet ShoppingListsCollectionView *listsCollectionView;
 @end
 
 @implementation ShoppingListsViewController
@@ -83,8 +83,8 @@
   
   /* Set data source delegate of the table view under control. */
   self.listOfListsDataSource = [[ListsDataSource alloc] initWithItems:allLists];
-  self.listsTableView.dataSource = self.listOfListsDataSource;
-  self.listsTableView.delegate = self;
+  self.listsCollectionView.dataSource = self.listOfListsDataSource;
+  self.listsCollectionView.delegate = self;
 
   
   /* Set the view controller as a delegate for Sticky Header Protocol. */
@@ -97,8 +97,8 @@
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
-  NSIndexPath* indexPath = [[self.listsTableView indexPathsForSelectedItems] objectAtIndex:0];
-  [self.listsTableView deselectItemAtIndexPath:indexPath animated:NO];
+  NSIndexPath* indexPath = [[self.listsCollectionView indexPathsForSelectedItems] objectAtIndex:0];
+  [self.listsCollectionView deselectItemAtIndexPath:indexPath animated:NO];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -113,16 +113,16 @@
 #pragma scroll view - delegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-  if(scrollView == self.listsTableView){
-    [(ShoppingListsTableView*)scrollView scrollViewDidScroll];
+  if(scrollView == self.listsCollectionView){
+    [(ShoppingListsCollectionView*)scrollView scrollViewDidScroll];
   }
   else if(scrollView == self.outerScrollView){
     NSLog(@"OuterScrollView offset:%f",scrollView.contentOffset.y);
-//    NSLog(@"InnerScrollView offset:%f",self.listsTableView.contentOffset.y);
+//    NSLog(@"InnerScrollView offset:%f",self.listsCollectionView.contentOffset.y);
 //    
 //    NSLog(@"OuterScrollView contentSize:%@", NSStringFromCGSize(scrollView.contentSize));
-//    NSLog(@"InnerScrollView contentSize:%@", NSStringFromCGSize(self.listsTableView.contentSize));
-//    NSLog(@"InnerScrollView height:%f", self.listsTableView.bounds.size.height);
+//    NSLog(@"InnerScrollView contentSize:%@", NSStringFromCGSize(self.listsCollectionView.contentSize));
+//    NSLog(@"InnerScrollView height:%f", self.listsCollectionView.bounds.size.height);
 //    if((scrollView.contentOffset.y > 94.0) && (nil == self.navigationItem.leftBarButtonItem)){
 //    
 //    }else if((scrollView.contentOffset.y < 94.0) && (nil != self.navigationItem.leftBarButtonItem)){
@@ -173,12 +173,12 @@
   
   /* Reload the row whose text label has been changed. */
 
-  [self.listsTableView reloadItemsAtIndexPaths:@[indexPath]];
+  [self.listsCollectionView reloadItemsAtIndexPaths:@[indexPath]];
   
-  [self.listsTableView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
+  [self.listsCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
   
-  if(self.listsTableView.contentOffset.y > 30.0){
-    [self.listsTableView.scrollingDelegate scrollViewDidCrossOverThreshold:self.listsTableView];
+  if(self.listsCollectionView.contentOffset.y > 30.0){
+    [self.listsCollectionView.scrollingDelegate scrollViewDidCrossOverThreshold:self.listsCollectionView];
   }
   
   return YES;
@@ -214,7 +214,7 @@
   /* Delete the newly added list from the lists. */
   NSIndexPath* indexPath = [NSIndexPath indexPathForRow:LAST_INDEX inSection:FIRST_SECTION_INDEX];
   [self.listOfListsDataSource removeListAtIndexPath:indexPath];
-  [self.listsTableView deleteItemsAtIndexPaths:@[indexPath] ];
+  [self.listsCollectionView deleteItemsAtIndexPaths:@[indexPath] ];
   
 }
 
@@ -287,10 +287,10 @@
   /* add the new list row to table view. */
   NSIndexPath* indexPath = [NSIndexPath indexPathForRow:LAST_INDEX+1 inSection:FIRST_SECTION_INDEX];
 
-  [self.listsTableView insertItemsAtIndexPaths:@[indexPath]];
-  self.listsTableView.shouldNotifyDelegate = NO;
+  [self.listsCollectionView insertItemsAtIndexPaths:@[indexPath]];
+  self.listsCollectionView.shouldNotifyDelegate = NO;
   
-  [self.listsTableView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
+  [self.listsCollectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionBottom animated:NO];
   
   /* Note that the overlay will be added on showing the keyboard. On tap the overlay, dismiss the 
    * keyboard & remove the newest entry from the table view. */
@@ -299,10 +299,10 @@
 }
 - (IBAction)onTapEdit:(UIBarButtonItem*)barButton {
   if([barButton.title isEqualToString:@"Edit"]){
-    self.listsTableView.editingMode = YES;
+    self.listsCollectionView.editingMode = YES;
     barButton.title = @"Done";
     CGFloat delay = 0.0;
-    for (ShoppingListCell* cell in self.listsTableView.visibleCells) {
+    for (ShoppingListCell* cell in self.listsCollectionView.visibleCells) {
       /* Display Circular Delete button */
       cell.deleteBtn.hidden = NO;
 
@@ -314,27 +314,27 @@
     
   }else{
     barButton.title = @"Edit";
-    for (ShoppingListCell* cell in self.listsTableView.visibleCells) {
+    for (ShoppingListCell* cell in self.listsCollectionView.visibleCells) {
       cell.deleteBtn.hidden = YES;
       [cell stoptShakeAnimation];
     }
-    self.listsTableView.editingMode = NO;
+    self.listsCollectionView.editingMode = NO;
   }
 }
 - (IBAction)onDeleteList:(UIButton*)button {
   /* Get the index path of the cell whose button has been tapped. Make sure to convert
    * the center point of the delete button to the collection view coordinate space first.*/
-  CGPoint point = [button convertPoint:button.center toView:self.listsTableView];
-  NSIndexPath* indexPath = [self.listsTableView indexPathForItemAtPoint:point];
+  CGPoint point = [button convertPoint:button.center toView:self.listsCollectionView];
+  NSIndexPath* indexPath = [self.listsCollectionView indexPathForItemAtPoint:point];
 
   [self.listOfListsDataSource removeListAtIndexPath:indexPath];
   /* When cell is deleted, the ongoing animation of the cells whose index paths are coming next,
    * stop their animation. I have to restart their animation. In this case, I am just restarting
    * all of them. */
-  [self.listsTableView performBatchUpdates:^{
-    [self.listsTableView deleteItemsAtIndexPaths:@[indexPath]];
+  [self.listsCollectionView performBatchUpdates:^{
+    [self.listsCollectionView deleteItemsAtIndexPaths:@[indexPath]];
   }completion:^(BOOL finished){
-    for (ShoppingListCell* cell in self.listsTableView.visibleCells) {
+    for (ShoppingListCell* cell in self.listsCollectionView.visibleCells) {
       [cell startShakeAnimationWithDelay:0.0];
     }
   }];
@@ -353,7 +353,7 @@
     ShoppingItemsViewController* listOfItemsViewController =
     [segue destinationViewController];
     
-    NSIndexPath* selectedIndexPath = [[self.listsTableView indexPathsForSelectedItems] objectAtIndex:0];
+    NSIndexPath* selectedIndexPath = [[self.listsCollectionView indexPathsForSelectedItems] objectAtIndex:0];
     
     ShoppingList* selectedShoppingList =
     [self.listOfListsDataSource itemAtIndexPath:selectedIndexPath];

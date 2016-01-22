@@ -6,12 +6,12 @@
 //  Copyright © 2015 showair.wael@gmail.com. All rights reserved.
 //
 
-#import "ShoppingListsTableView.h"
+#import "ShoppingListsCollectionView.h"
 #import "ShoppingListCell.h"
 
 #define SCROLLING_THRESHOLD 30.0
 
-@implementation ShoppingListsTableView
+@implementation ShoppingListsCollectionView
 
 -(void)awakeFromNib{
   self.shouldNotifyDelegate = YES;

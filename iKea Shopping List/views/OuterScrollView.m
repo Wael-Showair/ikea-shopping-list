@@ -7,7 +7,7 @@
 //
 
 #import "OuterScrollView.h"
-#import "ShoppingListsTableView.h"
+#import "ShoppingListsCollectionView.h"
 
 #define ANIMATION_DURATION  0.3
 
@@ -41,7 +41,7 @@
   self.innerScrollView = [self viewWithTag:3];
 
   /* Set outer scroll view as a delegate for scrolling notification protocol */
-  ((ShoppingListsTableView*)self.innerScrollView).scrollingDelegate = self;
+  ((ShoppingListsCollectionView*)self.innerScrollView).scrollingDelegate = self;
   
   /* Listen for keyboard events to handle text field that might be obscured by keyboard. */
   [self registerForKeyboardNotifications];
