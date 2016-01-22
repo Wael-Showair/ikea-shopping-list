@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TextInputTableViewCell : UITableViewCell
-
+@interface TextInputCell : UICollectionViewCell
+#define NEW_LIST_INFO_CELL_ID   @"new-list-info-cell"
 @property (weak, nonatomic) IBOutlet UITextField *inputText;
 
 @end

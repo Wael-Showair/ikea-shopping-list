@@ -15,7 +15,7 @@
 #import "ShoppingItem.h"
 #import "OuterScrollView.h"
 #import "ShoppingListsCollectionView.h"
-#import "TextInputTableViewCell.h"
+#import "TextInputCell.h"
 #import "UIView+Overlay.h"
 #import "ShoppingListCell.h"
 #import "UIImage+Overlay.h"
@@ -242,13 +242,13 @@
   
   if(indexPath.row == self.listOfListsDataSource.rowIndexForTextInputCell){
     
-    ((TextInputTableViewCell*)cell).inputText.text = EMPTY_STRING;
+    ((TextInputCell*)cell).inputText.text = EMPTY_STRING;
     
     /* Set the current view controller as a delegate for the textfield in the cell. */
-    ((TextInputTableViewCell*)cell).inputText.delegate = self;
+    ((TextInputCell*)cell).inputText.delegate = self;
     
     /* populate the keyboard automatically. */
-    [((TextInputTableViewCell*)cell).inputText becomeFirstResponder];
+    [((TextInputCell*)cell).inputText becomeFirstResponder];
     
     /* Inform the data source that it should not use text input anymore. */
     self.listOfListsDataSource.rowIndexForTextInputCell = INVALID_ROW_INDEX;

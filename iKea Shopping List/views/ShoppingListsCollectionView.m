@@ -8,14 +8,21 @@
 
 #import "ShoppingListsCollectionView.h"
 #import "ShoppingListCell.h"
+#import "TextInputCell.h"
 
 #define SCROLLING_THRESHOLD 30.0
+#define TEXT_FIELD_CELL_NIB     @"text-input-cell"
 
 @implementation ShoppingListsCollectionView
 
 -(void)awakeFromNib{
   self.shouldNotifyDelegate = YES;
   self.editingMode = NO;
+  
+  
+  UINib* nib = [UINib nibWithNibName:TEXT_FIELD_CELL_NIB bundle:nil];
+  
+  [self registerNib:nib forCellWithReuseIdentifier:NEW_LIST_INFO_CELL_ID];
   /* Remove empty cells from the table view. */
   //self.tableFooterView = [UIView new];
 }

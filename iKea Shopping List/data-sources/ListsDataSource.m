@@ -10,14 +10,15 @@
 #import <UIKit/UIKit.h>
 #import "ListsDataSource.h"
 #import "ShoppingList.h"
+#import "TextInputCell.h"
 
 /*!
  *  @define LISTS_CELL_IDENTIFIER
  *  @abstract table view cell tag that is used to idenify the cells for reuse.
  */
 #define LISTS_CELL_IDENTIFIER       @"cellForListOfLists"
-#define NEW_LIST_INFO_CELL_ID   @"new-list-info-cell"
-#define TEXT_FIELD_CELL_NIB     @"text-input-table-view-cell"
+
+
 
 @interface ListsDataSource()
 
@@ -64,18 +65,9 @@
   
   if(indexPath.row == self.rowIndexForTextInputCell){
     cell = [collectionView dequeueReusableCellWithReuseIdentifier:NEW_LIST_INFO_CELL_ID forIndexPath:indexPath ];
-    /* Because the prototype cell is NOT defined in a storyboard, the
-     * dequeueReusableCellWithIdentifier: method might NOT return a valid cell.
-     * You need to check the return value against nil and create a cell
-     * manually.*/
-    if(cell == nil){
-      
-      UINib* nib = [UINib nibWithNibName:TEXT_FIELD_CELL_NIB bundle:nil];
-      
-      [collectionView registerNib:nib forCellWithReuseIdentifier:NEW_LIST_INFO_CELL_ID];
-      
-      cell = [collectionView dequeueReusableCellWithReuseIdentifier:NEW_LIST_INFO_CELL_ID forIndexPath:indexPath];
-    }
+    /* Because the prototype cell is being registered with a nib file, the
+     * dequeueReusableCellWithIdentifier: method will alwyas return a valid cell.
+     */
     
   }else{
     /* Because the prototype cell is defined in a storyboard, the

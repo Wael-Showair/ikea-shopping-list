@@ -6,9 +6,9 @@
 //  Copyright © 2015 showair.wael@gmail.com. All rights reserved.
 //
 
-#import "TextInputTableViewCell.h"
+#import "TextInputCell.h"
 
-@implementation TextInputTableViewCell
+@implementation TextInputCell
 
 - (void)awakeFromNib {
   // Initialization code
@@ -16,10 +16,10 @@
   NSLog(@"%s", __PRETTY_FUNCTION__);
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-  [super setSelected:selected animated:animated];
-  
-  // Configure the view for the selected state
-}
+//- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+//  [super setSelected:selected animated:animated];
+//  
+//  // Configure the view for the selected state
+//}
 
 @end
