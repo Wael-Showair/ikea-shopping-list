@@ -72,7 +72,8 @@
     /* The following corner case are most likely to happen on iPhone 4s Devices since they have
      * short screens. Without this step, the obscured view will be located at the top of the screen.*/
     if(CGRectGetMaxY(convertedRect)> screenHeight){
-      convertedRect.origin.y -= convertedRect.size.height;
+//      convertedRect.origin.y -= convertedRect.size.height;
+        convertedRect.origin.y -= (convertedRect.size.height+130.0) ;
     }
     
     /* Scroll to the converted visible frame rectangle of the text field. */
