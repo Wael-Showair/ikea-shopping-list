@@ -19,7 +19,7 @@
 @interface OuterScrollView : UIScrollView <UIScrollingNotificationDelegate>
 @property (weak, nonatomic) id<UIStickyViewDelegate> stickyDelegate;
 @property (weak, nonatomic) UIView* stickyHeader;
-
+@property CGFloat prevContentOffsetY;
 @end
 
 

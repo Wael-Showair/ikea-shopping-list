@@ -20,6 +20,7 @@
 #import "ShoppingListCell.h"
 #import "UIImage+Overlay.h"
 #import "UIView+ShakeAnimation.h"
+#import "CustomWindowOverlay.h"
 
 /*!
  *  @define SHOW_LIST_ITEMS_SEGUE_ID
@@ -59,6 +60,7 @@
 @property (strong, nonatomic) ListsDataSource* listOfListsDataSource;
 @property (weak, nonatomic) IBOutlet OuterScrollView *outerScrollView;
 @property (weak, nonatomic) IBOutlet ShoppingListsCollectionView *listsCollectionView;
+@property (weak, nonatomic) UIView* customOverlay;
 @end
 
 @implementation ShoppingListsViewController
@@ -89,11 +91,6 @@
   
   /* Set the view controller as a delegate for Sticky Header Protocol. */
   self.outerScrollView.stickyDelegate = self;
-  
-  /* Add keyboard listener to display the overlay properly*/
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(keyboardDidShow:)
-                                               name:UIKeyboardDidShowNotification object:nil];
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
@@ -113,23 +110,24 @@
 #pragma scroll view - delegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+  CGFloat scrollOffsetDifference = 0.0;
   if(scrollView == self.listsCollectionView){
     [(ShoppingListsCollectionView*)scrollView scrollViewDidScroll];
+    scrollOffsetDifference = scrollView.contentOffset.y - self.listsCollectionView.prevContentOffsetY;
   }
   else if(scrollView == self.outerScrollView){
-    NSLog(@"OuterScrollView offset:%f",scrollView.contentOffset.y);
-//    NSLog(@"InnerScrollView offset:%f",self.listsCollectionView.contentOffset.y);
-//    
-//    NSLog(@"OuterScrollView contentSize:%@", NSStringFromCGSize(scrollView.contentSize));
-//    NSLog(@"InnerScrollView contentSize:%@", NSStringFromCGSize(self.listsCollectionView.contentSize));
-//    NSLog(@"InnerScrollView height:%f", self.listsCollectionView.bounds.size.height);
-//    if((scrollView.contentOffset.y > 94.0) && (nil == self.navigationItem.leftBarButtonItem)){
-//    
-//    }else if((scrollView.contentOffset.y < 94.0) && (nil != self.navigationItem.leftBarButtonItem)){
-//    
-//    }
+    scrollOffsetDifference = scrollView.contentOffset.y -  self.outerScrollView.prevContentOffsetY;
   }
 
+  /* Update the overlay view with the same amount of vertical scrolling offset so that the
+   * transparent rectangle always stays on top of the text input cell. Otherwise, it might
+   * obscured by the keyboard. */
+  if(nil != self.customOverlay){
+    CGAffineTransform transform = self.customOverlay.layer.affineTransform;
+    self.customOverlay.layer.affineTransform =
+        CGAffineTransformTranslate(transform, 0, -scrollOffsetDifference);
+  }
+  
 }
 
 #pragma sticky view - delegate
@@ -190,32 +188,8 @@
   self.outerScrollView.textFieldObscuredByKeyboard = nil;
   
   /* Remove overvaly*/
-  [self.view removeOverlay];
-}
-
-#pragma keyboard - notifications
--(void) keyboardDidShow:(NSNotification*) notification{
-  /* Display the overlay after showing the keyboard.*/
-  [self.view addOverlayExceptAround:self.outerScrollView.textFieldObscuredByKeyboard];
-
-  /* Note that gesture recoginzer should be added only to one view. You can't add the same
-   * gesture recognizer to multiple views. */
-  UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapOverlay)];
-  [self.view.upperOverlayView addGestureRecognizer:tapGesture];
-  
-  tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapOverlay)];
-  [self.view.lowerOverlayView addGestureRecognizer:tapGesture];
-}
-
--(IBAction)onTapOverlay{
-  /* Dismiss the keyboard. */
-  [self.outerScrollView.textFieldObscuredByKeyboard resignFirstResponder];
-  
-  /* Delete the newly added list from the lists. */
-  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:LAST_INDEX inSection:FIRST_SECTION_INDEX];
-  [self.listOfListsDataSource removeListAtIndexPath:indexPath];
-  [self.listsCollectionView deleteItemsAtIndexPaths:@[indexPath] ];
-  
+  [self.customOverlay removeFromSuperview];
+  self.customOverlay = nil;
 }
 
 #pragma collection view - layout flow delegate
@@ -247,7 +221,22 @@
     /* Set the current view controller as a delegate for the textfield in the cell. */
     ((TextInputCell*)cell).inputText.delegate = self;
     
-    /* populate the keyboard automatically. */
+    /* Add an overlay to the window (to be on top of all views). Make sure to leave the area on top
+     * of text input cell to be always transparent.*/
+    CustomWindowOverlay* overlay = [[CustomWindowOverlay alloc] initWithFrame:self.view.window.frame
+                                                                   aroundView:cell];
+    /* Add the overlay view to the main window. */
+    [self.view.window addSubview:overlay];
+    self.customOverlay = overlay;
+    
+    /* Note that gesture recoginzer should be added only to one view. You can't add the same
+     * gesture recognizer to multiple views. */
+    UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTapOverlay)];
+    [overlay addGestureRecognizer:tapGesture];
+    
+    /* populate the keyboard automatically. Note that when the keyboard is shown, the outer scroll 
+     * view might be change its scrolling offset (if the input text is obscured by keyboard), hence
+     * the overlay view should be shifted up with the same amount of verticall scrolling offset.*/
     [((TextInputCell*)cell).inputText becomeFirstResponder];
     
     /* Inform the data source that it should not use text input anymore. */
@@ -340,6 +329,18 @@
   }];
 
 
+}
+
+
+-(IBAction)onTapOverlay{
+  /* Dismiss the keyboard. */
+  [self.outerScrollView.textFieldObscuredByKeyboard resignFirstResponder];
+  
+  /* Delete the newly added list from the lists. */
+  NSIndexPath* indexPath = [NSIndexPath indexPathForRow:LAST_INDEX inSection:FIRST_SECTION_INDEX];
+  [self.listOfListsDataSource removeListAtIndexPath:indexPath];
+  [self.listsCollectionView deleteItemsAtIndexPaths:@[indexPath] ];
+  
 }
 
 #pragma mark - Navigation

@@ -14,7 +14,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="144" height="144"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="QEf-3F-oh9">
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name of List" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="QEf-3F-oh9">
                         <rect key="frame" x="0.0" y="62.5" width="144" height="19"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
@@ -25,6 +25,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="QEf-3F-oh9" secondAttribute="trailing" id="2f1-kc-qb9"/>
                 <constraint firstItem="QEf-3F-oh9" firstAttribute="leading" secondItem="YPv-wS-J5S" secondAttribute="leading" id="9wL-4F-Pl4"/>
+                <constraint firstItem="QEf-3F-oh9" firstAttribute="centerY" secondItem="YPv-wS-J5S" secondAttribute="centerY" id="Ku0-xT-nF6"/>
                 <constraint firstItem="QEf-3F-oh9" firstAttribute="centerY" secondItem="YPv-wS-J5S" secondAttribute="centerY" id="e1A-4P-adp"/>
             </constraints>
             <size key="customSize" width="144" height="144"/>

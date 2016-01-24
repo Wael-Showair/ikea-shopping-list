@@ -13,6 +13,7 @@
 		DA1DF70C1C288D3A00CBD994 /* ShoppingListsCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1DF70B1C288D3A00CBD994 /* ShoppingListsCollectionView.m */; };
 		DA23133A1BF1891700E5366C /* ItemsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2313391BF1891700E5366C /* ItemsDataSource.m */; };
 		DA2C316E1C27FD690080AF31 /* OuterScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2C316D1C27FD690080AF31 /* OuterScrollView.m */; };
+		DA33DE641C53B70B00EFDEC0 /* CustomWindowOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = DA33DE631C53B70B00EFDEC0 /* CustomWindowOverlay.m */; };
 		DA3D9EB01C4D26C200D0D0C9 /* UIImage+Overlay.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3D9EAF1C4D26C200D0D0C9 /* UIImage+Overlay.m */; };
 		DA4FA0851C5144E800C6294F /* UIView+ShakeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = DA4FA0841C5144E800C6294F /* UIView+ShakeAnimation.m */; };
 		DA5444B91C1327F4002DFD0F /* StandaloneNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DA5444B81C1327F4002DFD0F /* StandaloneNavBar.m */; };
@@ -79,6 +80,8 @@
 		DA2313391BF1891700E5366C /* ItemsDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemsDataSource.m; path = "data-sources/ItemsDataSource.m"; sourceTree = "<group>"; };
 		DA2C316C1C27FD690080AF31 /* OuterScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OuterScrollView.h; path = views/OuterScrollView.h; sourceTree = "<group>"; };
 		DA2C316D1C27FD690080AF31 /* OuterScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OuterScrollView.m; path = views/OuterScrollView.m; sourceTree = "<group>"; };
+		DA33DE621C53B70B00EFDEC0 /* CustomWindowOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomWindowOverlay.h; path = views/CustomWindowOverlay.h; sourceTree = "<group>"; };
+		DA33DE631C53B70B00EFDEC0 /* CustomWindowOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomWindowOverlay.m; path = views/CustomWindowOverlay.m; sourceTree = "<group>"; };
 		DA3D9EAE1C4D26C200D0D0C9 /* UIImage+Overlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Overlay.h"; path = "views/UIImage+Overlay.h"; sourceTree = "<group>"; };
 		DA3D9EAF1C4D26C200D0D0C9 /* UIImage+Overlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Overlay.m"; path = "views/UIImage+Overlay.m"; sourceTree = "<group>"; };
 		DA4FA0831C5144E800C6294F /* UIView+ShakeAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+ShakeAnimation.h"; path = "views/UIView+ShakeAnimation.h"; sourceTree = "<group>"; };
@@ -365,6 +368,8 @@
 				DA1DF70B1C288D3A00CBD994 /* ShoppingListsCollectionView.m */,
 				DAF1B5371C4C5FA700E34125 /* ShoppingListCell.h */,
 				DAF1B5381C4C5FA700E34125 /* ShoppingListCell.m */,
+				DA33DE621C53B70B00EFDEC0 /* CustomWindowOverlay.h */,
+				DA33DE631C53B70B00EFDEC0 /* CustomWindowOverlay.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -580,6 +585,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA6E0C081C0CAA400009632F /* DetailedItemViewController.m in Sources */,
+				DA33DE641C53B70B00EFDEC0 /* CustomWindowOverlay.m in Sources */,
 				DA5444BC1C132922002DFD0F /* CustomScrollView.m in Sources */,
 				DAF88CD41C2334F40074E0A8 /* PivotEntry.m in Sources */,
 				DA8D2B6D1C1A23D100E01584 /* UIView+FlashAnimation.m in Sources */,

@@ -12,6 +12,7 @@
 @interface ShoppingListsCollectionView : UICollectionView <UIScrollViewDelegate>
 @property (weak, nonatomic) id<UIScrollingNotificationDelegate> scrollingDelegate;
 @property BOOL shouldNotifyDelegate;
+@property CGFloat prevContentOffsetY;
 
 -(void)scrollViewDidScroll;
 

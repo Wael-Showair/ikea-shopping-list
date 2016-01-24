@@ -47,6 +47,11 @@
   [self registerForKeyboardNotifications];
 }
 
+-(void)setContentOffset:(CGPoint)contentOffset{
+  [super setContentOffset:contentOffset];
+  self.prevContentOffsetY = contentOffset.y;
+}
+
 -(void)scrollViewDidCrossOverThreshold:(UIScrollView *)scrollView{
   
   CGRect frame = self.innerScrollView.frame;

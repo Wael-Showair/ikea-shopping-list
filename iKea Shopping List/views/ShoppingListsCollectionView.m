@@ -27,6 +27,11 @@
   //self.tableFooterView = [UIView new];
 }
 
+-(void)setContentOffset:(CGPoint)contentOffset{
+  [super setContentOffset:contentOffset];
+  self.prevContentOffsetY = contentOffset.y;
+}
+
 -(UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
   
   UIView* view;
