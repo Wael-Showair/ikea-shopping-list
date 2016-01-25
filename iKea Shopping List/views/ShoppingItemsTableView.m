@@ -8,7 +8,6 @@
 
 #import "ShoppingItemsTableView.h"
 
-#define TOTAL_PRICE_PREFIX @"Total Price "
 
 #define SCROLLING_THRESHOLD 65.0
 
@@ -57,9 +56,13 @@
 
   self.tableHeaderView = [topLevelObjects objectAtIndex:0];
 
+  /* Reset any text loaded from the NIB file as it will appear while opening the two-sided door 
+   * animation.*/
+  ((UILabel*)self.tableHeaderView).text = @"";
+
 }
 
-- (void) updateGlobalHeaderWithPrice: (NSString*) price{
-  ((UILabel*)self.tableHeaderView).text = [TOTAL_PRICE_PREFIX stringByAppendingString:price];
+- (void) updateGlobalHeaderWithTitle: (NSString*) title{
+  ((UILabel*)self.tableHeaderView).text = title;
 }
 @end

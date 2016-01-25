@@ -16,6 +16,7 @@
 #define FIRST_INDEX_INSECTION        0
 #define SHOW_ITEM_DETAILS_SEGUE_ID   @"showItemDetails"
 #define OPEN_CAMERA_SEGUE_ID         @"openCamera"
+#define ITEM_ADDITION_TEXT           @"Add new item to the list by pointing the camera to tag of the item"
 
 @interface ShoppingItemsViewController ()
 
@@ -47,11 +48,11 @@
   self.itemsTableView.dataSource  = self.listOfItemsDataSource;
   self.itemsTableView.scrollingDelegate = self;
   
-  /* Set global header of the table view with the total price of the list.*/
-  [self.itemsTableView updateGlobalHeaderWithPrice:self.shoppingList.totalPrice.stringValue];
-  self.pinnedLabel.text = [TOTAL_PRICE_PREFIX stringByAppendingString:self.shoppingList.totalPrice.stringValue];
+  /* Make sure that the total price is visible (during two-sided door animation)if the list has any items */
+  if(0 < self.shoppingList.numberOfAisles){
+    [self updatePinnedLabelAndGlobalHeader];
+  }
   
-
   self.pinnedLabel.superview.layer.affineTransform = CGAffineTransformMakeTranslation(0, -64);
   self.pinnedLabel.superview.hidden = YES;
   
@@ -59,6 +60,11 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+  
+  if (0 == self.shoppingList.numberOfAisles) {
+    [self updatePinnedLabelAndGlobalHeader];
+  }
+  
   NSIndexPath* selectedIndexPath = [self.itemsTableView indexPathForSelectedRow];
   [self.itemsTableView deselectRowAtIndexPath:selectedIndexPath animated:YES];
 }
@@ -67,6 +73,19 @@
   
   self.listOfItemsDataSource = nil;
   [super didReceiveMemoryWarning];
+}
+
+-(void) updatePinnedLabelAndGlobalHeader{
+  /* Set global header of the table view with the total price of the list.*/
+  if(0< self.shoppingList.numberOfAisles){
+    NSString* totalPrice = [TOTAL_PRICE_PREFIX stringByAppendingString:self.shoppingList.totalPrice.stringValue];
+    [self.itemsTableView updateGlobalHeaderWithTitle:totalPrice];
+    self.pinnedLabel.text = totalPrice;
+  }else{
+    
+    [self.itemsTableView updateGlobalHeaderWithTitle:ITEM_ADDITION_TEXT];
+    self.pinnedLabel.text = @"";
+  }
 }
 
 #pragma scroll view - delegate
@@ -78,25 +97,25 @@
 
 #pragma scroll notification - delegate
 - (void)scrollViewDidCrossOverThreshold:(UIScrollView *)scrollView{
-    self.pinnedLabel.superview.hidden = NO;
+  self.pinnedLabel.superview.hidden = NO;
   [UIView animateWithDuration:0.3 animations:^{
     self.itemsTableView.layer.affineTransform = CGAffineTransformMakeTranslation(0, 0);
     self.pinnedLabel.superview.layer.affineTransform = CGAffineTransformMakeTranslation( 0, 0);
   }];
-    self.itemsTableView.contentSize = CGSizeMake(self.itemsTableView.contentSize.width, self.itemsTableView.contentSize.height+66.0);
+  self.itemsTableView.contentSize = CGSizeMake(self.itemsTableView.contentSize.width, self.itemsTableView.contentSize.height+66.0);
 }
 
 -(void)scrollViewDidReturnBelowThreshold:(UIScrollView *)scrollView{
   
-
+  
   [UIView animateWithDuration:0.3 animations:^{
     self.pinnedLabel.superview.layer.affineTransform = CGAffineTransformMakeTranslation(0, -64.0);
     self.itemsTableView.transform = CGAffineTransformMakeTranslation(0, -64);
   }completion:^(BOOL finished){
-      self.pinnedLabel.superview.hidden = YES;
+    self.pinnedLabel.superview.hidden = YES;
   }];
   
-      self.itemsTableView.contentSize = CGSizeMake(self.itemsTableView.contentSize.width, self.itemsTableView.contentSize.height-66.0);
+  self.itemsTableView.contentSize = CGSizeMake(self.itemsTableView.contentSize.width, self.itemsTableView.contentSize.height-66.0);
 }
 
 #pragma table view - delegate
@@ -105,7 +124,7 @@
   UITableViewHeaderFooterView* sectionHeaderView = (UITableViewHeaderFooterView*) view;
   sectionHeaderView.tintColor = [UIColor colorWithRed:0.0 green:0.333 blue:0.659 alpha:1.0];
   [sectionHeaderView.textLabel setTextColor:[UIColor whiteColor]];
-
+  
 }
 
 - (void)tableView:(UITableView *)tableView
@@ -133,14 +152,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
    * of the new section index to be able to call insertSections method instead
    * of reloadData method for the sake of performance. */
   NSInteger prevNumOfSections =
-      [self.listOfItemsDataSource numberOfSectionsInTableView:self.itemsTableView];
+  [self.listOfItemsDataSource numberOfSectionsInTableView:self.itemsTableView];
   
   /* add new item in the first index of the section */
   NSInteger virtualSectionIndex = [self.listOfItemsDataSource insertShoppingItem:newItem
                                                               withAscendingOrder:YES];
   
   NSInteger newNumOfSections =
-    [self.listOfItemsDataSource numberOfSectionsInTableView:self.itemsTableView];
+  [self.listOfItemsDataSource numberOfSectionsInTableView:self.itemsTableView];
   
   NSIndexPath* indexPath;
   /* in case new section is added, reload data is needed. */
@@ -151,7 +170,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     /* If a section already exists at the specified index location, it is
      * moved down one index location. */
     [self.itemsTableView insertSections:newSection
-                  withRowAnimation:UITableViewRowAnimationTop];
+                       withRowAnimation:UITableViewRowAnimationTop];
     
     /* Note: I can use reloadData but for performance considerations
      * I decided to use insertSections only.
@@ -167,18 +186,17 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
     
     /* add the new shopping item to the table view. */
     [self.itemsTableView insertRowsAtIndexPaths:@[indexPath]
-                          withRowAnimation:UITableViewRowAnimationAutomatic];
+                               withRowAnimation:UITableViewRowAnimationAutomatic];
     
   }
   
   /* Scroll & Select to the new added row so that the user becomes aware of
    * the successfull operation. */
   [self.itemsTableView selectRowAtIndexPath:indexPath
-                              animated:YES
-                        scrollPosition:UITableViewScrollPositionTop];
+                                   animated:YES
+                             scrollPosition:UITableViewScrollPositionTop];
   
-  [self.itemsTableView updateGlobalHeaderWithPrice:self.shoppingList.totalPrice.stringValue];
-  self.pinnedLabel.text = [TOTAL_PRICE_PREFIX stringByAppendingString:self.shoppingList.totalPrice.stringValue];
+  [self updatePinnedLabelAndGlobalHeader];
 }
 
 
@@ -197,15 +215,15 @@ forRowAtIndexPath:(NSIndexPath *)indexPath{
   }else if ([segue.identifier isEqualToString:OPEN_CAMERA_SEGUE_ID]){
     NSLog(@"going to start camera view right now");
     
-//    DetailedItemViewController* destViewController = [segue destinationViewController];
-//    
-//    ShoppingItem* shoppingItem =
-//      [[ShoppingItem alloc] initWithName:@"New Item"
-//                                   price:[NSDecimalNumber decimalNumberWithString:@"0.0"]];
-//    
-//    destViewController.shoppingItem = shoppingItem;
-//    destViewController.isNewItem = YES;
-//    destViewController.shoppningItemDelegate = self;
+    //    DetailedItemViewController* destViewController = [segue destinationViewController];
+    //
+    //    ShoppingItem* shoppingItem =
+    //      [[ShoppingItem alloc] initWithName:@"New Item"
+    //                                   price:[NSDecimalNumber decimalNumberWithString:@"0.0"]];
+    //
+    //    destViewController.shoppingItem = shoppingItem;
+    //    destViewController.isNewItem = YES;
+    //    destViewController.shoppningItemDelegate = self;
     
   }
 }

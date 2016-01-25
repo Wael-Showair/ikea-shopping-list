@@ -15,5 +15,5 @@
 @property BOOL shouldNotifyDelegate;
 
 -(void)scrollViewDidScroll;
-- (void) updateGlobalHeaderWithPrice: (NSString*) price;
+- (void) updateGlobalHeaderWithTitle: (NSString*) title;
 @end
