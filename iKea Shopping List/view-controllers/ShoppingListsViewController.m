@@ -261,7 +261,7 @@
     ShoppingList* shoppingList = [self.listOfListsDataSource itemAtIndexPath:indexPath];
     
     UIImage* image = [UIImage imageNamed:[shoppingList.title lowercaseString]];
-    image = [image imageWithColorOverlay:[UIColor colorWithRed:0.0 green:0.333 blue:0.659 alpha:0.7]];
+    /*image = [image imageWithColorOverlay:[UIColor colorWithRed:0.0 green:0.333 blue:0.659 alpha:0.7]];*/
     ((ShoppingListCell*)cell).backgroundImage.image = image;
     
     
