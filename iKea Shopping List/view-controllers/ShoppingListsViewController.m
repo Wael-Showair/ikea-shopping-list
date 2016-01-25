@@ -61,6 +61,7 @@
 @property (weak, nonatomic) IBOutlet OuterScrollView *outerScrollView;
 @property (weak, nonatomic) IBOutlet ShoppingListsCollectionView *listsCollectionView;
 @property (weak, nonatomic) UIView* customOverlay;
+@property (strong, nonatomic) NSDictionary* attributesOfTitle;
 @end
 
 @implementation ShoppingListsViewController
@@ -91,6 +92,19 @@
   
   /* Set the view controller as a delegate for Sticky Header Protocol. */
   self.outerScrollView.stickyDelegate = self;
+  
+  /* Set the attributes of the Lists title:
+   * 1- Font is predefined with Headline attributes.
+   * 2- Fill Color is white.
+   * 3- Stroke color is yellow.
+   * 4- Stroke width is negative to set both the fill & the stroke properly.https://goo.gl/ege0lH
+   */
+  self.attributesOfTitle =
+  @{            NSFontAttributeName: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline],
+     NSForegroundColorAttributeName: [UIColor whiteColor],
+         NSStrokeColorAttributeName: [UIColor yellowColor],
+         NSStrokeWidthAttributeName: [NSNumber numberWithFloat:-1.5]
+    };
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
@@ -250,7 +264,10 @@
     image = [image imageWithColorOverlay:[UIColor colorWithRed:0.0 green:0.333 blue:0.659 alpha:0.7]];
     ((ShoppingListCell*)cell).backgroundImage.image = image;
     
-    ((ShoppingListCell*)cell).textLabel.text = shoppingList.title;
+    
+    NSAttributedString* attributedTitle =
+      [[NSAttributedString alloc] initWithString:shoppingList.title attributes:self.attributesOfTitle];
+    ((ShoppingListCell*)cell).textLabel.attributedText = attributedTitle;
 
   }
   
