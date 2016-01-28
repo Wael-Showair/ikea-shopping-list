@@ -63,6 +63,11 @@
 }
 
 - (void) updateGlobalHeaderWithTitle: (NSString*) title{
-  ((UILabel*)self.tableHeaderView).text = title;
+  UILabel* label = (UILabel*)self.tableHeaderView;
+  label.layer.opacity = 0.0;
+  label.text = title;
+  [UIView animateWithDuration:1.0 animations:^{
+    label.layer.opacity = 1.0;
+  }];
 }
 @end

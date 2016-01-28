@@ -16,7 +16,7 @@
 #define FIRST_INDEX_INSECTION        0
 #define SHOW_ITEM_DETAILS_SEGUE_ID   @"showItemDetails"
 #define OPEN_CAMERA_SEGUE_ID         @"openCamera"
-#define ITEM_ADDITION_TEXT           @"Add new item to the list by pointing the camera to tag of the item"
+#define ITEM_ADDITION_TEXT           @" Add new item to the list by pointing the camera to the tag of the item"
 
 @interface ShoppingItemsViewController ()
 
