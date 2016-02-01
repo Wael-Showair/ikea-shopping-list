@@ -310,6 +310,7 @@
                                                                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v1z-hE-3F8">
                                                                     <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
                                                                     <color key="backgroundColor" red="1" green="0.27711810570000001" blue="0.2451457507" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <accessibility key="accessibilityConfiguration" label="my-delete"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="v1z-hE-3F8" secondAttribute="height" multiplier="1:1" id="Cjv-ki-OgK"/>
                                                                         <constraint firstAttribute="width" constant="22" id="cBQ-e7-Wh7"/>
@@ -469,6 +470,10 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" staticText="YES"/>
+                                            <bool key="isElement" value="YES"/>
+                                        </accessibility>
                                         <connections>
                                             <segue destination="nPn-uq-FWl" kind="show" identifier="showItemDetails" id="bPY-Dk-cfp"/>
                                         </connections>

@@ -31,6 +31,11 @@
   CGRect convertedRect = [view convertRect:view.bounds toView:nil];
   self.transparentArea = CGRectInset(convertedRect, VIEW_INSET, VIEW_INSET);
 //  NSLog(@"frame of view after conversion: %@",NSStringFromCGRect(self.transparentArea));
+
+  /* Improve accessibility and UI Testing. */
+  self.accessibilityIdentifier = OVERLAY_ACCESSIBILITY_LABEL;
+  //self.accessibilityTraits = UIAccessibilityTraitButton;
+  //self.userInteractionEnabled = YES;
   return self;
 }
 

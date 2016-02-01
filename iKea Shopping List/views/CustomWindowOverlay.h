@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#define OVERLAY_ACCESSIBILITY_LABEL @"custom overlay"
 @interface CustomWindowOverlay : UIView
 -(instancetype)initWithFrame:(CGRect)frame aroundView:(UIView*) view;
 @end

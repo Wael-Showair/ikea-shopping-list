@@ -34,13 +34,14 @@
 - (void)testRemovingSectionFromTable {
   
   XCUIApplication *app = [[XCUIApplication alloc] init];
+
+  /* Tap on List of Bathroom Items */
+  [app.scrollViews.otherElements.collectionViews.images[@"kitchen"] tap];
+  
   XCUIElementQuery *tablesQuery = app.tables;
   
   XCUIElement* currentTabel = [tablesQuery elementBoundByIndex:0];
   XCTAssertNotNil(currentTabel); // Make sure it is not nil
-  
-  /* Tap on List of Kitchen Items */
-  [currentTabel.staticTexts[@"Kitchen"] tap];
   
   /* Svae number of items for later comparison. */
   NSUInteger oldNumberOfItems = currentTabel.cells.count;
@@ -66,16 +67,17 @@
   /* TODO: check that the table header view  has been updated by the total price */
 }
 
--(void) testRemocingAnItemFromSection{
+-(void) testRemovingAnItemFromSection{
   
   XCUIApplication *app = [[XCUIApplication alloc] init];
+
+  /* Tap on List of Bathroom Items */
+  [app.scrollViews.otherElements.collectionViews.images[@"bathroom"] tap];
+  
   XCUIElementQuery *tablesQuery = app.tables;
   
   XCUIElement* currentTabel = [tablesQuery elementBoundByIndex:0];
   XCTAssertNotNil(currentTabel); // Make sure it is not nil
-  
-  /* Tap on List of Bathroom Items */
-  [currentTabel.staticTexts[@"Bathroom"] tap];
   
   /* Svae number of items for later comparison. */
   NSUInteger oldNumberOfItems = currentTabel.cells.count;
@@ -83,7 +85,7 @@
   /* Get reference to a cell in a section that has multiple rows.*/
   XCUIElement *cell = [[[currentTabel childrenMatchingType:XCUIElementTypeCell]
                         matchingIdentifier:@"Faucet, 54.49"]
-                       elementBoundByIndex:2];
+                       elementBoundByIndex:0];
   
   /* Swipe to delete. */
   [cell swipeLeft];
@@ -101,6 +103,8 @@
   XCTAssertEqual(oldNumberOfItems -1, newNumberOfLists);
   
   /* TODO: check that the table header view  has been updated by the total price */
+  
 }
+
 
 @end

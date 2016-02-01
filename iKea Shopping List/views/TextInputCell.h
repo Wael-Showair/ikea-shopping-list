@@ -10,6 +10,7 @@
 
 @interface TextInputCell : UICollectionViewCell
 #define NEW_LIST_INFO_CELL_ID   @"new-list-info-cell"
+#define CELL_TEXT_INPUT_ACCESSIBILITY_LABEL  @"text-field-container-cell"
 @property (weak, nonatomic) IBOutlet UITextField *inputText;
 
 @end

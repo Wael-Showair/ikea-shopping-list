@@ -256,6 +256,8 @@
     /* Inform the data source that it should not use text input anymore. */
     self.listOfListsDataSource.rowIndexForTextInputCell = INVALID_ROW_INDEX;
     
+    /* Improve the application accessibility as well as the UI Testing*/
+    cell.accessibilityLabel = CELL_TEXT_INPUT_ACCESSIBILITY_LABEL;
   }else{
     
     ShoppingList* shoppingList = [self.listOfListsDataSource itemAtIndexPath:indexPath];
@@ -268,7 +270,9 @@
     NSAttributedString* attributedTitle =
       [[NSAttributedString alloc] initWithString:shoppingList.title attributes:self.attributesOfTitle];
     ((ShoppingListCell*)cell).textLabel.attributedText = attributedTitle;
-
+    
+    /* Improve the application accessibility as well as the UI Testing*/
+    cell.accessibilityLabel = shoppingList.title;
   }
   
 }

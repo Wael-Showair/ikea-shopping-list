@@ -33,7 +33,7 @@
 -(void) testAddNewItem {
   NSDecimalNumber* itemPrice = [NSDecimalNumber decimalNumberWithString:@"19.99"];
   ShoppingItem* item = [[ShoppingItem alloc] initWithName:@"Standing Lamp" price:itemPrice];
-  [self.shoppingList addNewItem:item AtAisleIndex:0];
+  [self.shoppingList addNewItem:item];
   XCTAssertEqual(1, [self.shoppingList numberOfAisles]);
 }
 
@@ -44,8 +44,8 @@
   ShoppingItem* item2 = [[ShoppingItem alloc] initWithName:@"Dinning Chairs" price:itemPrice];
   
   /* Make sure that bot items are inserted properly and list lenght is 2 */
-  [self.shoppingList addNewItem:item1 AtAisleIndex:0];
-  [self.shoppingList addNewItem:item2 AtAisleIndex:0];
+  [self.shoppingList addNewItem:item1 ];
+  [self.shoppingList addNewItem:item2 ];
   XCTAssertEqual(1, [self.shoppingList numberOfAisles]);
   
   NSIndexPath* indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
@@ -67,8 +67,8 @@
   itemPrice = [NSDecimalNumber decimalNumberWithString:@"64"];
   ShoppingItem* item2 = [[ShoppingItem alloc] initWithName:@"Chair" price:itemPrice image:nil aisleNumber:53];
   
-  [self.shoppingList addNewItem:item1 AtAisleIndex:0];
-  [self.shoppingList addNewItem:item2 AtAisleIndex:1];
+  [self.shoppingList addNewItem:item1 ];
+  [self.shoppingList addNewItem:item2 ];
   
   NSIndexPath* indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
   ShoppingItem* returnedItem1 = [self.shoppingList itemAtAisleIndexPath:indexPath];
@@ -87,7 +87,7 @@
 - (void) testRetrievingItemAtInvalidIndex{
   NSDecimalNumber* itemPrice = [NSDecimalNumber decimalNumberWithString:@"10024.99"];
   ShoppingItem* item1 = [[ShoppingItem alloc] initWithName:@"Table" price:itemPrice image:nil aisleNumber:113];
-  [self.shoppingList addNewItem:item1 AtAisleIndex:0];
+  [self.shoppingList addNewItem:item1 ];
   
   NSIndexPath* indexPath = [NSIndexPath indexPathForItem:0 inSection:1];
   
@@ -101,8 +101,8 @@
   itemPrice = [NSDecimalNumber decimalNumberWithString:@"64"];
   ShoppingItem* item2 = [[ShoppingItem alloc] initWithName:@"Chair" price:itemPrice image:nil aisleNumber:53];
   
-  [self.shoppingList addNewItem:item1 AtAisleIndex:0];
-  [self.shoppingList addNewItem:item2 AtAisleIndex:1];
+  [self.shoppingList addNewItem:item1 ];
+  [self.shoppingList addNewItem:item2 ];
   
   NSIndexPath* indexPath = [NSIndexPath indexPathForItem:0 inSection:1];
   [self.shoppingList removeItemAtIndexPath:indexPath];
@@ -119,10 +119,11 @@
   itemPrice = [NSDecimalNumber decimalNumberWithString:@"64"];
   ShoppingItem* item2 = [[ShoppingItem alloc] initWithName:@"Chair" price:itemPrice image:nil aisleNumber:53];
   
-  [self.shoppingList addNewItem:item1 AtAisleIndex:0];
-  [self.shoppingList addNewItem:item2 AtAisleIndex:0];
+  [self.shoppingList addNewItem:item1 ];
+  [self.shoppingList addNewItem:item2 ];
   
-  NSIndexPath* indexPath = [NSIndexPath indexPathForItem:1 inSection:0];
+  NSIndexPath* indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+  NSLog(@"index path row = %ld , section = %ld", indexPath.row, indexPath.section);
   [self.shoppingList removeItemAtIndexPath:indexPath];
   
   NSDecimalNumber* totalPrice = [NSDecimalNumber decimalNumberWithString:@"64"];

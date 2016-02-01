@@ -32,23 +32,23 @@
                   price:[[NSDecimalNumber alloc] initWithDouble:54.49]
                   image:@"faucet"
                   aisleNumber:50];
-  [shoppingList addNewItem:shoppingItem AtAisleIndex:0];
+  [shoppingList addNewItem:shoppingItem];
   shoppingItem = [[ShoppingItem alloc]
                   initWithName:@"Mat"
                   price:[[NSDecimalNumber alloc] initWithDouble:12.99]
                   image:@"mat"
                   aisleNumber:101];
-  [shoppingList addNewItem:shoppingItem AtAisleIndex:1];
+  [shoppingList addNewItem:shoppingItem];
   shoppingItem = [[ShoppingItem alloc]
                   initWithName:@"Dish Set"
                   price:[[NSDecimalNumber alloc] initWithDouble:12.99]
                   image:@"dish-set"
                   aisleNumber:43];
-  [shoppingList addNewItem:shoppingItem AtAisleIndex:2];
+  [shoppingList addNewItem:shoppingItem];
   shoppingItem = [[ShoppingItem alloc]
                   initWithName:@"Bottle"
                   price:[[NSDecimalNumber alloc] initWithDouble:17.69]];
-  [shoppingList addNewItem:shoppingItem AtAisleIndex:3];
+  [shoppingList addNewItem:shoppingItem];
   
   self.pivotTable = [[AislesPivotTable alloc] initWithItems:shoppingList];
 }
