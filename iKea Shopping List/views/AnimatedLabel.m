@@ -141,7 +141,12 @@
 -(void)layoutManager:(NSLayoutManager *)layoutManager didCompleteLayoutForTextContainer:(NSTextContainer *)textContainer atEnd:(BOOL)layoutFinishedFlag{
   
     if(self.textStorage.length > 0){
+      
+      for (CATextLayer* textLayer in self.textLayers) {
+        [textLayer removeFromSuperlayer];
+      }
       [self.textLayers removeAllObjects];
+      
       CGRect textContainerRect = [layoutManager usedRectForTextContainer:textContainer];
 
       NSRange glyphFullRange = [layoutManager glyphRangeForTextContainer:textContainer];
